@@ -35,6 +35,7 @@ import co.yedam.memb.control.SignUpControl;
 import co.yedam.memb.control.UserDeletionControl;
 import co.yedam.memb.control.UserInfo;
 import co.yedam.memb.control.UserInfoControl;
+import co.yedam.prod.control.ProdList;
 import co.yedam.revw.control.ReviewAddForm;
 import co.yedam.revw.control.ReviewAddFormControl;
 import co.yedam.revw.control.ReviewList;
@@ -104,6 +105,8 @@ public class FrontControl extends HttpServlet {
 		// oder & buy
 		map.put("/orderList.do", new OrderList());       //주문내역페이지
 		map.put("/orderProduct.do", new OrderProduct()); //결제페이지
+		
+		map.put("/prodList.do", new ProdList());
 	}
 
 	@Override
