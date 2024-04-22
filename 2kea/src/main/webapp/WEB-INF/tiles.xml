@@ -2,22 +2,22 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
-<!-- 
+
 <tiles-definitions>
-  <definition name="myapp.homepage" template="/layouts/classic.jsp">
+  <!-- main -->
+  <definition name="2keamain" template="/WEB-INF/layout/template.jsp">
     <put-attribute name="title" value="Tiles tutorial homepage" />
-    <put-attribute name="header" value="/tiles/banner.jsp" />
-    <put-attribute name="menu" value="/tiles/common_menu.jsp" />
-    <put-attribute name="body" value="/tiles/home_body.jsp" />
-    <put-attribute name="footer" value="/tiles/credits.jsp" />
+    <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+    <put-attribute name="menu" value="/WEB-INF/layout/menu.jsp" />
+    <put-attribute name="body" value="/WEB-INF/layout/body.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
   </definition>
   
-  <definition name="WILDCARD:prod/*" extends="productapp">
-  	<put-attribute name="body" value="/WEB-INF/view/prod/{1}.jsp" />
+  <definition name="WILDCARD:2kea/*" extends="2keamain">
+  	<put-attribute name="body" value="/WEB-INF/view/2kea/{1}.jsp" />
   </definition>
   
   <definition name="WILDCARD:*/*" extends="boardapp">
   	<put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp" />
   </definition>
 </tiles-definitions>
--->
