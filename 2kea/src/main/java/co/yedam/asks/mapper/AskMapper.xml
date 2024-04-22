@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.yedam.mapper.AskMapper">
+
+	<!-- page 나중에 추가 -->
+  	<select id="selectAskList" resultType="co.yedam.asks.vo.AskVO">
+   	 select *
+	 from ask
+	 order by ask_no desc
+	</select>
+  	
+  	<insert id= "insertAsk" parameterType = "co.yedam.asks.vo.AskVO">
+     insert into ask (ask_no, ask_content, id, ask_category)
+	 values (ask_no_seq.nextval, #{askContent}, #{id}, #{askCategory})
+    </insert>
+  	
+  	<update id = "updateAsk" parameterType = "co.yedam.asks.vo.AskVO">
+  	 update ask 
+  	 set ask_content = #{askContent}, 
+  	 where ask_no = #{askNo}
+  	</update>
+  	
+  	<delete id= "deleteAsk" parameterType = "int">
+  	 delete from ask
+  	 where ask_no = #{ano}
+    </delete>
+</mapper>
