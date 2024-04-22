@@ -39,8 +39,9 @@
 <div align=center>
 김성현  김지민  김현중  박영빈  
 [최원호](https://github.com/cho1no)
-	적용예: [Google](https://google.com, "google link")
+	
 </div>
+적용예: [Google](https://google.com, "google link")
 <br>
 <div align=center>
 	<p>🧷 info 🧷</p>
