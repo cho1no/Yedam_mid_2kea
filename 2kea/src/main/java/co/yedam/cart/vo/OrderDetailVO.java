@@ -3,8 +3,9 @@ package co.yedam.cart.vo;
 import lombok.Data;
 
 @Data
-public class CartVO {
+public class OrderDetailVO {
+	private int OrderNo;
 	private int prodNo;
-	private String id;
 	private int qty;
+	private String orderStatus;
 }

@@ -1,10 +1,11 @@
 package co.yedam.cart.vo;
 
+import lombok.Data;
+
+@Data
 public class OrderVO {
 	private int orderNo;
-	private int qty;
 	private String id;
-	private int prodNo;
-	private String orderStatus;
 	private String orderAddress;
+	private String orderDate;
 }
