@@ -3,6 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="co.yedam.revw.mapper.MemberMapper">
+<mapper namespace="co.yedam.revw.mapper.ReviewMapper">
+  <select id="reviewList" resultType="co.yedam.revw.vo.ReviewVO">
+  	SELECT * 
+  	FROM review
+  </select>
   
+  <insert id="insertReview" parameterType="co.yedam.revw.vo.ReviewVO">
+  	INSERT INTO review 
+  	(review_no, prod_no, id, rating, review_content, review_date)
+  	VALUES(review_no_seq.nextval, #{prodNo}, #{id}, #{rating}, #{reviewContent}, SYSDATE )
+  </insert>
 </mapper>

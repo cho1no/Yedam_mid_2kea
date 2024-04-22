@@ -1,5 +1,10 @@
 package co.yedam.revw.service;
 
-public interface ReviewService {
+import java.util.List;
 
+import co.yedam.revw.vo.ReviewVO;
+
+public interface ReviewService {
+	public List<ReviewVO> reviewList();
+	public boolean addReview (ReviewVO rvo);
 }
