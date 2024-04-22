@@ -15,5 +15,5 @@ public class EditAsk implements Control {
 		// TODO Auto-generated method stub
 
 	}
-
+	
 }
