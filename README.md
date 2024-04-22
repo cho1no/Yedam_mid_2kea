@@ -28,3 +28,15 @@
 	<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" />
 </div>
 <br>
+<div align=center>
+	<p>🙆 Members 🙆</p>
+</div>
+<div align=center>
+<ul>
+	<li>김성현</li>
+	<li>김지민</li>
+	<li>김현중</li>
+	<li>박영빈</li>
+	<li>최원호</li>
+</ul>
+</div>
