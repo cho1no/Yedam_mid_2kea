@@ -63,11 +63,11 @@ public class FrontControl extends HttpServlet {
 		map.put("/addWish.do", new AddWish()); 			// 위시추가
 		map.put("/modifyWish.do", new ModifyWish()); 	// 위시수량변경
 		map.put("/removeWish.do", new RemoveWish()); 	// 위시삭제
-		// product
-		map.put("/productList.do", new ProductList());     //장바구니목록
-		map.put("/addProduct.do", new AddProduct());       //장바구니추가
-		map.put("/modifyProduct.do", new ModifyProduct()); //장바구니수량변경
-		map.put("/removeProduct.do", new RemoveProduct()); //장바구니상품삭제
+		// cart
+		map.put("/cartList.do", new CartList());     //장바구니목록
+		map.put("/addCart.do", new AddCart());       //장바구니추가
+		map.put("/modifyCart.do", new ModifyCart()); //장바구니수량변경
+		map.put("/removeCart.do", new RemoveCart()); //장바구니상품삭제
 		// oder & buy
 		map.put("/orderList.do", new OrderList());       //주문내역페이지
 		map.put("/orderProduct.do", new OrderProduct()); //결제페이지
