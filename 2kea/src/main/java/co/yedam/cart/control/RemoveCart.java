@@ -1,4 +1,4 @@
-package co.yedam.wish;
+package co.yedam.cart.control;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.common.Control;
 
-public class WishListControl implements Control {
+public class RemoveCart implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
