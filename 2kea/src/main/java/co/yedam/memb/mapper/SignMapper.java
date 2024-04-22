@@ -1,5 +1,6 @@
 package co.yedam.memb.mapper;
 
-public class SignMapper {
-
+public interface SignMapper {
+	public boolean insertMember();
+	public int deleteMember();
 }
