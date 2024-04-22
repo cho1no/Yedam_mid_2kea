@@ -77,6 +77,11 @@
 		    <version>2.10.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>co.yedam</groupId>
+			<artifactId>board</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>
