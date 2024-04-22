@@ -28,20 +28,15 @@
 	<img src="https://img.shields.io/badge/Tomcat-F8DC75?style=flat&logo=ApacheTomcat&logoColor=white" />
 	<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" />
 </div>
-
-- - -
-
+<hr>
 <div align=center>
 	<h3>👀 About 👀</h3>
 	<br>
 	<p>🙆 Members 🙆</p>
 </div>
 <div align=center>
-김성현  김지민  김현중  박영빈  
-[최원호](https://github.com/cho1no)
-	
+김성현  김지민  김현중  박영빈  최원호
 </div>
-적용예: [Google](https://google.com, "google link")
 <br>
 <div align=center>
 	<p>🧷 info 🧷</p>
