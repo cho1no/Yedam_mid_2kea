@@ -4,11 +4,26 @@
 
 <mapper namespace="co.yedam.memb.mapper.SignMapper">
 
-	<insert id="selectMember" parameterType="co.yedam.memb.mapper.MemberVO" >
+	<select id="selectMember"
+		parameterType="co.yedam.memb.vo.MemberVO"
+		resultType="co.yedam.memb.vo.MemberVO">
+		SELECT *
+		FROM member
+		where 
+	</select>
+
+
+	<insert id="insertMember"
+		parameterType="co.yedam.memb.mapper.MemberVO">
 		INSERT INTO
-			member(id, pw, m_Name, email, phone, regidate, authority)
-			values(#{id}, #{pw}, #{mName}, #{email} ,#{phone}, #{regidate}, #{authority})
+		member(id, pw, m_Name, email, phone, regidate, authority)
+		values(#{id}, #{pw}, #{mName}, #{email} ,#{phone}, #{regidate}, #{authority})
 	</insert>
+
+	<delete id="deleteMember" parameterType="int">
+		delete from member
+		where id = #{id}
+	</delete>
 	
 	
 
