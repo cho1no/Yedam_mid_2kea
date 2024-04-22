@@ -34,6 +34,7 @@
 <div align=center>
 김성현  김지민  김현중  박영빈  최원호
 </div>
+<br>
 <div align=center>
 	<p>🧷 info 🧷</p>
 </div>
