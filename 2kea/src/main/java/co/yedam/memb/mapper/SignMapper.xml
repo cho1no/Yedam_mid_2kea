@@ -9,22 +9,32 @@
 		resultType="co.yedam.memb.vo.MemberVO">
 		SELECT *
 		FROM member
-		where 
+		WHERE id = #{id} AND pw = #{pw}
 	</select>
+
 
 
 	<insert id="insertMember"
 		parameterType="co.yedam.memb.mapper.MemberVO">
 		INSERT INTO
-		member(id, pw, m_Name, email, phone, regidate, authority)
-		values(#{id}, #{pw}, #{mName}, #{email} ,#{phone}, #{regidate}, #{authority})
+		member(id, pw, m_Name, email, phone,
+		regidate, authority)
+		values(#{id}, #{pw}, #{mName}, #{email} ,#{phone},
+		#{regidate}, #{authority})
 	</insert>
 
 	<delete id="deleteMember" parameterType="int">
-		delete from member
-		where id = #{id}
+		DELETE FROM member
+		WHERE
+		id = #{id}
 	</delete>
-	
-	
+
+	<update id="updateMember"
+		parameterType="co.yedam.memb.mapper.MemberVO">
+		UPDATE member
+		SET 
+
+	</update>
+
 
 </mapper>
