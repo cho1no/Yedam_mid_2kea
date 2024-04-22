@@ -28,9 +28,7 @@
 	<img src="https://img.shields.io/badge/Tomcat-F8DC75?style=flat&logo=ApacheTomcat&logoColor=white" />
 	<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" />
 </div>
-<br>
-***
-<br>
+* * *
 <div align=center>
 	<h3>👀 About 👀</h3>
 	<br>
