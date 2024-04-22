@@ -32,11 +32,5 @@
 	<p>🙆 Members 🙆</p>
 </div>
 <div align=center>
-<ul>
-	<li>김성현</li>
-	<li>김지민</li>
-	<li>김현중</li>
-	<li>박영빈</li>
-	<li>최원호</li>
-</ul>
+김성현 김지민 김현중 박영빈 최원호
 </div>
