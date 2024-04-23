@@ -22,7 +22,7 @@
 
 	<update id="updateAsk" parameterType="co.yedam.asks.vo.AskVO">
 		update ask
-		set ask_content = #{askContent},
+		set ask_content = #{askContent}
 		where ask_no = #{askNo}
 	</update>
 
