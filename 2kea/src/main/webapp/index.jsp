@@ -1,3 +1,3 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<h2>hello 2kea</h2>
+<jsp:forward page="prodMain.do"></jsp:forward>

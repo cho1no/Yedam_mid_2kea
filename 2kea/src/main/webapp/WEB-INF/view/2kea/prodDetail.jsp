@@ -443,11 +443,11 @@
       </div>
     </div>
 </section>
-<script src="js/jquery.magnific-popup.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.nice-select.min.js"></script>
+<script src="template/js/jquery.magnific-popup.js"></script>
+<script src="template/js/owl.carousel.min.js"></script>
+<script src="template/js/jquery.nice-select.min.js"></script>
 <!-- swiper js -->
-<script src="js/lightslider.min.js"></script>
+<script src="template/js/lightslider.min.js"></script>
 
 <script>
   const pno = "${pvo.prodNo}";
@@ -460,4 +460,4 @@
 </script>
 
 <%-- CWH js --%>
-<script src="js/2kea/prodDetail.js">
+<script src="js/prodDetail.js"></script>
