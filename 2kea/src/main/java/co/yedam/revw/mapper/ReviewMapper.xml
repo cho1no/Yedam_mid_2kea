@@ -14,4 +14,16 @@
   	(review_no, prod_no, id, rating, review_content, review_date)
   	VALUES(review_no_seq.nextval, #{prodNo}, #{id}, #{rating}, #{reviewContent}, SYSDATE )
   </insert>
+  
+  <delete id="deleteReview" parameterType="int">
+  	DELETE FROM review
+  	WHERE review_no = #{reviewNo}
+  </delete>
+  
+  <update id="updateReview" parameterType="co.yedam.revw.vo.ReviewVO">
+  	UPDATE FROM review
+  	set rating = #{rating}, 
+  		review_content = #{reviewContent}
+  	WHERE review_no = #{reviewNo}
+  </update>
 </mapper>
