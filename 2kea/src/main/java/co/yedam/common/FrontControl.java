@@ -65,65 +65,12 @@ public class FrontControl extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		// front control setttings
-		// ask
-		map.put("/addAskForm.do", new AddAskForm()); // 문의 등록 화면 
-		map.put("/askList.do", new AskList());       // 문의목록
-		map.put("/addAsk.do", new AddAsk());		 // 문의등록
-		map.put("/editAsk.do", new EditAsk());		 // 문의수정
-		map.put("/delAsk.do", new DelAsk());		 // 문의삭제
-		// reply
-		map.put("/replyList.do", new ReplyList());   // 답변목록
-		map.put("/addReply.do", new AddReply());     // 답변등록
-		map.put("/editReply.do", new EditReply());   // 답변수정
-		map.put("/delReply.do", new DelReply());     // 답변삭제
-		
-		// review
-		map.put("/ReviewList.do", new ReviewList());			        // 리뷰 더보기 기능
-		map.put("/ReviewListControl.do", new ReviewListControl());		// 리뷰 더보기 기능
-		map.put("/ReviewAddForm.do", new ReviewAddForm());				// 리뷰 작성 페이지
-		map.put("/ReviewAddFormControl.do", new ReviewAddFormControl());// 리뷰 작성 기능 수행 페이지
-		map.put("/ReviewModify.do", new ReviewModify());
-		map.put("/ReviewRemove.do", new ReviewRemove());
-		// member
-		map.put("/signIn.do", new SignIn());				    		//로그인 페이지
-		map.put("/signInControl.do", new SignInControl());				//로그인 기능 수행
-		map.put("/findIdControl.do", new FindIdControl());				//아이디 찾기 기능 수행
-		map.put("/findPasswordControl.do", new FindPasswordControl());	//비밀번호 찾기 기능 수행
-		//map.put("/kakaoSignIn.do", new KakaoSignIn());				//카카오로그인 페이지(할수있다면)
-
-
-		map.put("/signUp.do", new SignUp());					//회원 가입 페이지
-		map.put("/signUpControl.do", new SignUpControl());		//회원 가입 기능 수행
-		//map.put("/kakaoSignUp.do", new KakaoSignUp());		//카카오로그인 페이지(할수있다면)
-
-		map.put("/userInfo.do", new UserInfo());						//정보 수정 페이지
-		map.put("/userInfoControl.do", new UserInfoControl());			//정보 수정 기능 수행
-		map.put("/userDeletionControl.do", new UserDeletionControl());	//회원 탈퇴 기능 수행
-		
-		// wish
-		  map.put("/wishListForm.do", new WishListForm());       // 위시리스트 페이지
-		  map.put("/wishList.do", new WishList());            // 위시리스트목록 
-		  map.put("/addWish.do", new AddWish());                // 위시추가
-		  map.put("/removeWish.do", new RemoveWish());          // 위시삭제
-		  // cart
-		  map.put("/cartListForm.do", new CartListForm());        //장바구니 페이지
-		  map.put("/cartList.do", new CartList());            //장바구니목록
-		  map.put("/addCart.do", new AddCart());                 //장바구니추가
-		  map.put("/modifyCart.do", new ModifyCart());           //장바구니수량변경
-		  map.put("/removeCart.do", new RemoveCart());           //장바구니상품삭제
-		  // oder 
-		  map.put("/orderListForm.do", new OrderListForm());       //주문내역 페이지
-		  map.put("/orderList.do", new OrderList());               //주문목록
-		  map.put("/orderProduct.do", new OrderProduct());         //주문상세내역
-		
-		// product
-		map.put("/prodList.do", new ProdListControl());  		//상품 리스트 json
-		// product detail
-		map.put("/prodImgList.do", new ProdImgeListControl());  //상품 이미지 리스트 json
-		
-		// 페이지 이동
-		map.put("/prodMain.do", new ProdMain());		 //메인 페이지 이동
-		map.put("/prodDetail.do", new ProdDetail());     //상세 페이지 이동
+		FcAsks.init(map); // 문의
+		FcCart.init(map); // 장바구니
+		FcMemb.init(map); // 멤버
+		FcProd.init(map); // 상품
+		FcRevw.init(map); // 리뷰
+		FcWish.init(map); // 찜
 	}
 
 	@Override

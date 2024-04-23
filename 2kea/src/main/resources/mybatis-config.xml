@@ -24,6 +24,12 @@
     </environment>
   </environments>
   <mappers>
-<!--     <mapper resource="co/yedam/mapper/BoardMapper.xml"/> -->
+	<mapper resource="co/yedam/revw/mapper/ReviewMapper.xml"/>
+	<mapper resource="co/yedam/mapper/AskMapper.xml" />
+	<mapper resource="co/yedam/cart/mapper/CartMapper.xml"/>
+    <mapper resource="co/yedam/cart/mapper/OrderMapper.xml"/>
+    <mapper resource="co/yedam/wish/mapper/WishMapper.xml"/>
+    <mapper resource="co/yedam/prod/mapper/ProdMapper.xml"/>
+    <mapper resource="co/yedam/memb/mapper/SignMapper.xml"/>
   </mappers>
 </configuration>
