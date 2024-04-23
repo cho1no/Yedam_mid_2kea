@@ -16,18 +16,18 @@ public class AddWish implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String bno = req.getParameter("bno");
+		String pno = req.getParameter("pno");
 		String id = req.getParameter("id");
 		
 		WishVO wvo = new WishVO();
-		wvo.setProdNo(Integer.parseInt(bno));
+		wvo.setProdNo(Integer.parseInt(pno));
 		wvo.setId(id);
 		
 		WishService wsv = new WishServiceImpl();
 		if(wsv.addWish(wvo)) {
 			resp.getWriter().print("{\"retCode\": \"Success\"}");
 		} else {
-			resp.getWriter().print("{\"retCode\": \"Success\"}");
+			resp.getWriter().print("{\"retCode\": \"Fail\"}");
 		}
 	}	
 

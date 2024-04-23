@@ -1,4 +1,4 @@
-package co.yedam.wish.control;
+package co.yedam.cart.control;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,7 +15,7 @@ import co.yedam.wish.service.WishService;
 import co.yedam.wish.service.WishServiceImpl;
 import co.yedam.wish.vo.WishVO;
 
-public class WishListControl implements Control {
+public class WishList implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
