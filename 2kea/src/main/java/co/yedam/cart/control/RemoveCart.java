@@ -6,8 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.yedam.cart.service.CartService;
+import co.yedam.cart.service.CartServiceImpl;
+import co.yedam.cart.vo.CartVO;
 import co.yedam.common.Control;
-import co.yedam.vo.CartVO;
 
 public class RemoveCart implements Control {
 
@@ -16,6 +18,19 @@ public class RemoveCart implements Control {
 		// TODO Auto-generated method stub
 		String pno = req.getParameter("pno");
 		String id = req.getParameter("id");
+		
+		CartVO cvo = new CartVO();
+		cvo.setProdNo(Integer.parseInt(pno));
+		cvo.setId(id);
+		
+		CartService csv = new CartServiceImpl();
+		if(csv.removeCart(cvo)) {
+			resp.getWriter().print("{\"retCode\" : \"Success\"}");
+		} else {
+			resp.getWriter().print("{\"retCode\" : \"Fail\"}");
+		}
+		
+		
 		
 	}
 
