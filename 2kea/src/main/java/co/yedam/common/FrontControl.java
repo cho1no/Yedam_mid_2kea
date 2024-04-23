@@ -78,7 +78,8 @@ public class FrontControl extends HttpServlet {
 		map.put("/ReviewListControl.do", new ReviewListControl());		// 리뷰 더보기 기능
 		map.put("/ReviewAddForm.do", new ReviewAddForm());				// 리뷰 작성 페이지
 		map.put("/ReviewAddFormControl.do", new ReviewAddFormControl());// 리뷰 작성 기능 수행 페이지
-		
+		map.put("/ReviewModify.do", new ReviewModify());
+		map.put("/ReviewRemove.do", new ReviewRemove());
 		// member
 		map.put("/signIn.do", new SignIn());				    		//로그인 페이지
 		map.put("/signInControl.do", new SignInControl());				//로그인 기능 수행
