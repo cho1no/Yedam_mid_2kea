@@ -15,7 +15,7 @@
 
 
 	<insert id="insertMember"
-		parameterType="co.yedam.memb.mapper.MemberVO">
+		parameterType="co.yedam.memb.vo.MemberVO">
 		INSERT INTO
 		member(id, pw, m_Name, email, phone,
 		regidate, authority)
@@ -30,11 +30,19 @@
 	</delete>
 
 	<update id="updateMember"
-		parameterType="co.yedam.memb.mapper.MemberVO">
+		parameterType="co.yedam.memb.vo.MemberVO">
 		UPDATE member
-		SET 
-
+		<set>
+			<if test="pw != null">pw = #{pw},</if>
+			<if test="mName != null">m_Name = #{mName},</if>
+			<if test="email != null">email = #{email},</if>
+			<if test="phone != null">phone = #{phone},</if>
+			<if test="regidate != null">regidate = #{regidate},</if>
+			<if test="authority != null">authority = #{authority},</if>
+		</set>
+		WHERE id = #{id}
 	</update>
+
 
 
 </mapper>

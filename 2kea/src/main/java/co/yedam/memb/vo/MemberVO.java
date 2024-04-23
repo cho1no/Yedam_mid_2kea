@@ -13,5 +13,6 @@ public class MemberVO {
 	private String phone;
 	private Date regidate;
 	private String authority;
+	private String Responsibility;
 	
 }
