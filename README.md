@@ -3,6 +3,7 @@
 </div>
 <div align=center>
 	<h3>📚 Tech Stack 📚</h3>
+	<br>
 	<p>✨ Platforms & Languages ✨</p>
 </div>
 <div align="center">
@@ -27,4 +28,19 @@
 	<img src="https://img.shields.io/badge/Tomcat-F8DC75?style=flat&logo=ApacheTomcat&logoColor=white" />
 	<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" />
 </div>
+<hr>
+<div align=center>
+	<h3>👀 About 👀</h3>
+	<br>
+	<p>🙆 Members 🙆</p>
+</div>
+<div align=center>
+김성현  김지민  김현중  박영빈  최원호
+</div>
 <br>
+<div align=center>
+	<p>🧷 info 🧷</p>
+</div>
+<div align=center>
+IKEA, 오늘의 집을 닮고 싶은 가구 쇼핑몰입니다.
+</div>

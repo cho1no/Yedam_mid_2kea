@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.yedam.memb.mapper.SignMapper">
+
+	<select id="selectMember"
+		parameterType="co.yedam.memb.vo.MemberVO"
+		resultType="co.yedam.memb.vo.MemberVO">
+		SELECT *
+		FROM member
+		WHERE id = #{id} AND pw = #{pw}
+	</select>
+
+
+
+	<insert id="insertMember"
+		parameterType="co.yedam.memb.mapper.MemberVO">
+		INSERT INTO
+		member(id, pw, m_Name, email, phone,
+		regidate, authority)
+		values(#{id}, #{pw}, #{mName}, #{email} ,#{phone},
+		#{regidate}, #{authority})
+	</insert>
+
+	<delete id="deleteMember" parameterType="int">
+		DELETE FROM member
+		WHERE
+		id = #{id}
+	</delete>
+
+	<update id="updateMember"
+		parameterType="co.yedam.memb.mapper.MemberVO">
+		UPDATE member
+		SET 
+
+	</update>
+
+
+</mapper>
