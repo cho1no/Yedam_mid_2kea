@@ -13,22 +13,22 @@ import com.google.gson.GsonBuilder;
 import co.yedam.common.Control;
 import co.yedam.prod.service.ProdService;
 import co.yedam.prod.service.ProdServiceImpl;
-import co.yedam.prod.vo.ProdVO;
+import co.yedam.prod.vo.ProdImgVO;
 
-public class ProdList implements Control {
+public class ProdImgeListControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// json문자열생성
 		resp.setContentType("text/json; charset=utf-8");
+		String pno = req.getParameter("pno");
 		ProdService svc = new ProdServiceImpl();
-		List<ProdVO> list = svc.showProdList();
+		List<ProdImgVO> list = svc.showProdImgList(Integer.parseInt(pno));
 		
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list);
 		
 		resp.getWriter().print(json);
-//		req.getRequestDispatcher("2kea/main.tiles").forward(req, resp);
+
 	}
 
 }
