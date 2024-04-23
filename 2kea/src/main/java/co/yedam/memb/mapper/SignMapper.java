@@ -7,4 +7,6 @@ public interface SignMapper {
 	public int insertMember(MemberVO vo);
 	public int deleteMember(String id);
 	public int  updateMember(MemberVO vo);
+	public MemberVO selectId(MemberVO vo);
+	public MemberVO selectPw(MemberVO vo);
 }

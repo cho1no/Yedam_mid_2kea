@@ -37,12 +37,25 @@
 			<if test="mName != null">m_Name = #{mName},</if>
 			<if test="email != null">email = #{email},</if>
 			<if test="phone != null">phone = #{phone},</if>
-			<if test="regidate != null">regidate = #{regidate},</if>
-			<if test="authority != null">authority = #{authority},</if>
+
 		</set>
 		WHERE id = #{id}
 	</update>
 
+	<select id="findId"
+		parameterType="co.yedam.memb.vo.MemberVO"
+		resultType="co.yedam.memb.vo.MemberVO">
+		SELECT id
+		FROM member
+		WHERE mName = #[mName] AND phone = #{phone}
+	</select>
 
+	<select id="findPw"
+		parameterType="co.yedam.memb.vo.MemberVO"
+		resultType="co.yedam.memb.vo.MemberVO">
+		SELECT pw
+		FROM member
+		WHERE id = #{id} AND mName = #[m_name] AND phone = #{phone} 
+	</select>
 
 </mapper>

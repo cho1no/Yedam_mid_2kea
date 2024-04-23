@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import co.yedam.common.Control;
 import co.yedam.memb.service.LoginService;
 import co.yedam.memb.service.LoginServiceImpl;
+import co.yedam.memb.vo.MemberVO;
 
 public class UserDeletionControl implements Control {
 
@@ -16,7 +17,13 @@ public class UserDeletionControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
 		
+		MemberVO vo = new MemberVO();
+		vo.setId(id);
+		
+		
 		LoginService ls = new LoginServiceImpl();
+		ls.removeMember(id);
+		
 		if(ls.removeMember(id)) {
 			resp.getWriter().print("{\"retCode\": \"Success\"}");
 		}else {

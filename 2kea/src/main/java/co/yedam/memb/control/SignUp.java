@@ -12,10 +12,7 @@ public class SignUp implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		
-		
-
+		req.getRequestDispatcher("login.do").forward(req, resp);
 
 	}
 

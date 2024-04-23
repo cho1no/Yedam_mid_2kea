@@ -17,30 +17,34 @@ public class SignInControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String id = req.getParameter("id");
+		//파라미터를 추출한디.
+		String id = req.getParameter("id");	
 		String pw = req.getParameter("pw");
-
+		
+		//파라미터를vo에 담고.
 		MemberVO vo = new MemberVO();
 		vo.setId(id);
 		vo.setPw(pw);
-		
-		LoginService ls  = new LoginServiceImpl();
+
+		//service 기능 호출.
+		LoginService ls = new LoginServiceImpl();
 		vo = ls.login(vo);
-		
-		if (vo != null){
+
+		//service결과가 있다면
+		if (vo != null) {	//결과가 일치한다 null이 아니다.
 			HttpSession session = req.getSession();
 			session.setAttribute("id", vo.getId());
 			session.setAttribute("pw", vo.getResponsibility());
-			
+
 			if (vo.getResponsibility().equals("Admin")) {
 				req.getRequestDispatcher("#").forward(req, resp);
 			} else {
 				req.getRequestDispatcher("#").forward(req, resp);
 			}
-			
+
 		} else {
 			req.setAttribute("msg", "id와 password를 확인하세요.");
-			req.getRequestDispatcher("#").forward(req, resp);
+			req.getRequestDispatcher("signIn.do").forward(req, resp);
 		}
 	}
 
