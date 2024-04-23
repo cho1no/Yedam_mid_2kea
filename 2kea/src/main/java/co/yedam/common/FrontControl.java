@@ -22,10 +22,14 @@ import co.yedam.asks.control.EditReply;
 import co.yedam.asks.control.ReplyList;
 import co.yedam.cart.control.AddCart;
 import co.yedam.cart.control.CartList;
+import co.yedam.cart.control.CartListForm;
 import co.yedam.cart.control.ModifyCart;
 import co.yedam.cart.control.OrderList;
+import co.yedam.cart.control.OrderListForm;
 import co.yedam.cart.control.OrderProduct;
 import co.yedam.cart.control.RemoveCart;
+import co.yedam.cart.control.WishList;
+import co.yedam.cart.control.WishListForm;
 import co.yedam.memb.control.FindIdControl;
 import co.yedam.memb.control.FindPasswordControl;
 import co.yedam.memb.control.SignIn;
@@ -46,9 +50,7 @@ import co.yedam.revw.control.ReviewListControl;
 import co.yedam.revw.control.ReviewModify;
 import co.yedam.revw.control.ReviewRemove;
 import co.yedam.wish.control.AddWish;
-import co.yedam.wish.control.ModifyWish;
 import co.yedam.wish.control.RemoveWish;
-import co.yedam.wish.control.WishListControl;
 
 // init -> service -> destroy
 // .do로 끝나는 url패턴일때 실행되는 FrontControl
@@ -99,19 +101,20 @@ public class FrontControl extends HttpServlet {
 		map.put("/userDeletionControl.do", new UserDeletionControl());	//회원 탈퇴 기능 수행
 		
 		// wish
-		map.put("/wishList.do", new WishListControl()); // 위시리스트목록
-		map.put("/addWish.do", new AddWish()); 			// 위시추가
-		map.put("/modifyWish.do", new ModifyWish()); 	// 위시수량변경
-		map.put("/removeWish.do", new RemoveWish()); 	// 위시삭제
-		// cart
-		map.put("/cartList.do", new CartList());     //장바구니목록
-		map.put("/addCart.do", new AddCart());       //장바구니추가
-		map.put("/modifyCart.do", new ModifyCart()); //장바구니수량변경
-		map.put("/removeCart.do", new RemoveCart()); //장바구니상품삭제
-		// oder & buy
-		map.put("/orderList.do", new OrderList());       //주문내역페이지
-		map.put("/orderProduct.do", new OrderProduct()); //결제페이지
-		
+		  map.put("/wishListForm.do", new WishListForm());       // 위시리스트 페이지
+		  map.put("/wishList.do", new WishList());            // 위시리스트목록 
+		  map.put("/addWish.do", new AddWish());                // 위시추가
+		  map.put("/removeWish.do", new RemoveWish());          // 위시삭제
+		  // cart
+		  map.put("/cartListForm.do", new CartListForm());        //장바구니 페이지
+		  map.put("/cartList.do", new CartList());            //장바구니목록
+		  map.put("/addCart.do", new AddCart());                 //장바구니추가
+		  map.put("/modifyCart.do", new ModifyCart());           //장바구니수량변경
+		  map.put("/removeCart.do", new RemoveCart());           //장바구니상품삭제
+		  // oder 
+		  map.put("/orderListForm.do", new OrderListForm());       //주문내역 페이지
+		  map.put("/orderList.do", new OrderList());               //주문목록
+		  map.put("/orderProduct.do", new OrderProduct());         //주문상세내역
 		
 		// product
 		map.put("/prodList.do", new ProdListControl());  		//상품 리스트 json
