@@ -7,10 +7,10 @@ import co.yedam.cart.vo.OrderVO;
 
 public interface OrderMapper {
 
-	//결제페이지
+	//주문내역
 	public List<OrderVO> selectOrder();
 	
-	//주문내역
+	//주문상세
 	public List<OrderDetailVO> selectOrderDetail();
 	
 }
