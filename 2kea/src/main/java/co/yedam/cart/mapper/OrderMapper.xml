@@ -3,7 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="co.yedam.wish.mapper.OrderMapper">
+<mapper namespace="co.yedam.cart.mapper.OrderMapper">
 
+  <select id="selectOrder" parameterType="co.yedam.cart.vo.OrderVO" resultType="co.yedam.cart.vo.OrderVO">
+    select *
+    from Orders o
+    join Orderdetail d
+    	on o.order_no = d.order_no
+    where o.order_no_seq_nextval = #{orderNo}
+    and id = #{id}
+  </select>
 
+  <select id="selectOrderDetail" parameterType="co.yedam.cart.vo.OrderDetailVO" resultType="co.yedam.cart.vo.OrderDetailVO">
+    select *
+    from Orderdetail
+    where order_no = #{orderNo}
+    and prod_no = #{prodNo}
+  </select>
 </mapper>

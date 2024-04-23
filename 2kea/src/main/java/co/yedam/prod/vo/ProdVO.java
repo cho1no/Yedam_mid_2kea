@@ -10,4 +10,5 @@ public class ProdVO {
 	private String detail;
 	private String category;
 	private int viewCount;
+	private String image1;
 }

@@ -3,6 +3,29 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="co.yedam.wish.mapper.CartMapper">
-
+<mapper namespace="co.yedam.cart.mapper.CartMapper">
+  <select id="selectCart" parameterType="co.yedam.cart.vo.CartVO" resultType="co.yedam.cart.vo.CartVO">
+    select *
+    from Cart
+    where prod_no = #{prodNo}
+    and id = #{id}
+  </select>
+  
+  <insert id="insertCart" parameterType="co.yedam.cart.vo.CartVO">
+    insert into Cart (prod_no, id, qty)
+    values (#{prodNo}, #{id}, #{qty)
+  </insert>
+  
+  <update id="updateCart" parameterType="co.yedam.cart.vo.CartVO">
+    update Cart
+    set qty = #{qty}
+    where prod_no = #{prodNo}
+    and id = #{id}
+  </update>
+  
+  <delete id="deleteCart" parameterType="co.yedam.cart.vo.CartVO">
+    delete from Cart
+    where prod_no = #{prodNo}
+    and id = #{id}
+  </delete>
 </mapper>  

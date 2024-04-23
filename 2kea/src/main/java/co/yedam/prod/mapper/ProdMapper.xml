@@ -6,6 +6,20 @@
 <mapper namespace="co.yedam.prod.mapper.ProdMapper">
   <select id="selectProdList" resultType="ProdVO">
   	SELECT *
+  	FROM product p
+  	JOIN prdimage i
+  	ON p.prod_no = i.prod_no
+  </select>
+  
+  <select id="selectProd" resultType="ProdVO" parameterType="int">
+  	SELECT *
   	FROM product
+  	WHERE prod_no = #{pno}
+  </select>
+  
+  <select id="selectProdImgList" resultType="ProdImgVO" parameterType="int">
+  	SELECT *
+  	FROM prdimage
+  	WHERE prod_no=#{pno}
   </select>
 </mapper>
