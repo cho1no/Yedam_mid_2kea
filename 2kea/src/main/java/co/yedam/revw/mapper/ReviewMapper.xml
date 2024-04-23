@@ -21,7 +21,7 @@
   </delete>
   
   <update id="updateReview" parameterType="co.yedam.revw.vo.ReviewVO">
-  	UPDATE FROM review
+  	UPDATE review
   	set rating = #{rating}, 
   		review_content = #{reviewContent}
   	WHERE review_no = #{reviewNo}
