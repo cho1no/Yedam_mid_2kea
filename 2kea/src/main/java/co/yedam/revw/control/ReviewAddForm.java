@@ -23,19 +23,16 @@ public class ReviewAddForm implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json;charset=utf-8");
 		
-		int reviewNo = Integer.parseInt(req.getParameter("reviewNo"));
 		int prodNO = Integer.parseInt(req.getParameter("prodNo"));
 		String id = req.getParameter("id");
 		int rating = Integer.parseInt(req.getParameter("rating"));
 		String reviewContent = req.getParameter("reviewContent");
 		
 		ReviewVO rvo = new ReviewVO();
-		rvo.setReviewNo(reviewNo);
 		rvo.setProdNo(prodNO);
 		rvo.setId(id);
 		rvo.setRating(rating);
 		rvo.setReviewContent(reviewContent);
-		rvo.setReviewDate(new Date());
 		
 		ReviewService svc = new ReviewServiceImpl();
 		
