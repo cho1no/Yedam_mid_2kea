@@ -30,5 +30,15 @@ public class LoginServiceImpl implements LoginService{
 	public boolean modifyMember(MemberVO vo) {
 		return mapper.updateMember(vo) == 1;
 	}
+
+	@Override
+	public MemberVO findId(MemberVO vo) {
+		return mapper.selectId(vo);
+	}
+
+	@Override
+	public MemberVO findPw(MemberVO vo) {
+		return mapper.selectPw(vo);
+	}
 	
 }

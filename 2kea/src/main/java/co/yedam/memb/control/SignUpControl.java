@@ -20,21 +20,24 @@ public class SignUpControl implements Control {
 		String mName = req.getParameter("mName");
 		String email = req.getParameter("email");
 		String phone = req.getParameter("phone");
-		
+
 		MemberVO vo = new MemberVO();
 		vo.setId(id);
 		vo.setPw(pw);
 		vo.setMName(mName);
 		vo.setEmail(email);
 		vo.setPhone(phone);
-		
+
 		LoginService ls = new LoginServiceImpl();
-		if(ls.addMember(vo)) {
-			//"{\"retCode\": \"success\"}")
+		ls.addMember(vo);
+		
+		
+		if (ls.addMember(vo)) {
+			// "{\"retCode\": \"success\"}")
 			resp.getWriter().print("{\"retCode\": \"Success\"}");
-		}else {
-			//"{\"retCode\": \"success\"}")
-		resp.getWriter().print("{\"retCode\": \"Fail\"}");
+		} else {
+			// "{\"retCode\": \"success\"}")
+			resp.getWriter().print("{\"retCode\": \"Fail\"}");
 		}
 	}
 
