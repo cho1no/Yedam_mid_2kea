@@ -22,4 +22,14 @@ public class ReviewServiceImpl implements ReviewService {
 		return mapper.insertReview(rvo) == 1;
 	}
 
+	@Override
+	public boolean removeReview(int reviewNo) {
+		return mapper.deleteReview(reviewNo) == 1;
+	}
+
+	@Override
+	public boolean modifyReview(ReviewVO rvo) {
+		return mapper.updateReview(rvo) == 1;
+	}
+
 }
