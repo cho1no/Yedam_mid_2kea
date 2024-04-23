@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/animate.css">
     <!-- owl carousel CSS -->
     <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/lightslider.min.css">
     <!-- font awesome CSS -->
     <link rel="stylesheet" href="css/all.css">
     <!-- flaticon CSS -->
@@ -40,15 +41,17 @@
     <!--::header part start::-->
     <header class="main_menu home_menu">
         <tiles:insertAttribute name="header" />
+        <%--::nav start::--%>
+        <tiles:insertAttribute name="menu" />
+        <%--::nav end::--%>
     </header>
     <!-- Header part end-->
 
+
     <!-- banner part start-->
-    <section class="banner_part">
-        <div class="container">
-            <tiles:insertAttribute name="body" />
-        </div>
-    </section>
+    
+    <tiles:insertAttribute name="body" />
+        
     <!--::subscribe_area part end::-->
 
     <!--::footer_part start::-->
