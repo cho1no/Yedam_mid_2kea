@@ -35,7 +35,10 @@ import co.yedam.memb.control.SignUpControl;
 import co.yedam.memb.control.UserDeletionControl;
 import co.yedam.memb.control.UserInfo;
 import co.yedam.memb.control.UserInfoControl;
-import co.yedam.prod.control.ProdList;
+import co.yedam.prod.control.ProdDetail;
+import co.yedam.prod.control.ProdImgeListControl;
+import co.yedam.prod.control.ProdListControl;
+import co.yedam.prod.control.ProdMain;
 import co.yedam.revw.control.ReviewAddForm;
 import co.yedam.revw.control.ReviewAddFormControl;
 import co.yedam.revw.control.ReviewList;
@@ -106,7 +109,15 @@ public class FrontControl extends HttpServlet {
 		map.put("/orderList.do", new OrderList());       //주문내역페이지
 		map.put("/orderProduct.do", new OrderProduct()); //결제페이지
 		
-		map.put("/prodList.do", new ProdList());
+		
+		// product
+		map.put("/prodList.do", new ProdListControl());  		//상품 리스트 json
+		// product detail
+		map.put("/prodImgList.do", new ProdImgeListControl());  //상품 이미지 리스트 json
+		
+		// 페이지 이동
+		map.put("/prodMain.do", new ProdMain());		 //메인 페이지 이동
+		map.put("/prodDetail.do", new ProdDetail());     //상세 페이지 이동
 	}
 
 	@Override
