@@ -43,6 +43,8 @@ import co.yedam.revw.control.ReviewAddForm;
 import co.yedam.revw.control.ReviewAddFormControl;
 import co.yedam.revw.control.ReviewList;
 import co.yedam.revw.control.ReviewListControl;
+import co.yedam.revw.control.ReviewModify;
+import co.yedam.revw.control.ReviewRemove;
 import co.yedam.wish.control.AddWish;
 import co.yedam.wish.control.ModifyWish;
 import co.yedam.wish.control.RemoveWish;

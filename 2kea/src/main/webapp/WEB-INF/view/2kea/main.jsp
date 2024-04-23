@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    <section class="banner_part">
+        <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <div class="banner_slider owl-carousel">
@@ -467,4 +468,5 @@
                     </div>
                 </div>
             </div>
-        
+        </div>
+    </section>
