@@ -16,8 +16,8 @@
   <definition name="WILDCARD:2kea/*" extends="2keamain">
   	<put-attribute name="body" value="/WEB-INF/view/2kea/{1}.jsp" />
   </definition>
-  
-  <definition name="WILDCARD:*/*" extends="boardapp">
+
+  <definition name="WILDCARD:*/*" extends="2keamain">
   	<put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp" />
   </definition>
 </tiles-definitions>

@@ -10,6 +10,15 @@
               <div data-thumb="img/product/single-product/product_1.png">
                 <img src="img/product/single-product/product_1.png" />
               </div>
+              <div data-thumb="img/product/single-product/product_1.png">
+                <img src="img/product/single-product/product_1.png" />
+              </div>
+              <div data-thumb="img/product/single-product/product_1.png">
+                <img src="img/product/single-product/product_1.png" />
+              </div>
+              <div data-thumb="img/product/single-product/product_1.png">
+                <img src="img/product/single-product/product_1.png" />
+              </div>
             </div>
           </div>
         </div>
@@ -21,9 +30,6 @@
               <li>
                 <a class="active" href="#">
                   <span>Category</span> : Household</a>
-              </li>
-              <li>
-                <a href="#"> <span>Availibility</span> : In Stock</a>
               </li>
             </ul>
             <p>
@@ -53,10 +59,6 @@
         <li class="nav-item">
           <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
             aria-selected="true">Description</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-            aria-selected="false">Specification</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
@@ -98,78 +100,6 @@
             a streamlined plan of cooking that is more efficient for one
             person creating less
           </p>
-        </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-          <div class="table-responsive">
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td>
-                    <h5>Width</h5>
-                  </td>
-                  <td>
-                    <h5>128mm</h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h5>Height</h5>
-                  </td>
-                  <td>
-                    <h5>508mm</h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h5>Depth</h5>
-                  </td>
-                  <td>
-                    <h5>85mm</h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h5>Weight</h5>
-                  </td>
-                  <td>
-                    <h5>52gm</h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h5>Quality checking</h5>
-                  </td>
-                  <td>
-                    <h5>yes</h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h5>Freshness Duration</h5>
-                  </td>
-                  <td>
-                    <h5>03days</h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h5>When packeting</h5>
-                  </td>
-                  <td>
-                    <h5>Without touch of hand</h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h5>Each Box contains</h5>
-                  </td>
-                  <td>
-                    <h5>60pcs</h5>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
           <div class="row">
@@ -513,21 +443,21 @@
       </div>
     </div>
 </section>
-<script src="js/jquery.magnific-popup.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.nice-select.min.js"></script>
+<script src="template/js/jquery.magnific-popup.js"></script>
+<script src="template/js/owl.carousel.min.js"></script>
+<script src="template/js/jquery.nice-select.min.js"></script>
+<!-- swiper js -->
+<script src="template/js/lightslider.min.js"></script>
 
 <script>
-    const pno = "${pvo.prodNo}";
-    const name = "${pvo.name}";
-    const detail = "${pvo.detail}";
-    const price = "${pvo.price}";
-    const category = "${pvo.category}";
-    const viewCount = "${pvo.viewCount}";
-    const image1 = "${pvo.image1}";
-    console.log(pno, name, detail, category, viewCount, image1);
-    $('.s_product_text > h3').text(name);
-    $('.s_product_text > h2').text(price);
-    $('.s_product_text .list li:first-child a').text(category);
-    $('.s_product_text > p').text(detail);
+  const pno = "${pvo.prodNo}";
+  const pname = "${pvo.name}";
+  const detail = "${pvo.detail}";
+  const price = "${pvo.price}";
+  const category = "${pvo.category}";
+  const viewCount = "${pvo.viewCount}";
+  const image1 = "${pvo.image1}";
 </script>
+
+<%-- CWH js --%>
+<script src="js/prodDetail.js"></script>
