@@ -9,7 +9,10 @@
     select *
     from Wishlist w
     join Product p
-    	on w.prod_no = p.prod_no
+    on w.prod_no = p.prod_no
+    join prdimage i
+    on w.prod_no = i.prod_no
+    where i.role = 'thumb'
   </select>
   
   <insert id="insertWish" parameterType="co.yedam.wish.vo.WishVO">

@@ -10,17 +10,27 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import co.yedam.cart.service.CartService;
-import co.yedam.cart.service.CartServiceImpl;
-import co.yedam.cart.vo.CartVO;
 import co.yedam.common.Control;
+import co.yedam.wish.service.WishService;
+import co.yedam.wish.service.WishServiceImpl;
+import co.yedam.wish.vo.WishVO;
 
-public class CartList implements Control {
+public class WishListControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		
 		// TODO Auto-generated method stub
-		req.getRequestDispatcher("2kea/cart.tiles").forward(req, resp);
+		resp.setContentType("text/json;charset=utf-8");
+		
+		WishService wvc = new WishServiceImpl();
+		List<WishVO> list = wvc.wishList();
+		
+		Gson gson = new GsonBuilder().create();
+		String json = gson.toJson(list);
+		
+		resp.getWriter().print(json);
 	}
 
 }
