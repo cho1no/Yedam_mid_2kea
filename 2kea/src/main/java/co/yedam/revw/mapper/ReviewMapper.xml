@@ -7,17 +7,21 @@
   <select id="reviewList" resultType="co.yedam.revw.vo.ReviewVO">
   	SELECT * 
   	FROM review
+  	ORDER BY review_no DESC
   </select>
   
   <insert id="insertReview" parameterType="co.yedam.revw.vo.ReviewVO">
+  	<selectKey resultType="int" keyProperty="reviewNo" order="BEFORE">
+  		SELECT review_no_seq.nextval from dual
+  	</selectKey>
   	INSERT INTO review 
   	(review_no, prod_no, id, rating, review_content, review_date)
-  	VALUES(review_no_seq.nextval, #{prodNo}, #{id}, #{rating}, #{reviewContent}, SYSDATE )
+  	VALUES(#{reviewNo}, #{prodNo}, #{id}, #{rating}, #{reviewContent}, SYSDATE )
   </insert>
   
   <delete id="deleteReview" parameterType="int">
   	DELETE FROM review
-  	WHERE review_no = #{reviewNo}
+  	WHERE review_no = #{rno}
   </delete>
   
   <update id="updateReview" parameterType="co.yedam.revw.vo.ReviewVO">
