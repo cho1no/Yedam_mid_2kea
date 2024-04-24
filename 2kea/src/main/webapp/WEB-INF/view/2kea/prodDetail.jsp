@@ -126,7 +126,7 @@
                 <div class="review_item reply">
                   <div class="media">
                     <div class="d-flex">
-                      <img src="img/product/single-product/review-2.png" alt="" />
+                      <img src="template/img/product/single-product/review-2.png" alt="" />
                     </div>
                     <div class="media-body">
                       <h4>Blake Ruiz</h4>
@@ -144,7 +144,7 @@
                 <div class="review_item">
                   <div class="media">
                     <div class="d-flex">
-                      <img src="img/product/single-product/review-3.png" alt="" />
+                      <img src="template/img/product/single-product/review-3.png" alt="" />
                     </div>
                     <div class="media-body">
                       <h4>Blake Ruiz</h4>
@@ -260,7 +260,7 @@
                 <div class="review_item">
                   <div class="media">
                     <div class="d-flex">
-                      <img src="img/product/single-product/review-1.png" alt="" />
+                      <img src="template/img/product/single-product/review-1.png" alt="" />
                     </div>
                     <div class="media-body">
                       <h4>Blake Ruiz</h4>
@@ -281,7 +281,7 @@
                 <div class="review_item">
                   <div class="media">
                     <div class="d-flex">
-                      <img src="img/product/single-product/review-2.png" alt="" />
+                      <img src="template/img/product/single-product/review-2.png" alt="" />
                     </div>
                     <div class="media-body">
                       <h4>Blake Ruiz</h4>
@@ -302,7 +302,7 @@
                 <div class="review_item">
                   <div class="media">
                     <div class="d-flex">
-                      <img src="img/product/single-product/review-3.png" alt="" />
+                      <img src="template/img/product/single-product/review-3.png" alt="" />
                     </div>
                     <div class="media-body">
                       <h4>Blake Ruiz</h4>
@@ -404,35 +404,35 @@
         <div class="col-lg-12">
           <div class="best_product_slider owl-carousel">
             <div class="single_product_item">
-              <img src="img/product/product_1.png" alt="">
+              <img src="template/img/product/product_1.png" alt="">
               <div class="single_product_text">
                 <h4>Quartz Belt Watch</h4>
                 <h3>$150.00</h3>
               </div>
             </div>
             <div class="single_product_item">
-              <img src="img/product/product_2.png" alt="">
+              <img src="template/img/product/product_2.png" alt="">
               <div class="single_product_text">
                 <h4>Quartz Belt Watch</h4>
                 <h3>$150.00</h3>
               </div>
             </div>
             <div class="single_product_item">
-              <img src="img/product/product_3.png" alt="">
+              <img src="template/img/product/product_3.png" alt="">
               <div class="single_product_text">
                 <h4>Quartz Belt Watch</h4>
                 <h3>$150.00</h3>
               </div>
             </div>
             <div class="single_product_item">
-              <img src="img/product/product_4.png" alt="">
+              <img src="template/img/product/product_4.png" alt="">
               <div class="single_product_text">
                 <h4>Quartz Belt Watch</h4>
                 <h3>$150.00</h3>
               </div>
             </div>
             <div class="single_product_item">
-              <img src="img/product/product_5.png" alt="">
+              <img src="template/img/product/product_5.png" alt="">
               <div class="single_product_text">
                 <h4>Quartz Belt Watch</h4>
                 <h3>$150.00</h3>

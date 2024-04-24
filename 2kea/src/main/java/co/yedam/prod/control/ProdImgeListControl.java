@@ -14,9 +14,10 @@ import co.yedam.common.Control;
 import co.yedam.prod.service.ProdService;
 import co.yedam.prod.service.ProdServiceImpl;
 import co.yedam.prod.vo.ProdImgVO;
-
+/**
+ * 제품 번호에 따라 이미
+ */
 public class ProdImgeListControl implements Control {
-
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json; charset=utf-8");
@@ -30,5 +31,4 @@ public class ProdImgeListControl implements Control {
 		resp.getWriter().print(json);
 
 	}
-
 }

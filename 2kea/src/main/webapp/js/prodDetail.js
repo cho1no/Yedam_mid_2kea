@@ -36,8 +36,8 @@ svc.imgList(pno, function(json){
         console.log(e);
         console.log(typeof(e.image1));
         $('#vertical').html(
-            $('<div/>').data('thumb', 'prod_img/'+ e.image1).append(
-                $('img').attr('src', 'prod_img/'+e.image1)
+            $('<div/>').data('thumb', 'img/'+ e.image1).append(
+                $('<img/>').attr('src', 'img/'+e.image1)
             )
         ); // 이미지 넣기
     })
