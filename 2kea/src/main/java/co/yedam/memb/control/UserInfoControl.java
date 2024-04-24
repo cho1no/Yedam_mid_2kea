@@ -31,9 +31,10 @@ public class UserInfoControl implements Control {
 		LoginService ls = new LoginServiceImpl();
 		
 		if(ls.modifyMember(vo)) {
-			
+			resp.getWriter().print("{\"retCode\": \"Success\"}");
+		}else {
+			resp.getWriter().print("{\"retCode\": \"False\"}");
 		}
-		
 	}
 
 }

@@ -12,7 +12,7 @@ public class MemberVO {
 	private String email;
 	private String phone;
 	private Date regidate;
-	private String authority;
-	private String Responsibility;
+	private String authority; //권한.
+//	private String Responsibility;
 	
 }

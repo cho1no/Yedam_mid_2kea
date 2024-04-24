@@ -16,35 +16,34 @@ public class SignInControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		//파라미터를 추출한디.
-		String id = req.getParameter("id");	
+
+		// 파라미터를 추출한디.
+		String id = req.getParameter("id");
 		String pw = req.getParameter("pw");
-		
-		//파라미터를vo에 담고.
+
+		// 파라미터를vo에 담고.
 		MemberVO vo = new MemberVO();
 		vo.setId(id);
 		vo.setPw(pw);
 
-		//service 기능 호출.
+		// service 기능 호출.
 		LoginService ls = new LoginServiceImpl();
 		vo = ls.login(vo);
 
-		//service결과가 있다면
-		if (vo != null) {	//결과가 일치한다 null이 아니다.
+		// service결과가 있다면
+		if (vo != null) { // 결과가 일치한다 null이 아니다.
 			HttpSession session = req.getSession();
 			session.setAttribute("id", vo.getId());
-			session.setAttribute("pw", vo.getResponsibility());
-
-			if (vo.getResponsibility().equals("Admin")) {
-				req.getRequestDispatcher("#").forward(req, resp);
+			session.setAttribute("authority", vo.getAuthority());// 컨트롤 클릭해서authority로 해야하는지 확인받
+			
+			if (vo.getAuthority().equals("ADMIN")) {
+				resp.sendRedirect("prodMain.do");
 			} else {
-				req.getRequestDispatcher("#").forward(req, resp);
+				resp.sendRedirect("userPage");
 			}
-
 		} else {
-			req.setAttribute("msg", "id와 password를 확인하세요.");
-			req.getRequestDispatcher("signIn.do").forward(req, resp);
+			req.setAttribute("msg", "id와 password를 확인하세요."); //attribute가 저장하는것.
+			resp.sendRedirect("signIn.do");
 		}
 	}
 

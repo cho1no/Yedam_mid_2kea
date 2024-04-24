@@ -12,7 +12,7 @@ public class UserInfo implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		req.getRequestDispatcher("2kea/userInfo.tiles").forward(req, resp);
 	}
 
 }
