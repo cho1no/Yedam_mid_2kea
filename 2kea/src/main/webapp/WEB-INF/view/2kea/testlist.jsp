@@ -63,11 +63,31 @@
                 left: 825px;
                 padding: 5px 25px;
             }
+            #modifyBtn {
+                position: relative;
+                left: 615px;
+                padding: 5px 25px;
+                display: inline-block;
+                border-radius: 50px;
+                background-color: #ff3368;
+                border: 1px solid #ecfdff;
+                font-size: 15px;
+                font-weight: 700;
+                color: #fff;
+                text-transform: uppercase;
+                font-weight: 400;
+                box-shadow: -1.717px 8.835px 29.76px 2.24px rgba(255, 51, 104, 0.18);
+                border: 1px solid #ff3368;
+            }
+            #modifyBtn:hover {
+                background-color: #fff;
+                color: #ff3368;
+            }
 
             #revBtn {
                 position: relative;
                 left: 860px;
-                margin-top: 20px;
+                margin-top: 60px;
                 display: inline-block;
                 padding: 9px 39px;
                 border-radius: 50px;
@@ -482,7 +502,7 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn_3_close"
                                                     data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" value="submit" class="btn_3" id="addReview">Submit
+                                                <button class="btn_3" id="addReview">Submit
                                                     Now</button>
                                             </div>
                                         </form>
@@ -553,17 +573,35 @@
                                     btn.innerText = 'Delete';
                                     btn.setAttribute('class', 'btn_3');
                                     btn.addEventListener('click', e => {
-                                        fetch('ReviewRemove.do?reviewNo=' + reviewNo)
+                                        const rno = item.reviewNo;
+                                        fetch('ReviewRemove.do?reviewNo=' + rno)
                                             .then(result => result.json())
                                             .then(result => {
                                                 if (result.retCode == 'Success') {
                                                     alert('삭제 완료 되었습니다.');
+                                                    reviewItem.remove();
                                                 } else {
                                                     alert('삭제에 실패 하였습니다.')
                                                 }
                                             })
                                     })
                                     reviewItem.appendChild(btn);
+                                    let mBtn = document.createElement('button');
+                                    mBtn.innerText = 'Modify';
+                                    mBtn.setAttribute('class', 'btn_3');
+                                    mBtn.setAttribute('id', 'modifyBtn');
+                                    mBtn.addEventListener('click', e => {
+                                        fetch('ReviewModify.do?reviewNo=' + reviewNo + '&reviewContent=' + reviewContent + '&rating=' + rating)
+                                            .then(result => result.json())
+                                            .then(result => {
+                                                if (result.retCode == 'Success') {
+                                                    alert('수정 완료 되었습니다.');
+                                                } else {
+                                                    alert('수정 실패 하였습니다.')
+                                                }
+                                            })
+                                    })
+                                    reviewItem.appendChild(mBtn);
                                 });
                             })
                             .catch(err => console.error(err));
@@ -572,6 +610,7 @@
                             const reviewList = document.querySelector('.review_list');
 
                             const reviewItem = document.createElement('div');
+                            
                             reviewItem.className = 'review_item';
 
                             const media = document.createElement('div');
@@ -592,7 +631,7 @@
                             const ratingContainer = document.createElement('div');
                             for (let i = 0; i < 5; i++) {
                                 const star = document.createElement('i');
-                                if (i < item.rating) {
+                                if (i < newReview.rating) {
                                     star.className = 'fas fa-star';
                                 } else {
                                     star.className = 'far fa-star';
@@ -613,6 +652,7 @@
                         }
 
                         document.getElementById('addReview').addEventListener('click', e => {
+                            e.preventDefault;
                             let rvwCont = document.querySelector('#reviewContent').value;
                             let rating = document.querySelectorAll('.star.on').length;
 
@@ -628,6 +668,7 @@
                                 .then(result => {
                                     console.log(result);
                                     if (result.retCode == 'Success') {
+                                        document.querySelector('.review_item').append(result);
                                         addNewList(result.retVal);
                                     }
                                     document.querySelector('#reviewContent').value = '';
