@@ -9,7 +9,11 @@
   	FROM product p
   	JOIN prdimage i
   	ON p.prod_no = i.prod_no
+  	WHERE i.role = 'thumb'
+  	ORDER BY p.prod_no DESC
   </select>
+  
+  
   
   <select id="selectProd" resultType="ProdVO" parameterType="int">
   	SELECT *
