@@ -20,15 +20,7 @@ public class CartList implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		resp.setContentType("text/json;charset=utf-8");
-		
-		CartService svc = new CartServiceImpl();
-		List<CartVO> list = svc.cartList();
-		
-		Gson gson = new GsonBuilder().create();
-		String json = gson.toJson(list);
-		
-		resp.getWriter().print(json);
+		req.getRequestDispatcher("2kea/cart.tiles").forward(req, resp);
 	}
 
 }

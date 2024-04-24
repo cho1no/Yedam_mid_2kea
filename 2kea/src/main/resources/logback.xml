@@ -4,14 +4,14 @@
 
   <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
-      <pattern>%5level [%thread] - %msg%n</pattern>
+      <pattern>%5level [%logger{35}] - %msg%n</pattern>
     </encoder>
   </appender>
 
-  <logger name="co.yedam.mapper.BoardMapper">
-    <level value="debug"/>
+  <logger name="co.yedam">
+    <level value="DEBUG"/>
   </logger>
-  <root level="error">
+  <root level="INFO">
     <appender-ref ref="stdout"/>
   </root>
 

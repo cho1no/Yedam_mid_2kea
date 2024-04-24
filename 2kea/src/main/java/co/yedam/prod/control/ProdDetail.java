@@ -11,12 +11,16 @@ import co.yedam.prod.service.ProdService;
 import co.yedam.prod.service.ProdServiceImpl;
 import co.yedam.prod.vo.ProdVO;
 
+/**
+ * 상세 페이지로 이동
+ */
 public class ProdDetail implements Control {
-
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String pno = req.getParameter("pno");
+		if (pno == null) pno = "1000";
+		
 		ProdService svc = new ProdServiceImpl();
 		ProdVO vo = svc.showProd(Integer.parseInt(pno));
 		
@@ -24,5 +28,4 @@ public class ProdDetail implements Control {
 		
 		req.getRequestDispatcher("2kea/prodDetail.tiles").forward(req, resp);
 	}
-
 }

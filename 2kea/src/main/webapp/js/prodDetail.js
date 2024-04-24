@@ -2,17 +2,7 @@
  * CWH
  * prodDetail.js
  */
-// 숫자 3자리 콤마찍기
-Number.prototype.formatNumber = function() {
-	if (this == 0)
-		return 0;
-	let regex = /(^[+-]?\d+)(\d{3})/;
-	let nstr = (this + '');
-	while (regex.test(nstr)) {
-		nstr = nstr.replace(regex, '$1' + ',' + '$2');
-	}
-	return nstr;
-};
+
 // ajax 모음
 const svc = {
     imgList(pno = 1, successCall, errorCall) {
@@ -36,8 +26,8 @@ svc.imgList(pno, function(json){
         console.log(e);
         console.log(typeof(e.image1));
         $('#vertical').html(
-            $('<div/>').data('thumb', 'prod_img/'+ e.image1).append(
-                $('img').attr('src', 'prod_img/'+e.image1)
+            $('<div/>').data('thumb', 'img/'+ e.image1).append(
+                $('<img/>').attr('src', 'img/'+e.image1)
             )
         ); // 이미지 넣기
     })

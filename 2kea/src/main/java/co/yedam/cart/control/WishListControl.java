@@ -1,4 +1,4 @@
-package co.yedam.prod.control;
+package co.yedam.cart.control;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,24 +11,26 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import co.yedam.common.Control;
-import co.yedam.prod.service.ProdService;
-import co.yedam.prod.service.ProdServiceImpl;
-import co.yedam.prod.vo.ProdImgVO;
-/**
- * 제품 번호에 따라 이미
- */
-public class ProdImgeListControl implements Control {
+import co.yedam.wish.service.WishService;
+import co.yedam.wish.service.WishServiceImpl;
+import co.yedam.wish.vo.WishVO;
+
+public class WishListControl implements Control {
+
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/json; charset=utf-8");
-		String pno = req.getParameter("pno");
-		ProdService svc = new ProdServiceImpl();
-		List<ProdImgVO> list = svc.showProdImgList(Integer.parseInt(pno));
+
+		
+		// TODO Auto-generated method stub
+		resp.setContentType("text/json;charset=utf-8");
+		
+		WishService wvc = new WishServiceImpl();
+		List<WishVO> list = wvc.wishList();
 		
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list);
 		
 		resp.getWriter().print(json);
-
 	}
+
 }

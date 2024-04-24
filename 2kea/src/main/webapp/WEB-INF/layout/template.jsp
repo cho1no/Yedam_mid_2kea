@@ -8,8 +8,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>aranoz</title>
-    <link rel="icon" href="img/favicon.png">
+    <title>IIKEA</title>
+    <link rel="icon" href="template/img/favicon.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="template/css/bootstrap.min.css">
     <!-- animate CSS -->
@@ -35,6 +35,19 @@
     <script src="template/js/jquery.validate.min.js"></script>
     <script src="template/js/jquery.counterup.min.js"></script>
     <script src="template/js/jquery.magnific-popup.js"></script>
+    <script>
+        // 숫자 3자리 콤마찍기
+        Number.prototype.formatNumber = function() {
+            if (this == 0)
+                return 0;
+            let regex = /(^[+-]?\d+)(\d{3})/;
+            let nstr = (this + '');
+            while (regex.test(nstr)) {
+                nstr = nstr.replace(regex, '$1' + ',' + '$2');
+            }
+            return nstr;
+        };
+    </script>
 </head>
 
 <body>
