@@ -8,13 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.common.Control;
 
-
 public class SignIn implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		req.getRequestDispatcher("#").forward(req, resp);
+		req.getRequestDispatcher("2kea/signIn.tiles").forward(req, resp);
 	}
 
 }

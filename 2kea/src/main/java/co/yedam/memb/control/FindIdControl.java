@@ -25,20 +25,15 @@ public class FindIdControl implements Control {
 
 		LoginService ls = new LoginServiceImpl(); // 처리만하는것.
 		vo = ls.findId(vo);
-		
-		if( vo != null) {
-			HttpSession session = req.getSession();
-			session.setAttribute("mName", mName);
-			session.setAttribute("phone", phone);
+
+		if (vo != null) {
 			resp.sendRedirect("prodMain.do");
-		}else {
-			req.setAttribute(" ", "이름과 번호를 확인하세요.");
+		} else {
+			req.setAttribute("error", "이름과 번호를 확인하세요.");
 			resp.sendRedirect("login.do");
 
-			
 		}
-		
-		
+
 	}
 
 }
