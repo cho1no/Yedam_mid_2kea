@@ -35,6 +35,7 @@
     <script src="template/js/jquery.validate.min.js"></script>
     <script src="template/js/jquery.counterup.min.js"></script>
     <script src="template/js/jquery.magnific-popup.js"></script>
+    <script src="template/js/owl.carousel.min.js"></script>
     <script>
         // 숫자 3자리 콤마찍기
         Number.prototype.formatNumber = function() {
@@ -86,7 +87,7 @@
     <!-- swiper js -->
     <script src="template/js/masonry.pkgd.js"></script>
     <!-- particles js -->
-    <script src="template/js/owl.carousel.min.js"></script>
+
     <script src="template/js/jquery.nice-select.min.js"></script>
     <!-- slick js -->
     <script src="template/js/slick.min.js"></script>
@@ -97,6 +98,8 @@
     <script src="template/js/mail-script.js"></script>
     <!-- custom js -->
     <script src="template/js/custom.js"></script>
+
+    
 </body>
 
 </html>
