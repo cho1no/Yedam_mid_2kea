@@ -19,6 +19,7 @@ public class ProdDetail implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String pno = req.getParameter("pno");
+		
 		if (pno == null) pno = "1000";
 		
 		ProdService svc = new ProdServiceImpl();
