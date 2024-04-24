@@ -122,7 +122,8 @@
           </p>
         </div>
         <!--==================문의하기==================== -->
-        <div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="tab-pane fade show active" id="contact" role="tabpanel" 
+        aria-labelledby="contact-tab" style="display: none;">
         <div class="row mb-3">
 			<div class="col">
 				<h3>QnA</h3>
@@ -135,8 +136,7 @@
               <div class="comment_list">
                 <div class="review_item">
                   <div class="media">
-                   
-                    <div class="media-body">
+                    <div class="media-body" id="ask_id">
                       <h4>user1</h4>
                       <h5>2024년 04월 11일 22시 31분</h5>
                       <a class="reply_btn" href="#">Reply</a>
@@ -146,12 +146,11 @@
                   <p>주문취소요청드립니다</p>
                   </div>
                 </div>
-                <div class="review_item">
+                <div class="review_item" id="reply_1">
                   <div class="media">
                     <div class="media-body">
                       <h4>2케아</h4>
                       <h5>2024년 04월 04일 22시 18분</h5>
-                      <a class="reply_btn" href="#">Reply</a>
                     </div>
                   </div>
                   <div class="mb-5" id="reply_p">
@@ -470,3 +469,6 @@
 
 <%-- CWH js --%>
 <script src="js/prodDetail.js"></script>
+
+<%-- KJM js --%>
+<script src="js/prodDetailAsk.js"></script>

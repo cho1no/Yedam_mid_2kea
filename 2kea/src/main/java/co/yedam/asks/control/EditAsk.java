@@ -20,11 +20,13 @@ public class EditAsk implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String pno = req.getParameter("pno");
 		String askNo = req.getParameter("askNo");
 		String askContent = req.getParameter("askContent");
 		
 		
 		AskVO avo = new AskVO();
+		avo.setProdNo(Integer.parseInt(pno));
 		avo.setAskNo(Integer.parseInt(askNo));
 		avo.setAskContent(askContent);
 		
