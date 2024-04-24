@@ -1,5 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+<style>
+.btn_3_close {
+	display: inline-block;
+	padding: 9px 39px;
+	border-radius: 50px;
+	background-color: #ff3368;
+	border: 1px solid #ecfdff;
+	font-size: 15px;
+	font-weight: 700;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 400;
+	box-shadow: -1.717px 8.835px 29.76px 2.24px rgba(255, 51, 104, 0.18);
+	border: 1px solid #ff3368;
+	-webkit-transition: 0.5s;
+	transition: 0.5s;
+}
+
+.btn_ask {
+	border: 1px solid #e0e0e0;
+	padding: 2px 28px;
+	display: inline-block;
+	line-height: 32px;
+	border-radius: 50px;
+	font-size: 14px;
+	font-family: "Poppins", sans-serif;
+	color: #2a2a2a;
+}
+
+.btn_ask:hover {
+	background: #ff3368;
+	border-color: #ff3368;
+	color: #fff;
+}
+
+
+</style>    
+    
+    
+    
   <!--================Single Product Area =================-->
   <div class="product_image_area section_padding">
     <div class="container">
@@ -58,14 +100,14 @@
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
           <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-            aria-selected="true">Description</a>
+            aria-selected="false">Description</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
-            aria-selected="false">Comments</a>
+          <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+            aria-selected="true">Comments</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
+          <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
             aria-selected="false">Reviews</a>
         </li>
       </ul>
@@ -74,130 +116,97 @@
           <p>
             Beryl Cook is one of Britain’s most talented and amusing artists
             .Beryl’s pictures feature women of all shapes and sizes enjoying
-            themselves .Born between the two world wars, Beryl Cook eventually
-            left Kendrick School in Reading at the age of 15, where she went
-            to secretarial school and then into an insurance office. After
-            moving to London and then Hampton, she eventually married her next
-            door neighbour from Reading, John Cook. He was an officer in the
-            Merchant Navy and after he left the sea in 1956, they bought a pub
-            for a year before John took a job in Southern Rhodesia with a
-            motor company. Beryl bought their young son a box of watercolours,
-            and when showing him how to use it, she decided that she herself
-            quite enjoyed painting. John subsequently bought her a child’s
-            painting set for her birthday and it was with this that she
-            produced her first significant work, a half-length portrait of a
-            dark-skinned lady with a vacant expression and large drooping
-            breasts. It was aptly named ‘Hangover’ by Beryl’s husband and
           </p>
           <p>
             It is often frustrating to attempt to plan meals that are designed
-            for one. Despite this fact, we are seeing more and more recipe
-            books and Internet websites that are dedicated to the act of
-            cooking for one. Divorce and the death of spouses or grown
-            children leaving for college are all reasons that someone
-            accustomed to cooking for more than one would suddenly need to
-            learn how to adjust all the cooking practices utilized before into
-            a streamlined plan of cooking that is more efficient for one
-            person creating less
           </p>
         </div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <!--==================문의하기==================== -->
+        <div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="row mb-3">
+			<div class="col">
+				<h3>QnA</h3>
+			</div>
+			<a class="btn_ask" data-bs-toggle="modal" 
+			data-bs-target="#AskModal" data-bs-whatever="@mdo">Ask</a>
+		</div>
           <div class="row">
-            <div class="col-lg-6">
+            <div>
               <div class="comment_list">
                 <div class="review_item">
                   <div class="media">
-                    <div class="d-flex">
-                      <img src="img/product/single-product/review-1.png" alt="" />
-                    </div>
+                   
                     <div class="media-body">
-                      <h4>Blake Ruiz</h4>
-                      <h5>12th Feb, 2017 at 05:56 pm</h5>
+                      <h4>user1</h4>
+                      <h5>2024년 04월 11일 22시 31분</h5>
                       <a class="reply_btn" href="#">Reply</a>
                     </div>
                   </div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo
-                  </p>
-                </div>
-                <div class="review_item reply">
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="template/img/product/single-product/review-2.png" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <h4>Blake Ruiz</h4>
-                      <h5>12th Feb, 2017 at 05:56 pm</h5>
-                      <a class="reply_btn" href="#">Reply</a>
-                    </div>
+                  <div id="ask_p">
+                  <p>주문취소요청드립니다</p>
                   </div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo
-                  </p>
                 </div>
                 <div class="review_item">
                   <div class="media">
-                    <div class="d-flex">
-                      <img src="template/img/product/single-product/review-3.png" alt="" />
-                    </div>
                     <div class="media-body">
-                      <h4>Blake Ruiz</h4>
-                      <h5>12th Feb, 2017 at 05:56 pm</h5>
+                      <h4>2케아</h4>
+                      <h5>2024년 04월 04일 22시 18분</h5>
                       <a class="reply_btn" href="#">Reply</a>
                     </div>
                   </div>
+                  <div class="mb-5" id="reply_p">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo
+                   안녕하세요 고객님. 고객님의 제품은 현재 주문취소가 되어있습니다. 카드사마다 환불소요일이 다르기 때문에
+				   영업일 기준 2-4일정도 소요가 발생하실 수 있습니다. 온도가 따뜻하게 올라갔지만 기온차가 심한 오늘, 감기
+				   조심하시고 행복한 하루 보내세요 :)
                   </p>
+                  </div>	
                 </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="review_box">
-                <h4>Post a comment</h4>
-                <form class="row contact_form" action="contact_process.php" method="post" id="contactForm"
-                  novalidate="novalidate">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Your Full name" />
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" />
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" id="number" name="number" placeholder="Phone Number" />
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <textarea class="form-control" name="message" id="message" rows="1"
-                        placeholder="Message"></textarea>
-                    </div>
-                  </div>
-                  <div class="col-md-12 text-right">
-                    <button type="submit" value="submit" class="btn_3">
-                      Submit Now
-                    </button>
-                  </div>
-                </form>
               </div>
             </div>
           </div>
         </div>
-        <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+   <!--======================== end of 문의하기================================= -->
+
+   <!--================문의 모달=================-->
+<div class="modal fade" id="AskModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title fs-5" id="exampleModalLabel">상품 문의하기</h3>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="col-md-12">
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+						  <label class="form-check-label" for="inlineRadio1">교환</label>
+						</div>
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+						  <label class="form-check-label" for="inlineRadio2">환불</label>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<textarea class="form-control" name="ask_message" rows="3"
+								placeholder="문의내용을 적어주세요"></textarea>
+						</div>
+					</div>
+					<div class="col-md-12 text-right"></div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" value="button" class="btn_3_close"
+					data-bs-dismiss="modal">취소</button>
+				<button type="submit" value="submit" class="btn_3">완료</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ==============================문의하기 모달 끝================================== -->
+        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
           <div class="row">
             <div class="col-lg-6">
               <div class="row total_rate">
