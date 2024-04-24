@@ -24,7 +24,7 @@ public class AddAsk implements Control {
 		String id = req.getParameter("id");
 		String askContent = req.getParameter("askContent");
 		String askCategory = req.getParameter("askCategory");
-		String prodNo = req.getParameter("prodNo");
+		String prodNo = req.getParameter("pno");
 		
 		AskVO avo = new AskVO();
 		avo.setId(id);

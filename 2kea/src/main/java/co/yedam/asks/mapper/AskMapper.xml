@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="co.yedam.mapper.AskMapper">
+<mapper namespace="co.yedam.asks.mapper.AskMapper">
 
 	<!-- page 나중에 추가 -->
 	<select id="selectAskList" resultType="co.yedam.asks.vo.AskVO">
