@@ -4,13 +4,14 @@ import java.util.Map;
 
 import co.yedam.prod.control.ProdDetail;
 import co.yedam.prod.control.ProdImgeListControl;
-import co.yedam.prod.control.ProdListControl;
+import co.yedam.prod.control.ProdListByCaseControl;
 import co.yedam.prod.control.ProdMain;
 
 public class FcProd {
 	static void init(Map<String, Control> map) {
 		// product
-		map.put("/prodList.do", new ProdListControl());  		//상품 리스트 json
+		map.put("/prodListByCase.do", new ProdListByCaseControl());  		// main 최근 등록순 상품 리스트 json
+		
 		// product detail
 		map.put("/prodImgList.do", new ProdImgeListControl());  //상품 이미지 리스트 json
 		

@@ -8,7 +8,7 @@
         border-bottom: 2px solid #ff3368;
     }
 </style>
-<div class="container">
+<%-- <div class="container">
     <div class="row align-items-center">
         <div class="col-lg-12">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -29,4 +29,4 @@
             </nav>
         </div>
     </div>
-</div>
+</div> --%>
