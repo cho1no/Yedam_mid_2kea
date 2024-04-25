@@ -3,8 +3,8 @@
  */
 // ajax===============================================
 const asksvc = {
-	askList(successCall, errorCall) {
-		fetch('askList.do')
+	askList(pno, successCall, errorCall) {
+		fetch('askList.do?pno='+ pno)
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
@@ -13,16 +13,16 @@ const asksvc = {
 // end of ajax==========================================
 
 //svc.askList===========================================
-asksvc.askList(function(result) {
+asksvc.askList(pno, function(result) {
 	console.log(result);
 result.forEach(ask => {
 		let temp = $('#asklist').clone();
 		temp.css('display', 'block');
 		temp.attr('data-no', ask.askNo);
 		temp.find('h4:eq(0)').text(ask.id);
-		temp.find('h4:eq(1)').text(ask.askCategory);
-		temp.find('h5').text(ask.askDate);
-		temp.find('p').text(ask.askContent);
+		temp.find('h5:eq(0)').text(ask.askCategory);
+		temp.find('h5:eq(1)').text(ask.askDate);
+		temp.find('p:eq(1)').text(ask.askContent);
 		
 		temp.appendTo('.comment_list');
 	})
@@ -64,17 +64,15 @@ $('#addAskBtn').on('click', function() {
 
 	fetch('addAsk.do', {
 		method: 'post',
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: 'pno=' + '1001' + '&id=' + 'test999' +
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+		body: 'pno=' + pno + '&id=' + 'test999' +
 			'&askContent=' + askContent + '&askCategory=' + askCategory
 	})
 		.then(result => result.json())
 		.then(result => {
 			console.log(result);
 			if (result.retCode == 'Success') {
-				//('#contact').append(result); append수정
 				//리스트불러오기
-				//('#AskModal').modal('hide'); 모달 닫힘 추가 
 			}
 			$('#ask_message').value = '';
 		})

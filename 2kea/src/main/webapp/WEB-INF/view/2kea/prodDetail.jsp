@@ -30,24 +30,14 @@
 	font-family: "Poppins", sans-serif;
 	color: #2a2a2a;
 }
-.btn_ask#replyBtn{
-	border: 1px solid #e0e0e0;
-	padding: 1px 20px;
-	display: inline-block;
-	line-height: 32px;
-	border-radius: 50px;
-	font-size: 12px;
-	font-family: "Poppins", sans-serif;
-	color: #2a2a2a;
-}
 
 .delAskBtn{
-	border: 1px solid #e0e0e0;
-	padding: 1px 10px;
+	border: 1px solid #fff;
+	padding: 10px 10px 10px 10px;
 	display: inline-block;
-	line-height: 20px;
-	border-radius: 35px;
-	font-size: 10px;
+	line-height: 3px;
+	border-radius: 20px;
+	font-size: 11px;
 	font-family: "Poppins", sans-serif;
 	color: #2a2a2a;
 }
@@ -71,7 +61,7 @@
 
 </style>    
     
-    
+<input type="hidden">
     
   <!--================Single Product Area =================-->
   <div class="product_image_area section_padding">
@@ -130,20 +120,20 @@
     <div class="container">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
             aria-selected="true">Description</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
-            aria-selected="false">Comments</a>
+            aria-selected="false">QnA</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
+          <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
             aria-selected="false">Reviews</a>
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
           <p>
             Beryl Cook is one of Britain’s most talented and amusing artists
             .Beryl’s pictures feature women of all shapes and sizes enjoying
@@ -154,7 +144,7 @@
         </div>
         <!--==================문의하기==================== -->
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-          <div class="row">
+          <div class="row mb-3">
            <div class="col-11">
 			<h3>QnA</h3>
 			</div>
@@ -167,11 +157,17 @@
                 <div class="review_item" id="asklist" style="display: none;" data-no="0">
                   <div class="media">
                     <div class="media-body">
-                      <h4>아이디</h4>
-                      <h4>문의</h4>
-                      <h5>날짜</h5>
-					  <button type="button" class="delAskBtn">X</button>
-                      <a class="reply_btn" href="#">Reply</a>
+                    	<div class="row">
+                    		<div class="col-1">
+                    			<h4>user1</h4>
+                    		</div>
+                    		<div class="col-1">	
+                    			<p class="delAskBtn">X</p>
+                    		</div>
+						</div>
+                         	<h5>문의</h5>
+					 		<h5>날짜</h5>
+                      	<a class="reply_btn" href="#">Reply</a>
                     </div>
                   </div>
                   <p>oo</p>
@@ -189,7 +185,7 @@
 
               </div><!-- end of comment_list -->
         </div> <!--==========================문의하기 끝========================= -->      
-        <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
           <div class="row">
             <div class="col-lg-6">
               <div class="row total_rate">
