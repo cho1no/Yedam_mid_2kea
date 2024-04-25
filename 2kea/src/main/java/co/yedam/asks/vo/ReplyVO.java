@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 public class ReplyVO {
-	private int askNo;           //문의번호
-	private String id;           //아이디
-	private String askResponse;  //답변내용
-	private Date responseDate;   //답변날짜
+	public int askNo;            //문의번호
+	public String id;            //아이디
+	public String replyContent;  //답변내용
+	public Date replyDate;       //답변날짜
 }

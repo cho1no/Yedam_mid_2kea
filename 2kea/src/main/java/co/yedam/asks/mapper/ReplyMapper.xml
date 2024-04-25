@@ -4,7 +4,27 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.yedam.asks.mapper.ReplyMapper">
+	<select id="selectReplyList" resultType="co.yedam.asks.vo.ReplyVO">
+		select *
+		from Reply
+		order by ask_no
+	</select>
 
+	<insert id="insertReply" parameterType="co.yedam.asks.vo.ReplyVO">
+		insert into reply (ask_no, id, reply_content, reply_date)
+		values (#{askNo}, #{id}, #{replyContent}, #{replyDate})
+	</insert>
+	
+	<update id="updateReply" parameterType="co.yedam.asks.vo.ReplyVO">
+		update reply
+		set reply_content = #{replyContent}
+		where ask_no = #{askNo}
+	</update>
+
+	<delete id="deleteReply" parameterType="int">
+		delete from reply
+		where ask_no = #{ano}
+	</delete>
 
 
 </mapper>
