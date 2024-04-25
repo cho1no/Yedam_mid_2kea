@@ -2,8 +2,8 @@ package co.yedam.common;
 
 import java.util.Map;
 
+
 import co.yedam.asks.control.AddAsk;
-import co.yedam.asks.control.AddAskForm;
 import co.yedam.asks.control.AddReply;
 import co.yedam.asks.control.AskList;
 import co.yedam.asks.control.DelAsk;
@@ -15,7 +15,6 @@ import co.yedam.asks.control.ReplyList;
 public class FcAsks {
 	static void init(Map<String, Control> map) {
 		// ask
-		map.put("/addAskForm.do", new AddAskForm()); // 문의 등록 화면
 		map.put("/askList.do", new AskList()); // 문의목록
 		map.put("/addAsk.do", new AddAsk()); // 문의등록
 		map.put("/editAsk.do", new EditAsk()); // 문의수정
