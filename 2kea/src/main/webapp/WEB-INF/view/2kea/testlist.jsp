@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+
+
         <style>
             .star_rating {
                 margin: 5px 0px 15px 10px;
@@ -63,6 +66,7 @@
                 left: 825px;
                 padding: 5px 25px;
             }
+
             #modifyBtn {
                 position: relative;
                 left: 615px;
@@ -79,6 +83,7 @@
                 box-shadow: -1.717px 8.835px 29.76px 2.24px rgba(255, 51, 104, 0.18);
                 border: 1px solid #ff3368;
             }
+
             #modifyBtn:hover {
                 background-color: #fff;
                 color: #ff3368;
@@ -325,354 +330,199 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="row total_rate">
-                                    <div class="col-6">
-                                        <div class="box_total">
-                                            <h5>Overall</h5>
-                                            <h4>4.0</h4>
-                                            <h6>(03 Reviews)</h6>
-                                        </div>
+                    <div class="tab-pane fade show active" id="review" role="tabpanel"
+                    aria-labelledby="review-tab">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="row total_rate">
+                                <div class="col-6">
+                                    <div class="box_total">
+                                        <h5>Overall</h5>
+                                        <h4>4.0</h4>
+                                        <h6>(03 Reviews)</h6>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="rating_list">
-                                            <h3>Based on 3 Reviews</h3>
-                                            <ul class="list">
-                                                <li>
-                                                    <a href="#">5 Star
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i> 01</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">4 Star
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i> 01</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">3 Star
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i> 01</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">2 Star
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i> 01</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">1 Star
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i> 01</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="review_list">
-                                    <div class="review_item">
-                                        <div class="media">
-                                            <div class="d-flex">
-                                                <img src="img/product/single-product/review-1.png" alt="" />
                                             </div>
-                                            <div class="media-body">
-                                                <h4>Blake Ruiz</h4>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
+                                            <div class="col-6">
+                                                <div class="rating_list">
+                                                    <h3>Based on 3 Reviews</h3>
+                                                    <ul class="list">
+                                                        <li>
+                                                            <a href="#">5 Star
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i> 01</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">4 Star
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i> 01</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#">3 Star
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i> 01</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#">2 Star
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star"></i>
+                                                                            <i class="fa fa-star"></i> 01</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">1 Star
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i> 01</a>
+                                                            </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                            sed do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                            ullamco laboris nisi ut aliquip ex ea commodo
-                                        </p>
-                                    </div>
-                                    <div class="review_item">
-                                        <div class="media">
-                                            <div class="d-flex">
-                                                <img src="img/product/single-product/review-2.png" alt="" />
-                                            </div>
-                                            <div class="media-body">
-                                                <h4>Blake Ruiz</h4>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                            sed do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                            ullamco laboris nisi ut aliquip ex ea commodo
-                                        </p>
-                                    </div>
-                                    <div class="review_item">
-                                        <div class="media">
-                                            <div class="d-flex">
-                                                <img src="img/product/single-product/review-3.png" alt="" />
-                                            </div>
-                                            <div class="media-body">
-                                                <h4>Blake Ruiz</h4>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                            sed do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                            ullamco laboris nisi ut aliquip ex ea commodo
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- addreview start -->
-
-                            <div class="col-lg-6">
-                                <div class="review_box">
-                                </div>
-                            </div>
-                            <!-- 모달  -->
-                            <button type="button" class="btn btn-primary" id="revBtn" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" data-bs-whatever="@mdo">리뷰작성</button>
-
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">리뷰 작성</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <form class="row contact_form" action="" method="post">
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="star_rating" id="rating"> <span
-                                                            class="rating_text">별점:</span>
-                                                        <span class="star on" value="1"> </span>
-                                                        <span class="star" value="2"> </span>
-                                                        <span class="star" value="3"> </span>
-                                                        <span class="star" value="4"> </span>
-                                                        <span class="star" value="5"> </span>
+                                        <div class="review_list">
+                                            <div class="review_item">
+                                                <div class="media">
+                                                    <div class="d-flex">
+                                                        <img src="img/product/single-product/review-1.png" alt="" />
                                                     </div>
-                                                    <!-- <input type="hidden" name="logId" value="${rvo.id }">
+                                                    <div class="media-body">
+                                                        <h4>Blake Ruiz</h4>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                </div>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                                    ullamco laboris nisi ut aliquip ex ea commodo
+                                                </p>
+                                            </div>
+                                            <div class="review_item">
+                                                <div class="media">
+                                                    <div class="d-flex">
+                                                        <img src="img/product/single-product/review-2.png" alt="" />
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4>Blake Ruiz</h4>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                </div>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                                    ullamco laboris nisi ut aliquip ex ea commodo
+                                                </p>
+                                            </div>
+                                            <div class="review_item">
+                                                <div class="media">
+                                                    <div class="d-flex">
+                                                        <img src="img/product/single-product/review-3.png" alt="" />
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4>Blake Ruiz</h4>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                </div>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                                    ullamco laboris nisi ut aliquip ex ea commodo
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- addreview start -->   
+
+                                    <div class="col-lg-6">
+                                        <div class="review_box">
+                                        </div>
+                                    </div>
+                                    <!-- 모달  -->
+                                    <button type="button" class="btn btn-primary" id="revBtn" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" data-bs-whatever="@mdo">리뷰작성</button>
+
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">리뷰 작성</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <form class="row contact_form" action="" method="post">
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div class="star_rating" id="rating"> <span
+                                                                    class="rating_text">별점:</span>
+                                                                <span class="star on" value="1"> </span>
+                                                                <span class="star" value="2"> </span>
+                                                                <span class="star" value="3"> </span>
+                                                                <span class="star" value="4"> </span>
+                                                                <span class="star" value="5"> </span>
+                                                            </div>
+                                                            <!-- <input type="hidden" name="logId" value="${rvo.id }">
                                                          <input type="hidden" name="email" value="${mvo.email }">
                                                          <input type="hidden" name="phone" value="${mvo.phone }">
                                                          <input type="hidden" name="prodNo" value="${rvo.prodNo }"> -->
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" id="mname"
-                                                                value="${vo.mName }" readonly />
-                                                        </div>
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control" id="mid"
+                                                                        value="${rvo.id }" readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <textarea class="form-control" id="reviewContent"
+                                                                        rows="6" placeholder="Review"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 text-right">
+                                                        </form>
                                                     </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <textarea class="form-control" id="reviewContent" rows="6"
-                                                                placeholder="Review"></textarea>
-                                                        </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn_3_close"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn_3" id="addReview">Submit
+                                                            Now</button>
                                                     </div>
-                                                    <div class="col-md-12 text-right">
                                                 </form>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn_3_close"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button class="btn_3" id="addReview">Submit
-                                                    Now</button>
-                                            </div>
-                                        </form>
+                                        </div>
                                     </div>
+                                    <!-- 모달 끝 -->
+                                    <!-- addreview end -->
                                 </div>
                             </div>
-                            <!-- 모달 끝 -->
-
-                            <!-- addreview end -->
-                        </div>
-                    </div>
 
                     <script>
+                        var id = '<%=(String)session.getAttribute("id")%>';
 
-                        $('.star_rating > .star').click(function () {
-                            $(this).parent().children('span').removeClass('on');
-                            $(this).addClass('on').prevAll('span').addClass('on');
-                        })
-
-                        fetch('ReviewList.do')
-                            .then(response => response.json())
-                            .then(data => {
-                                const reviewList = document.querySelector('.review_list');
-                                reviewList.innerHTML = '';
-
-                                data.forEach(item => {
-                                    const reviewItem = document.createElement('div');
-                                    reviewItem.className = 'review_item';
-
-                                    const media = document.createElement('div');
-                                    media.className = 'media';
-
-                                    // const dFlex = document.createElement('div');
-                                    // dFlex.className = 'd-flex';
-                                    // const img = document.createElement('img');
-                                    // img.src = '#'; // 이미지 필요
-                                    // dFlex.appendChild(img);
-
-                                    const mediaBody = document.createElement('div');
-                                    mediaBody.className = 'media-body';
-                                    const h4 = document.createElement('h4');
-                                    h4.textContent = item.id;
-                                    mediaBody.appendChild(h4);
-
-                                    const ratingContainer = document.createElement('div');
-                                    for (let i = 0; i < 5; i++) {
-                                        const star = document.createElement('i');
-                                        if (i < item.rating) {
-                                            star.className = 'fas fa-star'; // fas = 채워진 아이콘
-                                        } else {
-                                            star.className = 'far fa-star'; // far = 비워진 아이콘
-                                        }
-                                        ratingContainer.appendChild(star);
-                                    }
-                                    mediaBody.appendChild(ratingContainer);
-
-                                    // media.appendChild(dFlex);
-                                    media.appendChild(mediaBody);
-                                    reviewItem.appendChild(media);
-
-                                    const p = document.createElement('p');
-                                    p.textContent = item.reviewContent;
-                                    reviewItem.appendChild(p);
-
-                                    reviewList.appendChild(reviewItem);
-
-                                    let btn = document.createElement('button');
-                                    btn.innerText = 'Delete';
-                                    btn.setAttribute('class', 'btn_3');
-                                    btn.addEventListener('click', e => {
-                                        const rno = item.reviewNo;
-                                        fetch('ReviewRemove.do?reviewNo=' + rno)
-                                            .then(result => result.json())
-                                            .then(result => {
-                                                if (result.retCode == 'Success') {
-                                                    alert('삭제 완료 되었습니다.');
-                                                    reviewItem.remove();
-                                                } else {
-                                                    alert('삭제에 실패 하였습니다.')
-                                                }
-                                            })
-                                    })
-                                    reviewItem.appendChild(btn);
-                                    let mBtn = document.createElement('button');
-                                    mBtn.innerText = 'Modify';
-                                    mBtn.setAttribute('class', 'btn_3');
-                                    mBtn.setAttribute('id', 'modifyBtn');
-                                    mBtn.addEventListener('click', e => {
-                                        fetch('ReviewModify.do?reviewNo=' + reviewNo + '&reviewContent=' + reviewContent + '&rating=' + rating)
-                                            .then(result => result.json())
-                                            .then(result => {
-                                                if (result.retCode == 'Success') {
-                                                    alert('수정 완료 되었습니다.');
-                                                } else {
-                                                    alert('수정 실패 하였습니다.')
-                                                }
-                                            })
-                                    })
-                                    reviewItem.appendChild(mBtn);
-                                });
-                            })
-                            .catch(err => console.error(err));
-
-                        function addNewList(newReview) {
-                            const reviewList = document.querySelector('.review_list');
-
-                            const reviewItem = document.createElement('div');
-                            
-                            reviewItem.className = 'review_item';
-
-                            const media = document.createElement('div');
-                            media.className = 'media';
-
-                            // const dFlex = document.createElement('div');
-                            // dFlex.className = 'd-flex';
-                            // const img = document.createElement('img');
-                            // img.src = '#'; // 이미지 필요
-                            // dFlex.appendChild(img);
-
-                            const mediaBody = document.createElement('div');
-                            mediaBody.className = 'media-body';
-                            const h4 = document.createElement('h4');
-                            h4.textContent = newReview.mName;
-                            mediaBody.appendChild(h4);
-
-                            const ratingContainer = document.createElement('div');
-                            for (let i = 0; i < 5; i++) {
-                                const star = document.createElement('i');
-                                if (i < newReview.rating) {
-                                    star.className = 'fas fa-star';
-                                } else {
-                                    star.className = 'far fa-star';
-                                }
-                                ratingContainer.appendChild(star);
-                            }
-                            mediaBody.appendChild(ratingContainer);
-
-                            // media.appendChild(dFlex);
-                            media.appendChild(mediaBody);
-                            reviewItem.appendChild(media);
-
-                            const p = document.createElement('p');
-                            p.textContent = newReview.reviewContent;
-                            reviewItem.appendChild(p);
-
-                            reviewList.insertBefore(reviewItem, reviewList.firstChild);
-                        }
-
-                        document.getElementById('addReview').addEventListener('click', e => {
-                            e.preventDefault;
-                            let rvwCont = document.querySelector('#reviewContent').value;
-                            let rating = document.querySelectorAll('.star.on').length;
-
-                            console.log(rating);
-                            console.log(rvwCont);
-
-                            fetch('ReviewAddForm.do', {
-                                method: 'post',
-                                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                                body: 'prodNo=' + '1003' + '&id=' + 'test999' + '&rating=' + rating + '&reviewContent=' + rvwCont
-                            })
-                                .then(result => result.json())
-                                .then(result => {
-                                    console.log(result);
-                                    if (result.retCode == 'Success') {
-                                        document.querySelector('.review_item').append(result);
-                                        addNewList(result.retVal);
-                                    }
-                                    document.querySelector('#reviewContent').value = '';
-                                })
-                                .catch(err => console.error(err));
-                        })
                     </script>
+
+                    <script src="js/review.js"></script>
