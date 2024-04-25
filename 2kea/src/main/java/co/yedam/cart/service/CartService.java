@@ -7,7 +7,7 @@ import co.yedam.cart.vo.CartVO;
 public interface CartService {
 
 	//장바구니목록
-	public List<CartVO> cartList();
+	public List<CartVO> cartList(String id);
 	
 	//장바구니추가
 	public boolean addCart(CartVO cvo);

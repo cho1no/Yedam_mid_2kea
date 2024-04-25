@@ -7,7 +7,7 @@ import co.yedam.wish.vo.WishVO;
 public interface WishMapper {
 
 	//위시목록
-	public List<WishVO> selectWish();
+	public List<WishVO> selectWish(String id);
 	
 	//위시추가
 	public int insertWish(WishVO wvo);

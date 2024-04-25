@@ -4,11 +4,14 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="co.yedam.cart.mapper.CartMapper">
-  <select id="selectCart" parameterType="co.yedam.cart.vo.CartVO" resultType="co.yedam.cart.vo.CartVO">
+  <select id="selectCart" parameterType="String" resultType="co.yedam.cart.vo.CartVO">
     select *
-    from Cart
-    where prod_no = #{prodNo}
-    and id = #{id}
+    from cart c
+    join prdimage g
+    on c.prod_no = g.prod_no
+    join product p
+    on c.prod_no = p.prod_no
+    where g.role = 'thumb' and id = #{id}
   </select>
   
   <insert id="insertCart" parameterType="co.yedam.cart.vo.CartVO">

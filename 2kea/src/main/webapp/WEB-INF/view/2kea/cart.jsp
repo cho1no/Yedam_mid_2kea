@@ -14,19 +14,19 @@
                 <th scope="col">Total</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
+            <tbody>          
+              <tr class="cart_list" data-pno="0" style="display:none;">
                 <td>
                   <div class="media">
                     <div class="d-flex">
-                      <img src="img/product/single-product/cart-1.jpg" alt="" />
+                      <img src="template/img/product/single-product/cart-1.jpg" alt="1" />
                     </div>
                     <div class="media-body">
                       <p>Minimalistic shop for multipurpose use</p>
                     </div>
                   </div>
                 </td>
-                <td>
+                <td class="price">
                   <h5>$360.00</h5>
                 </td>
                 <td>
@@ -36,26 +36,11 @@
                     <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
                   </div>
                 </td>
-                <td>
+                <td class="total">
                   <h5>$720.00</h5>
                 </td>
               </tr>
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="img/product/single-product/cart-1.jpg" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <p>Minimalistic shop for multipurpose use</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>$360.00</h5>
-                </td>
-                <td>
-                  <div class="product_count">
+             
                     <!-- <input type="text" value="1" min="0" max="10" title="Quantity:"
                       class="input-text qty input-number" />
                     <button
@@ -66,40 +51,7 @@
                       class="reduced input-number-decrement items-count" type="button">
                       <i class="ti-angle-down"></i>
                     </button> -->
-                    <span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
-                    <input class="input-number" type="text" value="1" min="0" max="10">
-                    <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
-                  </div>
-                </td>
-                <td>
-                  <h5>$720.00</h5>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="img/product/single-product/cart-1.jpg" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <p>Minimalistic shop for multipurpose use</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>$360.00</h5>
-                </td>
-                <td>
-                  <div class="product_count">
-                    <span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
-                    <input class="input-number" type="text" value="1" min="0" max="10">
-                    <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
-                  </div>
-                </td>
-                <td>
-                  <h5>$720.00</h5>
-                </td>
-              </tr>
+                
               <tr class="bottom_button">
                 <td>
                   <a class="btn_1" href="#">Update Cart</a>
@@ -118,7 +70,7 @@
                 <td>
                   <h5>Subtotal</h5>
                 </td>
-                <td>
+                <td class="subtotal">
                   <h5>$2160.00</h5>
                 </td>
               </tr>
@@ -171,10 +123,10 @@
           </div>
         </div>
       </div>
+      </div>
   </section>
   <!--================End Cart Area =================-->
-  
   <script>
-  
+     var id = '<%=(String)session.getAttribute("id")%>';
   </script>
-  
+  <script src="js/cartService.js"></script>
