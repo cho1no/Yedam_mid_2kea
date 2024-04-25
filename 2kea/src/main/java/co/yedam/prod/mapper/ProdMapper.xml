@@ -4,16 +4,28 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.yedam.prod.mapper.ProdMapper">
-  <select id="selectProdList" resultType="ProdVO">
+  <sql id="joinProdImg">
+
+  </sql>
+  <select id="selectProdListByCase" parameterType="MainShowCaseVO" resultType="ProdVO">
   	SELECT *
-  	FROM product p
-  	JOIN prdimage i
-  	ON p.prod_no = i.prod_no
-  	WHERE i.role = 'thumb'
-  	ORDER BY p.prod_no DESC
+    FROM (SELECT ROWNUM rn, p.*, i.image1
+	      FROM product p
+	      JOIN prdimage i
+	      ON p.prod_no = i.prod_no
+	      WHERE i.role = 'thumb'
+	<choose>
+		<when test="showCase == 'no'.toString()">
+			ORDER BY p.prod_no DESC)
+		</when>
+		<when test="showCase == 'vw'.toString()">
+			ORDER BY p.view_count DESC)
+		</when>
+	</choose>
+    <![CDATA[
+	WHERE rn < #{showNum}
+	]]>
   </select>
-  
-  
   
   <select id="selectProd" resultType="ProdVO" parameterType="int">
   	SELECT *

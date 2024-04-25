@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.common.DataSource;
 import co.yedam.prod.mapper.ProdMapper;
+import co.yedam.prod.vo.MainShowCaseVO;
 import co.yedam.prod.vo.ProdImgVO;
 import co.yedam.prod.vo.ProdVO;
 
@@ -14,8 +15,8 @@ public class ProdServiceImpl implements ProdService {
 	ProdMapper mapper = session.getMapper(ProdMapper.class);
 	
 	@Override
-	public List<ProdVO> showProdList() {
-		return mapper.selectProdList();
+	public List<ProdVO> showProdListByCase(MainShowCaseVO vo) {
+		return mapper.selectProdListByCase(vo);
 	}
 
 	@Override
