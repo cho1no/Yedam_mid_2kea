@@ -1,7 +1,7 @@
 /**
  * wishService.js
  */
-	
+	 
 const svc = {
 	//위시목록
 	wishList(successCall, errorCall) {
@@ -18,9 +18,9 @@ function best(){
   if (best_wish_product_slider.length) {
     best_wish_product_slider.owlCarousel({
       items: 1,
-      loop: true,
+      loop: false,
       dots: false,
-      autoplay: true,
+      autoplay: false,
       autoplayHoverPause: true,
       autoplayTimeout: 5000,
       nav: true,
@@ -64,13 +64,14 @@ svc.wishList(function(resolve) {
 		data.attr('data-pno', prodNo);
 		data.find('img').attr('src', "img/"+img);
 		data.find('h4').text(name);
-		data.find('h3').text(price);
+		data.find('h3').text(parseInt(price).formatNumber()+'원');
 		data.css('display', 'inline-block');
 		best_wish_product_slider.trigger('add.owl.carousel', data);
 	})
 		best_wish_product_slider.trigger('refresh.owl.carousel');
 		$(".owl-carousel").owlCarousel();
 	
+		
 }, function(resolve) {
 	console.log('error');
 })

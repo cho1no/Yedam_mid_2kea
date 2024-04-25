@@ -5,14 +5,14 @@
   
 <mapper namespace="co.yedam.wish.mapper.WishMapper">
   
-  <select id="selectWish" parameterType="co.yedam.wish.vo.WishVO" resultType="co.yedam.wish.vo.WishVO">
+  <select id="selectWish" parameterType="String" resultType="co.yedam.wish.vo.WishVO">
     select *
     from Wishlist w
     join Product p
     on w.prod_no = p.prod_no
     join prdimage i
     on w.prod_no = i.prod_no
-    where i.role = 'thumb'
+    where i.role = 'thumb' and id = #{id}
   </select>
   
   <insert id="insertWish" parameterType="co.yedam.wish.vo.WishVO">

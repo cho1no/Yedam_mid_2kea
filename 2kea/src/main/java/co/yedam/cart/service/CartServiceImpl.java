@@ -17,9 +17,9 @@ public class CartServiceImpl implements CartService {
 	CartMapper mapper = session.getMapper(CartMapper.class);
 
 	@Override
-	public List<CartVO> cartList() {
+	public List<CartVO> cartList(String id) {
 		// TODO Auto-generated method stub
-		return mapper.selectCart();
+		return mapper.selectCart(id);
 	}
 
 	@Override

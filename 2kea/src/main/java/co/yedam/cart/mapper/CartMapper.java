@@ -6,7 +6,7 @@ import co.yedam.cart.vo.CartVO;
 
 public interface CartMapper {
 	//장바구니목록
-	public List<CartVO> selectCart();
+	public List<CartVO> selectCart(String id);
 	
 	//장바구니추가
 	public int insertCart(CartVO cvo);

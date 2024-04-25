@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,7 +21,14 @@ public class CartList implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		req.getRequestDispatcher("2kea/cart.tiles").forward(req, resp);
+		HttpSession session = req.getSession();
+	    String id = (String)session.getAttribute("id");
+	    if(!id.equals(null)) {
+	    	req.getRequestDispatcher("2kea/cart.tiles").forward(req, resp);
+	    } else {
+	    	req.getRequestDispatcher("2kea/signIn.tiles").forward(req, resp);
+	    	
+	    }
 	}
 
 }
