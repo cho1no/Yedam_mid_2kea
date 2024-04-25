@@ -23,14 +23,9 @@
 									placeholder="Phone" required="">
 							</div>
 							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="btn_3">Send
-									OTP</button>
+								<button type="submit" value="submit" class="btn_3">Send</button>
 							</div>
-
-							<p style="color: red;"></p>
-
 						</form>
-
 					</div>
 				</div>
 			</div>

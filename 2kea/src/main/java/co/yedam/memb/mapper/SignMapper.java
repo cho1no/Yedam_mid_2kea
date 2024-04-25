@@ -9,4 +9,5 @@ public interface SignMapper {
 	public int  updateMember(MemberVO vo);
 	public MemberVO selectId(MemberVO vo);
 	public MemberVO selectPw(MemberVO vo);
+	public MemberVO selectUserInfo(String id);
 }

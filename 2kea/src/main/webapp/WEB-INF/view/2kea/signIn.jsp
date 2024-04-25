@@ -27,8 +27,8 @@
 									<input type="checkbox" id="f-option" name="selector"> <label
 										for="f-option">Remember me</label>
 								</div>
-									<a class="lost_pass" href="findId.do">forgot id?</a><br>
-									<a class="lost_pass" href="findPassword.do">forgot password?</a>
+								<a class="lost_pass" href="findId.do">forgot id?</a><br> <a
+									class="lost_pass" href="findPassword.do">forgot password?</a>
 								<button type="submit" value="submit" class="btn_3">log
 									in</button>
 								<!-- <button class="btn_3" onclick="signUp.do">Create an Account</button> -->
@@ -44,5 +44,6 @@
 		</div>
 	</div>
 </section>
+<script src="js/sginUpService.jsp"></script>
 <!--================login_part end =================-->
 
