@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import co.yedam.common.Control;
 import co.yedam.memb.service.LoginService;
 import co.yedam.memb.service.LoginServiceImpl;
@@ -30,19 +33,23 @@ public class SignInControl implements Control {
 		LoginService ls = new LoginServiceImpl();
 		vo = ls.login(vo);
 
+//		Gson gson = new GsonBuilder().create();
+//		String json = gson.toJson(vo);
+//		
+//		resp.getWriter().print(json);
 		// service결과가 있다면
 		if (vo != null) { // 결과가 일치한다 null이 아니다.
 			HttpSession session = req.getSession();
 			session.setAttribute("id", vo.getId());
 			session.setAttribute("authority", vo.getAuthority());// 컨트롤 클릭해서authority로 해야하는지 확인받
-			
+
 			if (vo.getAuthority().equals("ADMIN")) {
 				resp.sendRedirect("prodMain.do");
 			} else {
 				resp.sendRedirect("userPage");
 			}
 		} else {
-			req.setAttribute("msg", "id와 password를 확인하세요."); //attribute가 저장하는것.
+			req.setAttribute("msg", "id와 password를 확인하세요."); // attribute가 저장하는것.
 			resp.sendRedirect("signIn.do");
 		}
 	}
