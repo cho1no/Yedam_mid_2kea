@@ -12,6 +12,7 @@ import com.google.gson.GsonBuilder;
 
 import co.yedam.asks.service.AskService;
 import co.yedam.asks.service.AskServiceImpl;
+import co.yedam.asks.vo.AskPageVO;
 import co.yedam.asks.vo.AskVO;
 import co.yedam.common.Control;
 
@@ -20,6 +21,16 @@ public class AskList implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json;charset=utf-8");
+		/*
+		 * String pno = req.getParameter("pno");
+		 * 
+		 * String apage = req.getParameter("apage"); apage = apage == null ? "1" :
+		 * apage;
+		 * 
+		 * AskPageVO page = new AskPageVO(); page.setPno(Integer.parseInt(pno));
+		 * page.setApage(Integer.parseInt(apage));
+		 */
+		
 		
 		AskService svc = new AskServiceImpl();
 		List<AskVO> list = svc.askList();
