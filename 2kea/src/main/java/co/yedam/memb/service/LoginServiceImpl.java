@@ -22,8 +22,8 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 	@Override
-	public boolean removeMember(String id) {
-		return mapper.deleteMember(id) == 1;
+	public boolean removeMember(MemberVO vo) {
+		return mapper.deleteMember(vo) == 1;
 	}
 
 	@Override
