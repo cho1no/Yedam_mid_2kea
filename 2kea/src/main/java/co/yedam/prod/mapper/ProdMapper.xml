@@ -4,27 +4,59 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.yedam.prod.mapper.ProdMapper">
-  <sql id="joinProdImg">
-
+  <sql id="orderCase">
+		<choose>
+			<when test="showCase == 'no'.toString()">
+				ORDER BY p.prod_no DESC
+			</when>
+			<when test="showCase == 'vw'.toString()">
+				ORDER BY p.view_count DESC
+			</when>
+			<when test="showCase == 'nm'.toString()">
+				ORDER BY p.name DESC
+			</when>
+			<when test="showCase == 'pc'.toString()">
+				ORDER BY p.price DESC
+			</when>
+		</choose>
   </sql>
-  <select id="selectProdListByCase" parameterType="MainShowCaseVO" resultType="ProdVO">
-  	SELECT *
+  <sql id="searchWord">
+  	<choose>
+  		<when test="searchWord != ''.toString()">
+  	 	AND p.name LIKE '%'||#{searchWord}||'%'
+  	 	</when>
+  	</choose>
+  </sql>
+  <sql id="makeList">
+    SELECT *
     FROM (SELECT ROWNUM rn, p.*, i.image1
 	      FROM product p
 	      JOIN prdimage i
 	      ON p.prod_no = i.prod_no
 	      WHERE i.role = 'thumb'
-	<choose>
-		<when test="showCase == 'no'.toString()">
-			ORDER BY p.prod_no DESC)
-		</when>
-		<when test="showCase == 'vw'.toString()">
-			ORDER BY p.view_count DESC)
-		</when>
-	</choose>
+	      <include refid="searchWord"/>
+		  <include refid="orderCase"/>
+	)
+  </sql>
+  <select id="selectProdListByCase" parameterType="ShopVO" resultType="ProdVO">
+  	<include refid="makeList"/>
     <![CDATA[
 	WHERE rn < #{showNum}
 	]]>
+  </select>
+  
+  <select id="selectShopList" parameterType="ShopVO" resultType="ProdVO">
+  	<include refid="makeList"/>
+  	WHERE rn > (#{page} - 1) * 9
+    <![CDATA[	
+	AND   rn <= #{page} * 9
+	]]>
+  </select>
+  
+  <select id="countProd" parameterType="ShopVO" resultType="int">
+ 	SELECT COUNT(1)
+	FROM product
+	WHERE name LIKE '%'||#{searchWord}||'%'
   </select>
   
   <select id="selectProd" resultType="ProdVO" parameterType="int">

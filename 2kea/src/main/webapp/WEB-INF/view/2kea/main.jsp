@@ -96,14 +96,8 @@
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-12">
                     <div class="view_product_slider owl-carousel">
-                        <div class="single_product_item">
-                            <img src="template/img/product/product_1.png" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="single_product_item">
+                        
+                        <%-- <div class="single_product_item">
                             <img src="template/img/product/product_2.png" alt="">
                             <div class="single_product_text">
                                 <h4>Quartz Belt Watch</h4>
@@ -130,12 +124,20 @@
                                 <h4>Quartz Belt Watch</h4>
                                 <h3>$150.00</h3>
                             </div>
-                        </div>
+                        </div> --%>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <%-- for clone --%>
+    <div class="single_product_item" id="single_product0" style="display:none;">
+        <img src="template/img/product/product_1.png" alt="">
+        <div class="single_product_text">
+            <h4>Quartz Belt Watch</h4>
+            <h3>$150.00</h3>
+        </div>
+    </div>
     <!-- product_list part end-->
 
 
@@ -214,6 +216,7 @@
         </div>
     </div>
 
+    <%-- for clone --%>
     <div class="col-lg-3 col-sm-6" id="prod_0" data-pno="0" style="display:none;">
         <div class="single_product_item">
             <img src="template/img/product/product_1.png" alt="">

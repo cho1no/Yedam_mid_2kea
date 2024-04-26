@@ -17,6 +17,8 @@
     <!-- owl carousel CSS -->
     <link rel="stylesheet" href="template/css/owl.carousel.min.css">
     <link rel="stylesheet" href="template/css/lightslider.min.css">
+    <!-- nice select CSS -->
+    <link rel="stylesheet" href="template/css/nice-select.css">
     <!-- font awesome CSS -->
     <link rel="stylesheet" href="template/css/all.css">
     <!-- flaticon CSS -->
@@ -26,6 +28,7 @@
     <link rel="stylesheet" href="template/css/magnific-popup.css">
     <!-- swiper CSS -->
     <link rel="stylesheet" href="template/css/slick.css">
+    <link rel="stylesheet" href="template/css/price_rangs.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="template/css/style.css">
     <!-- jquery -->
@@ -35,20 +38,10 @@
     <script src="template/js/jquery.validate.min.js"></script>
     <script src="template/js/jquery.counterup.min.js"></script>
     <script src="template/js/jquery.magnific-popup.js"></script>
+    <script src="template/js/jquery.nice-select.min.js"></script>
+
     <script src="template/js/owl.carousel.min.js"></script>
-    <script>
-        // 숫자 3자리 콤마찍기
-        Number.prototype.formatNumber = function() {
-            if (this == 0)
-                return 0;
-            let regex = /(^[+-]?\d+)(\d{3})/;
-            let nstr = (this + '');
-            while (regex.test(nstr)) {
-                nstr = nstr.replace(regex, '$1' + ',' + '$2');
-            }
-            return nstr;
-        };
-    </script>
+
 </head>
 
 <body>
@@ -88,7 +81,7 @@
     <script src="template/js/masonry.pkgd.js"></script>
     <!-- particles js -->
 
-    <script src="template/js/jquery.nice-select.min.js"></script>
+    
     <!-- slick js -->
     <script src="template/js/slick.min.js"></script>
 
@@ -99,7 +92,7 @@
     <!-- custom js -->
     <script src="template/js/custom.js"></script>
 
-    
+    <script src="template/js/stellar.js"></script>
 </body>
 
 </html>
