@@ -118,6 +118,4 @@
   </section>
   <!--================ confirmation part end =================-->
   
-  <script>
-  
-  </script>
+  <script src="js/orderService.js"></script>
