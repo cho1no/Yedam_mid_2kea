@@ -16,15 +16,17 @@ public class UserDeletionControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
+		String pw = req.getParameter("pw");
 		
 		MemberVO vo = new MemberVO();
 		vo.setId(id);
+		vo.setPw(pw);
 		
 		
 		LoginService ls = new LoginServiceImpl();
-		ls.removeMember(id);
+		ls.removeMember(vo);
 		
-		if(ls.removeMember(id)) {
+		if(ls.removeMember(vo)) {
 			resp.getWriter().print("{\"retCode\": \"Success\"}");
 		}else {
 			resp.getWriter().print("{\"retCode\": \"False\"}");

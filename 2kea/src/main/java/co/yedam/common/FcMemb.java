@@ -14,6 +14,7 @@ import co.yedam.memb.control.UserDeletionControl;
 import co.yedam.memb.control.UserInfo;
 import co.yedam.memb.control.UserInfoControl;
 import co.yedam.memb.control.UserInfoEdit;
+import co.yedam.memb.control.UserInfoEditControl;
 
 public class FcMemb {
 	static void init(Map<String, Control> map) {
@@ -34,7 +35,7 @@ public class FcMemb {
 		map.put("/userInfoControl.do", new UserInfoControl()); // 마이 페이지
 	
 		map.put("/userInfoEdit.do", new UserInfoEdit()); // 정보 수정 페이지.
-		//map.put("/userInfoControl.do", new UserInfoEditControl()); // 정보 수정 기능 수행
+		map.put("/userInfoEditControl.do", new UserInfoEditControl()); // 정보 수정 기능 수행
 		
 		map.put("/userDeletionControl.do", new UserDeletionControl()); // 회원 탈퇴 기능 수행
 	}

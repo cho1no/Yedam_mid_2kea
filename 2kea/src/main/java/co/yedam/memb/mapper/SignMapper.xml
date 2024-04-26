@@ -21,20 +21,21 @@
 		values(#{id}, #{pw}, #{mName}, #{email} ,#{phone})
 	</insert>
 
-	<delete id="deleteMember" parameterType="int">
+	<delete id="deleteMember"
+		parameterType="co.yedam.memb.vo.MemberVO">
 		DELETE FROM member
-		WHERE
-		id = #{id}
+		WHERE id =
+		#{id} AND pw = #{pw}
 	</delete>
 
 	<update id="updateMember"
 		parameterType="co.yedam.memb.vo.MemberVO">
 		UPDATE member
-		set 
-			<if test="pw != null">pw = #{pw},</if>
-			<if test="mName != null">m_Name = #{mName},</if>
-			<if test="email != null">email = #{email},</if>
-			<if test="phone != null">phone = #{phone},</if>
+		set
+		<if test="pw != null">pw = #{pw},</if>x
+		<if test="mName != null">m_Name = #{mName},</if>
+		<if test="email != null">email = #{email},</if>
+		<if test="phone != null">phone = #{phone}</if>
 		WHERE id = #{id}
 	</update>
 
@@ -54,8 +55,7 @@
 		AND phone = #{phone}
 	</select>
 
-	<select id="selectUserInfo"
-		parameterType="String"
+	<select id="selectUserInfo" parameterType="String"
 		resultType="co.yedam.memb.vo.MemberVO">
 		SELECT *
 		FROM member
