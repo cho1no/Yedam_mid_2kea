@@ -40,5 +40,10 @@ public class LoginServiceImpl implements LoginService{
 	public MemberVO findPw(MemberVO vo) {
 		return mapper.selectPw(vo);
 	}
+
+	@Override
+	public MemberVO getUserInfo(String id) {
+		return mapper.selectUserInfo(id);
+	}
 	
 }

@@ -13,22 +13,29 @@ import com.google.gson.GsonBuilder;
 import co.yedam.common.Control;
 import co.yedam.prod.service.ProdService;
 import co.yedam.prod.service.ProdServiceImpl;
+import co.yedam.prod.vo.MainShowCaseVO;
 import co.yedam.prod.vo.ProdVO;
 
-public class ProdListControl implements Control {
+public class ProdListByCaseControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// json문자열생성
+		// TODO Auto-generated method stub
 		resp.setContentType("text/json; charset=utf-8");
+		String showCase = req.getParameter("case");
+		String showNum = req.getParameter("num");
+		System.out.println(showCase);
+		System.out.println(showNum);
+		MainShowCaseVO vo = new MainShowCaseVO();
+		vo.setShowCase(showCase);
+		vo.setShowNum(Integer.parseInt(showNum));
 		ProdService svc = new ProdServiceImpl();
-		List<ProdVO> list = svc.showProdList();
+		List<ProdVO> list = svc.showProdListByCase(vo);
 		
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list);
 		
 		resp.getWriter().print(json);
-//		req.getRequestDispatcher("2kea/main.tiles").forward(req, resp);
 	}
 
 }

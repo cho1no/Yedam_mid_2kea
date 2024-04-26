@@ -15,9 +15,9 @@ public class WishServiceImpl implements WishService {
 	WishMapper mapper = session.getMapper(WishMapper.class);
 
 	@Override
-	public List<WishVO> wishList() {
+	public List<WishVO> wishList(String id) {
 		// TODO Auto-generated method stub
-		return mapper.selectWish();
+		return mapper.selectWish(id);
 	}
 
 	@Override

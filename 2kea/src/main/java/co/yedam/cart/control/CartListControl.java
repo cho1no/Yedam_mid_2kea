@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,9 +22,11 @@ public class CartListControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		resp.setContentType("text/json;charset=utf-8");
-		
+		HttpSession session = req.getSession();
+	    String id = (String)session.getAttribute("id");
+	    
 		CartService svc = new CartServiceImpl();
-		List<CartVO> list = svc.cartList();
+		List<CartVO> list = svc.cartList(id);
 		
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list);

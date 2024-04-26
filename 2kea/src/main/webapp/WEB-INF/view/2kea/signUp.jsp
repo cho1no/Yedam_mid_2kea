@@ -23,7 +23,7 @@
                                 <span class="error" id="email_error"></span>
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="tel" class="form-control" id="pw=" value="pw" placeholder="Password">
+                                <input type="tel" class="form-control" id="pw" value="" placeholder="Password">
                                 <span class="error" id="mobile_error"></span>
                             </div>
                             <div class="col-md-12 form-group">
@@ -45,5 +45,7 @@
         </div>
     </section>
     <!--================login_part end =================-->
+    
+    <script src="js/sginUpService.jsp"></script>
 
    

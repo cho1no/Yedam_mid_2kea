@@ -4,32 +4,120 @@
  */
 // ajax 모음
 const svc = {
-    prodList(successCall, errorCall) {
-        fetch('prodList.do?')
+    prodList(vo = {}, successCall, errorCall) {
+        fetch('prodListByCase.do?case=' + vo.case + '&num=' + vo.num)
             .then(resolve => resolve.json())
             .then(successCall)
             .catch(errorCall);
     }
 }
-svc.prodList((result) => {
-    console.log(result);
-    let temp = $('div#prod_0[data-pno="0"]:eq(0)').clone();
-    result.forEach((e, i) => {
-        if (i < 8) {
+
+//product list slider
+var prod_list_slider = $('.prod_list_slider');
+var view_product_slider = $('.view_product_slider');
+const owl = {
+    release() {
+        if (prod_list_slider.length) {
+            prod_list_slider.owlCarousel({
+                items: 1,
+                loop: false,
+                dots: false,
+                autoplay: false,
+                autoplayHoverPause: true,
+                autoplayTimeout: 5000,
+                nav: true,
+                navText: ["prev", "next"],
+                smartSpeed: 1000,
+                responsive: {
+                    0: {
+                        margin: 15,
+                        nav: false,
+                        items: 1
+                    },
+                    600: {
+                        margin: 15,
+                        items: 1,
+                        nav: false
+                    },
+                    768: {
+                        margin: 30,
+                        nav: true,
+                        items: 1
+                    }
+                }
+            });
+        }
+    },
+    viewCnt() {
+        if (view_product_slider.length) {
+            view_product_slider.owlCarousel({
+                items: 4,
+                loop: false,
+                dots: false,
+                autoplay: true,
+                autoplayHoverPause: true,
+                autoplayTimeout: 5000,
+                nav: true,
+                navText: ["prev", "next"],
+                responsive: {
+                    0: {
+                        margin: 15,
+                        items: 1,
+                        nav: false
+                    },
+                    576: {
+                        margin: 15,
+                        items: 2,
+                        nav: false
+                    },
+                    768: {
+                        margin: 30,
+                        items: 3,
+                        nav: true
+                    },
+                    991: {
+                        margin: 30,
+                        items: 4,
+                        nav: true
+                    }
+                }
+            });
+        }
+    }
+}
+
+svc.prodList({ 'case': 'no', 'num': 24 },
+    (result) => {
+        let cnt = 0;
+        let tempPage = $('#prod_list_page0:eq(0)').clone();
+        result.forEach((e, i) => {
+            if (i % 8 == 0 && i != 0) {
+                prod_list_slider.trigger('add.owl.carousel', tempPage);
+                cnt++;
+                tempPage.attr('id', 'prod_list_page' + cnt);
+                $('#prod_list_wrap').append(tempPage);
+                tempPage = $('#prod_list_page0:eq(0)').clone()
+            }
+            let tempProd = $('div#prod_0[data-pno="0"]:eq(0)').clone();
             let pno = e.prodNo;
             let img = e.image1;
             let nme = e.name;
             let prc = e.price;
-            temp.attr('data-pno', pno);
-            temp.attr('id', 'prod_' + pno);
-            temp.find('h4').text(nme);
-            temp.find('h3').text(parseInt(prc).formatNumber() + '원');
-            temp.find('img').attr('src', 'img/' + img);
-            temp.css('display', 'block');
-            console.log(temp);
-            $('div#prod_gird0').append(temp);
-        }
-    })
-}, () => {
-    
-})
+            tempProd.attr('data-pno', pno);
+            tempProd.attr('id', 'prod_' + pno);
+            tempProd.find('h4').text(nme);
+            tempProd.find('h3').text(parseInt(prc).formatNumber() + '원');
+            tempProd.find('img').attr('src', 'img/' + img);
+            tempProd.css('display', 'block');
+            // $('div#prod_gird'+cnt).html('');
+            tempPage.find('#prod_gird').append(tempProd);
+            // prod_list_slider.find('single_product_list_slider').trigger('add.owl.carousel', tempPage);
+
+        })
+        prod_list_slider.trigger('refresh.owl.carousel');
+        // $(".owl-carousel").owlCarousel();
+    }, () => {
+
+    }
+)
+

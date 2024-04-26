@@ -9,6 +9,7 @@
 	<select id="selectAskList" resultType="co.yedam.asks.vo.AskVO">
 		select *
 		from ask
+		where prod_no = #{pno}
 		order by ask_no desc
 	</select>
 

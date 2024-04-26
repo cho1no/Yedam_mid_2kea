@@ -1,46 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  $(function() {
+    $('#contact').load('./prodQnA.jsp');
+  })
+</script>
     
-<style>
-.btn_3_close {
-	display: inline-block;
-	padding: 9px 39px;
-	border-radius: 50px;
-	background-color: #ff3368;
-	border: 1px solid #ecfdff;
-	font-size: 15px;
-	font-weight: 700;
-	color: #fff;
-	text-transform: uppercase;
-	font-weight: 400;
-	box-shadow: -1.717px 8.835px 29.76px 2.24px rgba(255, 51, 104, 0.18);
-	border: 1px solid #ff3368;
-	-webkit-transition: 0.5s;
-	transition: 0.5s;
-}
-
-.btn_ask {
-	border: 1px solid #e0e0e0;
-	padding: 2px 28px;
-	display: inline-block;
-	line-height: 32px;
-	border-radius: 50px;
-	font-size: 14px;
-	font-family: "Poppins", sans-serif;
-	color: #2a2a2a;
-}
-
-.btn_ask:hover {
-	background: #ff3368;
-	border-color: #ff3368;
-	color: #fff;
-}
-
-
-</style>    
-    
-    
+<input type="hidden">
     
   <!--================Single Product Area =================-->
   <div class="product_image_area section_padding">
@@ -99,12 +65,12 @@
     <div class="container">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-            aria-selected="false">Description</a>
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">Description</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
-            aria-selected="true">Comments</a>
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+            aria-selected="false">QnA</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
@@ -112,7 +78,7 @@
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
           <p>
             Beryl Cook is one of Britain’s most talented and amusing artists
             .Beryl’s pictures feature women of all shapes and sizes enjoying
@@ -122,89 +88,46 @@
           </p>
         </div>
         <!--==================문의하기==================== -->
-        <div class="tab-pane fade show active" id="contact" role="tabpanel" 
-        aria-labelledby="contact-tab" style="display: none;">
-        <div class="row mb-3">
-			<div class="col">
-				<h3>QnA</h3>
-			</div>
-			<a class="btn_ask" data-bs-toggle="modal" 
-			data-bs-target="#AskModal" data-bs-whatever="@mdo">Ask</a>
-		</div>
-          <div class="row">
-            <div>
-              <div class="comment_list">
-                <div class="review_item">
-                  <div class="media">
-                    <div class="media-body" id="ask_id">
-                      <h4>user1</h4>
-                      <h5>2024년 04월 11일 22시 31분</h5>
-                      <a class="reply_btn" href="#">Reply</a>
-                    </div>
-                  </div>
-                  <div id="ask_p">
-                  <p>주문취소요청드립니다</p>
-                  </div>
-                </div>
-                <div class="review_item" id="reply_1">
-                  <div class="media">
-                    <div class="media-body">
-                      <h4>2케아</h4>
-                      <h5>2024년 04월 04일 22시 18분</h5>
-                    </div>
-                  </div>
-                  <div class="mb-5" id="reply_p">
-                  <p>
-                   안녕하세요 고객님. 고객님의 제품은 현재 주문취소가 되어있습니다. 카드사마다 환불소요일이 다르기 때문에
-				   영업일 기준 2-4일정도 소요가 발생하실 수 있습니다. 온도가 따뜻하게 올라갔지만 기온차가 심한 오늘, 감기
-				   조심하시고 행복한 하루 보내세요 :)
-                  </p>
-                  </div>	
-                </div>
-              </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+          <%-- <div class="row mb-3">
+            <div class="col-11">
+              <h3>QnA</h3>
+            </div>
+            <div class="col-1">
+              <a class="btn_ask" data-bs-toggle="modal" data-bs-target="#AskModal" data-bs-whatever="@mdo">Ask</a>
             </div>
           </div>
-        </div>
-   <!--======================== end of 문의하기================================= -->
-
-   <!--================문의 모달=================-->
-<div class="modal fade" id="AskModal" tabindex="-1"
-	aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h3 class="modal-title fs-5" id="exampleModalLabel">상품 문의하기</h3>
-			</div>
-			<div class="modal-body">
-				<form>
-					<div class="col-md-12">
-						<div class="form-check form-check-inline">
-						  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-						  <label class="form-check-label" for="inlineRadio1">교환</label>
-						</div>
-						<div class="form-check form-check-inline">
-						  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-						  <label class="form-check-label" for="inlineRadio2">환불</label>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="form-group">
-							<textarea class="form-control" name="ask_message" rows="3"
-								placeholder="문의내용을 적어주세요"></textarea>
-						</div>
-					</div>
-					<div class="col-md-12 text-right"></div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" value="button" class="btn_3_close"
-					data-bs-dismiss="modal">취소</button>
-				<button type="submit" value="submit" class="btn_3">완료</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- ==============================문의하기 모달 끝================================== -->
+          <div class="comment_list" >
+            <div class="review_item" id="asklist" style="display: none;" data-no="0">
+              <div class="media">
+                <div class="media-body">
+                  <div class="row">
+                    <div class="col-1">
+                      <h4>user1</h4>
+                    </div>
+                    <div class="col-1">	
+                      <p class="delAskBtn">X</p>
+                    </div>
+						      </div>
+                  <h5>문의</h5>
+					 		    <h5>날짜</h5>
+                  <a class="reply_btn" href="#">Reply</a>
+                </div>
+              </div>
+              <p>oo</p>
+            </div>
+            <div class="review_item reply" id="replyist" style="display: none;">
+              <div class="media">
+                <div class="media-body">
+                  <h4>Blake Ruiz</h4>
+                  <h5>12th Feb, 2017 at 05:56 pm</h5>
+                  <a class="reply_btn" href="#">Reply</a>
+                </div>
+              </div>
+              <p>ㅇㅇ</p>
+            </div> --%>
+          <%-- </div><!-- end of comment_list --> --%>
+        </div> <!--==========================문의하기 끝========================= -->
         <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
           <div class="row">
             <div class="col-lg-6">
@@ -397,7 +320,63 @@
     </div>
   </section>
   <!--================End Product Description Area =================-->
-
+<!-- =======================문의하기 모달=========================== -->
+<div class="modal fade" id="AskModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title fs-5" id="exampleModalLabel">상품 문의하기</h3>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="col-md-12 mb-2">
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="inlineRadioOptions" id="inlineRadio1" value="상품"
+								checked="checked"> <label class="form-check-label"
+								for="inlineRadio1">상품</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="inlineRadioOptions" id="inlineRadio2" value="교환">
+							<label class="form-check-label" for="inlineRadio2">교환</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="inlineRadioOptions" id="inlineRadio3" value="반품">
+							<label class="form-check-label" for="inlineRadio3">반품</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="inlineRadioOptions" id="inlineRadio4" value="환불">
+							<label class="form-check-label" for="inlineRadio4">환불</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="inlineRadioOptions" id="inlineRadio5" value="기타">
+							<label class="form-check-label" for="inlineRadio5">기타</label>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<textarea class="form-control" name="ask_message" rows="6"
+								id="ask_message" placeholder="문의내용을 적어주세요"></textarea>
+						</div>
+					</div>
+					<div class="col-md-12 text-right"></div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" value="button" class="btn_3_close"
+					data-bs-dismiss="modal">취소</button>
+				<button type="button" class="btn_3" id="addAskBtn" 
+				data-bs-dismiss="modal">완료</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ======================문의하기 모달 끝========================== -->
   <!-- product_list part start-->
   <section class="product_list best_seller">
     <div class="container">
