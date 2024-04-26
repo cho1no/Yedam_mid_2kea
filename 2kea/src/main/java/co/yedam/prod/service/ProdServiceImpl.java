@@ -6,19 +6,29 @@ import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.common.DataSource;
 import co.yedam.prod.mapper.ProdMapper;
-import co.yedam.prod.vo.MainShowCaseVO;
 import co.yedam.prod.vo.ProdImgVO;
 import co.yedam.prod.vo.ProdVO;
+import co.yedam.prod.vo.ShopVO;
 
 public class ProdServiceImpl implements ProdService {
 	SqlSession session = DataSource.getInstance().openSession(true);
 	ProdMapper mapper = session.getMapper(ProdMapper.class);
 	
 	@Override
-	public List<ProdVO> showProdListByCase(MainShowCaseVO vo) {
+	public List<ProdVO> showProdListByCase(ShopVO vo) {
 		return mapper.selectProdListByCase(vo);
 	}
+	
+	@Override
+	public List<ProdVO> showShopList(ShopVO vo) {
+		return mapper.selectShopList(vo);
+	}
 
+	@Override
+	public int cntProd(ShopVO vo) {
+		return mapper.countProd(vo);
+	}
+	
 	@Override
 	public ProdVO showProd(int pno) {
 		return mapper.selectProd(pno);
@@ -29,5 +39,5 @@ public class ProdServiceImpl implements ProdService {
 		return mapper.selectProdImgList(pno);
 	}
 
-
+	
 }

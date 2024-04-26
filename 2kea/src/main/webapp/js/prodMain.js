@@ -23,6 +23,7 @@ const owl = {
                 loop: false,
                 dots: false,
                 autoplay: false,
+                mouseDrag: false,
                 autoplayHoverPause: true,
                 autoplayTimeout: 5000,
                 nav: true,
@@ -55,6 +56,7 @@ const owl = {
                 loop: false,
                 dots: false,
                 autoplay: true,
+                mouseDrag: false,
                 autoplayHoverPause: true,
                 autoplayTimeout: 5000,
                 nav: true,
@@ -85,7 +87,7 @@ const owl = {
         }
     }
 }
-
+owl.release();
 svc.prodList({ 'case': 'no', 'num': 24 },
     (result) => {
         let cnt = 0;
@@ -99,18 +101,7 @@ svc.prodList({ 'case': 'no', 'num': 24 },
                 tempPage = $('#prod_list_page0:eq(0)').clone()
             }
             let tempProd = $('div#prod_0[data-pno="0"]:eq(0)').clone();
-            let pno = e.prodNo;
-            let img = e.image1;
-            let nme = e.name;
-            let prc = e.price;
-            tempProd.attr('data-pno', pno);
-            tempProd.attr('id', 'prod_' + pno);
-            tempProd.find('h4').text(nme);
-            tempProd.find('h3').text(parseInt(prc).formatNumber() + '원');
-            tempProd.find('img').attr('src', 'img/' + img);
-            tempProd.css('display', 'block');
-            // $('div#prod_gird'+cnt).html('');
-            tempPage.find('#prod_gird').append(tempProd);
+            tempPage.find('#prod_gird').append(writeData2Temp(e, tempProd));
             // prod_list_slider.find('single_product_list_slider').trigger('add.owl.carousel', tempPage);
 
         })
@@ -119,5 +110,32 @@ svc.prodList({ 'case': 'no', 'num': 24 },
     }, () => {
 
     }
-)
+);
+owl.viewCnt();
+svc.prodList({ 'case': 'vw', 'num': 8},
+    (result) => {
+        result.forEach((e) => {
+            let tempProd = $('#single_product0').clone();
+            view_product_slider.trigger('add.owl.carousel', writeData2Temp(e, tempProd));
+        })
+        view_product_slider.trigger('refresh.owl.carousel');
+    },
+    () => {
 
+    }
+);
+
+function writeData2Temp(e ,tempProd){ // e에 데이터 넣어서 temp에 데이터 집어넣기
+    let pno = e.prodNo;
+    let img = e.image1;
+    let nme = e.name;
+    let prc = e.price;
+    tempProd.attr('data-pno', pno);
+    tempProd.attr('id', 'prod_' + pno);
+    tempProd.find('h4').text(nme);
+    tempProd.find('h3').text(parseInt(prc).formatNumber() + '원');
+    tempProd.find('img').attr('src', 'img/' + img);
+    tempProd.css('display', 'block');
+    tempProd.click(()=>location.href="prodDetail.do?pno="+pno);
+    return tempProd;
+}

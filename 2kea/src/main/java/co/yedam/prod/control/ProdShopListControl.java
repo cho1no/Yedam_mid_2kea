@@ -16,21 +16,23 @@ import co.yedam.prod.service.ProdServiceImpl;
 import co.yedam.prod.vo.ProdVO;
 import co.yedam.prod.vo.ShopVO;
 
-public class ProdListByCaseControl implements Control {
+public class ProdShopListControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		resp.setContentType("text/json; charset=utf-8");
-		String showCase = req.getParameter("case");
-		String showNum = req.getParameter("num");
-		System.out.println(showCase);
-		System.out.println(showNum);
-		ShopVO vo = new ShopVO();
-		vo.setShowCase(showCase);
-		vo.setShowNum(Integer.parseInt(showNum));
+		
+		String sw = req.getParameter("sw") == null ? "" : req.getParameter("sw");
+		String pg = req.getParameter("pg") == null ? "" : req.getParameter("pg");
+		
 		ProdService svc = new ProdServiceImpl();
-		List<ProdVO> list = svc.showProdListByCase(vo);
+		
+		ShopVO vo = new ShopVO();
+		vo.setSearchWord(sw);
+		vo.setPage(Integer.parseInt(pg));
+		
+		List<ProdVO> list = svc.showShopList(vo);
+		
 		
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list);
