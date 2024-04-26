@@ -16,9 +16,9 @@ public class OrderServiceImpl implements OrderService {
 	OrderMapper mapper = session.getMapper(OrderMapper.class);
 
 	@Override
-	public List<OrderVO> orderList() {
+	public List<OrderVO> orderList(OrderVO vo) {
 		// TODO Auto-generated method stub
-		return mapper.selectOrder();
+		return mapper.selectOrder(vo);
 	}
 
 	@Override
