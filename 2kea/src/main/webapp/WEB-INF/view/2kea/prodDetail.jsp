@@ -1,11 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script>
-  $(function() {
-    $('#contact').load('./prodQnA.jsp');
-  })
-</script>
-    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+
+<style>
+.btn_3_close {
+	display: inline-block;
+	padding: 9px 39px;
+	border-radius: 50px;
+	background-color: #ff3368;
+	border: 1px solid #ecfdff;
+	font-size: 15px;
+	font-weight: 700;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 400;
+	box-shadow: -1.717px 8.835px 29.76px 2.24px rgba(255, 51, 104, 0.18);
+	border: 1px solid #ff3368;
+	-webkit-transition: 0.5s;
+	transition: 0.5s;
+}
+.btn_ask {
+	border: 1px solid #e0e0e0;
+	padding: 2px 25px;
+	display: inline-block;
+	line-height: 32px;
+	border-radius: 50px;
+	font-size: 14px;
+	font-family: "Poppins", sans-serif;
+	color: #2a2a2a;
+}
+.delAskBtn{
+	border: 1px solid #fff;
+	padding: 10px 10px 10px 10px;
+	display: inline-block;
+	line-height: 3px;
+	border-radius: 20px;
+	font-size: 11px;
+	font-family: "Poppins", sans-serif;
+	color: #2a2a2a;
+}
+.editAskBtn{
+	border: 1px solid #e0e0e0;
+	padding: 1px 10px;
+	display: inline-block;
+	line-height: 20px;
+	border-radius: 35px;
+	font-size: 10px;
+	font-family: "Poppins", sans-serif;
+	color: #2a2a2a;
+}
+.btn_ask:hover {
+	background: #ff3368;
+	border-color: #ff3368;
+	color: #fff;
+}
+
+textarea {
+    resize: none;
+  }
+</style> 
 <input type="hidden">
     
   <!--================Single Product Area =================-->
@@ -89,7 +143,7 @@
         </div>
         <!--==================문의하기==================== -->
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-          <%-- <div class="row mb-3">
+         <div class="row mb-3">
             <div class="col-11">
               <h3>QnA</h3>
             </div>
@@ -103,31 +157,36 @@
                 <div class="media-body">
                   <div class="row">
                     <div class="col-1">
-                      <h4>user1</h4>
+                      <h4 class="userId">${id}</h4>
                     </div>
-                    <div class="col-1">	
+                    <div class="col-1">
                       <p class="delAskBtn">X</p>
                     </div>
-						      </div>
-                  <h5>문의</h5>
-					 		    <h5>날짜</h5>
-                  <a class="reply_btn" href="#">Reply</a>
+				   </div>
+                    <h5>user문의</h5>
+					<h5>user작성날짜</h5>
+					<c:if test="${authority == 'ADMIN'}">
+                       <a class="reply_btn" data-bs-toggle="modal" data-bs-target="#ReplyModal" data-bs-whatever="@mdo">Reply</a>
+                    </c:if>
                 </div>
               </div>
-              <p>oo</p>
+              <p class="userContent">user문의내용</p>
+            <div class="reply_section">
+              <div class="review_item reply" id="replyist" data-rno="0">
+              	<div class="media">
+                 <div class="media-body mt-4">
+                   <h4 class="replyId">adminId</h4>
+                   <h5>admin작성날짜</h5>
+                  </div>
+                </div>
+                <p>admin답변내용</p>
+              </div>
             </div>
-            <div class="review_item reply" id="replyist" style="display: none;">
-              <div class="media">
-                <div class="media-body">
-                  <h4>Blake Ruiz</h4>
-                  <h5>12th Feb, 2017 at 05:56 pm</h5>
-                  <a class="reply_btn" href="#">Reply</a>
-                </div>
-              </div>
-              <p>ㅇㅇ</p>
-            </div> --%>
-          <%-- </div><!-- end of comment_list --> --%>
-        </div> <!--==========================문의하기 끝========================= -->
+              <hr>
+            </div>
+         </div><!-- end of comment_list -->
+        </div> 
+      <!--==========================문의하기 끝========================= -->
         <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
           <div class="row">
             <div class="col-lg-6">
@@ -360,7 +419,7 @@
 					</div>
 					<div class="col-md-12">
 						<div class="form-group">
-							<textarea class="form-control" name="ask_message" rows="6"
+							<textarea class="form-control" name="ask_message" rows="5"
 								id="ask_message" placeholder="문의내용을 적어주세요"></textarea>
 						</div>
 					</div>
@@ -376,14 +435,45 @@
 		</div>
 	</div>
 </div>
+
 <!-- ======================문의하기 모달 끝========================== -->
+<!-- =======================답변하기 모달=========================== -->
+<div class="modal fade" id="ReplyModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title fs-5" id="exampleModalLabel">문의 답변하기</h3>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<div>
+							<textarea class="form-control" name="reply_message" rows="5"
+							id="reply_message" placeholder="답변내용"></textarea>
+						</div>
+					</div>
+					<div class="col-md-12 text-right"></div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" value="button" class="btn_3_close"
+					data-bs-dismiss="modal">취소</button>
+				<button type="button" class="btn_3" id="addRelpyBtn" 
+				data-bs-dismiss="modal">완료</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ======================답변하기 모달 끝========================== -->
   <!-- product_list part start-->
   <section class="product_list best_seller">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-12">
           <div class="section_tittle text-center">
-            <h2>Best Sellers <span>shop</span></h2>
+            <h2>Best Sellers</h2>
           </div>
         </div>
       </div>
@@ -444,6 +534,11 @@
   const category = "${pvo.category}";
   const viewCount = "${pvo.viewCount}";
   const image1 = "${pvo.image1}";
+  
+</script>
+<script>
+   var id = '<%=(String)session.getAttribute("id")%>';
+   
 </script>
 
 <%-- CWH js --%>
