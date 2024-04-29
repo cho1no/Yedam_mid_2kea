@@ -24,7 +24,6 @@ $(document).ready(function() {
 })
 
 function editInformation() {
-	$("#id").find('input').prop('readonly', false);
 	$("#mName").find('input').prop('readonly', false);
 	$("#email").find('input').prop('readonly', false);
 	$("#phone").find('input').prop('readonly', false);
@@ -34,18 +33,13 @@ function editInformation() {
 	$("#btn_edit").css('display', 'none')
 }
 
-document.getElementById('pw_checkbox').checked = true;
+//document.getElementById('pw_checkbox').checked = true;
 
-function pwCheckbox() {
-	let checkbox = document.getElementById('pw_checkbox');
-	let pwInput = document.querySelector('input[name="pw"]');
+//document.querySelector('.eyes').addEventListener('click', function() {
 
-	if (checkbox.checked) {
-		pwInput.type = "password";
-	} else {
-		pwInput.type = "text";
-	}
-}
+//});
+
+
 function deleteAccount() {
 	document.getElementById('mName').style.display = 'none';
 	document.getElementById('id').style.display = 'none';
@@ -103,27 +97,36 @@ function editSuccess() {
 		body: 'id=' + id + '&pw=' + pw + '&mName=' + mName
 			+ '&email=' + email + '&phone=' + phone
 	})
-		.then(response => {
+		.then(response => {		//결과값.
+		console.log(response);
 			if (response.ok) {
-				
+				alert("개인정보 변경이 되었습니다.");
+				document.querySelector('#mName').querySelector('input').readOnly = true;
+				document.querySelector('#email').querySelector('input').readOnly = true;
+				document.querySelector('#phone').querySelector('input').readOnly = true;
+				document.querySelector('#pw').style.display = 'none';
+				document.querySelector('#btn_delete').style.display = 'block';
+				document.querySelector('#btn_editSucces').style.display = 'none';
+				document.querySelector('#btn_edit').style.display = 'block';
 			} else {
-				
+
 			}
 		})
 		.catch(error => {
-			
+			alert('정보수정 에러.')
 		});
 }
 
 
-function deletSuccess() {
+function deleteSuccess() {
 	fetch(userDeletionControl.do, {
 		method: post,
 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: 'id=' + id
+		body: 'id=' + id + '&pw=' + pw
 	})
-		.then(successCall)
-		.catch(errorCall)
+		.then(response => response.json())
+		.then()
+		.catch()
 
 }
 

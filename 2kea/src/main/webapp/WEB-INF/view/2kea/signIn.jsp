@@ -12,30 +12,23 @@
 						<h3>
 							Welcome Back ! <br> Please Sign in now
 						</h3>
-						<form class="row contact_form" action="signInControl.do"
-							method="post" novalidate="novalidate">
+						<form class="row contact_form" action="signInControl.do" method="post" novalidate="novalidate">
 							<div class="col-md-12 form-group p_star">
-								<input type="text" class="form-control" id="name" name="id"
-									value="test999" placeholder="Username">
+								<input type="text" class="form-control" id="name" name="id"	value="test999" placeholder="Username">
 							</div>
 							<div class="col-md-12 form-group p_star">
-								<input type="password" class="form-control" id="password"
-									name="pw" value="999" placeholder="Password">
+								<input type="password" class="form-control" id="password" name="pw" value="999" placeholder="Password">
 							</div>
+							
 							<div class="col-md-12 form-group">
 								<div class="creat_account d-flex align-items-center">
-									<input type="checkbox" id="f-option" name="selector"> <label
-										for="f-option">Remember me</label>
+									<input type="checkbox" id="f-option" name="selector">
+									<label for="f-option">Remember me</label>
 								</div>
 								<a class="lost_pass" href="findId.do">forgot id?</a><br> <a
 									class="lost_pass" href="findPassword.do">forgot password?</a>
-								<button type="submit" value="submit" class="btn_3">log
-									in</button>
-								<!-- <button class="btn_3" onclick="signUp.do">Create an Account</button> -->
-								<a href="signUp.do" class="btn_3" style="text-align: center">Create
-									an Account</a>
-
-
+								<button type="submit" value="submit" class="btn_3" onclick="signIn()">sign</button>
+								<button type="button" class="btn_3" onclick="location.href = 'signUp.do' ">Create an Account</button>
 							</div>
 						</form>
 					</div>
@@ -44,6 +37,6 @@
 		</div>
 	</div>
 </section>
-<script src="js/sginUpService.jsp"></script>
+    <script src="js/signService.js"></script>
 <!--================login_part end =================-->
 

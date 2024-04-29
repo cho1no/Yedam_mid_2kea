@@ -2,9 +2,7 @@
 	pageEncoding="UTF-8"%>
 	
 <style>
-input[readonly] {
-    background-color: #ffffff; /* 흰색으로 변경 */
-}
+
 
 </style>
 
@@ -32,7 +30,6 @@ input[readonly] {
 							<div class="col-md-12 form-group" id="pw" style="display: none;">
 								<p>PASSWORD</p>
 								<input type="text" class="form-control"  name="pw" value="" placeholder="pw" >
-								<input type="checkbox" id="pw_checkbox" onclick="pwCheckbox()">Hide Password
 							</div>
 							<div class="col-md-12 form-group" id="email">
 								<p>EMAIL</p>

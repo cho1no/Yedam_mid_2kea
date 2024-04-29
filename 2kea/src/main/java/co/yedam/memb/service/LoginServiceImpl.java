@@ -33,12 +33,12 @@ public class LoginServiceImpl implements LoginService{
 
 	@Override
 	public MemberVO findId(MemberVO vo) {
-		return mapper.selectId(vo);
+		return mapper.findId(vo);
 	}
 
 	@Override
 	public MemberVO findPw(MemberVO vo) {
-		return mapper.selectPw(vo);
+		return mapper.findPw(vo);
 	}
 
 	@Override
