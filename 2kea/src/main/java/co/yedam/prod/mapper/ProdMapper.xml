@@ -39,8 +39,8 @@
 	      <if test="category != ''.toString()">
 	        AND p.category LIKE #{category}
 	      </if>
-	      <if test="startPrice > 0">
-	      	AND p.price BETWEEN (#{startPrice} AND #{endPrice})
+	      <if test="startPrice > -1">
+	      	AND p.price BETWEEN #{startPrice} AND #{endPrice}
 	      </if>
 		  <include refid="orderCase"/>
 	)a)

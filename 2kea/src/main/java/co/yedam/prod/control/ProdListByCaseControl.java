@@ -27,6 +27,9 @@ public class ProdListByCaseControl implements Control {
 		System.out.println(showCase);
 		System.out.println(showNum);
 		ShopVO vo = new ShopVO();
+		vo.setCategory("");
+		vo.setSearchWord("");
+		vo.setStartPrice(-1);
 		vo.setShowCase(showCase);
 		vo.setShowNum(Integer.parseInt(showNum));
 		ProdService svc = new ProdServiceImpl();
