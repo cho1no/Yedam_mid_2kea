@@ -2,6 +2,8 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
@@ -39,6 +41,10 @@
                 resize: none;
             }
 
+            .list a {
+                text-decoration: none;
+            }
+
             .btn_3_close {
                 display: inline-block;
                 padding: 9px 39px;
@@ -67,7 +73,7 @@
                 padding: 5px 25px;
             }
 
-            #revModiBtn{
+            #revModiBtn {
                 /* display: none; */
                 position: relative;
                 left: 615px;
@@ -85,10 +91,9 @@
                 border: 1px solid #ff3368;
             }
 
-            #modifyBtn {
+            /* #modifyBtn {
                 position: relative;
-                left: 615px;
-                padding: 5px 25px;
+                padding: 9px 39px;
                 display: inline-block;
                 border-radius: 50px;
                 background-color: #ff3368;
@@ -100,7 +105,7 @@
                 font-weight: 400;
                 box-shadow: -1.717px 8.835px 29.76px 2.24px rgba(255, 51, 104, 0.18);
                 border: 1px solid #ff3368;
-            }
+            } */
 
             #modifyBtn:hover {
                 background-color: #fff;
@@ -108,6 +113,7 @@
             }
 
             #revBtn {
+                width: 150px;
                 position: relative;
                 left: 860px;
                 margin-top: 60px;
@@ -149,6 +155,10 @@
                 align-content: center;
                 justify-content: center;
                 align-items: center;
+            }
+
+            .row {
+                padding: 0px 12px 0px 12px;
             }
         </style>
         <div class="product_image_area section_padding">
@@ -364,8 +374,8 @@
                                             <h3>Based on Rating Reviews</h3>
                                             <ul class="list">
                                                 <li><a href="" data-rating="all">
-                                                    view all
-                                                </a></li>
+                                                        view all
+                                                    </a></li>
                                                 <li>
                                                     <a href="#" data-rating="5">5 Star
                                                         <i data-rating="5" class="fas fa-star"></i>
@@ -482,44 +492,95 @@
                                 <div class="review_box">
                                 </div>
                             </div>
-                            <!-- 리뷰추가모달  -->
-                            <button type="button" class="btn btn-primary" id="revBtn" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" data-bs-whatever="@mdo">리뷰작성</button>
+                            <!--통합모달시작-->
+                            <!-- <button type="button" class="btn btn-primary" id="revBtn" data-bs-toggle="modal"
+                                data-bs-target="#allModal" data-bs-whatever="revBtn">리뷰작성</button>
+                            <button type="button" class="btn btn-primary" id="revModiBtn" data-bs-toggle="modal"
+                                data-bs-target="#allModal" data-bs-whatever="revModiBtn" style="display: none;">리뷰수정</button>
 
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            <div class="modal fade" id="allModal" tabindex="-1" aria-labelledby="allModalLabel"
                                 aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
+                                <div class="modal-dialog modal-lg modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">리뷰 작성</h1>
+                                            <h1 class="modal-title fs-5" id="allModalLabel"></h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <form class="row contact_form" action="" method="post">
                                             <div class="modal-body">
-                                                <form>
-                                                    <div class="star_rating" id="rating"> <span
-                                                            class="rating_text">별점:</span>
-                                                        <span class="star on" value="1"> </span>
-                                                        <span class="star" value="2"> </span>
-                                                        <span class="star" value="3"> </span>
-                                                        <span class="star" value="4"> </span>
-                                                        <span class="star" value="5"> </span>
+                                                <div class="star_rating" id="rating">
+                                                    <span class="rating_text">별점:</span>
+                                                    <span class="star on" value="1"></span>
+                                                    <span class="star" value="2"></span>
+                                                    <span class="star" value="3"></span>
+                                                    <span class="star" value="4"></span>
+                                                    <span class="star" value="5"></span>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="mid" value="${id }"
+                                                            readonly />
                                                     </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" id="mid"
-                                                                value="${id }" readonly />
-                                                        </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" id="reviewContent" rows="6"
+                                                            placeholder="Review"></textarea>
                                                     </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <textarea class="form-control" id="reviewContent" rows="6"
-                                                                placeholder="Review"></textarea>
-                                                        </div>
+                                                </div>
+                                                <div class="col-md-12 text-right">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn_3_close"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn_3" id="submitBtn"></button>
+                                                </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!--통합모달끝-->
+
+                            <!-- 리뷰추가모달  -->
+                            <button type="button" class="btn btn-primary" id="revBtn" data-bs-toggle="modal"
+                                data-bs-target="#addModal">리뷰작성</button>
+
+                            <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="addModalLabel">리뷰 작성</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <form class="row contact_form" action="" method="post">
+                                            <div class="modal-body">
+
+                                                <div class="star_rating" id="rating"> <span
+                                                        class="rating_text">별점:</span>
+                                                    <span class="star on" value="1"> </span>
+                                                    <span class="star" value="2"> </span>
+                                                    <span class="star" value="3"> </span>
+                                                    <span class="star" value="4"> </span>
+                                                    <span class="star" value="5"> </span>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="mid" value="${id }"
+                                                            readonly />
                                                     </div>
-                                                    <div class="col-md-12 text-right">
-                                                </form>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" id="reviewContent" rows="6"
+                                                            placeholder="Review"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 text-right">
+                                                </div>
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn_3_close"
@@ -533,63 +594,60 @@
                             </div>
                             <!-- 리뷰추가모달 끝 -->
                             <!-- 리뷰수정모달 시작-->
-                            <button type="button" class="btn btn-primary" id="revModiBtn" data-bs-toggle="modal"
-                                data-bs-target="#modifyModal" data-bs-whatever="@fat" style="display: none;"></button>
 
-                                <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="modifyModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="modifyModalLabel">리뷰 수정</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <form class="row contact_form" action="" method="post">
-                                                <div class="modal-body">
-                                                    <form>
-                                                        <div class="star_rating" id="rating"> <span
-                                                                class="rating_text">별점:</span>
-                                                            <span class="star on" value="1"> </span>
-                                                            <span class="star" value="2"> </span>
-                                                            <span class="star" value="3"> </span>
-                                                            <span class="star" value="4"> </span>
-                                                            <span class="star" value="5"> </span>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" id="mid"
-                                                                    value="${id }" readonly />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <textarea class="form-control" id="reviewContent" rows="6"
-                                                                    placeholder="Review" value="${reviewContent }"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12 text-right">
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn_3_close"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn_3" id="modifyBtn">Modify
-                                                        Now</button>
-                                                </div>
-                                            </form>
+                            <div class="modal fade" id="modifyModal" tabindex="-1">
+                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="modifyModalLabel">리뷰 수정</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                         </div>
+                                        <form class="row contact_form2" action="ReviewModify.do" method="post">
+                                            <div class="modal-body">
+
+                                                <input type="hidden" id="reviewNo" value="${reviewNo }">
+                                                <div class="star_rating" id="rating"> <span
+                                                        class="rating_text">별점:</span>
+                                                    <span class="star on" value="1"> </span>
+                                                    <span class="star" value="2"> </span>
+                                                    <span class="star" value="3"> </span>
+                                                    <span class="star" value="4"> </span>
+                                                    <span class="star" value="5"> </span>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="mid" value="${id }"
+                                                            readonly />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" id="reviewContent" rows="6"
+                                                            placeholder="Review"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 text-right">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn_3_close"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn_3" id="modifyBtn">Modify
+                                                    Now</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
+                            </div>
 
-                            <!-- 리뷰수정모달 끝-->
+                            <!-- 리뷰수정모달 끝 -->
                             <!-- addreview end -->
                         </div>
                     </div>
 
                     <script>
-                        var id = '<%=(String)session.getAttribute("id")%>';
-
+                        // var id = '<%=(String)session.getAttribute("id")%>';
                     </script>
 
                     <script src="js/review.js"></script>
