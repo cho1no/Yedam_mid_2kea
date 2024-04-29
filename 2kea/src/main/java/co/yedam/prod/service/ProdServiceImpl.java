@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.common.DataSource;
 import co.yedam.prod.mapper.ProdMapper;
+import co.yedam.prod.vo.CategoryVO;
 import co.yedam.prod.vo.ProdImgVO;
 import co.yedam.prod.vo.ProdVO;
 import co.yedam.prod.vo.ShopVO;
@@ -28,6 +29,10 @@ public class ProdServiceImpl implements ProdService {
 	public int cntProd(ShopVO vo) {
 		return mapper.countProd(vo);
 	}
+	@Override
+	public List<CategoryVO> cntCategory() {
+		return mapper.countCategory();
+	}
 	
 	@Override
 	public ProdVO showProd(int pno) {
@@ -38,6 +43,7 @@ public class ProdServiceImpl implements ProdService {
 	public List<ProdImgVO> showProdImgList(int pno) {
 		return mapper.selectProdImgList(pno);
 	}
+
 
 	
 }

@@ -11,26 +11,7 @@
                         </div>
                         <div class="widgets_inner">
                             <ul class="list">
-                                <li>
-                                    <a href="#">의자</a>
-                                    <span>(250)</span>
-                                </li>
-                                <li>
-                                    <a href="#">책상</a>
-                                    <span>(250)</span>
-                                </li>
-                                <li>
-                                    <a href="#">침대</a>
-                                    <span>(250)</span>
-                                </li>
-                                <li>
-                                    <a href="#">책장</a>
-                                    <span>(250)</span>
-                                </li>
-                                <li>
-                                    <a href="#">서랍장</a>
-                                    <span>(250)</span>
-                                </li>
+                                <%-- Category List --%>
                             </ul>
                         </div>
                     </aside>
@@ -68,13 +49,13 @@
                             <div class="range_item">
                                 <!-- <div id="slider-range"></div> -->
                                 <input type="text" class="js-range-slider" value="" />
-                                <div class="d-flex">
-                                    <div class="price_text">
+                                <div class="" style="display:none;">
+                                    <%-- <div class="price_text">
                                         <p>가격 :</p>
-                                    </div>
-                                    <div class="price_value d-flex justify-content-center">
+                                    </div> --%>
+                                    <div class="price_value d-flex justify-content-center" >
                                         <input type="text" class="js-input-from" id="amount" readonly />
-                                        <span>to</span>
+                                        <span style="margin: 5px; font-size:10pt">~</span>
                                         <input type="text" class="js-input-to" id="amount" readonly />
                                     </div>
                                 </div>
@@ -88,23 +69,24 @@
                     <div class="col-lg-12">
                         <div class="product_top_bar d-flex justify-content-between align-items-center">
                             <div class="single_product_menu">
-                                <p><span>10000 </span>개의 상품</p>
+                                <p><span id="prodCnt"></span>개의 상품</p>
                             </div>
                             <div class="single_product_menu ml-auto d-flex pr-3">
                                 <h5>정렬 : </h5>
-                                <select>
+                                <select id="orderSelect">
                                     <option data-display="선택">선택</option>
-                                    <option value="nm">이름순</option>
-                                    <option value="pc">가격순</option>
+                                    <option value="pch">높은가격순</option>
+                                    <option value="pcl">낮은가격순</option>
                                     <option value="vw">조회순</option>
-                                    <option value="no">등록순</option>
+                                    <option value="no">최신순</option>
                                 </select>
                             </div>
                             <div class="single_product_menu">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder=""
-                                        aria-describedby="inputGroupPrepend">
-                                    <div class="input-group-prepend">
+                                        id="searchWord" aria-describedby="inputGroupPrepend" 
+                                        onKeyPress="if( event.keyCode==13 ){searchFunc();}">
+                                    <div class="input-group-prepend" id="searchBtn">
                                         <span class="input-group-text" id="inputGroupPrepend"><i
                                                 class="ti-search"></i></span>
                                     </div>
@@ -116,7 +98,7 @@
 
                 <div class="row align-items-center latest_product_inner">
                 
-                    <div class="col-lg-4 col-sm-6" id="prod_0" style="display:none;">
+                    <div class="col-lg-4 col-sm-6 prod" id="prod_0" style="display:none;">
                         <div class="single_product_item">
                             <img src="template/img/product/product_1.png" alt="">
                             <div class="single_product_text">
@@ -126,27 +108,12 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-12" id="shop_pageination">
                         <div class="pageination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <i class="ti-angle-double-left"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">6</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <i class="ti-angle-double-right"></i>
-                                        </a>
-                                    </li>
+                                    <%-- page section --%>
                                 </ul>
                             </nav>
                         </div>
@@ -157,4 +124,5 @@
     </div>
 </section>
 <script src="template/js/price_rangs.js"></script>
+<script src="js/shopService.js"></script>
 <script src="js/shop.js"></script>

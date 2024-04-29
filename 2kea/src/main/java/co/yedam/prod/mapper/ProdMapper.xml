@@ -5,40 +5,49 @@
 
 <mapper namespace="co.yedam.prod.mapper.ProdMapper">
   <sql id="orderCase">
-		<choose>
-			<when test="showCase == 'no'.toString()">
-				ORDER BY p.prod_no DESC
-			</when>
-			<when test="showCase == 'vw'.toString()">
-				ORDER BY p.view_count DESC
-			</when>
-			<when test="showCase == 'nm'.toString()">
-				ORDER BY p.name DESC
-			</when>
-			<when test="showCase == 'pc'.toString()">
-				ORDER BY p.price DESC
-			</when>
-		</choose>
+	<choose>
+		<when test="showCase == 'no'.toString()">
+			ORDER BY p.prod_no DESC
+		</when>
+		<when test="showCase == 'vw'.toString()">
+			ORDER BY p.view_count DESC
+		</when>
+		<when test="showCase == 'nm'.toString()">
+			ORDER BY p.name DESC
+		</when>
+		<when test="showCase == 'pch'.toString()">
+			ORDER BY p.price DESC
+		</when>
+		<when test="showCase == 'pcl'.toString()">
+			ORDER BY p.price
+		</when>
+	</choose>
   </sql>
-  <sql id="searchWord">
-  	<choose>
-  		<when test="searchWord != ''.toString()">
-  	 	AND p.name LIKE '%'||#{searchWord}||'%'
-  	 	</when>
-  	</choose>
-  </sql>
+  
   <sql id="makeList">
-    SELECT *
-    FROM (SELECT ROWNUM rn, p.*, i.image1
+    FROM (
+    SELECT ROWNUM rn, a.*
+    FROM (SELECT p.*, i.image1
 	      FROM product p
 	      JOIN prdimage i
 	      ON p.prod_no = i.prod_no
 	      WHERE i.role = 'thumb'
-	      <include refid="searchWord"/>
+	      <if test="searchWord != ''.toString()">
+	        AND (UPPER(p.name) LIKE '%'||UPPER(#{searchWord})||'%'
+  	 		OR p.CATEGORY LIKE '%'||#{searchWord}||'%')
+	      </if>
+	      <if test="category != ''.toString()">
+	        AND p.category LIKE #{category}
+	      </if>
+	      <if test="startPrice > 0">
+	      	AND p.price BETWEEN (#{startPrice} AND #{endPrice})
+	      </if>
 		  <include refid="orderCase"/>
-	)
+	)a)
   </sql>
+  
   <select id="selectProdListByCase" parameterType="ShopVO" resultType="ProdVO">
+  	SELECT *
   	<include refid="makeList"/>
     <![CDATA[
 	WHERE rn < #{showNum}
@@ -46,6 +55,7 @@
   </select>
   
   <select id="selectShopList" parameterType="ShopVO" resultType="ProdVO">
+  	SELECT *
   	<include refid="makeList"/>
   	WHERE rn > (#{page} - 1) * 9
     <![CDATA[	
@@ -54,9 +64,14 @@
   </select>
   
   <select id="countProd" parameterType="ShopVO" resultType="int">
- 	SELECT COUNT(1)
+ 	SELECT COUNT(*)
+	<include refid="makeList"/>
+  </select>
+  
+  <select id="countCategory" resultType="categoryVO">
+  	SELECT category title, count(*) cnt
 	FROM product
-	WHERE name LIKE '%'||#{searchWord}||'%'
+	group by category
   </select>
   
   <select id="selectProd" resultType="ProdVO" parameterType="int">

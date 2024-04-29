@@ -18,9 +18,14 @@ public class ProdCountControl implements Control {
 		resp.setContentType("text/json; charset=utf-8");
 		
 		String sw = req.getParameter("sw") == null ? "" : req.getParameter("sw");
+		String sc = req.getParameter("sc") == null ? "" : req.getParameter("sc");
+		String cg = req.getParameter("cg") == null ? "" : req.getParameter("cg");
+		
 		
 		ShopVO vo = new ShopVO();
 		vo.setSearchWord(sw);
+		vo.setShowCase(sc);
+		vo.setCategory(cg);
 		
 		ProdService svc = new ProdServiceImpl();
 		int totalCount = svc.cntProd(vo);
