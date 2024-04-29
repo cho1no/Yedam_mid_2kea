@@ -9,7 +9,8 @@ const svc = {
 			.then(resolve => resolve.json())
 			.then(successCall)
 			.catch(errorCall);
-	}
+	},
+
 }
 
 var best_wish_product_slider  = $('.wish .best_wish_product_slider');
@@ -60,12 +61,17 @@ svc.wishList(function(resolve) {
 		let name = e.name;
 		let price = e.price;
 		let data = $('#owl_wish > .single_product_item').clone();
-		console.log(data);
 		data.attr('data-pno', prodNo);
 		data.find('img').attr('src', "img/"+img);
 		data.find('h4').text(name);
 		data.find('h3').text(parseInt(price).formatNumber()+'원');
 		data.css('display', 'inline-block');
+		data.find('.add_cart > span').click(() => {
+			addCart(prodNo, id);
+		})
+		data.find('#wish_heart').click(() =>{
+			addWish(prodNo, id)
+		})
 		best_wish_product_slider.trigger('add.owl.carousel', data);
 	})
 		best_wish_product_slider.trigger('refresh.owl.carousel');

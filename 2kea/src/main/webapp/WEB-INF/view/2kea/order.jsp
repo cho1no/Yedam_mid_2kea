@@ -6,15 +6,15 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="confirmation_tittle">
-            <span>Thank you. Your order has been received.</span>
+            <span>감사합니다. 귀하의 주문이 접수되었습니다.</span>
           </div>
         </div>
         <div class="col-lg-6 col-lx-4">
           <div class="single_confirmation_details">
-            <h4>order info</h4>
+            <h4>주문 정보</h4>
             <ul>
               <li>
-                <p>order number</p><span>: 60235</span>
+                <p>주문 번호</p><span>: 60235</span>
               </li>
               <li>
                 <p>data</p><span>: Oct 03, 2017</span>
@@ -30,7 +30,7 @@
         </div>
         <div class="col-lg-6 col-lx-4">
           <div class="single_confirmation_details">
-            <h4>Billing Address</h4>
+            <h4>청구지 주소</h4>
             <ul>
               <li>
                 <p>Street</p><span>: 56/8</span>
@@ -49,7 +49,7 @@
         </div>
         <div class="col-lg-6 col-lx-4">
           <div class="single_confirmation_details">
-            <h4>shipping Address</h4>
+            <h4>배송 주소</h4>
             <ul>
               <li>
                 <p>Street</p><span>: 56/8</span>
@@ -70,13 +70,13 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="order_details_iner">
-            <h3>Order Details</h3>
+            <h3>주문 세부정보</h3>
             <table class="table table-borderless">
               <thead>
                 <tr>
-                  <th scope="col" colspan="2">Product</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Total</th>
+                  <th scope="col" colspan="2">상품</th>
+                  <th scope="col">수량</th>
+                  <th scope="col">합계</th>
                 </tr>
               </thead>
               <tbody>
@@ -106,8 +106,8 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <th scope="col" colspan="3">Quantity</th>
-                  <th scope="col">Total</th>
+<!--                   <th scope="col" colspan="3">Quantity</th> -->
+<!--                   <th scope="col">Total</th> -->
                 </tr>
               </tfoot>
             </table>

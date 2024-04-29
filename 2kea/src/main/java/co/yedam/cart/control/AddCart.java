@@ -17,12 +17,12 @@ public class AddCart implements Control {
 		// TODO Auto-generated method stub
 		String pno = req.getParameter("pno");
 		String id = req.getParameter("id");
-		String qty = req.getParameter("qty");
+		
 		
 		CartVO cvo = new CartVO();
 		cvo.setProdNo(Integer.parseInt(pno));
 		cvo.setId(id);
-		cvo.setQty(Integer.parseInt(qty));
+		
 		
 		CartService csv = new CartServiceImpl();
 		
