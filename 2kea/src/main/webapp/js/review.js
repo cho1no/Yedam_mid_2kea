@@ -5,6 +5,10 @@ $('.star_rating > .star').click(function () {
     $(this).parent().children('span').removeClass('on');
     $(this).addClass('on').prevAll('span').addClass('on');
 })
+
+const myModifyModal = new bootstrap.Modal(document.getElementById('modifyModal'));
+const myAddModal = new bootstrap.Modal(document.getElementById('addModal'));
+
 // 삭제 버튼
 function deleteReview(reviewNo, reviewItem) {
     fetch('ReviewRemove.do?reviewNo=' + reviewNo)
@@ -19,18 +23,6 @@ function deleteReview(reviewNo, reviewItem) {
             }
         })
         .catch(err => console.error(err));
-}
-// 수정 버튼
-function modifyReview(reviewNo, reviewContent, rating) {
-    fetch('ReviewModify.do?reviewNo=' + reviewNo + '&reviewContent=' + reviewContent + '&rating=' + rating)
-        .then(result => result.json())
-        .then(result => {
-            if (result.retCode == 'Success') {
-                alert('수정 완료 되었습니다.');
-            } else {
-                alert('수정 실패 하였습니다.')
-            }
-        })
 }
 
 // 점수, 개수
@@ -77,7 +69,7 @@ function filterReviews(rating) {
                 itemRating++;
             }
         });
-        if (rating === 'all' || rating == itemRating) {
+        if (rating == 'all' || rating == itemRating) {
             item.style.display = 'block';
         } else {
             item.style.display = 'none';
@@ -135,7 +127,8 @@ function addNewList(newReview) {
     mBtn.setAttribute('class', 'btn_3');
     mBtn.setAttribute('id', 'revModiBtn');
     mBtn.addEventListener('click', e => {
-        
+        const modalToggle = document.getElementById('modifyModal');
+        myModifyModal.show(modalToggle);
     })
     reviewItem.appendChild(mBtn);
 }
@@ -151,6 +144,7 @@ fetch('ReviewList.do')
         data.forEach(item => {
             const reviewItem = document.createElement('div');
             reviewItem.className = 'review_item';
+            reviewItem.dataset.reviewNo = item.reviewNo;
 
             const media = document.createElement('div');
             media.className = 'media';
@@ -194,8 +188,26 @@ fetch('ReviewList.do')
             mBtn.setAttribute('class', 'btn_3');
             mBtn.setAttribute('id', 'revModiBtn');
             mBtn.addEventListener('click', e => {
+                const modalToggle = document.getElementById('modifyModal');
+                const reviewItem = e.target.closest('.review_item');
+                const reviewNo = reviewItem.dataset.reviewNo;
+                document.getElementById('reviewNo').value = reviewNo;
 
-            })
+                const reviewContent = reviewItem.querySelector('p').textContent;
+                document.getElementById('reviewContent').value = reviewContent;
+
+                const rating = reviewItem.querySelectorAll('.fas').length;
+                const stars = modalToggle.querySelectorAll('.star');
+
+                stars.forEach((star, index) => {
+                    if (index < rating) {
+                        star.classList.add('on');
+                    } else {
+                        star.classList.remove('on');
+                    }
+                });
+                myModifyModal.show(modalToggle);
+            });
             reviewItem.appendChild(mBtn);
         });
         updateAvgRating();
@@ -206,14 +218,15 @@ fetch('ReviewList.do')
 document.querySelector('form #addReview').addEventListener('click', e => {
     e.preventDefault();
     let rvwCont = document.querySelector('#reviewContent').value;
-    let rating = document.querySelectorAll('.star.on').length;
+    let rating = document.querySelectorAll('.star.on').length - 1;
 
     console.log(rating);
     console.log(rvwCont);
-
     fetch('ReviewAddForm.do', {
         method: 'post',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
         body: 'prodNo=' + '1003' + '&id=' + id + '&rating=' + rating + '&reviewContent=' + rvwCont
     })
         .then(result => result.json())
@@ -224,6 +237,29 @@ document.querySelector('form #addReview').addEventListener('click', e => {
                 updateAvgRating();
             }
             document.querySelector('#reviewContent').value = '';
+        })
+        .catch(err => console.error(err));
+});
+
+// // 리뷰 수정 버튼
+document.querySelector('form #modifyBtn').addEventListener('click', e => {
+    e.preventDefault();
+    let reviewNo = document.getElementById('reviewNo').value;
+    let reviewContent = document.querySelector('#reviewContent').value;
+    let rating = document.querySelectorAll('.star.on').length - 1;
+
+    console.log(reviewNo);
+    console.log(reviewContent)
+
+    fetch('ReviewModify.do?reviewNo=' + reviewNo + '&reviewContent=' + reviewContent + '&rating=' + rating)
+        .then(result => result.json())
+        .then(result => {
+            if (result.retCode == 'Success') {
+                alert('수정 완료 되었습니다.');
+                updateAvgRating();
+            } else {
+                alert('수정 실패 하였습니다.')
+            }
         })
         .catch(err => console.error(err));
 })
@@ -238,6 +274,10 @@ document.querySelectorAll('.rating_list .list a').forEach(link => {
 
 // 모달 자동 종료
 $('#addReview').click(function () {
-    $('#exampleModal').modal('hide');
+    myAddModal.hide();
 });
+$('#modifyBtn').click(function () {
+    myModifyModal.hide();
+});
+
 
