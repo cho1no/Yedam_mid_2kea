@@ -6,6 +6,7 @@ import java.util.Map;
 
 import co.yedam.asks.control.AddAsk;
 import co.yedam.asks.control.AddReply;
+import co.yedam.asks.control.AskCount;
 import co.yedam.asks.control.AskList;
 import co.yedam.asks.control.DelAsk;
 import co.yedam.asks.control.DelReply;
@@ -18,6 +19,7 @@ public class FcAsks {
 		map.put("/askList.do", new AskList()); // 문의목록
 		map.put("/addAsk.do", new AddAsk()); // 문의등록
 		map.put("/delAsk.do", new DelAsk()); // 문의삭제
+		map.put("/askCount.do", new AskCount());
 		// reply
 		map.put("/replyList.do", new ReplyList()); // 답변목록
 		map.put("/addReply.do", new AddReply()); // 답변등록
