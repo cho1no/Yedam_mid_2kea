@@ -14,13 +14,20 @@ const asksvc = {
 			.then(result => result.json())
 			.then(successCall)
 			.catch(err=>console.error(err));
+	},
+	pagingList(pno=1, successCall){
+		fetch('askCount.do?pno=' + pno)
+			.then(result => result.json())
+			.then(successCall)
+			.catch(err=>console.error(err));
 	}
+	
 }
 // end of ajax==========================================
 
 //asksvc.askList===========================================
 let apage = 1;
-asksvc.askList({pno:pno, page:apage}, askListFnc)
+asksvc.askList({pno:pno, page:apage}, askListFnc);
 
 function askListFnc(result) {
 
@@ -111,7 +118,8 @@ function askListFnc(result) {
 	//===========  reply_btn ====> #addRelpyBtn  =================
 	$('.reply_btn').on('click', function() {
 		let askDataNo = ($(this).parent().parent().parent().data('no'));
-		
+		let replybtn = $('.reply_btn');
+		console.log('sdf');
 		$('#addRelpyBtn').on('click', function() {
 			let replyContent = $('#reply_message').val();
 			fetch('addReply.do', {
@@ -131,6 +139,8 @@ function askListFnc(result) {
 				.catch(err => console.error(err));
 		});//end of #addRelpyBtn click
 	});//end of .reply_btn click
+	
+	asksvc.pagingList(pno, createPageList)
 };//end of askListFnc
 
 
@@ -171,3 +181,55 @@ document.querySelectorAll('.page-link').forEach(item=>{
 		asksvc.askList({pno:pno, page:apage}, askListFnc)
 	})
 })
+
+
+let pageTarget = document.querySelector('div.pagination');
+
+function createPageList(result){
+	pageTarget.innerHTML = '';
+
+	let totalCnt = result.totalCount; 
+	let startPage, endPage;
+	let next, prev; 		
+	let realEnd = Math.ceil(totalCnt / 5);
+	
+	endPage = Math.ceil(apage / 5) *5 
+	startPage = endPage - 4;
+	endPage = endPage > realEnd ? realEnd : endPage;
+	next = endPage < realEnd ? true : false;
+	prev = startPage > 1;
+	
+	//a태그 생성.
+	if(prev){
+		let aTag = document.createElement('a');
+		aTag.innerHTML = "&laquo;";
+		aTag.href = "#";	
+		aTag.setAttribute('data-page', (startPage-1));
+		pageTarget.appendChild(aTag);
+	}
+	for(let pg = startPage; pg<=endPage; pg++){
+		let aTag = document.createElement('a');
+		aTag.innerHTML = pg;
+		aTag.href = "#";
+		aTag.setAttribute('data-page', pg);
+		pageTarget.appendChild(aTag);
+		if(pg == apage){
+			aTag.className = 'active';
+		}
+	}
+	if(next){
+		let aTag = document.createElement('a');
+		aTag.innerHTML = "&raquo;";
+		aTag.href = "#";	
+		aTag.setAttribute('data-page', (endPage+1));
+		pageTarget.appendChild(aTag);
+	}
+	//pagination 이동								
+	document.querySelectorAll('.pagination>a').forEach(item => {
+	item.addEventListener('click', e=>{
+		e.preventDefault(); 
+		apage = item.dataset.page;
+		asksvc.askList({pno:pno, page:apage}, askListFnc)
+		})
+	})
+}//end of createPageList;

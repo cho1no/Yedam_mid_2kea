@@ -36,4 +36,10 @@
 		delete from ask
 		where ask_no = #{ano}
 	</delete>
+	
+	<select id="selectAskCount" parameterType="int" resultType="int">
+		select count(1)
+		from ask
+		where prod_no = #{pno}
+	</select>
 </mapper>

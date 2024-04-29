@@ -34,7 +34,7 @@ public class AskList implements Control {
 		List<AskVO> list = svc.askList(askPage);
 		
 		Gson gson = new GsonBuilder()
-				.setDateFormat("yyyy.MM.dd")
+				.setDateFormat("yyyy-MM-dd HH:mm")
 				.create();
 		String json = gson.toJson(list); 
 		

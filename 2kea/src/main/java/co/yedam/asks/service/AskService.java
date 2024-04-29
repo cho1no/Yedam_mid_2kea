@@ -11,4 +11,6 @@ public interface AskService {
 	public boolean editAsk(AskVO avo);
 	public boolean delAsk(int ano);
 	
+	//count
+	public int getAskCount(int pno);
 }

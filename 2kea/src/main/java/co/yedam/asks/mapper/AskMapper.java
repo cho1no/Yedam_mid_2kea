@@ -10,4 +10,7 @@ public interface AskMapper {
 	public int insertAsk(AskVO avo);
 	public int updateAsk(AskVO avo);
 	public int deleteAsk(int ano);
+	
+	//Count
+	public int selectAskCount(int pno);
 }

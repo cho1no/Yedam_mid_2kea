@@ -70,6 +70,32 @@
 textarea {
 	resize: none;
 }
+
+.center {
+  text-align: center;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+
 </style>
 <input type="hidden">
 
@@ -207,22 +233,14 @@ textarea {
 				</div>
 				<!-- end of comment_list -->
 				<!-- Ask pageination -->
-				<div class="pageination">
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Previous"> <i class="ti-angle-double-left"></i>
-							</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Next"> <i class="ti-angle-double-right"></i>
-							</a></li>
-						</ul>
-					</nav>
+				<div>
+					<div class="center">
+						<div class="pagination">
+							<a href="#">1</a>
+							<a href="#">2</a>
+							
+						</div>
+					</div>
 				</div>
 			</div>
 			<!--==========================문의하기 끝========================= -->
