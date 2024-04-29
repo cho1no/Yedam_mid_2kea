@@ -46,7 +46,7 @@ public class SignInControl implements Control {
 			if (vo.getAuthority().equals("ADMIN")) {
 				resp.sendRedirect("prodMain.do");
 			} else {
-				resp.sendRedirect("userPage");
+				resp.sendRedirect("prodMain.do");
 			}
 		} else {
 			req.setAttribute("msg", "id와 password를 확인하세요."); // attribute가 저장하는것.

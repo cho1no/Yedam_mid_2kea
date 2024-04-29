@@ -32,9 +32,9 @@ public class FcMemb {
 		// map.put("/kakaoSignUp.do", new KakaoSignUp()); //카카오로그인 페이지(할수있다면)
 
 		map.put("/userInfo.do", new UserInfo()); // 마이 페이지
-		map.put("/userInfoControl.do", new UserInfoControl()); // 마이 페이지
+		map.put("/userInfoControl.do", new UserInfoControl()); // 마이 페이지 정보 가져오기.
 	
-		map.put("/userInfoEdit.do", new UserInfoEdit()); // 정보 수정 페이지.
+		//map.put("/userInfoEdit.do", new UserInfoEdit()); // 정보 수정 페이지.
 		map.put("/userInfoEditControl.do", new UserInfoEditControl()); // 정보 수정 기능 수행
 		
 		map.put("/userDeletionControl.do", new UserDeletionControl()); // 회원 탈퇴 기능 수행

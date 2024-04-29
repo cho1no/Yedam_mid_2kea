@@ -8,28 +8,23 @@
 				<div class="login_part_form">
 					<div class="login_part_form_iner">
 						<h3>Forgot Id</h3>
-						<form id="forgot_password" class="row contact_form"
-							action="/forgot-password" method="post" novalidate="novalidate">
+						<form id="forgot_password" class="row contact_form"	action="" method="post" novalidate="novalidate">
 							<div class="col-md-12 form-group p_star">
-								<input type="email" class="form-control" id="mName" name="mName"
-									placeholder="mName" required="">
+								<input type="text" class="form-control" id="mName" name="mName" placeholder="User Name">
 							</div>
 							<div class="col-md-12 form-group p_star">
-								<input type="email" class="form-control" id="email" name="email"
-									placeholder="Email" required="">
+								<input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone">
 							</div>
 							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="btn_3">Send
-									OTP</button>
+								<button type="button" value="submit" class="btn_3" onclick="findId()">Send</button>
 							</div>
 
 							<p style="color: red;"></p>
-
 						</form>
-
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 </section>
-</div>
+    <script src="js/signService.js"></script>

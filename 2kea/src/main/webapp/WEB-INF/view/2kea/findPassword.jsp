@@ -9,21 +9,21 @@
 					<div class="login_part_form_iner">
 						<h3>Forgot Password</h3>
 						<form id="forgot_password" class="row contact_form"
-							action="/forgot-password" method="post" novalidate="novalidate">
+							action="" method="post" novalidate="novalidate">
 							<div class="col-md-12 form-group p_star">
-								<input type="email" class="form-control" id="mName" name="mName"
+								<input type="text" class="form-control" id="id" name="id"
+									placeholder="Id" required="">
+							</div>
+							<div class="col-md-12 form-group p_star">
+								<input type="text" class="form-control" id="mName" name="mName"
 									placeholder="mName" required="">
 							</div>
 							<div class="col-md-12 form-group p_star">
-								<input type="email" class="form-control" id="email" name="email"
-									placeholder="Email" required="">
-							</div>
-							<div class="col-md-12 form-group p_star">
-								<input type="text" class="form-control" id="phone" name="phone"
+								<input type="tel" class="form-control" id="phone" name="phone"
 									placeholder="Phone" required="">
 							</div>
 							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="btn_3">Send</button>
+								<button type="button" value="submit" class="btn_3" onclick="findPw()">Send</button>
 							</div>
 						</form>
 					</div>
@@ -32,3 +32,4 @@
 		</div>
 	</div>
 </section>
+    <script src="js/signService.js"></script>

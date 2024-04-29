@@ -29,7 +29,7 @@ public class UserInfoEditControl implements Control {
 		vo.setPhone(phone);
 
 		LoginService ls = new LoginServiceImpl();
-		
+	
 		if(ls.modifyMember(vo)) {
 			resp.getWriter().print("{\"retCode\": \"Success\"}");
 		}else {

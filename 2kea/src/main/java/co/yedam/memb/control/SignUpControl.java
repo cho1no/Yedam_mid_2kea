@@ -29,8 +29,6 @@ public class SignUpControl implements Control {
 		vo.setPhone(phone);
 
 		LoginService ls = new LoginServiceImpl();
-		ls.addMember(vo);
-		
 		
 		if (ls.addMember(vo)) {
 			// "{\"retCode\": \"success\"}")
@@ -38,6 +36,8 @@ public class SignUpControl implements Control {
 		} else {
 			// "{\"retCode\": \"success\"}")
 			resp.getWriter().print("{\"retCode\": \"Fail\"}");
+			resp.sendRedirect("signIn.do");
+
 		}
 	}
 
