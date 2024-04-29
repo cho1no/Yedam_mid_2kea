@@ -3,6 +3,7 @@ package co.yedam.common;
 import java.util.Map;
 
 import co.yedam.memb.control.ProdShop;
+import co.yedam.prod.control.CategoryCountControl;
 import co.yedam.prod.control.ProdCountControl;
 import co.yedam.prod.control.ProdDetail;
 import co.yedam.prod.control.ProdImgeListControl;
@@ -16,6 +17,7 @@ public class FcProd {
 		map.put("/prodListByCase.do", new ProdListByCaseControl());  // main 최근 등록순 상품 리스트 json
 		map.put("/prodShopList.do", new ProdShopListControl()); 		// shop 리스트 뽑기
 		map.put("/prodCount.do", new ProdCountControl()); // total page calc
+		map.put("/categoryCount.do", new CategoryCountControl()); // category Count
 		// product detail
 		map.put("/prodImgList.do", new ProdImgeListControl());  //상품 이미지 리스트 json
 		

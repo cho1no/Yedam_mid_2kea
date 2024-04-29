@@ -1489,7 +1489,7 @@
                 } else {
                     this.$cache.from[0].style.visibility = "visible";
                     this.$cache.to[0].style.visibility = "visible";
-                    this.$cache.single[0].style.visibility = "hidden";
+                    this.$cache.single[0].style.visibility = "visible";
                 }
 
                 if (min < this.labels.p_min + 1) {
@@ -2372,29 +2372,29 @@
 // Trigger
 
 $(function () {
-  
+  // init
 var $range = $(".js-range-slider"),
     $inputFrom = $(".js-input-from"),
     $inputTo = $(".js-input-to"),
     instance,
     min = 0,
-    max = 1000,
+    max = 9999999,
     from = 10,
-    to = 100;
+    to = 100000;
 
 $range.ionRangeSlider({
     type: "double",
     min: min,
     max: max,
     from: 0,
-    to: 500,
-  prefix: 'tk. ',
+    to: 9999999,
+  prefix: '',
     onStart: updateInputs,
     onChange: updateInputs,
-    step: 1,
+    step: 10000,
     prettify_enabled: true,
-    prettify_separator: ".",
-  values_separator: " - ",
+    prettify_separator: ",",
+  values_separator: "~",
   force_edges: true
   
 
