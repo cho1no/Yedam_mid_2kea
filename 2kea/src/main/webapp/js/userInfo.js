@@ -34,13 +34,12 @@ function editInformation() {
 }
 
 //document.getElementById('pw_checkbox').checked = true;
-
 //document.querySelector('.eyes').addEventListener('click', function() {
-
 //});
 
 
 function deleteAccount() {
+
 	document.getElementById('mName').style.display = 'none';
 	document.getElementById('id').style.display = 'none';
 	document.getElementById('email').style.display = 'none';
@@ -48,6 +47,7 @@ function deleteAccount() {
 	document.getElementById('checkbox').style.display = 'block';
 
 	document.getElementById('pw').style.display = 'block';
+	document.getElementById('pw').val
 
 	document.getElementById('btn_edit').style.display = 'none';
 	document.getElementById('btn_delete').style.display = 'none';
@@ -63,22 +63,19 @@ function deleteAccount() {
 
 }
 
-/*
-function deleteAccount() {
-	$("#mName").hide();
-	$("#id").hide();
-	$("#email").hide();
-	$("#phone").hide();
-	$("#checkbox").show();
-
-	$("#pw").show();
-	$("#btn_edit").hide();
-	$("#btn_delete").hide();
-	$("#btn_drop").show();
-
-	$("#firstWord").html("Are you sure you want to withdraw? If you proceed, your personal information will be sold to third parties");
+const edit_svc = {
+	editInfo(vo = {}, succesCall, errorCall) {
+		fetch("userInfoEditControl.do", {
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: 'id=' + vo.id + '&pw=' + vo.pw + '&mName=' + vo.mName
+				+ '&email=' + vo.email + '&phone=' + vo.phone
+		})
+			.then(succesCall)
+			.catch(errorCall)
+	}
 }
-*/
+
 
 
 
@@ -90,15 +87,9 @@ function editSuccess() {
 	var email = document.querySelector('input[name="email"]').value;
 	var phone = document.querySelector('input[name="phone"]').value;
 
-
-	fetch("userInfoEditControl.do", {
-		method: 'post',
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: 'id=' + id + '&pw=' + pw + '&mName=' + mName
-			+ '&email=' + email + '&phone=' + phone
-	})
-		.then(response => {		//결과값.
-		console.log(response);
+	edit_svc.editInfo({ id, pw, mName, email, phone },
+		function(response) {		//결과값.
+			console.log(response);
 			if (response.ok) {
 				alert("개인정보 변경이 되었습니다.");
 				document.querySelector('#mName').querySelector('input').readOnly = true;
@@ -111,10 +102,13 @@ function editSuccess() {
 			} else {
 
 			}
-		})
-		.catch(error => {
+		}, function(error) {
 			alert('정보수정 에러.')
-		});
+			console.error(error);
+		}
+	)
+
+
 }
 
 

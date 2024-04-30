@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <style>
     .search-text-area{
         position: relative;
@@ -25,6 +27,23 @@
 </style>
 <script>
     var id = '<%=(String)session.getAttribute("id")%>';
+    
+    fetch('signOutControl.do', {
+    	method: 'post',
+		headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+		body:
+    })
+    .then(response => {
+	    if (response.ok) {
+	        window.location.href = 'header.jsp'; 
+	    } else {
+	        console.error('로그아웃에 실패했습니다.');
+	    }
+	})
+	.catch(error => {
+	    console.error('네트워크 오류:', error);
+	});
+
     // 숫자 3자리 콤마찍기
     Number.prototype.formatNumber = function() {
         if (this == 0)
@@ -60,9 +79,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="prodShop.do">Shop</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="signIn.do">Sign In</a>
-                        </li>
+						<c:choose>
+						    <c:when test="${id eq null}">
+						        <li class="nav-item">
+						            <a class="nav-link" href="signIn.do">Sign In</a>
+						        </li>
+						    </c:when>
+						    <c:otherwise>
+						    	<li class="nav-item">
+						            <a class="nav-link" href="userInfo.do">My Page</a>
+						        </li>
+						    	<li class="nav-item">
+						            <a class="nav-link" href="prodMain.do">Sign Out</a>
+						        </li>
+						    </c:otherwise>
+						</c:choose>
                     </ul>
                 </div>
 
