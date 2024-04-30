@@ -11,6 +11,8 @@ import co.yedam.cart.control.OrderListForm;
 import co.yedam.cart.control.OrderProduct;
 import co.yedam.cart.control.RemoveCart;
 import co.yedam.cart.control.CheckingCart;
+import co.yedam.cart.control.Checkout;
+import co.yedam.cart.control.CheckoutForm;
 
 public class FcCart {
 	static void init(Map<String, Control> map) {
@@ -26,5 +28,7 @@ public class FcCart {
 		map.put("/orderListForm.do", new OrderListForm()); // 주문내역 페이지
 		map.put("/orderList.do", new OrderList()); // 주문목록
 		map.put("/orderProduct.do", new OrderProduct()); // 주문상세내역
+		map.put("/checkoutForm.do", new CheckoutForm()); //결제페이지
+		map.put("/checkout.do", new Checkout()); //결제기능
 	}
 }

@@ -78,11 +78,7 @@ function chkWish(prodNo, id) {
 
 //위시(하트)클릭시 
 $('#wish_heart').click(() => {
-	if ($('wish_heart').parent().parent().parent()) {
-		addWish(prodNo, id);
-	} else {
-		delWish(prodNo, id);
-	}
+	wishbtn(prodNo, id)
 })
 
 //위시버튼기능
@@ -92,17 +88,27 @@ function wishbtn(prodNo, id){
 		function(re) {
 			if (id != 'null') {
 				if (re.retCode == 'true') {
-					swal('찜목록에 이미 있습니다.', '', 'warning');
+					prod_svc.wishDel(
+						{ 'pno': prodNo, 'id': id },
+						function(re){
+							if(re.retCode == 'Success'){
+								swal('찜목록에서 제거되었습니다.', '', 'success');
+							}
+						},
+						function(re){
+							console.log('error');
+						}
+					)
 				} else {
 					prod_svc.wishAdd(
 						{ 'pno': prodNo, 'id': id },
 						function(re){
 							if(re.retCode == 'Success'){
-								swal('장바구니에 추가되었습니다.', '', 'success');
+								swal('찜목록에 추가되었습니다.', '', 'success');
 							}
 						},
 						function(){
-							
+							console.log('error');
 						}
 					)
 				}
