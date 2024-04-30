@@ -32,4 +32,9 @@ public class ReviewServiceImpl implements ReviewService {
 		return mapper.updateReview(rvo) == 1;
 	}
 
+	@Override
+	public int getReviewCount(int pno) {
+		return mapper.selectReviewCount(pno);
+	}
+
 }
