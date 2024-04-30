@@ -25,11 +25,6 @@ public class AskServiceImpl implements AskService{
 	}
 	
 	@Override
-	public boolean editAsk(AskVO avo) {
-		return mapper.updateAsk(avo) == 1;
-	}
-	
-	@Override
 	public boolean delAsk(int ano) {
 		return mapper.deleteAsk(ano) == 1;
 	}
