@@ -32,10 +32,10 @@
 		parameterType="co.yedam.memb.vo.MemberVO">
 		UPDATE member
 		set
-		<if test="pw != null">pw = #{pw},</if>x
-		<if test="mName != null">m_Name = #{mName},</if>
-		<if test="email != null">email = #{email},</if>
-		<if test="phone != null">phone = #{phone}</if>
+			pw = #{pw},
+			m_name = #{mName},
+			email = #{email},
+			phone = #{phone}
 		WHERE id = #{id}
 	</update>
 
@@ -43,16 +43,14 @@
 		resultType="co.yedam.memb.vo.MemberVO">
 		SELECT id
 		FROM member
-		WHERE m_Name = #{mName} AND phone =
-		#{phone}
+		WHERE m_name = #{mName} AND phone =	#{phone}
 	</select>
 
 	<select id="findPw" parameterType="co.yedam.memb.vo.MemberVO"
 		resultType="co.yedam.memb.vo.MemberVO">
 		SELECT pw
 		FROM member
-		WHERE id = #{id} AND m_Name = #{m_name}
-		AND phone = #{phone}
+		WHERE id = #{id} AND m_name = #{mName}	AND phone = #{phone}
 	</select>
 
 	<select id="selectUserInfo" parameterType="String"

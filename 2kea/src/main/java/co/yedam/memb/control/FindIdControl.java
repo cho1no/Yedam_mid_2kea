@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import co.yedam.common.Control;
 import co.yedam.memb.service.LoginService;
 import co.yedam.memb.service.LoginServiceImpl;
@@ -24,13 +27,15 @@ public class FindIdControl implements Control {
 		vo.setPhone(phone);
 
 		LoginService ls = new LoginServiceImpl(); // 처리만하는것.
-		vo = ls.findId(vo);
 
-		if (vo != null) {
-			resp.sendRedirect("prodMain.do");
+		if (ls.findId(vo) != null) {
+			MemberVO mvo = ls.findId(vo);
+			
+			Gson gson = new GsonBuilder().create();
+			String json = gson.toJson(mvo);
+			resp.getWriter().print(json);
 		} else {
 			req.setAttribute("error", "이름과 번호를 확인하세요.");
-			resp.sendRedirect("login.do");
 
 		}
 

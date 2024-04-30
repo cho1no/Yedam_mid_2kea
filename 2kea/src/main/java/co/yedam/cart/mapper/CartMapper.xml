@@ -16,7 +16,7 @@
   
   <insert id="insertCart" parameterType="co.yedam.cart.vo.CartVO">
     insert into Cart (prod_no, id, qty)
-    values (#{prodNo}, #{id}, #{qty)
+    values (#{prodNo}, #{id}, 1)
   </insert>
   
   <update id="updateCart" parameterType="co.yedam.cart.vo.CartVO">

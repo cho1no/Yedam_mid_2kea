@@ -6,8 +6,9 @@ import lombok.Data;
 public class ShopVO {
 	// Search
 	private String showCase;
-	private int showNum;
+	private int showNum; // for main
 	private String searchWord;
+	private String category;
 	private int startPrice;
 	private int endPrice;
 	

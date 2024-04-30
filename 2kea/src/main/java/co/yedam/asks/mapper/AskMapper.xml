@@ -6,11 +6,16 @@
 <mapper namespace="co.yedam.asks.mapper.AskMapper">
 
 	<!-- page 나중에 추가 -->
-	<select id="selectAskList" resultType="co.yedam.asks.vo.AskVO">
+	<select id="selectAskList" parameterType="co.yedam.asks.vo.AskPageVO" resultType="co.yedam.asks.vo.AskVO">
 		select *
-		from ask
-		where prod_no = #{pno}
-		order by ask_no desc
+		from(select rownum rn, a.*
+  		  	 from ask a
+   			 where prod_no = #{pno}
+   			 order by ask_no desc) a
+   	<![CDATA[
+		where rn <=(#{apage} * 5) 
+   	]]>
+		  and rn >(#{apage} -1) * 5
 	</select>
 
 	<insert id="insertAsk" parameterType="co.yedam.asks.vo.AskVO">
@@ -31,4 +36,10 @@
 		delete from ask
 		where ask_no = #{ano}
 	</delete>
+	
+	<select id="selectAskCount" parameterType="int" resultType="int">
+		select count(1)
+		from ask
+		where prod_no = #{pno}
+	</select>
 </mapper>

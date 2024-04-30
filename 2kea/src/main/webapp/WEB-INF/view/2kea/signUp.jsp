@@ -13,29 +13,24 @@
                         <div class="login_part_form_iner">
 							<h3>Welcome to Your Account Settings! <br>
 							    Update Your Information</h3>
-                            <form class="row contact_form" action="signInControl.do" method="post" novalidate="novalidate">
+                            <form class="row contact_form" action="" method="post" novalidate="novalidate">
 							<div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="mName" name="mName" value="" placeholder="User Name">
-                                <span class="error" id="username_error"></span>
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="email" class="form-control" id="id" name="id" value="" placeholder="Id">
-                                <span class="error" id="email_error"></span>
+                                <input type="text" class="form-control" id="id" name="id" value="" placeholder="Id">
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="tel" class="form-control" id="pw" value="" placeholder="Password">
-                                <span class="error" id="mobile_error"></span>
+                                <input type="password" class="form-control" id="pw" name="pw" value="" placeholder="Password">
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="password" class="form-control" id="email" name="email" value="" placeholder="Email">
-                                <span class="error" id="password_error"></span>
+                                <input type="email" class="form-control" id="email" name="email" value="" placeholder="Email">
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="password" class="form-control" id="phone" name="phone" value="" placeholder="Phone">
-                                <span class="error" id="confirm_password_error"></span>
+                                <input type="tel" class="form-control" id="phone" name="phone" value="" placeholder="Phone">
                             </div>
                             <div class="col-md-12 form-group">
-                                <button type="submit" value="submit" class="btn_3">Sign Up</button>
+                                <button type="button" value="submit" class="btn_3" onclick="signUp()">Sign Up</button>
                             </div>
                             </form>
                         </div>
@@ -46,6 +41,6 @@
     </section>
     <!--================login_part end =================-->
     
-    <script src="js/sginUpService.jsp"></script>
+    <script src="js/signService.js"></script>
 
    

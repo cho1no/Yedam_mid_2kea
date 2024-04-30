@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <style>
+    	input[type=checkbox]{
+    		accent-color:black;
+    	}
+    </style>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!--================Cart Area =================-->
   <section class="cart_area padding_top">
     <div class="container">
@@ -8,6 +14,7 @@
           <table class="table">
             <thead>
               <tr>
+              	<th scope="col">check</th>
                 <th scope="col">Product</th>
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
@@ -16,6 +23,9 @@
             </thead>
             <tbody>          
               <tr class="cart_list" data-pno="0" style="display:none;">
+              <td> 
+              	<div class="check" align="center" ><input type="checkbox" name="buy" value="prod" >&nbsp;</div>
+              </td>
                 <td>
                   <div class="media">
                     <div class="d-flex" id="cart_prod_img">
@@ -116,15 +126,13 @@
             </tbody>
           </table>
           <div class="checkout_btn_inner float-right">
-            <a class="btn_1" href="#">Continue Shopping</a>
-            <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
+            <a class="btn_1" id="btn_1" href="#" onclick="">선택상품 삭제</a>
+            <a class="btn_1 " href="#" onclick ="window.open('orderList.do')">주문하기</a>
           </div>
+            <a class="btn_1 checkout_btn_1" href="#" onclick="">장바구니 비우기</a>
         </div>
       </div>
       </div>
   </section>
   <!--================End Cart Area =================-->
-  <script>
-     var id = '<%=(String)session.getAttribute("id")%>';
-  </script>
   <script src="js/cartService.js"></script>
