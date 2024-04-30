@@ -6,6 +6,21 @@ $('.star_rating > .star').click(function () {
     $(this).addClass('on').prevAll('span').addClass('on');
 })
 
+// const revwsvc = {
+//     reviewList(param = { pno: 1000, page: 1 }, successCall) {
+//         fetch('ReviewList.do?pno=' + param.pno + '&page=' param.page)
+//             .then(response => response.json())
+//             .then(successCall)
+//             .catch(err => console.error(err));
+//     },
+//     pagingReList(pno = 1, successCall) {
+//         fetch('reviewCount.do?pno=' + pno)
+//             .then(result => result.json())
+//             .then(successCall)
+//             .catch(err => console.error(err));
+//     }
+// }
+
 const myModifyModal = new bootstrap.Modal(document.getElementById('modifyModal'));
 const myAddModal = new bootstrap.Modal(document.getElementById('addModal'));
 
@@ -270,9 +285,11 @@ document.querySelectorAll('.page-link').forEach(item => {
     });
 });
 
-let pageTarget = document.querySelector('div.pagination_Re');
-function createPageList(result) {
-    pageTarget.innerHTML = '';
+let pageTargetRe = document.querySelector('div.pagination_Re');
+
+function createReviewPageList(result) {
+    pageTargetRe.innerHTML = '';
+
     let totalCnt = result.totalCount;
     let startPage, endPage;
     let next, prev;
@@ -290,7 +307,7 @@ function createPageList(result) {
         aTag.href = "#";
         aTag.classList.add('page-link'); // 클래스 추가
         aTag.setAttribute('data-page', (startPage - 1));
-        pageTarget.appendChild(aTag);
+        pageTargetRe.appendChild(aTag);
     }
 
     // 페이지 번호 버튼
@@ -300,7 +317,7 @@ function createPageList(result) {
         aTag.href = "#";
         aTag.classList.add('page-link'); // 클래스 추가
         aTag.setAttribute('data-page', pg);
-        pageTarget.appendChild(aTag);
+        pageTargetRe.appendChild(aTag);
         if (pg == rePage) {
             aTag.classList.add('active'); // 클래스 추가
         }
@@ -313,7 +330,7 @@ function createPageList(result) {
         aTag.href = "#";
         aTag.classList.add('page-link'); // 클래스 추가
         aTag.setAttribute('data-page', (endPage + 1));
-        pageTarget.appendChild(aTag);
+        pageTargetRe.appendChild(aTag);
     }
 
     // 페이지네이션 이동 이벤트 핸들러
@@ -327,7 +344,8 @@ function createPageList(result) {
     });
 }
 
-fetch('ReviewList.do')
+
+fetch('ReviewList.do?pno=' + pno)
     .then(response => response.json())
     .then(data => {
         renderReviewList(data);
@@ -355,7 +373,7 @@ document.querySelector('form #addReview').addEventListener('click', e => {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: 'prodNo=' + '1003' + '&id=' + id + '&rating=' + rating + '&reviewContent=' + rvwCont
+        body: 'prodNo=' + pno + '&id=' + id + '&rating=' + rating + '&reviewContent=' + rvwCont
     })
         .then(result => result.json())
         .then(result => {
