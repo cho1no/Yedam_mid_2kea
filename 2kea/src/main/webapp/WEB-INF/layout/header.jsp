@@ -26,14 +26,15 @@
     }
 </style>
 <script>
-    var id = '<%=(String)session.getAttribute("id")%>';
-    
-    fetch('signOutControl.do', {
+    var id = '${id}';
+    var auth = '${authority}'; 
+
+    <%-- fetch('signOutControl.do', {
     	method: 'post',
-		headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-		body:
+		headers: { 'Content-type': 'application/x-www-form-urlencoded' }
     })
     .then(response => {
+        console
 	    if (response.ok) {
 	        window.location.href = 'header.jsp'; 
 	    } else {
@@ -42,7 +43,7 @@
 	})
 	.catch(error => {
 	    console.error('네트워크 오류:', error);
-	});
+	}); --%>
 
     // 숫자 3자리 콤마찍기
     Number.prototype.formatNumber = function() {
@@ -92,6 +93,11 @@
 						    	<li class="nav-item">
 						            <a class="nav-link" href="prodMain.do">Sign Out</a>
 						        </li>
+                                <c:if test="${authority eq 'ADMIN'}">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="">adminpage</a>
+                                    </li>
+                                </c:if>
 						    </c:otherwise>
 						</c:choose>
                     </ul>
