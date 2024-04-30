@@ -30,4 +30,10 @@
   		review_content = #{reviewContent}
   	WHERE review_no = #{reviewNo}
   </update>
+  
+  <select id="selectReviewCount" parameterType="int" resultType="int">
+  	SELECT COUNT(1)
+  	FROM review
+  	WHERE prod_no = #{pno}
+  </select>
 </mapper>

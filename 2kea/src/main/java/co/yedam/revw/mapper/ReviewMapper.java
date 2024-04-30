@@ -9,4 +9,6 @@ public interface ReviewMapper {
 	public int insertReview(ReviewVO rvo);
 	public int deleteReview(int reviewNo);
 	public int updateReview(ReviewVO rvo);
+	
+	public int selectReviewCount (int pno);
 }

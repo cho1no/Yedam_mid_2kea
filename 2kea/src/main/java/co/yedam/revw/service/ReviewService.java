@@ -9,4 +9,6 @@ public interface ReviewService {
 	public boolean addReview (ReviewVO rvo);
 	public boolean removeReview (int reviewNo);
 	public boolean modifyReview (ReviewVO rvo);
+	
+	public int getReviewCount(int pno);
 }

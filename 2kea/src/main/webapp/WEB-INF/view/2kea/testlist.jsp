@@ -623,8 +623,7 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <textarea class="form-control" id="reviewContent" rows="6"
-                                                            placeholder="Review"></textarea>
+                                                        <textarea class="form-control" id="modiReviewContent" rows="6"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 text-right">
@@ -643,6 +642,15 @@
 
                             <!-- 리뷰수정모달 끝 -->
                             <!-- addreview end -->
+                        </div>
+                        <div>
+                            <div class="center">
+                                <div class="pagination_Re">
+                                    <a href="#">1</a>
+                                    <a href="#">2</a>
+                                    
+                                </div>
+                            </div>
                         </div>
                     </div>
 
