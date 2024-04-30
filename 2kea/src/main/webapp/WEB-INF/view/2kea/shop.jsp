@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <section class="cat_product_area section_padding">
     <div class="container">
         <div class="row">
@@ -104,7 +105,7 @@
                             <div class="single_product_text">
                                 <h4>Quartz Belt Watch</h4>
                                 <h3>$150.00</h3>
-                                <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                <a href="#" class="add_cart"><span>+ 장바구니 담기</span><i class="ti-heart"></i></a>
                             </div>
                         </div>
                     </div>

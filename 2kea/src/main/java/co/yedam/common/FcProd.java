@@ -9,6 +9,7 @@ import co.yedam.prod.control.ProdDetail;
 import co.yedam.prod.control.ProdImgeListControl;
 import co.yedam.prod.control.ProdListByCaseControl;
 import co.yedam.prod.control.ProdMain;
+import co.yedam.prod.control.ProdMaxPrice;
 import co.yedam.prod.control.ProdShopListControl;
 
 public class FcProd {
@@ -21,6 +22,8 @@ public class FcProd {
 		// product detail
 		map.put("/prodImgList.do", new ProdImgeListControl());  //상품 이미지 리스트 json
 		
+		// maxPrice
+		map.put("/prodMaxPrice.do", new ProdMaxPrice());
 		// 페이지 이동
 		map.put("/prodMain.do", new ProdMain());		 //메인 페이지 이동
 		map.put("/prodDetail.do", new ProdDetail()); 	 //상세 페이지 이동

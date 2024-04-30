@@ -13,6 +13,7 @@ public interface ProdService {
 	
 	public int cntProd(ShopVO vo); // count products
 	public List<CategoryVO> cntCategory();
+	public int getMaxPrice();
 	
 	public ProdVO showProd(int pno);
 	

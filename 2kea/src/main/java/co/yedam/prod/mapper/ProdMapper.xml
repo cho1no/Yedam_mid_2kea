@@ -74,6 +74,11 @@
 	group by category
   </select>
   
+  <select id="selectMaxPrice" resultType="int">
+	select max(price)
+	from product
+  </select>
+  
   <select id="selectProd" resultType="ProdVO" parameterType="int">
   	SELECT *
   	FROM product

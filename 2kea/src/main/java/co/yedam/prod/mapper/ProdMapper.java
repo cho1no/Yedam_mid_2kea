@@ -15,11 +15,12 @@ public interface ProdMapper {
 	public List<ProdVO> selectProdListByCase(ShopVO vo);
 	public List<ProdVO> selectShopList(ShopVO vo);
 	
-	public int countProd(ShopVO vo);
+	public int countProd(ShopVO vo); // 물품 수량
 	
 	// 카테고리 목록
 	public List<CategoryVO> countCategory();
 	
+	public int selectMaxPrice(); // 최대가격
 	// 상품 단건 상세
 	public ProdVO selectProd(int pno);
 	

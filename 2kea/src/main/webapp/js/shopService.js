@@ -10,7 +10,7 @@ let cg = params.get('cg') == null? '' : params.get('cg'); // category
 let st = params.get('st') == null? 0 : params.get('st');  // startPrice (최저가격)
 let en = params.get('en') == null? 9999999 : params.get('st'); // endPrice (최대가격)
 
-let vo = {'sw':sw, 'pg':pg, 'sc':sc, 'cg': cg, 'st': st, 'en': en};
+let vo = { sw, pg, sc, cg, st, en };
 const svc = {
     // list print
     shopList(vo, successCall, errorCall) {
@@ -36,6 +36,12 @@ const svc = {
         .then(resolve => resolve.json())
         .then(successCall)
         .catch(errorCall);
+    },
+    getMaxPrice(successCall, errorCall){
+        fetch('prodMaxPrice.do')
+        .then(resolve => resolve.json())
+        .then(successCall)
+        .catch(errorCall)
     }
 }
 function addUrl(vo){
