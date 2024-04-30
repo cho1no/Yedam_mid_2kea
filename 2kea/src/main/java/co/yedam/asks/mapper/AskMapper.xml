@@ -26,12 +26,6 @@
 		values (#{askNo}, #{askContent}, #{id}, #{askCategory}, #{askDate}, #{prodNo})
 	</insert>
 
-	<update id="updateAsk" parameterType="co.yedam.asks.vo.AskVO">
-		update ask
-		set ask_content = #{askContent}
-		where ask_no = #{askNo}
-	</update>
-
 	<delete id="deleteAsk" parameterType="int">
 		delete from ask
 		where ask_no = #{ano}

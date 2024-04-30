@@ -20,12 +20,15 @@ public class ProdCountControl implements Control {
 		String sw = req.getParameter("sw") == null ? "" : req.getParameter("sw");
 		String sc = req.getParameter("sc") == null ? "" : req.getParameter("sc");
 		String cg = req.getParameter("cg") == null ? "" : req.getParameter("cg");
-		
+		String st = req.getParameter("st") == null ? "0" : req.getParameter("st");
+		String en = req.getParameter("en") == null? "9999999" : req.getParameter("en");
 		
 		ShopVO vo = new ShopVO();
 		vo.setSearchWord(sw);
 		vo.setShowCase(sc);
 		vo.setCategory(cg);
+		vo.setEndPrice(Integer.parseInt(en));
+		vo.setStartPrice(Integer.parseInt(st));
 		
 		ProdService svc = new ProdServiceImpl();
 		int totalCount = svc.cntProd(vo);

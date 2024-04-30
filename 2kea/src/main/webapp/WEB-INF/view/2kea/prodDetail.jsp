@@ -3,7 +3,7 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 .btn_3_close {
 	display: inline-block;
@@ -23,14 +23,18 @@
 }
 
 .btn_ask {
-	border: 1px solid #e0e0e0;
-	padding: 2px 25px;
-	display: inline-block;
-	line-height: 32px;
-	border-radius: 50px;
-	font-size: 14px;
-	font-family: "Poppins", sans-serif;
-	color: #2a2a2a;
+    border: 1px solid #e0e0e0;
+    padding: 2px 25px;
+    width: 110px;
+    display: inline-block;
+    line-height: 32px;
+    border-radius: 50px;
+    font-size: 14px;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    color: #2a2a2a;
+    position: absolute;
+    right: 15px;
 }
 
 .delAskBtn {
@@ -90,12 +94,15 @@ textarea {
 }
 
 .pagination a.active {
-  background-color: #4CAF50;
-  color: white;
-  border: 1px solid #4CAF50;
+    background-color: #ff3368;
+    color: white;
+    border: 1px solid #ff3368;
 }
 
-
+.pagination a:hover {
+    background-color: #ff3368;
+    color: #fff;
+}
 </style>
 <input type="hidden">
 
@@ -178,13 +185,13 @@ textarea {
 			<!--==================문의하기==================== -->
 			<div class="tab-pane fade" id="contact" role="tabpanel"
 				aria-labelledby="contact-tab">
-				<div class="row mb-3">
-					<div class="col-11">
+				<div class="row">
+					<div class="col">
 						<h3>QnA</h3>
 					</div>
-					<div class="col-1">
+					<div class="col-2">
 						<a class="btn_ask" data-bs-toggle="modal"
-							data-bs-target="#AskModal" data-bs-whatever="@mdo">Ask</a>
+							data-bs-target="#AskModal" data-bs-whatever="@mdo">문의하기</a>
 					</div>
 				</div>
 				<div class="comment_list">
@@ -204,7 +211,7 @@ textarea {
 								<h5 class="askDate">askDate</h5>
 								<c:if test="${authority == 'ADMIN'}">
 									<a class="reply_btn" data-no="0" data-bs-toggle="modal"
-										data-bs-target="#ReplyModal" data-bs-whatever="@mdo">Reply</a>
+										data-bs-target="#ReplyModal" data-bs-whatever="@mdo">답변하기</a>
 								</c:if>
 							</div>
 						</div>
@@ -231,6 +238,7 @@ textarea {
 						<hr>
 					</div>
 				</div>
+				<!--<div class="noAsk">문의내역이 없습니다.</div> --!>
 				<!-- end of comment_list -->
 				<!-- Ask pageination -->
 				<div>
@@ -472,6 +480,7 @@ textarea {
 						</div>
 					</div>
 					<div class="col-md-12 text-right"></div>
+					<input type="hidden" id="askDataNo">
 				</form>
 			</div>
 			<div class="modal-footer">

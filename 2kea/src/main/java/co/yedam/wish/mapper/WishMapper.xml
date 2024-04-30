@@ -15,6 +15,13 @@
     where i.role = 'thumb' and id = #{id}
   </select>
   
+  <select id="selectCheckWish" parameterType="co.yedam.wish.vo.WishVO" resultType="int">
+    select count(*)
+    from wishlist
+    where prod_no = #{prodNo}
+    and id = #{id}
+  </select>
+  
   <insert id="insertWish" parameterType="co.yedam.wish.vo.WishVO">
     insert into Wishlist (prod_no, id)
     values (#{prodNo}, #{id})

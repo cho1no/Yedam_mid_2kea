@@ -15,4 +15,6 @@ public interface WishMapper {
 	//위시삭제
 	public int deleteWish(WishVO wvo);
 	
+	//위시체크
+	public int selectCheckWish(WishVO vo);
 }	

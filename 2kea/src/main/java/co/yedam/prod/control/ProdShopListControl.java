@@ -28,7 +28,7 @@ public class ProdShopListControl implements Control {
 		String cg = req.getParameter("cg") == null ? "" : req.getParameter("cg");
 		String st = req.getParameter("st") == null ? "0" : req.getParameter("st");
 		String en = req.getParameter("en") == null? "9999999" : req.getParameter("en");
-		
+
 		ProdService svc = new ProdServiceImpl();
 		
 		ShopVO vo = new ShopVO();
@@ -38,6 +38,7 @@ public class ProdShopListControl implements Control {
 		vo.setCategory(cg);
 		vo.setEndPrice(Integer.parseInt(en));
 		vo.setStartPrice(Integer.parseInt(st));
+		
 		List<ProdVO> list = svc.showShopList(vo);
 		
 		

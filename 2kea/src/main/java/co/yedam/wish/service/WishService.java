@@ -15,7 +15,8 @@ public interface WishService {
 	//위시삭제
 	public boolean removeWish(WishVO wvo);
 	
-	
+	//위시체크
+	public boolean checkWish(WishVO wvo);
 	
 
 }

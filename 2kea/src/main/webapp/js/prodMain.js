@@ -135,7 +135,11 @@ function writeData2Temp(e ,tempProd){ // e에 데이터 넣어서 temp에 데이
     tempProd.find('h4').text(nme);
     tempProd.find('h3').text(parseInt(prc).formatNumber() + '원');
     tempProd.find('img').attr('src', 'img/' + img);
-    tempProd.css('display', 'block');
     tempProd.click(()=>location.href="prodDetail.do?pno="+pno);
+    tempProd.find('.add_cart > span').click((ev)=>{
+        ev.stopPropagation();
+        addCart(pno, id);
+    });
+    tempProd.css('display', 'block');
     return tempProd;
 }

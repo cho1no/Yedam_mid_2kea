@@ -39,8 +39,8 @@
 	      <if test="category != ''.toString()">
 	        AND p.category LIKE #{category}
 	      </if>
-	      <if test="startPrice > 0">
-	      	AND p.price BETWEEN (#{startPrice} AND #{endPrice})
+	      <if test="startPrice > -1">
+	      	AND p.price BETWEEN #{startPrice} AND #{endPrice}
 	      </if>
 		  <include refid="orderCase"/>
 	)a)
@@ -72,6 +72,11 @@
   	SELECT category title, count(*) cnt
 	FROM product
 	group by category
+  </select>
+  
+  <select id="selectMaxPrice" resultType="int">
+	select max(price)
+	from product
   </select>
   
   <select id="selectProd" resultType="ProdVO" parameterType="int">

@@ -18,7 +18,8 @@ public interface CartService {
 	//장바구니삭제
 	public boolean removeCart(CartVO cvo);
 
-	
+	//장바구니체크
+	public boolean checkCart(CartVO cvo);
 	
 	
 }

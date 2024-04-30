@@ -44,6 +44,11 @@ public class ProdServiceImpl implements ProdService {
 		return mapper.selectProdImgList(pno);
 	}
 
+	@Override
+	public int getMaxPrice() {
+		return mapper.selectMaxPrice();
+	}
+
 
 	
 }
