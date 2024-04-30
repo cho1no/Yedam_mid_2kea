@@ -10,6 +10,7 @@ const svc = {
 			.then(successCall)
 			.catch(errorCall);
 	},
+	
 
 }
 
@@ -70,7 +71,7 @@ svc.wishList(function(resolve) {
 			addCart(prodNo, id);
 		})
 		data.find('#wish_heart').click(() =>{
-			addWish(prodNo, id)
+			addWish(prodNo, id);
 		})
 		best_wish_product_slider.trigger('add.owl.carousel', data);
 	})
@@ -81,4 +82,5 @@ svc.wishList(function(resolve) {
 }, function(resolve) {
 	console.log('error');
 })
+
 

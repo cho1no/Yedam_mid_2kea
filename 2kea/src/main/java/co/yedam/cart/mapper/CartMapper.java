@@ -17,5 +17,7 @@ public interface CartMapper {
 	//장바구니삭제
 	public int deleteCart(CartVO cvo);
 	
+	public int insertCheckCart(CartVO cvo);
+
 }
 

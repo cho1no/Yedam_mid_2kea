@@ -31,6 +31,12 @@ public class WishServiceImpl implements WishService {
 		// TODO Auto-generated method stub
 		return mapper.deleteWish(wvo) == 1;
 	}
+
+	@Override
+	public boolean checkWish(WishVO wvo) {
+		// TODO Auto-generated method stub
+		return mapper.selectCheckWish(wvo) >= 1;
+	}
 	
 	
 
