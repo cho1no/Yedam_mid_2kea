@@ -24,7 +24,7 @@
             <tbody>          
               <tr class="cart_list" data-pno="0" style="display:none;">
               <td> 
-              	<div class="check" align="center" ><input type="checkbox" name="buy" value="prod" >&nbsp;</div>
+              	<div class="check" align="center" ><input type="checkbox" name="buy">&nbsp;</div>
               </td>
                 <td>
                   <div class="media">

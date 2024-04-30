@@ -40,6 +40,12 @@ public class CartServiceImpl implements CartService {
 		return mapper.deleteCart(cvo) == 1;
 	}
 
+	@Override
+	public boolean checkCart(CartVO cvo) {
+		// TODO Auto-generated method stub
+		return mapper.insertCheckCart(cvo) >= 1;
+	}
+
 	
 
 }

@@ -32,6 +32,12 @@ const svc = {
 
 }
 
+//svc.cartList(function(resolve){
+//	console.log(resolve);
+//	resolve.forEach(function(e) {
+//		console.log(e.prodNo);
+//	})
+//})
 
 svc.cartList(function(resolve) {
 	let cartTotal = 0;
@@ -47,6 +53,7 @@ svc.cartList(function(resolve) {
 		let total = (price * qty);
 		let data = $('tbody > tr.cart_list').first().clone();
 		data.attr('data-pno', prodNo);
+		data.find('div.check > input').attr('value', prodNo);
 		data.find('.media > #cart_prod_img > img').attr('src', "img/" + img);
 		data.find('div.media-body > p').text(name);
 		data.find('td.price > h5').text(parseInt(price).formatNumber() + '원');
@@ -54,24 +61,19 @@ svc.cartList(function(resolve) {
 		data.find('td.total > h5').data('price', total);
 		data.css('display', 'table-row');
 		data.find('#cart_prod_img').css('width', '20%');
-		
+
 		//data.find('div.d-flex').css('width', '35%');
 		data.find('td.total').css('padding', '30px 0').css('width', '12%');
 		//data.find('td.subtotal').css('padding', '30px 0');
 		data.find('.input-number').val(qty);
-		//선택상품삭제
-		$('#btn_1').click(() => {
-			let check = $("input[name=oid]:checked");
-			let checkVal = check.val();
-			$.each(check, function(idx) {
-				if($checkVal.eq(idx).prop("checked") == true){
-					delCheckedItem(prodNo, id)
-				}
-			})
+
+		//장바구니추가버튼 클릭시
+		$('div.single_product_text span').click(() => {		
+				addCart(prodNo, id);					
 		})
 		//장바구니비우기
-		$('.checkout_btn_1').click(() => {			
-			delAllItem(prodNo, id);		
+		$('.checkout_btn_1').click(() => {
+			delAllItem(prodNo, id);
 		})
 		//수량업
 		data.find('input.input-number').keyup(() => {
@@ -114,7 +116,14 @@ svc.cartList(function(resolve) {
 }, function(resolve) {
 	console.log('error');
 })
-
+//선택상품삭제
+$('.checkout_btn_inner > #btn_1').click(() => {
+	$("input[name=buy]:checked").each((idx, ele) => {
+		console.log($(ele).val());
+		delCheckedItem($(ele).val(), id);
+		$(ele).parent().parent().parent().remove();
+	})
+})
 function updateQty(prodNo, id, qty) {
 	svc.cartUpdate(
 		{ 'pno': prodNo, 'id': id, 'qty': qty },
@@ -128,39 +137,39 @@ function updateQty(prodNo, id, qty) {
 	)
 }
 
-	//선택상품삭제
-	function delCheckedItem(prodNo, id) {
-		svc.cartRemove(
-			{'pno':prodNo, 'id':id},
-			function(re){
-				if(re.retCode == 'Success'){
-					$('data-pno', prodNo).remove();
-				}
-			},
-			function(re){
-				console.log('error');
+//선택상품삭제
+function delCheckedItem(prodNo, id) {
+	svc.cartRemove(
+		{ 'pno': prodNo, 'id': id },
+		function(re) {
+			if (re.retCode == 'Success') {
+				swal('선택된 상품이 삭제되었습니다', '', 'success');
+
 			}
-		)
-	} // end of delCheckedItem
-	
-	//장바구니비우기
-	function delAllItem(prodNo, id){
-		svc.cartRemove(
-			{'pno': prodNo, 'id':id},
-			function(re){
-				if(re.retCode == 'Success'){
-					swal('장바구니 비우기 완료.','','success')
-					setTimeout(() => window.location.reload(), 1000);
-				}else if(prodNo = null){
-					swal('상품이 없습니다.','');
-				}
-			},
-			function(re){
-				console.log('error');
+		},
+		function(re) {
+			swal('선택된 상품이 없습니다', '', 'error')
+		}
+	)
+} // end of delCheckedItem
+
+//장바구니비우기
+function delAllItem(prodNo, id) {
+	svc.cartRemove(
+		{ 'pno': prodNo, 'id': id },
+		function(re) {
+			if (re.retCode == 'Success') {
+				swal('장바구니 비우기 완료.', '', 'success')
+				setTimeout(() => window.location.reload(), 1000);
+			} else if (prodNo = null) {
+				swal('상품이 없습니다.', '');
 			}
-		)
-	} // end of delAllItem
-	
-	
-	
-	
+		},
+		function(re) {
+			console.log('error');
+		}
+	)
+} // end of delAllItem
+
+
+

@@ -10,6 +10,7 @@ import co.yedam.cart.control.OrderList;
 import co.yedam.cart.control.OrderListForm;
 import co.yedam.cart.control.OrderProduct;
 import co.yedam.cart.control.RemoveCart;
+import co.yedam.cart.control.CheckingCart;
 
 public class FcCart {
 	static void init(Map<String, Control> map) {
@@ -19,6 +20,8 @@ public class FcCart {
 		map.put("/addCart.do", new AddCart()); // 장바구니추가
 		map.put("/modifyCart.do", new ModifyCart()); // 장바구니수량변경
 		map.put("/removeCart.do", new RemoveCart()); // 장바구니상품삭제
+		map.put("/checkingCart.do", new CheckingCart()); // 장바구니추가확인
+		
 		// oder
 		map.put("/orderListForm.do", new OrderListForm()); // 주문내역 페이지
 		map.put("/orderList.do", new OrderList()); // 주문목록

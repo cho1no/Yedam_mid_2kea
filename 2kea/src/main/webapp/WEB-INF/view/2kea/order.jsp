@@ -86,17 +86,7 @@
                   <th> <span>$720.00</span></th>
                 </tr>
                 <tr>
-                  <th colspan="2"><span>Pixelstore fresh Blackberry</span></th>
-                  <th>x02</th>
-                  <th> <span>$720.00</span></th>
-                </tr>
-                <tr>
-                  <th colspan="2"><span>Pixelstore fresh Blackberry</span></th>
-                  <th>x02</th>
-                  <th> <span>$720.00</span></th>
-                </tr>
-                <tr>
-                  <th colspan="3">Subtotal</th>
+                  <th colspan="3">합계</th>
                   <th> <span>$2160.00</span></th>
                 </tr>
                 <tr>
