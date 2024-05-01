@@ -11,5 +11,10 @@ public interface AskMapper {
 	public int deleteAsk(int ano);
 	
 	//Count
-	public int selectAskCount(int pno);
+	public int AskCount(int pno);
+	
+	//admin
+	public List<AskVO> selectAdminAskList();
+	public List<AskVO> replyAskList();
+	public List<AskVO> noReplyAskList();
 }
