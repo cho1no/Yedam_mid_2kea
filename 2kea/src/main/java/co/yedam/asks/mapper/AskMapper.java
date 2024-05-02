@@ -14,7 +14,12 @@ public interface AskMapper {
 	public int AskCount(int pno);
 	
 	//admin
-	public List<AskVO> selectAdminAskList();
+	public List<AskVO> selectAdminAskList(AskPageVO askPage);
 	public List<AskVO> replyAskList();
 	public List<AskVO> noReplyAskList();
+	
+	//admin Ask Count
+	public int adminAskCount();
+	public int adminAskCountRe();
+	public int adminAskCountNoRe();
 }

@@ -29,14 +29,14 @@ const asksvc = {
 let apage = 1;
 asksvc.askList({ pno: pno, page: apage }, askListFnc);
 
-function askListFnc(result) {
-	
-	
+function askListFnc(resp) {
+	let result = resp.list;
+
 	//asklist 초기화 - pageination 
 	$('#asklist[style="display: block;"]').remove();
 	$('.noAsk').remove();
 	//$('.comment_list').children().gt(1).remove();
-	
+
 	// 문의가 없는 경우
 	if (result.length == 0) {
 		let noAskMsg = $('<div>', {
@@ -73,7 +73,7 @@ function askListFnc(result) {
 				if (result.retCode == 'Success') {
 					alert('정상적으로 삭제되었습니다.');
 					$(this).closest('#asklist').remove();
-					
+
 				}
 			})
 			.catch(err => console.error(err));
@@ -104,7 +104,7 @@ function askListFnc(result) {
 	=======================*/
 	asksvc.replyList(function(result) {
 		result.forEach(reply => {
-			$('.comment_list .review_item').each(function() {
+			$('.comment_list>.review_item').each(function() {
 				let askDataNo = $(this).data('no');
 				if (askDataNo == reply.askNo) {
 					let rtemp = $('#replylist').clone();
@@ -115,6 +115,14 @@ function askListFnc(result) {
 					rtemp.find('.replyContent').text(reply.replyContent);
 					rtemp.find('.replyContent').css("padding-top", 0);
 					rtemp.appendTo($(this).find('.reply_section'));
+					rtemp.closest('#asklist').find('.reply_btn').remove();
+
+					if (auth != 'ADMIN') {
+						rtemp.find('.delReplyBtn').remove();
+					}
+				}
+				if (auth == '' || auth != 'ADMIN') {
+					$(this).find('.reply_btn').remove();
 				}
 			});
 		});
@@ -152,7 +160,8 @@ function askListFnc(result) {
 	/*==================================
 	   페이징 리스트 불러오기 - pageination
 	====================================*/
-	asksvc.pagingList(pno, createPageList)
+	createPageList(resp);
+	//asksvc.pagingList(pno, createPageList)
 };//end of askListFnc
 
 
@@ -179,7 +188,15 @@ $('#addRelpyBtn').on('click', function() {
 		.catch(err => console.error(err));
 });//end of #addRelpyBtn click
 
-
+const myModal = new bootstrap.Modal(document.getElementById('AskModal'));
+$('.btn_ask').on('click', function() {
+	if (id == '') {
+		alert('로그인 하세요.');
+	} else {
+		const modalToggle = document.getElementById('AskModal');
+		myModal.show(modalToggle)
+	}
+});
 /*============================================
    addAskBtn 클릭 => 문의 추가 => 리스트 다시 보여줌
 ==============================================*/
@@ -227,7 +244,6 @@ let pageTarget = document.querySelector('div.pagination');
 
 function createPageList(result) {
 	pageTarget.innerHTML = '';
-
 	let totalCnt = result.totalCount;
 	let startPage, endPage;
 	let next, prev;

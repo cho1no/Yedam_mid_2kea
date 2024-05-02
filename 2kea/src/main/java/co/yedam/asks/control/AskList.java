@@ -1,7 +1,9 @@
 package co.yedam.asks.control;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -33,10 +35,15 @@ public class AskList implements Control {
 		AskService svc = new AskServiceImpl();
 		List<AskVO> list = svc.askList(askPage);
 		
+		Map<String, Object> map = new HashMap<>();
+		map.put("list", list);
+		int totalCount = svc.getAskCount(Integer.parseInt(pno));
+		map.put("totalCount", totalCount);
+		
 		Gson gson = new GsonBuilder()
 				.setDateFormat("yyyy-MM-dd HH:mm")
 				.create();
-		String json = gson.toJson(list); 
+		String json = gson.toJson(map); 
 		
 		resp.getWriter().print(json);
 
