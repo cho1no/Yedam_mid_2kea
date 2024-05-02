@@ -17,12 +17,15 @@ public class SignOutControl implements Control {
 		if (session != null) {
 			session.invalidate();
 		}
+
+		req.removeAttribute("id");
+		req.removeAttribute("authority");
+
 		
-		session.setAttribute("message", "로그아웃되었습니다.");
+		resp.sendRedirect("prodMain.do");
+		req.setAttribute("message", "로그아웃되었습니다.");
 
 
-		
-		
 	}
 
 }

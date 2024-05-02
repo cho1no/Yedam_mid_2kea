@@ -14,29 +14,31 @@ import co.yedam.memb.service.LoginService;
 import co.yedam.memb.service.LoginServiceImpl;
 import co.yedam.memb.vo.MemberVO;
 
-public class FindPasswordControl implements Control {
+public class UpdatePasswordControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
-		String mName = req.getParameter("mName");
-		String phone = req.getParameter("phone");
-
+		String pw = req.getParameter("pw");
+		
 		MemberVO vo = new MemberVO();
 		vo.setId(id);
-		vo.setMName(mName);
-		vo.setPhone(phone);
+		vo.setPw(pw);
 
 		LoginService ls = new LoginServiceImpl();
-		MemberVO mvo = ls.findPw(vo);
 		
 
-		if (mvo != null) {
+		if (ls.modifyPw(vo)) { 
 			Gson gson = new GsonBuilder().create();
-			String json = gson.toJson(mvo);
+			String json = gson.toJson(vo);
+			// { "retCode" : "Success" }
 			resp.getWriter().print(json);
+//			resp.sendRedirect("prodMain.do");
+
 		} else {
-			req.setAttribute("error", "이름과 번호를 확인하세요."); // 첫번째는 속성이름 두번째는 속성값.
+			req.setAttribute("error", "비밀번호 업데이트에 실패하였습니다."); 
 		}
+
 	}
+
 }

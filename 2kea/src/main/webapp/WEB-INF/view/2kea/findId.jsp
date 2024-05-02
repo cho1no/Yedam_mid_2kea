@@ -17,8 +17,8 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="button" value="submit" class="btn_3" onclick="findId()">Send</button>
+								<button type="button" id="btn_back" class="btn_3" onclick="goBack()">back</button>
 							</div>
-
 							<p style="color: red;"></p>
 						</form>
 					</div>
