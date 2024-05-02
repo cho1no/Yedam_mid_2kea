@@ -15,9 +15,8 @@ const svc = {
 }
 
 var best_wish_product_slider  = $('.wish .best_wish_product_slider');
-best();
-function best(){
-  if (best_wish_product_slider.length) {
+
+
     best_wish_product_slider.owlCarousel({
       items: 1,
       loop: false,
@@ -50,9 +49,8 @@ function best(){
         }
       }
     });
-  }
 
-}
+
 svc.wishList(function(resolve) {
 	
 	resolve.forEach(function(e) {
@@ -75,8 +73,9 @@ svc.wishList(function(resolve) {
 		})
 		best_wish_product_slider.trigger('add.owl.carousel', data);
 	})
-		best_wish_product_slider.trigger('refresh.owl.carousel');
-		$(".owl-carousel").owlCarousel();
+	
+	best_wish_product_slider.trigger('refresh.owl.carousel');
+
 	
 		
 }, function(resolve) {
