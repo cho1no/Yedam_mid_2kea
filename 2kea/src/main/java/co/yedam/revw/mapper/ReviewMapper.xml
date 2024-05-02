@@ -37,4 +37,11 @@
   	FROM review
   	WHERE prod_no = #{pno}
   </select>
+  
+  <select id="selectReviewFilteredCount" parameterType="int" resultType="int">
+  	SELECT rating, COUNT(*) AS review_count
+	FROM review
+	WHERE prod_no = #{pno}
+	GROUP BY rating
+  </select>
 </mapper>

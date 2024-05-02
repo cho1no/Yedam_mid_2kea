@@ -37,4 +37,9 @@ public class ReviewServiceImpl implements ReviewService {
 		return mapper.selectReviewCount(pno);
 	}
 
+	@Override
+	public int getReviewFilteredCount(int pno) {
+		return mapper.selectReviewFilteredCount(pno);
+	}
+
 }
