@@ -8,6 +8,7 @@ public class ProdVO {
 	private String name;
 	private int price;
 	private String detail;
+	private String description;
 	private String category;
 	private int viewCount;
 	private String image1;
