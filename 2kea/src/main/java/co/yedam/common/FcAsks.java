@@ -6,6 +6,9 @@ import java.util.Map;
 
 import co.yedam.asks.control.AddAsk;
 import co.yedam.asks.control.AddReply;
+import co.yedam.asks.control.AdminAskCount;
+import co.yedam.asks.control.AdminAskCountNoRe;
+import co.yedam.asks.control.AdminAskCountRe;
 import co.yedam.asks.control.AdminAskList;
 import co.yedam.asks.control.AdminAskListNoRe;
 import co.yedam.asks.control.AdminAskListRe;
@@ -29,10 +32,16 @@ public class FcAsks {
 		map.put("/addReply.do", new AddReply()); // 답변등록
 		map.put("/editReply.do", new EditReply()); // 답변수정
 		map.put("/delReply.do", new DelReply()); // 답변삭제
+		
 		// admin
 		map.put("/adminPage.do", new AdminPage()); //관리자 페이지 화면
-		map.put("/adminAskList.do", new AdminAskList()); //전체 문의목록
+		map.put("/adminAskList.do", new AdminAskList()); //전체보기 문의목록
 		map.put("/adminAskListRe.do", new AdminAskListRe()); //답변완료 문의목록
 		map.put("/adminAskListNoRe.do", new AdminAskListNoRe()); //답변대기 문의목록
+		
+		//admin Ask Count
+		map.put("/adminAskCount.do", new AdminAskCount());		 //전체보기 count
+		map.put("/adminAskCountRe.do", new AdminAskCountRe()); //답변완료 count
+		map.put("/adminAskCountNoRe.do", new AdminAskCountNoRe()); //답변대기 count
 	}
 }

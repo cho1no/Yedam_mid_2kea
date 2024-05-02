@@ -18,6 +18,31 @@
 .blog_area a {
     color: #212529 !important;
 }
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+	border: 1px solid #ddd;
+	margin: 0 4px;
+}
+
+.pagination a.active {
+	background-color: #ff3368;
+	color: white;
+	border: 1px solid #ff3368;
+}
+
+.pagination a:hover {
+	background-color: #ff3368;
+	color: #fff;
+}
 </style>
 
 
@@ -29,15 +54,21 @@
 					<aside class="single_sidebar_widget post_category_widget">
 						<h4 class="widget_title">Ask Category</h4>
 						<ul class="list cat-list" id="askCategory">
-							<li><a href="#" class="d-flex">
-									<p>전체보기</p>
-							</a></li>
-							<li><a href="#" class="d-flex">
-									<p>답변대기</p>
-							</a></li>
-							<li><a href="#" class="d-flex">
-									<p>답변완료</p>
-							</a></li>
+							<li>
+								<a href="#" class="d-flex">
+								<p>전체보기<span></span></p>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="d-flex">
+								<p>답변대기<span></span></p>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="d-flex">
+								<p>답변완료<span></span></p>
+								</a>
+							</li>
 						</ul>
 					</aside>
 				</div>
@@ -56,31 +87,14 @@
 							</tr>
 						</thead>
 						<tbody id="tb_list">
-							<%-- 					<c:forEach var="vo" items="${blist}">
-								<tr>
-									<td align="center"><a
-										href="getboard.do?bno=${vo.boardNo}&page=${paging.page}
-										&searchCondition=${searchCondition}&keyword=${keyword}">${vo.boardNo}</a>
-									</td>
-									<td><c:out value="${vo.title}" /></td>
-									<td><c:out value="${vo.writer}" /></td>
-									<td><c:out value="${vo.createDate}" /></td>
-								</tr>
-							</c:forEach> --%>
+							<%-- ask list --%>
 						</tbody>
 					</table>
 					<nav class="blog-pagination justify-content-center d-flex">
-						<ul class="pagination">
-							<li class="page-item"><a href="#" class="page-link"
-								aria-label="Previous"> <i class="ti-angle-left"></i>
-							</a></li>
-							<li class="page-item"><a href="#" class="page-link">1</a></li>
-							<li class="page-item active"><a href="#" class="page-link">2</a>
-							</li>
-							<li class="page-item"><a href="#" class="page-link"
-								aria-label="Next"> <i class="ti-angle-right"></i>
-							</a></li>
-						</ul>
+						<div class="pagination">
+							<a href="#">1</a>
+							<a href="#">2</a>
+						</div>
 					</nav>
 				</div>
 			</div>
