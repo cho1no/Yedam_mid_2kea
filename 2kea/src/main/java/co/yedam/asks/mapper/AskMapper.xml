@@ -5,7 +5,6 @@
 
 <mapper namespace="co.yedam.asks.mapper.AskMapper">
 
-	<!-- page 나중에 추가 -->
 	<select id="selectAskList" parameterType="co.yedam.asks.vo.AskPageVO" resultType="co.yedam.asks.vo.AskVO">
 		select *
 		from(select rownum rn, a.*
@@ -31,9 +30,33 @@
 		where ask_no = #{ano}
 	</delete>
 	
-	<select id="selectAskCount" parameterType="int" resultType="int">
+	<select id="AskCount" parameterType="int" resultType="int">
 		select count(1)
 		from ask
 		where prod_no = #{pno}
 	</select>
+	
+	<!-- Admin -->
+	<select id="selectAdminAskList" resultType="co.yedam.asks.vo.AskVO">
+		select *
+		from ask
+		order by ask_no desc
+	</select>
+
+	<select id="noReplyAskList" resultType="co.yedam.asks.vo.AskVO">
+		select *
+		from ask a
+		left outer join reply r
+		on a.ask_no = r.ask_no
+		where r.ask_no is null
+	</select>
+	
+	<select id="replyAskList" resultType="co.yedam.asks.vo.AskVO">
+		select *
+		from ask a
+		inner join reply r
+		on a.ask_no = r.ask_no
+	</select>
+	
+	
 </mapper>

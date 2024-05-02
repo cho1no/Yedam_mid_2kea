@@ -31,7 +31,22 @@ public class AskServiceImpl implements AskService{
 
 	@Override
 	public int getAskCount(int pno) {
-		return mapper.selectAskCount(pno);
+		return mapper.AskCount(pno);
+	}
+
+	@Override
+	public List<AskVO> adminAskList() {
+		return mapper.selectAdminAskList();
+	}
+
+	@Override
+	public List<AskVO> adminAskListRe() {
+		return mapper.replyAskList();
+	}
+
+	@Override
+	public List<AskVO> adminAskListNoRe() {
+		return mapper.noReplyAskList();
 	}
 
 	
