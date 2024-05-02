@@ -11,4 +11,5 @@ public interface ReviewMapper {
 	public int updateReview(ReviewVO rvo);
 	
 	public int selectReviewCount (int pno);
+	public int selectReviewFilteredCount (int pno);
 }

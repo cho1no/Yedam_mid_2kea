@@ -6,23 +6,26 @@ $('.star_rating > .star').click(function () {
     $(this).addClass('on').prevAll('span').addClass('on');
 })
 
-// const revwsvc = {
-//     reviewList(param = { pno: 1000, page: 1 }, successCall) {
-//         fetch('ReviewList.do?pno=' + param.pno + '&page=' param.page)
-//             .then(response => response.json())
-//             .then(successCall)
-//             .catch(err => console.error(err));
-//     },
-//     pagingReList(pno = 1, successCall) {
-//         fetch('reviewCount.do?pno=' + pno)
-//             .then(result => result.json())
-//             .then(successCall)
-//             .catch(err => console.error(err));
-//     }
-// }
+let allReviewData = [];
+let filteredReviewData = [];
 
 const myModifyModal = new bootstrap.Modal(document.getElementById('modifyModal'));
 const myAddModal = new bootstrap.Modal(document.getElementById('addModal'));
+
+const revwsvc = {
+    reviewList(param = { pno: 1000, page: 1 }, successCall) {
+        fetch('ReviewList.do?pno=' + param.pno + '&page=' + param.page)
+            .then(response => response.json())
+            .then(successCall)
+            .catch(err => console.error(err));
+    },
+    pagingReList(pno = 1, successCall) {
+        fetch('reviewCount.do?pno=' + pno)
+            .then(result => result.json())
+            .then(successCall)
+            .catch(err => console.error(err));
+    }
+}
 
 // 삭제 버튼
 function deleteReview(reviewNo, reviewItem) {
@@ -32,7 +35,8 @@ function deleteReview(reviewNo, reviewItem) {
             if (result.retCode == 'Success') {
                 alert('삭제 완료 되었습니다.');
                 reviewItem.remove();
-                updateAvgRating();
+                updateAvgRating(allReviewData);
+                revwsvc.reviewList({ pno: pno, page: rePage }, reviewListFnc);
             } else {
                 alert('삭제에 실패 하였습니다.');
             }
@@ -41,31 +45,24 @@ function deleteReview(reviewNo, reviewItem) {
 }
 
 // 점수, 개수
-function updateAvgRating() {
-    const reviewItems = document.querySelectorAll('.review_item');
-    let totalRating = 0;
-    let reviewCount = 0;
+function updateAvgRating(allReviewData) {
+    // allReviewData에서 리뷰 항목들 가져오기
+    const reviewItems = allReviewData;
+    let totalRating = 0; // 총 평점 합계를 저장할 변수
+    let reviewCount = 0; // 리뷰 개수를 저장할 변수
 
     reviewItems.forEach(item => {
-        const ratingContainer = item.querySelector('.media-body > div:last-child');
-        if (ratingContainer) {
-            const stars = ratingContainer.querySelectorAll('i'); // 별점 아이콘 찾기
-            let rating = 0; // 현재 리뷰 항목의 평점
-
-            stars.forEach(star => {
-                if (star.classList.contains('fas')) {
-                    rating++; // 별점이 채워져 있는 경우에 평점 증가
-                }
-            });
-
+        const rating = item.rating; // 별점 정보 가져오기
+        if (rating !== undefined) { // 별점 정보가 있으면 처리
             totalRating += rating; // 총 평점 합계에 현재 평점 더하기
-            reviewCount++; // 리뷰 개수 증가
+            reviewCount++;
         }
     });
 
     // 평균 평점 계산, 없으면 0
     const avgRating = totalRating / reviewCount || 0;
 
+    // 점수와 개수를 표시할 부분
     const boxTotal = document.querySelector('.box_total');
     const avgRatingElement = boxTotal.querySelector('h4');
     const reviewCountElement = boxTotal.querySelector('h6');
@@ -77,24 +74,14 @@ function updateAvgRating() {
 }
 
 // 별점 필터링
-function filterReviews(rating) {
-    const reviewItems = document.querySelectorAll('.review_item');
-    reviewItems.forEach(item => {
-        const stars = item.querySelectorAll('.media-body > div:last-child i'); // 별점 아이콘 요소 선택
-        let itemRating = 0; // 현재 리뷰 항목의 평점
-        stars.forEach(star => {
-            if (star.classList.contains('fas')) {
-                itemRating++; // 별점이 채워져 있는 경우, 평점 증가
-            }
-        });
-
-        // 필터링 조건에 따라 리뷰 항목 표시 여부
-        if (rating == 'all' || rating == itemRating) {
-            item.style.display = 'block';
-        } else {
-            item.style.display = 'none';
-        }
-    });
+function filterReviews(rating, allReviewData) {
+    let filteredData = []; // 필터링 데이터를 담을 배열
+    if (rating == 'all') { // all인 경우 모든 데이터를 filteredData에 할당
+        filteredData = allReviewData;
+    } else {   // all이 아니면 선택한 별점과 일치하는 데이터만 filteredData에 필터링
+        filteredData = allReviewData.filter(item => item.rating == parseInt(rating));
+    }
+    return filteredData;
 }
 
 // 수정 모달 띄우기
@@ -205,96 +192,137 @@ function addNewList(newReview) {
     mBtn.setAttribute('id', 'revModiBtn');
     mBtn.addEventListener('click', showModifyModal);
     reviewItem.appendChild(mBtn);
+
+    revwsvc.reviewList({ pno: pno, page: rePage }, reviewListFnc);
 }
 
 // 리뷰 리스트
-function renderReviewList(data) {
+let rePage = 1;
+revwsvc.reviewList({ pno: pno }, allReviewData => {
+    // 전체 리뷰 데이터 저장
+    allReviewData = allReviewData;
+    // 페이지에 표시할 데이터 추출
+    const data = allReviewData.slice((rePage - 1) * 5, rePage * 5);
+    // 페이지 리뷰 목록 렌더링
+    reviewListFnc(data);
+    // 전체 리뷰 데이터로 평균 점수, 개수, 필터링 업데이트
+    updateAvgRating(allReviewData);
+    revwsvc.pagingReList(pno, createReviewPageList);
+});
+
+function reviewListFnc(data) {
     const reviewList = document.querySelector('.review_list');
     reviewList.innerHTML = ''; // 기존 리뷰 초기화
 
-    
-    data.forEach(item => {
-        const reviewItem = document.createElement('div');
-        reviewItem.className = 'review_item';
-        reviewItem.dataset.reviewNo = item.reviewNo;
-
-        const media = document.createElement('div');
-        media.className = 'media';
-
-        const mediaBody = document.createElement('div');
-        mediaBody.className = 'media-body';
-
-        const h4 = document.createElement('h4');
-        h4.textContent = item.id;
-        mediaBody.appendChild(h4);
-
-        const ratingContainer = document.createElement('div');
-        for (let i = 0; i < 5; i++) {
-            const star = document.createElement('i');
-            if (i < item.rating) {
-                star.className = 'fas fa-star';
-            } else {
-                star.className = 'far fa-star';
+    if (data.length == 0) {
+        let noReviewMsg = $('<div>', {
+            class: 'noReview',
+            text: '리뷰 내역이 없습니다.',
+            css: {
+                'text-align': 'center',
+                'font-size': '16px',
             }
-            ratingContainer.appendChild(star);
+        });
+        noReviewMsg.appendTo('.review_list');
+    } else {
+        const startIndex = (rePage - 1) * 5; // 현재 페이지의 시작 인덱스
+        const endIndex = startIndex + 5; // 현재 페이지의 끝 인덱스
+
+        // 현재 페이지에 해당하는 리뷰 항목만 추가
+        for (let i = startIndex; i < endIndex && i < data.length; i++) {
+            const item = data[i];
+            const reviewItem = document.createElement('div');
+            reviewItem.className = 'review_item';
+            reviewItem.dataset.reviewNo = item.reviewNo;
+
+            const media = document.createElement('div');
+            media.className = 'media';
+
+            const mediaBody = document.createElement('div');
+            mediaBody.className = 'media-body';
+
+            const h4 = document.createElement('h4');
+            h4.textContent = item.id;
+            mediaBody.appendChild(h4);
+
+            const ratingContainer = document.createElement('div');
+            for (let j = 0; j < 5; j++) {
+                const star = document.createElement('i');
+                if (j < item.rating) {
+                    star.className = 'fas fa-star';
+                } else {
+                    star.className = 'far fa-star';
+                }
+                ratingContainer.appendChild(star);
+            }
+            mediaBody.appendChild(ratingContainer);
+            media.appendChild(mediaBody);
+            reviewItem.appendChild(media);
+
+            const p = document.createElement('p');
+            p.textContent = item.reviewContent;
+            reviewItem.appendChild(p);
+
+            // 삭제 버튼 추가
+            const dBtn = document.createElement('button');
+            dBtn.innerText = 'Delete';
+            dBtn.setAttribute('class', 'btn_3');
+            if (item.id == id) {
+                dBtn.addEventListener('click', e => {
+                    deleteReview(item.reviewNo, reviewItem);
+                });
+            } else {
+                dBtn.disabled = true; // 다른 사용자의 리뷰인 경우 버튼 비활성화
+            }
+            reviewItem.appendChild(dBtn);
+
+            // 수정 버튼 추가
+            const mBtn = document.createElement('button');
+            mBtn.innerText = 'Modify';
+            mBtn.setAttribute('class', 'btn_3');
+            mBtn.setAttribute('id', 'revModiBtn');
+            if (item.id == id) {
+                mBtn.addEventListener('click', showModifyModal);
+            } else {
+                mBtn.disabled = true;
+            }
+            reviewItem.appendChild(mBtn);
+
+            reviewList.appendChild(reviewItem);
         }
-        mediaBody.appendChild(ratingContainer);
-        media.appendChild(mediaBody);
-        reviewItem.appendChild(media);
-
-        const p = document.createElement('p');
-        p.textContent = item.reviewContent;
-        reviewItem.appendChild(p);
-
-        const dBtn = document.createElement('button');
-        dBtn.innerText = 'Delete';
-        dBtn.setAttribute('class', 'btn_3');
-        if (item.id == id) {
-            dBtn.addEventListener('click', e => {
-                deleteReview(item.reviewNo, reviewItem);
-            });
-        } else {
-            dBtn.disabled = true; // 다른 사용자의 리뷰인 경우 버튼 비활성화
-        }
-        reviewItem.appendChild(dBtn);
-
-        const mBtn = document.createElement('button');
-        mBtn.innerText = 'Modify';
-        mBtn.setAttribute('class', 'btn_3');
-        mBtn.setAttribute('id', 'revModiBtn');
-        if (item.id == id) {
-            mBtn.addEventListener('click', showModifyModal);
-        } else {
-            mBtn.disabled = true;
-        }
-        reviewItem.appendChild(mBtn);
-
-        reviewList.appendChild(reviewItem);
-    });
-
-    updateAvgRating();
+    }
+    // revwsvc.pagingReList(pno, createReviewPageList);
+    createReviewPageList({"totalCount" : data.length});
 }
 
+
 // 페이지네이션
-let rePage = 1;
+
 document.querySelectorAll('.page-link').forEach(item => {
     item.addEventListener('click', e => {
         e.preventDefault();
-        rePage = parseInt(item.innerText); // 숫자로 변환
-        reviewList({ pno: pno, page: rePage }, renderReviewList);
+        rePage = item.innerText; // 숫자로 변환
+        revwsvc.reviewList({ pno: pno, page: rePage }, (allReviewData) => {
+            const data = allReviewData.slice((rePage - 1) * 5, rePage * 5);
+            reviewListFnc(data);
+            updateAvgRating(allReviewData);
+        });
     });
 });
 
-let pageTargetRe = document.querySelector('div.pagination_Re');
+let pageTargetRe = document.querySelector('div.paginationRe');
 
-function createReviewPageList(result) {
+function createReviewPageList(filteredData) {
     pageTargetRe.innerHTML = '';
 
-    let totalCnt = result.totalCount;
+    // let totalCnt = result.totalCount;
+    let totalCnt = filteredData.totalCount;
+    console.log(totalCnt)
     let startPage, endPage;
     let next, prev;
     let realEnd = Math.ceil(totalCnt / 5);
-    endPage = Math.ceil(rePage / 5) * 5;
+
+    endPage = Math.ceil(rePage / 5) * 5
     startPage = endPage - 4;
     endPage = endPage > realEnd ? realEnd : endPage;
     next = endPage < realEnd ? true : false;
@@ -305,7 +333,6 @@ function createReviewPageList(result) {
         let aTag = document.createElement('a');
         aTag.innerHTML = "&laquo;";
         aTag.href = "#";
-        aTag.classList.add('page-link'); // 클래스 추가
         aTag.setAttribute('data-page', (startPage - 1));
         pageTargetRe.appendChild(aTag);
     }
@@ -315,11 +342,10 @@ function createReviewPageList(result) {
         let aTag = document.createElement('a');
         aTag.innerHTML = pg;
         aTag.href = "#";
-        aTag.classList.add('page-link'); // 클래스 추가
         aTag.setAttribute('data-page', pg);
         pageTargetRe.appendChild(aTag);
         if (pg == rePage) {
-            aTag.classList.add('active'); // 클래스 추가
+            aTag.className = 'active'; // 클래스 추가
         }
     }
 
@@ -328,30 +354,19 @@ function createReviewPageList(result) {
         let aTag = document.createElement('a');
         aTag.innerHTML = "&raquo;";
         aTag.href = "#";
-        aTag.classList.add('page-link'); // 클래스 추가
         aTag.setAttribute('data-page', (endPage + 1));
         pageTargetRe.appendChild(aTag);
     }
 
     // 페이지네이션 이동 이벤트 핸들러
-    document.querySelectorAll('.pagination_Re>a').forEach(item => {
+    document.querySelectorAll('.paginationRe>a').forEach(item => {
         item.addEventListener('click', e => {
             e.preventDefault();
-            let clickedPage = parseInt(item.dataset.page || item.innerText);
-            rePage = clickedPage;
-            reviewList({ pno: pno, page: rePage }, renderReviewList);
+            rePage = item.dataset.page; // 클릭한 페이지 번호로 rePage 업데이트
+            revwsvc.reviewList({ pno: pno, page: rePage }, reviewListFnc);
         });
     });
 }
-
-
-fetch('ReviewList.do?pno=' + pno)
-    .then(response => response.json())
-    .then(data => {
-        renderReviewList(data);
-    })
-    .catch(err => console.error(err));
-
 
 // 리뷰 추가 버튼
 document.querySelector('form #addReview').addEventListener('click', e => {
@@ -362,7 +377,7 @@ document.querySelector('form #addReview').addEventListener('click', e => {
         return;
     }
 
-     // 입력값 가져오기
+    // 입력값 가져오기
     let rvwCont = document.querySelector('#reviewContent').value;
     let rating = document.querySelectorAll('.star.on').length - 1;
 
@@ -379,8 +394,8 @@ document.querySelector('form #addReview').addEventListener('click', e => {
         .then(result => {
             console.log(result);
             if (result.retCode == 'Success') {
-                addNewList(result.retVal); 
-                updateAvgRating();
+                addNewList(result.retVal);
+                updateAvgRating(allReviewData);
             }
             document.querySelector('#reviewContent').value = ''; // 입력칸 초기화
         })
@@ -404,7 +419,7 @@ document.querySelector('form #modifyBtn').addEventListener('click', e => {
             if (result.retCode == 'Success') {
                 alert('수정 완료 되었습니다.');
                 modifyReview(reviewNo, rating, reviewContent);
-                updateAvgRating();
+                updateAvgRating(allReviewData);
             } else {
                 alert('수정 실패 하였습니다.')
             }
@@ -413,11 +428,25 @@ document.querySelector('form #modifyBtn').addEventListener('click', e => {
 })
 
 // 리뷰 필터링
-document.querySelectorAll('.rating_list .list a').forEach(link => {
+document.querySelectorAll('.rating_list .list a, .filter-link').forEach(link => {
     link.addEventListener('click', e => {
         e.preventDefault();
-        const rating = e.target.dataset.rating;
-        filterReviews(rating);
+        const rating = e.target.dataset.rating; // 클릭한 별점 데이터 가져오기
+        rePage = 1; // 페이지 초기화
+
+        if (rating == 'all') {
+            revwsvc.reviewList({ pno: pno, page: rePage }, reviewListFnc);
+            revwsvc.pagingReList(pno, createReviewPageList);
+        } else {
+            revwsvc.reviewList({ pno: pno, page: rePage }, allReviewData => {
+                const filteredData = filterReviews(rating, allReviewData); // 선택한 별점에 따라서 필터링 된 데이터
+                const data = filteredData.slice((rePage - 1) * 5, rePage * 5);
+                console.log(data);
+                reviewListFnc(data);
+                createReviewPageList({"totalCount":filteredData.length}); // 필터링된 데이터로 페이징
+                // createReviewPageList(filteredData); // 필터링된 데이터로 페이징
+            });
+        }
     });
 });
 
@@ -425,6 +454,9 @@ document.querySelectorAll('.rating_list .list a').forEach(link => {
 $('#addReview').click(function () {
     myAddModal.hide();
 });
+$('#addModal').on('hidden.bs.modal', function () {
+    $('#reviewContent').val('');
+})
 $('#modifyBtn').click(function () {
     myModifyModal.hide();
 });

@@ -11,4 +11,5 @@ public interface ReviewService {
 	public boolean modifyReview (ReviewVO rvo);
 	
 	public int getReviewCount(int pno);
+	public int getReviewFilteredCount(int pno);
 }

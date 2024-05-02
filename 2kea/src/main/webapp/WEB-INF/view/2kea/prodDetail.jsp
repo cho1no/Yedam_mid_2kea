@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-			integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		<script src="https://gcore.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+			crossorigin="anonymous"></script>
+		<script src="https://gcore.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+			integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
 			crossorigin="anonymous"></script>
 
 		<style>
@@ -224,6 +225,36 @@
 			#review .row {
 				padding: 0px 12px 0px 12px;
 			}
+
+			.paginationRe {
+				display: inline-block;
+			}
+
+			.paginationRe a {
+				color: black;
+				float: left;
+				padding: 8px 16px;
+				text-decoration: none;
+				transition: background-color .3s;
+				border: 1px solid #ddd;
+				margin: 0 4px;
+			}
+
+			.paginationRe a.active {
+				background-color: #ff3368;
+				color: white;
+				border: 1px solid #ff3368;
+			}
+
+			.paginationRe a:hover {
+				background-color: #ff3368;
+				color: #fff;
+			}
+
+			.noReview {
+				text-align: center;
+				font-size: 16px;
+			}
 		</style>
 		<input type="hidden">
 
@@ -304,8 +335,7 @@
 								<h3>QnA</h3>
 							</div>
 							<div class="col-2">
-								<a class="btn_ask" data-bs-toggle="modal" data-bs-target="#AskModal"
-									data-bs-whatever="@mdo">문의하기</a>
+								<a class="btn_ask" data-bs-whatever="@mdo">문의하기</a>
 							</div>
 						</div>
 						<div class="comment_list">
@@ -322,10 +352,8 @@
 										</div>
 										<h5 class="askCategory">askCategory</h5>
 										<h5 class="askDate">askDate</h5>
-										<c:if test="${authority == 'ADMIN'}">
-											<a class="reply_btn" data-no="0" data-bs-toggle="modal"
-												data-bs-target="#ReplyModal" data-bs-whatever="@mdo">답변하기</a>
-										</c:if>
+										<a class="reply_btn" data-no="0" data-bs-toggle="modal"
+											data-bs-target="#ReplyModal" data-bs-whatever="@mdo">답변하기</a>
 									</div>
 								</div>
 								<p class="userContent">userContent</p>
@@ -371,15 +399,15 @@
 									<div class="col-6">
 										<div class="box_total">
 											<h5>Overall</h5>
-											<h4>4.0</h4>
-											<h6>(03 Reviews)</h6>
+											<h4>0.0</h4>
+											<h6>(00 Reviews)</h6>
 										</div>
 									</div>
 									<div class="col-6">
 										<div class="rating_list">
 											<h3>Based on Rating Reviews</h3>
 											<ul class="list">
-												<li><a href="" data-rating="all">
+												<li><a href="" data-rating="all" class="filter-link">
 														view all
 													</a></li>
 												<li>
@@ -426,68 +454,49 @@
 										</div>
 									</div>
 								</div>
+
 								<div class="review_list">
 									<div class="review_item">
 										<div class="media">
 											<div class="d-flex">
-												<img src="img/product/single-product/review-1.png" alt="" />
 											</div>
 											<div class="media-body">
-												<h4>Blake Ruiz</h4>
+												<h4></h4>
+												<!-- <i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i> -->
 											</div>
 										</div>
 										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-											sed do eiusmod tempor incididunt ut labore et dolore magna
-											aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-											ullamco laboris nisi ut aliquip ex ea commodo
 										</p>
 									</div>
 									<div class="review_item">
 										<div class="media">
 											<div class="d-flex">
-												<img src="img/product/single-product/review-2.png" alt="" />
 											</div>
 											<div class="media-body">
-												<h4>Blake Ruiz</h4>
+												<h4></h4>
+												<!-- <i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i> -->
 											</div>
 										</div>
 										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-											sed do eiusmod tempor incididunt ut labore et dolore magna
-											aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-											ullamco laboris nisi ut aliquip ex ea commodo
 										</p>
 									</div>
 									<div class="review_item">
 										<div class="media">
 											<div class="d-flex">
-												<img src="img/product/single-product/review-3.png" alt="" />
 											</div>
 											<div class="media-body">
-												<h4>Blake Ruiz</h4>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
+												<h4></h4>
 											</div>
 										</div>
 										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-											sed do eiusmod tempor incididunt ut labore et dolore magna
-											aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-											ullamco laboris nisi ut aliquip ex ea commodo
 										</p>
 									</div>
 								</div>
@@ -500,9 +509,9 @@
 							</div>
 
 							<!-- 리뷰추가모달  -->
+
 							<button type="button" class="btn btn-primary" id="revBtn" data-bs-toggle="modal"
 								data-bs-target="#addModal">리뷰작성</button>
-
 							<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel"
 								aria-hidden="true">
 								<div class="modal-dialog modal-lg modal-dialog-centered">
@@ -601,12 +610,12 @@
 							<!-- 리뷰수정모달 끝 -->
 							<!-- addreview end -->
 						</div>
-						<!--row-->
+						<!-- row -->
+						<!-- 리뷰 페이징 -->
 						<div>
 							<div class="center">
-								<div class="pagination_Re">
+								<div class="paginationRe">
 									<a href="#">1</a>
-									<a href="#">2</a>
 
 								</div>
 							</div>
