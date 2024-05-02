@@ -56,6 +56,12 @@
         }
         return nstr;
     };
+    
+    var message;
+
+    if (message) {
+        alert(message);
+    }
 </script>
 <script src="js/prodFunc.js"></script>
 
@@ -91,7 +97,7 @@
 						            <a class="nav-link" href="userInfo.do">My Page</a>
 						        </li>
 						    	<li class="nav-item">
-						            <a class="nav-link" href="prodMain.do">Sign Out</a>
+						            <a class="nav-link" href="signOutControl.do">Sign Out</a>
 						        </li>
                                 <c:if test="${authority eq 'ADMIN'}">
                                     <li class="nav-item">

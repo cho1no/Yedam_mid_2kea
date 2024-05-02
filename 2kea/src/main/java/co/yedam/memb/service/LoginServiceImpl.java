@@ -45,5 +45,15 @@ public class LoginServiceImpl implements LoginService{
 	public MemberVO getUserInfo(String id) {
 		return mapper.selectUserInfo(id);
 	}
+
+	@Override
+	public boolean modifyPw(MemberVO vo) {
+		return mapper.updatePw(vo) == 1;
+	}
+
+	@Override
+	public MemberVO idCheck(String id) {
+		return mapper.selectId(id);
+	}
 	
 }

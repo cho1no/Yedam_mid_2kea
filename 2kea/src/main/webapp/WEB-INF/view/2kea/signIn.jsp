@@ -5,8 +5,8 @@
 <!--================login_part Area =================-->
 <section class="login_part padding_top">
 	<div class="container">
-		<div class="row align-items-center">
-			<div class="col-lg-8 col-md-8">
+		<div class="d-flex row align-items-center justify-content-center" >
+			<div class="col-lg- col-md-7">
 				<div class="login_part_form">
 					<div class="login_part_form_iner">
 						<h3>
@@ -22,8 +22,8 @@
 							
 							<div class="col-md-12 form-group">
 								<div class="creat_account d-flex align-items-center">
-									<input type="checkbox" id="f-option" name="selector">
-									<label for="f-option">Remember me</label>
+<!-- 									<input type="checkbox" id="f-option" name="selector"> -->
+<!-- 									<label for="f-option">Remember me</label> -->
 								</div>
 								<a class="lost_pass" href="findId.do">forgot id?</a><br> <a
 									class="lost_pass" href="findPassword.do">forgot password?</a>

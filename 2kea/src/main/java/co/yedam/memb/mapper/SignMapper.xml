@@ -12,14 +12,20 @@
 		WHERE id = #{id} AND pw = #{pw}
 	</select>
 
-
-
 	<insert id="insertMember"
 		parameterType="co.yedam.memb.vo.MemberVO">
 		INSERT INTO
-		member(id, pw, m_name, email, phone)
-		values(#{id}, #{pw}, #{mName}, #{email} ,#{phone})
+		member(id, pw, m_name, email, phone,
+		authority)
+		values(#{id}, #{pw}, #{mName}, #{email} ,#{phone}, 'USER')
 	</insert>
+
+	<select id="selectId" parameterType="String"
+		resultType="co.yedam.memb.vo.MemberVO">
+		SELECT id
+		FROM Member
+		WHERE id = #{id}
+	</select>
 
 	<delete id="deleteMember"
 		parameterType="co.yedam.memb.vo.MemberVO">
@@ -32,10 +38,11 @@
 		parameterType="co.yedam.memb.vo.MemberVO">
 		UPDATE member
 		set
-			pw = #{pw},
-			m_name = #{mName},
-			email = #{email},
-			phone = #{phone}
+		pw = #{pw},
+		m_name = #{mName},
+		email =
+		#{email},
+		phone = #{phone}
 		WHERE id = #{id}
 	</update>
 
@@ -43,14 +50,16 @@
 		resultType="co.yedam.memb.vo.MemberVO">
 		SELECT id
 		FROM member
-		WHERE m_name = #{mName} AND phone =	#{phone}
+		WHERE m_name = #{mName} AND phone =
+		#{phone}
 	</select>
 
 	<select id="findPw" parameterType="co.yedam.memb.vo.MemberVO"
 		resultType="co.yedam.memb.vo.MemberVO">
 		SELECT pw
 		FROM member
-		WHERE id = #{id} AND m_name = #{mName}	AND phone = #{phone}
+		WHERE id = #{id} AND m_name = #{mName}
+		AND phone = #{phone}
 	</select>
 
 	<select id="selectUserInfo" parameterType="String"
@@ -60,4 +69,12 @@
 		WHERE id = #{id}
 	</select>
 
+	<update id="updatePw" parameterType="co.yedam.memb.vo.MemberVO">
+		UPDATE member
+		set
+		pw = #{pw}
+		WHERE id = #{id}
+
+
+	</update>
 </mapper>

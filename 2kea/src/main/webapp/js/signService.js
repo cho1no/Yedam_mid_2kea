@@ -15,12 +15,12 @@ function signIn(successCall, errorCall) {
 }*/
 
 const sign_svc = {
-	signUp() {
+	signUp(vo = {}, succesCall, errorCall) {
 		fetch('signUpControl.do', {
 			method: 'post',
 			headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-			body: 'id=' + id + '&pw=' + pw + '&mName=' + mName + '&email='
-				+ email + '&phone=' + phone
+			body: 'id=' + vo.id + '&pw=' + vo.pw + '&mName=' + vo.mName + '&email='
+				+ vo.email + '&phone=' + vo.phone
 		})
 			.then(response => response.json())
 			.then(succesCall)
@@ -35,7 +35,7 @@ function signUp() {
 	var email = document.querySelector('input[name="email"]').value;
 	var phone = document.querySelector('input[name="phone"]').value;
 
-	sign_svc.signInfo(id, pw, mName, email, phone)
+	sign_svc.signUp({ id, pw, mName, email, phone }
 		, function(data) {
 			if (data) {
 				alert("회원가입이 되었습니다.")
@@ -46,23 +46,10 @@ function signUp() {
 			if (error) {
 				alert("회원가입에 실패했습니다.")
 			}
-		}
+		})
 }
 
-function signUp1() {
 
-
-
-
-	then(data => {
-		if (data) {
-			alert("회원가입이 되었습니다.")
-			window.location.href = 'prodMain.do';
-		}
-	})
-		.catch()
-
-}
 
 function findId() {
 	var mName = document.querySelector('input[id="mName"]').value;
@@ -103,9 +90,15 @@ function findPw() {
 		.then(response => response.json())
 		.then(data => {
 			if (data) {
-				var pw = data.pw
-				alert('Password는 ' + pw + ' 입니다.')
-				window.location.href = 'signIn.do';
+				document.getElementById('id').style.display = 'none';
+				document.getElementById('mName').style.display = 'none';
+				document.getElementById('phone').style.display = 'none';
+				document.getElementById('pw').style.display = 'block';
+				document.getElementById('btnFind').style.display = 'none';
+				document.getElementById('btnUpdate').style.display = 'block';
+				document.getElementById('btn_back1').style.display = 'none';
+				document.getElementById('btn_back2').style.display = 'block';
+
 			} else {
 				alert('입력한 정보가 올바르지 않습니다.');
 			}
@@ -116,3 +109,48 @@ function findPw() {
 		})
 }
 
+
+function updatePw() {
+	var id = document.querySelector('input[id="id"]').value;
+	var pw = document.querySelector('input[id="pw"]').value;
+
+	fetch('updatePasswordControl.do', {
+		method: 'post',
+		headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+		body: 'id=' + id + '&pw=' + pw
+	})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data)
+			if (data) {
+				alert('비밀번호가 변경되었습니다.');
+				location.href = "prodMain.do";
+			} else {
+				alert('입력한 정보가 올바르지 않습니다.');
+			}
+		})
+		.catch(err => {
+			alert('입력한 정보가 올바르지 않습니다.');
+			console.error(err + '정보가 존재하지 않습니다.');
+		})
+}
+function idCheck() {
+	var id = document.querySelector('input[id="id"]').value;
+
+	fetch('signUpCheckControl.do', {
+		method: 'post',
+		headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+		body: 'id=' + id
+	})
+	.then(response => response.json)
+	.then(data =>{
+		if(data){
+			
+		}
+	})
+	.catch(error)
+}
+
+function goBack() {
+	window.history.back();
+}

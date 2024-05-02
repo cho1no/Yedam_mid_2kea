@@ -22,8 +22,19 @@
 								<input type="tel" class="form-control" id="phone" name="phone"
 									placeholder="Phone" required="">
 							</div>
-							<div class="col-md-12 form-group">
-								<button type="button" value="submit" class="btn_3" onclick="findPw()">Send</button>
+							<div class="col-md-12 form-group p_star">
+								<input type="password" class="form-control" id="pw" name="pw"
+									placeholder="Password" required="" style="display : none;">
+							</div>
+							
+							<div id="btn_back1" class="col-md-12 form-group">
+								<button type="button" value="submit" id="btnFind"class="btn_3" onclick="findPw()">Send</button>
+								<button type="button" class="btn_3" onclick="goBack()">back</button>
+								
+							</div>
+							<div id="btn_back2" class="col-md-12 form-group" style="display: none;">
+								<button type="button" value="submit" id="btnUpdate" class="btn_3" onclick="updatePw()">Update</button>
+								<button type="button" class="btn_3" onclick="goBack()" >back</button>
 							</div>
 						</form>
 					</div>
