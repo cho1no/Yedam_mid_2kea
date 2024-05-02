@@ -40,13 +40,13 @@ public class AskServiceImpl implements AskService{
 	}
 
 	@Override
-	public List<AskVO> adminAskListRe() {
-		return mapper.replyAskList();
+	public List<AskVO> adminAskListRe(AskPageVO askPage) {
+		return mapper.replyAskList(askPage);
 	}
 
 	@Override
-	public List<AskVO> adminAskListNoRe() {
-		return mapper.noReplyAskList();
+	public List<AskVO> adminAskListNoRe(AskPageVO askPage) {
+		return mapper.noReplyAskList(askPage);
 	}
 
 	@Override
