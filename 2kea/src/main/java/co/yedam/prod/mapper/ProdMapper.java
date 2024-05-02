@@ -28,4 +28,8 @@ public interface ProdMapper {
 	public List<ProdImgVO> selectProdImgList(int pno);
 	
 	
+	// 등록
+	public int insertProd(ProdVO vo);
+	public int insertProdImg(ProdImgVO vo);
+	
 }

@@ -49,6 +49,16 @@ public class ProdServiceImpl implements ProdService {
 		return mapper.selectMaxPrice();
 	}
 
+	@Override
+	public boolean addProd(ProdVO vo) {
+		return mapper.insertProd(vo) > 0;
+	}
+
+	@Override
+	public boolean addProdImg(ProdImgVO vo) {
+		return mapper.insertProdImg(vo) > 0;
+	}
+
 
 	
 }

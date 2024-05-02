@@ -86,8 +86,21 @@
   </select>
   
   <select id="selectProdImgList" resultType="ProdImgVO" parameterType="int">
-  	SELECT *
+  	SELECT * 
   	FROM prdimage
   	WHERE prod_no=#{pno}
   </select>
+  
+  <insert id="insertProd" parameterType="ProdVO">
+    <selectKey resultType="int" keyProperty="prodNo" order="BEFORE">
+	  SELECT prod_no_seq.NEXTVAL FROM dual
+	</selectKey>
+	INSERT INTO product (prod_no, name, price, detail, category, description)
+	VALUES (#{prodNo}, #{name}, #{price}, #{detail}, #{category}, #{description})
+  </insert>
+  
+  <insert id="insertProdImg" parameterType="ProdImgVO">
+    INSERT INTO prdimage (image_no, prod_no, image1, role)
+    VALUES (prodimg_no_seq.NEXTVAL, #{prodNo}, #{image1}, #{role})
+  </insert>
 </mapper>
