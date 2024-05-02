@@ -13,7 +13,7 @@ public class Checkout implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		req.getRequestDispatcher("2kea/test.tiles").forward(req, resp);
+		req.getRequestDispatcher("2kea/checkout.tiles").forward(req, resp);
 	}
 
 }
