@@ -37,26 +37,66 @@
 	</select>
 	
 	<!-- Admin -->
-	<select id="selectAdminAskList" resultType="co.yedam.asks.vo.AskVO">
-		select *
-		from ask
-		order by ask_no desc
+	<select id="selectAdminAskList" parameterType="int" resultType="co.yedam.asks.vo.AskVO">
+		select a.*
+		from(
+					SELECT rownum rn, a.*
+			    FROM ask a  
+			    ORDER BY ask_no desc) a
+		<![CDATA[   
+		where rn <=(#{apage} * 10)
+		]]> 
+		and rn >(#{apage} -1) * 10
 	</select>
 
-	<select id="noReplyAskList" resultType="co.yedam.asks.vo.AskVO">
-		select *
+	<select id="noReplyAskList" parameterType="int" resultType="co.yedam.asks.vo.AskVO">
+		select a.*
+		from(
+		    SELECT rownum rn, a.*
+		    FROM ask a
+		    LEFT OUTER JOIN reply r
+		    ON a.ask_no = r.ask_no
+		    WHERE r.ask_no is null
+		    ORDER BY a.ask_no desc) a
+		<![CDATA[  
+		where rn <=(#{apage} * 10)
+		]]>
+		and rn >(#{apage} -1) * 10
+	</select>
+	
+	<select id="replyAskList" resultType="co.yedam.asks.vo.AskVO">
+		select a.*
+		from(
+			    SELECT rownum rn, a.*
+			    from ask a
+					inner join reply r
+					on a.ask_no = r.ask_no
+					order by a.ask_no desc) a
+		<![CDATA[ 
+		where rn <=(#{apage} * 10)
+		]]>
+		and rn >(#{apage} -1) * 10
+	</select>
+	
+	<!-- Admin Count -->
+	<select id="adminAskCount" resultType="int">
+		select count(1)
+		from ask
+	</select>
+	
+	<select id="adminAskCountRe" resultType="int">
+		select count(*)
+		from ask a
+		inner join reply r
+		on a.ask_no = r.ask_no
+		order by a.ask_no desc
+	</select>
+	
+	<select id="adminAskCountNoRe" resultType="int">
+		select count(*)
 		from ask a
 		left outer join reply r
 		on a.ask_no = r.ask_no
 		where r.ask_no is null
 	</select>
-	
-	<select id="replyAskList" resultType="co.yedam.asks.vo.AskVO">
-		select *
-		from ask a
-		inner join reply r
-		on a.ask_no = r.ask_no
-	</select>
-	
-	
 </mapper>

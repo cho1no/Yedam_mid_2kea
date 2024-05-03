@@ -10,7 +10,9 @@ import co.yedam.memb.control.SignIn;
 import co.yedam.memb.control.SignInControl;
 import co.yedam.memb.control.SignOutControl;
 import co.yedam.memb.control.SignUp;
+import co.yedam.memb.control.SignUpCheckControl;
 import co.yedam.memb.control.SignUpControl;
+import co.yedam.memb.control.UpdatePasswordControl;
 import co.yedam.memb.control.UserDeletionControl;
 import co.yedam.memb.control.UserInfo;
 import co.yedam.memb.control.UserInfoControl;
@@ -25,10 +27,13 @@ public class FcMemb {
 		map.put("/findIdControl.do", new FindIdControl()); // 아이디 찾기 기능 수행
 		map.put("/findPassword.do", new FindPassword()); // 비밀번호 찾기 기능 수행
 		map.put("/findPasswordControl.do", new FindPasswordControl()); // 비밀번호 찾기 기능 수행
+		map.put("/updatePasswordControl.do", new UpdatePasswordControl()); // 비밀번호 찾기 기능 수행
 		map.put("/signOutControl.do", new SignOutControl());
 		
 		map.put("/signUp.do", new SignUp()); // 회원 가입 페이지
 		map.put("/signUpControl.do", new SignUpControl()); // 회원 가입 기능 수행
+		map.put("/SignUpCheckControl.do", new SignUpCheckControl()); // 회원 가입 기능 수행
+		
 
 		map.put("/userInfo.do", new UserInfo()); // 마이 페이지
 		map.put("/userInfoControl.do", new UserInfoControl()); // 마이 페이지 정보 가져오기.

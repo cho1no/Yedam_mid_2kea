@@ -100,6 +100,10 @@ function writeData2Temp(e ,tempProd){ // e에 데이터 넣어서 temp에 데이
         e.stopPropagation();
         addCart(pno, id);
     });
+    tempProd.find('.add_cart > i').click((e)=>{
+        e.stopPropagation();
+        addWish(prodNo, id);
+    })
     tempProd.css('display', 'block');
     return tempProd;
 }

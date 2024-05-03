@@ -31,12 +31,14 @@ function editInformation() {
 	$("#btn_delete").css('display', 'none');
 	$("#btn_editSucces").css('display', 'block')
 	$("#btn_edit").css('display', 'none')
+	$("#btn_back").css('display', 'block')
 }
 
 //document.getElementById('pw_checkbox').checked = true;
 //document.querySelector('.eyes').addEventListener('click', function() {
 //});
 
+//document.querySelector('#btn_back').style.display = 'none';
 
 function deleteAccount() {
 
@@ -78,7 +80,6 @@ const edit_svc = {
 
 
 
-
 function editSuccess() {
 
 	var id = document.querySelector('input[name="id"]').value;
@@ -105,12 +106,8 @@ function editSuccess() {
 		}, function(error) {
 			alert('정보수정 에러.')
 			console.error(error);
-		}
-	)
-
-
+		})
 }
-
 
 function deleteSuccess() {
 	fetch(userDeletionControl.do, {
@@ -121,7 +118,7 @@ function deleteSuccess() {
 		.then(response => response.json())
 		.then()
 		.catch()
-
 }
-
-
+function goBack() {
+	window.history.back();
+}

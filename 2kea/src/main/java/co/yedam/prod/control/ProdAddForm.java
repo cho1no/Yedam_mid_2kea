@@ -1,4 +1,4 @@
-package co.yedam.cart.control;
+package co.yedam.prod.control;
 
 import java.io.IOException;
 
@@ -8,12 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.common.Control;
 
-public class Checkout implements Control {
+public class ProdAddForm implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		req.getRequestDispatcher("2kea/checkout.tiles").forward(req, resp);
+		req.getRequestDispatcher("2kea/addProd.tiles").forward(req, resp);
 	}
-
 }

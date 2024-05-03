@@ -18,6 +18,5 @@
     select *
     from Orderdetail
     where order_no = #{orderNo}
-    and prod_no = #{prodNo}
   </select>
 </mapper>

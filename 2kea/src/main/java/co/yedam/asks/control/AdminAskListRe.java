@@ -12,6 +12,7 @@ import com.google.gson.GsonBuilder;
 
 import co.yedam.asks.service.AskService;
 import co.yedam.asks.service.AskServiceImpl;
+import co.yedam.asks.vo.AskPageVO;
 import co.yedam.asks.vo.AskVO;
 import co.yedam.common.Control;
 
@@ -19,8 +20,14 @@ public class AdminAskListRe implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String page = req.getParameter("page");
+		page = page == null ? "1" : page;
+		
+		AskPageVO askPage = new AskPageVO();
+		askPage.setApage(Integer.parseInt(page));
+		
 		AskService svc = new AskServiceImpl();
-		List<AskVO> list = svc.adminAskListRe();
+		List<AskVO> list = svc.adminAskListRe(askPage);
 		
 		Gson gson = new GsonBuilder()
 				.setDateFormat("yyyy-MM-dd HH:mm")

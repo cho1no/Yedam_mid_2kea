@@ -41,7 +41,7 @@
     <script src="template/js/jquery.nice-select.min.js"></script>
 
     <script src="template/js/owl.carousel.min.js"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>

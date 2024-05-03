@@ -4,6 +4,8 @@ import java.util.Map;
 
 import co.yedam.memb.control.ProdShop;
 import co.yedam.prod.control.CategoryCountControl;
+import co.yedam.prod.control.ProdAdd;
+import co.yedam.prod.control.ProdAddForm;
 import co.yedam.prod.control.ProdCountControl;
 import co.yedam.prod.control.ProdDetail;
 import co.yedam.prod.control.ProdImgeListControl;
@@ -24,9 +26,12 @@ public class FcProd {
 		
 		// maxPrice
 		map.put("/prodMaxPrice.do", new ProdMaxPrice());
+		// addProd
+		map.put("/prodAdd.do", new ProdAdd());
 		// 페이지 이동
 		map.put("/prodMain.do", new ProdMain());		 //메인 페이지 이동
 		map.put("/prodDetail.do", new ProdDetail()); 	 //상세 페이지 이동
-		map.put("/prodShop.do", new ProdShop()); //카테고리 페이지 이동
+		map.put("/prodShop.do", new ProdShop()); // 카테고리 페이지 이동
+		map.put("/prodAddForm.do", new ProdAddForm());
 	}
 }

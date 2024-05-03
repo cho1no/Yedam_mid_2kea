@@ -10,4 +10,6 @@ public interface LoginService {
 	public MemberVO findId(MemberVO vo);
 	public MemberVO findPw(MemberVO vo);
 	public MemberVO getUserInfo(String id);
+	public boolean modifyPw(MemberVO vo);
+	public MemberVO idCheck(String id);
 }

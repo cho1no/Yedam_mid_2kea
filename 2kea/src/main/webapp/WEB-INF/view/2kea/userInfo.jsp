@@ -56,6 +56,9 @@
 						<div id="btn_editSucces" class="col-md-12 form-group" style="display: none;">
 							<button type="button" class="btn_3" onclick="editSuccess()">edit success</button>
 						</div>
+						<div id="btn_back" class="col-md-12 form-group" style="display: none;">
+							<button type="button" class="btn_3" onclick="goBack()">back</button>
+						</div>
 					</div>
 				</div>
 			</div>

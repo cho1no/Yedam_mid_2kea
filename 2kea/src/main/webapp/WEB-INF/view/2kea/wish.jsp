@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!-- product_list part start-->
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <section class="product_list best_seller section_padding">
 	<div class="container">
 		<div class="row justify-content-center">

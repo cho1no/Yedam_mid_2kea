@@ -10,4 +10,6 @@ public interface SignMapper {
 	public MemberVO	findId(MemberVO vo);
 	public MemberVO findPw(MemberVO vo);
 	public MemberVO selectUserInfo(String id);
+	public int updatePw(MemberVO vo);
+	public MemberVO selectId(String id);
 }
