@@ -31,14 +31,6 @@ const svc = {
 	}
 
 }
-
-//svc.cartList(function(resolve){
-//	console.log(resolve);
-//	resolve.forEach(function(e) {
-//		console.log(e.prodNo);
-//	})
-//})
-
 svc.cartList(function(resolve) {
 	let cartTotal = 0;
 	resolve.forEach(function(e) {
@@ -61,10 +53,7 @@ svc.cartList(function(resolve) {
 		data.find('td.total > h5').data('price', total);
 		data.css('display', 'table-row');
 		data.find('#cart_prod_img').css('width', '20%');
-
-		//data.find('div.d-flex').css('width', '35%');
 		data.find('td.total').css('padding', '30px 0').css('width', '12%');
-		//data.find('td.subtotal').css('padding', '30px 0');
 		data.find('.input-number').val(qty);
 
 		//장바구니추가버튼 클릭시
@@ -162,7 +151,7 @@ function delAllItem(prodNo, id) {
 				swal('장바구니 비우기 완료.', '', 'success')
 				setTimeout(() => window.location.reload(), 1000);
 			} else if (prodNo = null) {
-				swal('상품이 없습니다.', '');
+				swal('상품이 없습니다.');
 			}
 		},
 		function(re) {
