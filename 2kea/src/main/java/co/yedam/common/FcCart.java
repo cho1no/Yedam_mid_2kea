@@ -24,7 +24,7 @@ public class FcCart {
 		map.put("/removeCart.do", new RemoveCart()); // 장바구니상품삭제
 		map.put("/checkingCart.do", new CheckingCart()); // 장바구니추가확인
 		
-		// oder
+		// order
 		map.put("/orderListForm.do", new OrderListForm()); // 주문목록
 		map.put("/orderList.do", new OrderList()); // 주문내역 페이지
 		map.put("/orderProduct.do", new OrderProduct()); // 주문상세내역

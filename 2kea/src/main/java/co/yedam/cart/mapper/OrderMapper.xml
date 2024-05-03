@@ -19,4 +19,13 @@
     from Orderdetail   
     where order_no = #{orderNo}
   </select>
+  
+  <insert id="insertOrders" parameterType="co.yedam.cart.vo.OrderVO">
+  		<selectKey resultType="int" keyProperty="orderNo" order="BEFORE">
+			select order_no_seq.nextval from dual
+		</selectKey>
+  	insert into orders (order_no, id, order_address, order_date)
+  	values(#{orderNo}, #{id}, #{orderAddress}, SYSDATE)	 	
+  </insert>
 </mapper>
+  

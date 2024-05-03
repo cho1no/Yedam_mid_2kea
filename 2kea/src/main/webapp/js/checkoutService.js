@@ -48,6 +48,7 @@ function requestPay() {
 
 	let cartTotal = 0;
 	let text = '';
+	function data(){
 	let name = $('#name').val();
 	let number = $('#number').val();
 	let email = $('#eamil').val();
@@ -55,7 +56,7 @@ function requestPay() {
 	let roadAd = $('#sample4_roadAddress').val();
 	let jibunAd = $('#sample4_jibunAddress').val();
 	let detailAd = $('#sample4_detailAddress').val();
-	
+	}
 	fetch('cartListControl.do')
 	.then(resolve => resolve.json())
 	.then((resolve)=>{
@@ -95,8 +96,8 @@ function requestPay() {
 				confirmButtonText: "확인",
 			}).then((result) => {
 				if(result.isConfirmed){		
-								
-				 location.href='orderList.do';			                
+									
+				 	location.href='orderList.do';			                
 				}
 			})
 			} else {			
