@@ -5,7 +5,7 @@ import java.util.Map;
 import co.yedam.revw.control.ReviewAddForm;
 import co.yedam.revw.control.ReviewAddFormControl;
 import co.yedam.revw.control.ReviewCount;
-import co.yedam.revw.control.ReviewFilterdCount;
+import co.yedam.revw.control.ReviewFilteredCount;
 import co.yedam.revw.control.ReviewList;
 import co.yedam.revw.control.ReviewListControl;
 import co.yedam.revw.control.ReviewModify;
@@ -21,6 +21,6 @@ public class FcRevw {
 		map.put("/ReviewModify.do", new ReviewModify());
 		map.put("/ReviewRemove.do", new ReviewRemove());
 		map.put("/reviewCount.do", new ReviewCount());
-		map.put("/reviewFilterdCount.do", new ReviewFilterdCount());
+		map.put("/reviewFilteredCount.do", new ReviewFilteredCount());
 	}
 }

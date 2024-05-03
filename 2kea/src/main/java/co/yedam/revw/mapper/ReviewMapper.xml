@@ -4,44 +4,57 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.yedam.revw.mapper.ReviewMapper">
-  <select id="reviewList" resultType="co.yedam.revw.vo.ReviewVO" parameterType="int">
-  	SELECT * 
-  	FROM review 
-  	WHERE prod_no = #{pno}
-  	ORDER BY review_no DESC
-  </select>
-  
-  <insert id="insertReview" parameterType="co.yedam.revw.vo.ReviewVO">
-  	<selectKey resultType="int" keyProperty="reviewNo" order="BEFORE">
-  		SELECT review_no_seq.nextval from dual
-  	</selectKey>
-  	INSERT INTO review 
-  	(review_no, prod_no, id, rating, review_content, review_date)
-  	VALUES(#{reviewNo}, #{prodNo}, #{id}, #{rating}, #{reviewContent}, SYSDATE )
-  </insert>
-  
-  <delete id="deleteReview" parameterType="int">
-  	DELETE FROM review
-  	WHERE review_no = #{rno}
-  </delete>
-  
-  <update id="updateReview" parameterType="co.yedam.revw.vo.ReviewVO">
-  	UPDATE review
-  	set rating = #{rating}, 
-  		review_content = #{reviewContent}
-  	WHERE review_no = #{reviewNo}
-  </update>
-  
-  <select id="selectReviewCount" parameterType="int" resultType="int">
-  	SELECT COUNT(1)
-  	FROM review
-  	WHERE prod_no = #{pno}
-  </select>
-  
-  <select id="selectReviewFilteredCount" parameterType="int" resultType="int">
-  	SELECT rating, COUNT(*) AS review_count
-	FROM review
-	WHERE prod_no = #{pno}
-	GROUP BY rating
-  </select>
+	<select id="reviewList" resultType="co.yedam.revw.vo.ReviewVO"
+		parameterType="ReviewVO">
+		SELECT *
+		FROM review
+		WHERE prod_no = #{prodNo}
+		<if test="rating > 0">
+			AND rating = #{rating}
+		</if>
+		ORDER BY review_no DESC
+	</select>
+
+	<insert id="insertReview"
+		parameterType="co.yedam.revw.vo.ReviewVO">
+		<selectKey resultType="int" keyProperty="reviewNo"
+			order="BEFORE">
+			SELECT review_no_seq.nextval from dual
+		</selectKey>
+		INSERT INTO review
+		(review_no, prod_no, id, rating, review_content, review_date)
+		VALUES(#{reviewNo}, #{prodNo}, #{id}, #{rating}, #{reviewContent}, SYSDATE )
+	</insert>
+
+	<delete id="deleteReview" parameterType="int">
+		DELETE FROM review
+		WHERE review_no = #{rno}
+	</delete>
+
+	<update id="updateReview"
+		parameterType="co.yedam.revw.vo.ReviewVO">
+		UPDATE review
+		set rating = #{rating},
+		review_content = #{reviewContent}
+		WHERE review_no = #{reviewNo}
+	</update>
+
+	<select id="selectReviewCount" parameterType="int"
+		resultType="map">
+		SELECT COUNT(1) AS "totalcount", ROUND(AVG(rating), 1) AS "ratingavg"
+		FROM review
+		WHERE prod_no = #{pno}
+	</select>
+
+	<select id="selectReviewFilteredCount"
+		resultType="int">
+		SELECT COUNT(*) AS "rvcnt"
+		FROM review
+		WHERE prod_no = #{prodNo}
+		<if test="rating > 0">
+			AND rating = #{rating}
+		</if>
+		GROUP BY rating
+	</select>
+
 </mapper>
