@@ -16,7 +16,7 @@
 
   <select id="selectOrderDetail" parameterType="co.yedam.cart.vo.OrderDetailVO" resultType="co.yedam.cart.vo.OrderDetailVO">
     select *
-    from Orderdetail
+    from Orderdetail   
     where order_no = #{orderNo}
   </select>
 </mapper>

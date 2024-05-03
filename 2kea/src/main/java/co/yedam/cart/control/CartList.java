@@ -23,7 +23,9 @@ public class CartList implements Control {
 		// TODO Auto-generated method stub
 		HttpSession session = req.getSession();
 	    String id = (String)session.getAttribute("id");
-	    if(!id.equals(null)) {
+	    System.out.println(id);
+	    System.out.println(id != null ? "a" : "b");
+	    if(id != null) {
 	    	req.getRequestDispatcher("2kea/cart.tiles").forward(req, resp);
 	    } else {
 	    	req.getRequestDispatcher("2kea/signIn.tiles").forward(req, resp);

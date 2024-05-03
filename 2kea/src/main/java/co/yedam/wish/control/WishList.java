@@ -1,4 +1,4 @@
-package co.yedam.cart.control;
+package co.yedam.wish.control;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,24 +16,19 @@ import co.yedam.wish.service.WishService;
 import co.yedam.wish.service.WishServiceImpl;
 import co.yedam.wish.vo.WishVO;
 
-public class WishListControl implements Control {
+public class WishList implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		// TODO Auto-generated method stub
-		resp.setContentType("text/json;charset=utf-8");
 		HttpSession session = req.getSession();
 	    String id = (String)session.getAttribute("id");
-		
-	    
-		WishService wvc = new WishServiceImpl();
-		List<WishVO> list = wvc.wishList(id);
-		
-		Gson gson = new GsonBuilder().create();
-		String json = gson.toJson(list);
-		
-		resp.getWriter().print(json);
+	    if(id != null) {
+	    	req.getRequestDispatcher("2kea/wish.tiles").forward(req, resp);	
+	    } else {
+	    	req.getRequestDispatcher("2kea/signIn.tiles").forward(req, resp);
+	    	
+	    }
 	}
 
 }
