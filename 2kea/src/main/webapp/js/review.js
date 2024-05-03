@@ -13,8 +13,9 @@ const myModifyModal = new bootstrap.Modal(document.getElementById('modifyModal')
 const myAddModal = new bootstrap.Modal(document.getElementById('addModal'));
 
 const revwsvc = {
-    reviewList(param = { pno: 1000, page: 1 }, successCall) {
-        fetch('ReviewList.do?pno=' + param.pno + '&page=' + param.page)
+    reviewList(param = { pno: pno, page: 1, rating: 0 }, successCall) {
+        const rating = param.rating || 0;
+        fetch('ReviewList.do?pno=' + param.pno + '&page=' + param.page + '&rating=' + rating)
             .then(response => response.json())
             .then(successCall)
             .catch(err => console.error(err));
@@ -24,7 +25,19 @@ const revwsvc = {
             .then(result => result.json())
             .then(successCall)
             .catch(err => console.error(err));
-    }
+    },
+    getReviewCount(pno = 1, successCall) {
+        fetch('reviewCount.do?pno=' + pno)
+            .then(result => result.json())
+            .then(successCall)
+            .catch(err => console.error(err));
+    },
+    // getRatingCount(pno, rating, successCall) {
+    //     fetch('reviewFilteredCount.do?pno=' + pno + '&rating=' + rating)
+    //         .then(result => result.json())
+    //         .then(successCall)
+    //         .catch(err => console.error(err));
+    // }
 }
 
 // 삭제 버튼
@@ -35,7 +48,7 @@ function deleteReview(reviewNo, reviewItem) {
             if (result.retCode == 'Success') {
                 alert('삭제 완료 되었습니다.');
                 reviewItem.remove();
-                updateAvgRating(allReviewData);
+                revwsvc.getReviewCount(pno, updateAvgRating);
                 revwsvc.reviewList({ pno: pno, page: rePage }, reviewListFnc);
             } else {
                 alert('삭제에 실패 하였습니다.');
@@ -45,43 +58,17 @@ function deleteReview(reviewNo, reviewItem) {
 }
 
 // 점수, 개수
-function updateAvgRating(allReviewData) {
-    // allReviewData에서 리뷰 항목들 가져오기
-    const reviewItems = allReviewData;
-    let totalRating = 0; // 총 평점 합계를 저장할 변수
-    let reviewCount = 0; // 리뷰 개수를 저장할 변수
-
-    reviewItems.forEach(item => {
-        const rating = item.rating; // 별점 정보 가져오기
-        if (rating !== undefined) { // 별점 정보가 있으면 처리
-            totalRating += rating; // 총 평점 합계에 현재 평점 더하기
-            reviewCount++;
-        }
-    });
-
-    // 평균 평점 계산, 없으면 0
-    const avgRating = totalRating / reviewCount || 0;
+function updateAvgRating(result) {
 
     // 점수와 개수를 표시할 부분
     const boxTotal = document.querySelector('.box_total');
     const avgRatingElement = boxTotal.querySelector('h4');
     const reviewCountElement = boxTotal.querySelector('h6');
     // 평균 평점 표시 (소수점 한 자리까지)
-    avgRatingElement.textContent = avgRating.toFixed(1);
+    avgRatingElement.textContent = result.ratingavg;
     // 리뷰 개수 표시
-    reviewCountElement.textContent = `(${reviewCount} Reviews)`;
+    reviewCountElement.textContent = `(${result.totalcount} Reviews)`;
 
-}
-
-// 별점 필터링
-function filterReviews(rating, allReviewData) {
-    let filteredData = []; // 필터링 데이터를 담을 배열
-    if (rating == 'all') { // all인 경우 모든 데이터를 filteredData에 할당
-        filteredData = allReviewData;
-    } else {   // all이 아니면 선택한 별점과 일치하는 데이터만 filteredData에 필터링
-        filteredData = allReviewData.filter(item => item.rating == parseInt(rating));
-    }
-    return filteredData;
 }
 
 // 수정 모달 띄우기
@@ -198,17 +185,6 @@ function addNewList(newReview) {
 
 // 리뷰 리스트
 let rePage = 1;
-revwsvc.reviewList({ pno: pno }, allReviewData => {
-    // 전체 리뷰 데이터 저장
-    allReviewData = allReviewData;
-    // 페이지에 표시할 데이터 추출
-    const data = allReviewData.slice((rePage - 1) * 5, rePage * 5);
-    // 페이지 리뷰 목록 렌더링
-    reviewListFnc(data);
-    // 전체 리뷰 데이터로 평균 점수, 개수, 필터링 업데이트
-    updateAvgRating(allReviewData);
-    revwsvc.pagingReList(pno, createReviewPageList);
-});
 
 function reviewListFnc(data) {
     const reviewList = document.querySelector('.review_list');
@@ -291,8 +267,8 @@ function reviewListFnc(data) {
             reviewList.appendChild(reviewItem);
         }
     }
-    // revwsvc.pagingReList(pno, createReviewPageList);
-    createReviewPageList({"totalCount" : data.length});
+    revwsvc.getReviewCount(pno, updateAvgRating);
+    revwsvc.pagingReList(pno, createReviewPageList);
 }
 
 
@@ -305,67 +281,69 @@ document.querySelectorAll('.page-link').forEach(item => {
         revwsvc.reviewList({ pno: pno, page: rePage }, (allReviewData) => {
             const data = allReviewData.slice((rePage - 1) * 5, rePage * 5);
             reviewListFnc(data);
-            updateAvgRating(allReviewData);
+            revwsvc.getReviewCount(pno, updateAvgRating);
+            createReviewPageList(rating);
         });
     });
 });
 
 let pageTargetRe = document.querySelector('div.paginationRe');
 
-function createReviewPageList(filteredData) {
+function createReviewPageList(result) {
     pageTargetRe.innerHTML = '';
 
-    // let totalCnt = result.totalCount;
-    let totalCnt = filteredData.totalCount;
-    console.log(totalCnt)
-    let startPage, endPage;
-    let next, prev;
-    let realEnd = Math.ceil(totalCnt / 5);
+    // revwsvc.getRatingCount(pno, rating, result => {
+        let totalCnt = result.totalcount;
+        console.log(totalCnt)
+        let startPage, endPage;
+        let next, prev;
+        let realEnd = Math.ceil(totalCnt / 5);
 
-    endPage = Math.ceil(rePage / 5) * 5
-    startPage = endPage - 4;
-    endPage = endPage > realEnd ? realEnd : endPage;
-    next = endPage < realEnd ? true : false;
-    prev = startPage > 1;
+        endPage = Math.ceil(rePage / 5) * 5
+        startPage = endPage - 4;
+        endPage = endPage > realEnd ? realEnd : endPage;
+        next = endPage < realEnd ? true : false;
+        prev = startPage > 1;
 
-    // 이전 페이지 버튼
-    if (prev) {
-        let aTag = document.createElement('a');
-        aTag.innerHTML = "&laquo;";
-        aTag.href = "#";
-        aTag.setAttribute('data-page', (startPage - 1));
-        pageTargetRe.appendChild(aTag);
-    }
-
-    // 페이지 번호 버튼
-    for (let pg = startPage; pg <= endPage; pg++) {
-        let aTag = document.createElement('a');
-        aTag.innerHTML = pg;
-        aTag.href = "#";
-        aTag.setAttribute('data-page', pg);
-        pageTargetRe.appendChild(aTag);
-        if (pg == rePage) {
-            aTag.className = 'active'; // 클래스 추가
+        // 이전 페이지 버튼
+        if (prev) {
+            let aTag = document.createElement('a');
+            aTag.innerHTML = "&laquo;";
+            aTag.href = "#";
+            aTag.setAttribute('data-page', (startPage - 1));
+            pageTargetRe.appendChild(aTag);
         }
-    }
 
-    // 다음 페이지 버튼
-    if (next) {
-        let aTag = document.createElement('a');
-        aTag.innerHTML = "&raquo;";
-        aTag.href = "#";
-        aTag.setAttribute('data-page', (endPage + 1));
-        pageTargetRe.appendChild(aTag);
-    }
+        // 페이지 번호 버튼
+        for (let pg = startPage; pg <= endPage; pg++) {
+            let aTag = document.createElement('a');
+            aTag.innerHTML = pg;
+            aTag.href = "#";
+            aTag.setAttribute('data-page', pg);
+            pageTargetRe.appendChild(aTag);
+            if (pg == rePage) {
+                aTag.className = 'active'; // 클래스 추가
+            }
+        }
 
-    // 페이지네이션 이동 이벤트 핸들러
-    document.querySelectorAll('.paginationRe>a').forEach(item => {
-        item.addEventListener('click', e => {
-            e.preventDefault();
-            rePage = item.dataset.page; // 클릭한 페이지 번호로 rePage 업데이트
-            revwsvc.reviewList({ pno: pno, page: rePage }, reviewListFnc);
+        // 다음 페이지 버튼
+        if (next) {
+            let aTag = document.createElement('a');
+            aTag.innerHTML = "&raquo;";
+            aTag.href = "#";
+            aTag.setAttribute('data-page', (endPage + 1));
+            pageTargetRe.appendChild(aTag);
+        }
+
+        // 페이지네이션 이동 이벤트
+        document.querySelectorAll('.paginationRe>a').forEach(item => {
+            item.addEventListener('click', e => {
+                e.preventDefault();
+                rePage = item.dataset.page; // 클릭한 페이지 번호로 rePage 업데이트
+                revwsvc.reviewList({ pno: pno, page: rePage, rating: rating }, reviewListFnc);
+            });
         });
-    });
+//     });
 }
 
 // 리뷰 추가 버튼
@@ -395,7 +373,7 @@ document.querySelector('form #addReview').addEventListener('click', e => {
             console.log(result);
             if (result.retCode == 'Success') {
                 addNewList(result.retVal);
-                updateAvgRating(allReviewData);
+                revwsvc.getReviewCount(pno, updateAvgRating);
             }
             document.querySelector('#reviewContent').value = ''; // 입력칸 초기화
         })
@@ -419,7 +397,7 @@ document.querySelector('form #modifyBtn').addEventListener('click', e => {
             if (result.retCode == 'Success') {
                 alert('수정 완료 되었습니다.');
                 modifyReview(reviewNo, rating, reviewContent);
-                updateAvgRating(allReviewData);
+                revwsvc.getReviewCount(pno, updateAvgRating);
             } else {
                 alert('수정 실패 하였습니다.')
             }
@@ -427,26 +405,21 @@ document.querySelector('form #modifyBtn').addEventListener('click', e => {
         .catch(err => console.error(err));
 })
 
+let rating = 0;
 // 리뷰 필터링
 document.querySelectorAll('.rating_list .list a, .filter-link').forEach(link => {
     link.addEventListener('click', e => {
         e.preventDefault();
-        const rating = e.target.dataset.rating; // 클릭한 별점 데이터 가져오기
+        rating = e.target.dataset.rating;
         rePage = 1; // 페이지 초기화
 
-        if (rating == 'all') {
+        if (rating == 0) {
             revwsvc.reviewList({ pno: pno, page: rePage }, reviewListFnc);
             revwsvc.pagingReList(pno, createReviewPageList);
         } else {
-            revwsvc.reviewList({ pno: pno, page: rePage }, allReviewData => {
-                const filteredData = filterReviews(rating, allReviewData); // 선택한 별점에 따라서 필터링 된 데이터
-                const data = filteredData.slice((rePage - 1) * 5, rePage * 5);
-                console.log(data);
-                reviewListFnc(data);
-                createReviewPageList({"totalCount":filteredData.length}); // 필터링된 데이터로 페이징
-                // createReviewPageList(filteredData); // 필터링된 데이터로 페이징
-            });
+            revwsvc.reviewList({ pno: pno, page: 1, rating }, reviewListFnc);
         }
+
     });
 });
 
@@ -461,3 +434,4 @@ $('#modifyBtn').click(function () {
     myModifyModal.hide();
 });
 
+revwsvc.reviewList({ pno: pno, page: 1, rating: 0 }, reviewListFnc);

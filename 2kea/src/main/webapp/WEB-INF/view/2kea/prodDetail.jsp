@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-		<script src="https://gcore.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
 			crossorigin="anonymous"></script>
-		<script src="https://gcore.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
 			integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
 			crossorigin="anonymous"></script>
 
@@ -407,7 +407,7 @@
 										<div class="rating_list">
 											<h3>Based on Rating Reviews</h3>
 											<ul class="list">
-												<li><a href="" data-rating="all" class="filter-link">
+												<li><a href="" data-rating="0" class="filter-link">
 														view all
 													</a></li>
 												<li>
@@ -512,6 +512,7 @@
 
 							<button type="button" class="btn btn-primary" id="revBtn" data-bs-toggle="modal"
 								data-bs-target="#addModal">리뷰작성</button>
+								<form class="row contact_form" action="" method="post">
 							<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel"
 								aria-hidden="true">
 								<div class="modal-dialog modal-lg modal-dialog-centered">
@@ -521,8 +522,7 @@
 											<button type="button" class="btn-close" data-bs-dismiss="modal"
 												aria-label="Close"></button>
 										</div>
-										<form class="row contact_form" action="" method="post">
-											<div class="modal-body">
+										<div class="modal-body">
 
 												<div class="star_rating" id="rating"> <span
 														class="rating_text">별점:</span>
@@ -554,13 +554,14 @@
 												<button type="submit" class="btn_3" id="addReview">Submit
 													Now</button>
 											</div>
-										</form>
+										</div>
 									</div>
 								</div>
-							</div>
+							</form>
 							<!-- 리뷰추가모달 끝 -->
 							<!-- 리뷰수정모달 시작-->
 
+							<form class="row contact_form2" action="ReviewModify.do" method="post">
 							<div class="modal fade" id="modifyModal" tabindex="-1">
 								<div class="modal-dialog modal-lg modal-dialog-centered">
 									<div class="modal-content">
@@ -569,8 +570,7 @@
 											<button type="button" class="btn-close" data-bs-dismiss="modal"
 												aria-label="Close"></button>
 										</div>
-										<form class="row contact_form2" action="ReviewModify.do" method="post">
-											<div class="modal-body">
+										<div class="modal-body">
 
 												<input type="hidden" id="reviewNo" value="${reviewNo }">
 												<div class="star_rating" id="rating"> <span
@@ -602,10 +602,10 @@
 												<button type="submit" class="btn_3" id="modifyBtn">Modify
 													Now</button>
 											</div>
-										</form>
+										</div>
 									</div>
 								</div>
-							</div>
+							</form>
 
 							<!-- 리뷰수정모달 끝 -->
 							<!-- addreview end -->

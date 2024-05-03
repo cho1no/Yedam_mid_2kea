@@ -24,7 +24,13 @@ public class ReviewList implements Control {
 		ReviewService svc = new ReviewServiceImpl();
 		String pno = req.getParameter("pno");
 		
-		List<ReviewVO> list = svc.reviewList(Integer.parseInt(pno));
+		String rating = req.getParameter("rating");
+		int ratingInt = rating == null ? 0 : Integer.parseInt(rating);
+		
+		ReviewVO rvo = new ReviewVO();
+		rvo.setProdNo(Integer.parseInt(pno));
+		rvo.setRating(ratingInt);
+		List<ReviewVO> list = svc.reviewList(rvo);
 		
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list);

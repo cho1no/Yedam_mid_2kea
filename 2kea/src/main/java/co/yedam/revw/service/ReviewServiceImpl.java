@@ -1,11 +1,13 @@
 package co.yedam.revw.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.common.DataSource;
 import co.yedam.revw.mapper.ReviewMapper;
+import co.yedam.revw.vo.ReviewCountVO;
 import co.yedam.revw.vo.ReviewVO;
 
 public class ReviewServiceImpl implements ReviewService {
@@ -13,8 +15,8 @@ public class ReviewServiceImpl implements ReviewService {
 	ReviewMapper mapper = session.getMapper(ReviewMapper.class);
 
 	@Override
-	public List<ReviewVO> reviewList(int pno) {
-		return mapper.reviewList(pno);
+	public List<ReviewVO> reviewList(ReviewVO rvo) {
+		return mapper.reviewList(rvo);
 	}
 
 	@Override
@@ -33,7 +35,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int getReviewCount(int pno) {
+	public Map<String, Object> getReviewCount(int pno) {
 		return mapper.selectReviewCount(pno);
 	}
 
