@@ -1,8 +1,6 @@
 /**
  * userInfo.js
  */
-
-
 $(document).ready(function() {
 	$.ajax({
 		url: "userInfoControl.do",
@@ -56,13 +54,6 @@ function deleteAccount() {
 	document.getElementById('btn_drop').style.display = 'block';
 
 	document.getElementById('firstWord').innerHTML = "Please don't leave."
-
-
-
-
-
-
-
 }
 
 const edit_svc = {
@@ -77,8 +68,6 @@ const edit_svc = {
 			.catch(errorCall)
 	}
 }
-
-
 
 function editSuccess() {
 
@@ -100,8 +89,6 @@ function editSuccess() {
 				document.querySelector('#btn_delete').style.display = 'block';
 				document.querySelector('#btn_editSucces').style.display = 'none';
 				document.querySelector('#btn_edit').style.display = 'block';
-			} else {
-
 			}
 		}, function(error) {
 			alert('정보수정 에러.')
