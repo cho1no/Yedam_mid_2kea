@@ -11,6 +11,7 @@ public class ShopVO {
 	private String category;
 	private int startPrice;
 	private int endPrice;
+	private String id;
 	
 	// Page
 	private int page;

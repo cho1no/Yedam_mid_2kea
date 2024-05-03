@@ -27,7 +27,11 @@
   <sql id="makeList">
     FROM (
     SELECT ROWNUM rn, a.*
-    FROM (SELECT p.*, i.image1
+    FROM (SELECT p.*, 
+                 i.image1,
+                 <if test="id != ''.toString()">
+                 	(SELECT COUNT(1) FROM wishlist WHERE id=#{id} AND prod_no=p.prod_no) wish
+                 </if> 
 	      FROM product p
 	      JOIN prdimage i
 	      ON p.prod_no = i.prod_no

@@ -23,7 +23,7 @@ public class WishList implements Control {
 		// TODO Auto-generated method stub
 		HttpSession session = req.getSession();
 	    String id = (String)session.getAttribute("id");
-	    if(!id.equals(null)) {
+	    if(id != null) {
 	    	req.getRequestDispatcher("2kea/wish.tiles").forward(req, resp);	
 	    } else {
 	    	req.getRequestDispatcher("2kea/signIn.tiles").forward(req, resp);
