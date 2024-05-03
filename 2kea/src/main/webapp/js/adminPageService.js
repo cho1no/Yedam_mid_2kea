@@ -45,6 +45,19 @@ const admsvc = {
 			.then(result => result.json())
 			.then(successCall)
 			.catch(err => console.error(err));
+	},
+	//문의관리페이지 => prod 단건
+	adminReplyProd(pno = 1, successCall) {
+		fetch('adminReplyProd.do?pno=' + pno)
+			.then(result => result.json())
+			.then(successCall)
+			.catch(err => console.error(err));
+	},
+	adminReplyAsk(ano = 1, successCall) {
+		fetch('adminReplyAsk.do?ano=' + ano)
+			.then(result => result.json())
+			.then(successCall)
+			.catch(err => console.error(err));
 	}
 }
 
@@ -55,18 +68,72 @@ function makeRow(ask = {}) {
 
 	fields.forEach(e => {
 		let td = $('<td/>');
-		//prodNo 누르면 link 이동
-		if (e === 'prodNo') {
-			let a = $('<a/>', {
-				href: '/2kea/prodDetail.do?pno=' + ask[e],
-				text: ask[e],
-			});
-			td.append(a);
-		} else {
-			td.text(ask[e]);
-		}
+		td.text(ask[e]);
 		tr.append(td)
 	})
-	tr.click(()=>{location.href="prodDetail.do?pno="+ask.prodNo})
+
+	const askModal = new bootstrap.Modal(document.getElementById('adminAskModal'));
+	$(tr).on('click', function() {
+		console.log(ask.askNo);
+		admsvc.adminReplyProd(ask.prodNo, replyProdFnc);
+		admsvc.adminReplyAsk(ask.askNo, replyAskFnc);
+		
+		// askDataNo 담기
+		let askDataNo = ask.askNo;
+		$('#askDataNo').val(askDataNo);
+		let replyProdNo = ask.ProdNo;
+		$('#replyProdNo').val(replyProdNo);
+		
+		const askModalToggle = document.getElementById('adminAskModal');
+		askModal.show(askModalToggle);
+	});
 	return tr;
 }
+
+// 문의관리 모달 ==> 상품 이미지, 이름, 가격 가져오기
+function replyProdFnc(p) {
+	console.log(p);
+	let temp = $('#adminAskModal');
+	temp.find('img').attr('src', 'img/' + p.image1);
+	temp.find('h4:eq(0)').text(p.name);
+	temp.find('h4:eq(1)').text(p.price + '원');
+	temp.find('p:eq(0)').text(p.detail);
+	
+	return temp;
+};
+
+function replyAskFnc(a){
+	console.log(a);
+	let temp = $('#adminAskModal');
+	temp.find('h4:eq(2)').text(' ID :  '+ a.id);
+	temp.find('h4:eq(3)').text('문의유형 :  ' + a.askCategory);
+	temp.find('#askContent').text(a.askContent);
+};
+
+
+$('#addAdminReplyBtn').on('click', function() {
+	let replyContent = $('#replyContent').val();
+	let askDataNo = $('#askDataNo').val();
+	let pno = $('#replyProdNo').val();
+	
+	fetch('addReply.do', {
+		method: 'post',
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+		body: 'pno=' + pno + '&id=' + id +
+			'&replyContent=' + replyContent + '&askNo=' + askDataNo
+	})
+		.then(result => result.json())
+		.then(result => {
+			if (result.retCode == 'Success') {
+				alert('정상적으로 등록되었습니다.');
+				window.location.reload(); //수정
+			}
+		})
+		.catch(err => console.error(err));
+});
+
+$('#adminAskModal').on('hidden.bs.modal', function() {
+	$('#replyContent').val('');
+});
+
+

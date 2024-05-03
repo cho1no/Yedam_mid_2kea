@@ -1,7 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
+		
 <style>
+.btn_3_close {
+	display: inline-block;
+	padding: 9px 39px;
+	border-radius: 50px;
+	background-color: #ff3368;
+	border: 1px solid #ecfdff;
+	font-size: 15px;
+	font-weight: 700;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 400;
+	box-shadow: -1.717px 8.835px 29.76px 2.24px rgba(255, 51, 104, 0.18);
+	border: 1px solid #ff3368;
+	-webkit-transition: 0.5s;
+	transition: 0.5s;
+}
+
+.btn_3_close:hover {
+	background-color: #fff;
+	color: #000;
+}
+
+.btn_3:hover {
+	background-color: #fff;
+	color: #000;
+}
 .table-striped tbody tr:nth-of-type(odd) {
 	background-color: #fff;
 }
@@ -50,6 +79,15 @@
 .table table-striped{
 	position: fixed;
 }
+.replyProd_content{
+	margin: 15px;
+}
+
+textarea{
+	resize: none;
+}
+
+
 </style>
 
 
@@ -108,6 +146,56 @@
 		</div>
 	</div>
 </section>
+<!-- =======================답변하기 모달=========================== -->
+<div class="modal fade" id="adminAskModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title fs-5" id="exampleModalLabel">문의 답변하기</h3>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="col-md-12 mb-2 d-flex" id="replyProd" style="display: none;">
+                            <img src="img/BUSUNGE 부숭에.png" style="width: 250px">
+                            <div class="replyProd_content">
+                                <h4>BUSUNGE 부숭에</h4>
+                                <h4>169,000원</h4>
+                                <p>detail</p>
+                            </div>
+					</div>
+					
+					<div class="col-md-12">
+						<div class="row">
+							<h4 class="col-2">회원Id</h4>
+							<h4 class="col-5">문의카테고리</h4>
+						</div>
+						<div class="form-group">
+							<textarea class="form-control" name="ask_message" rows="3"
+								id="askContent" placeholder="문의내용" readonly></textarea>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<textarea class="form-control" name="reply_message" rows="5" 
+						id="replyContent" placeholder="답변내용을 적어주세요"></textarea>
+					</div>
+					<div class="col-md-12 text-right"></div>
+					<input type="hidden" id="askDataNo">
+					<input type="hidden" id="replyProdNo">
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" value="button" class="btn_3_close closeAskBtn"
+					data-dismiss="modal" >취소</button>
+				<button type="button" class="btn_3" id="addAdminReplyBtn"
+					data-dismiss="modal">완료</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ======================답변하기 모달========================== -->
+
 <script src="js/adminPageService.js"></script>
 <script src="js/adminPage.js"></script>
 

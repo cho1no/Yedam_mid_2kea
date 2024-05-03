@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.asks.mapper.ReplyMapper;
+import co.yedam.asks.vo.AskVO;
+import co.yedam.asks.vo.ReplyProdVO;
 import co.yedam.asks.vo.ReplyVO;
 import co.yedam.common.DataSource;
 
@@ -24,13 +26,19 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 
 	@Override
-	public boolean editReply(ReplyVO rvo) {
-		return mapper.updateReply(rvo) == 1;
+	public boolean delReply(int ano) {
+		return mapper.deleteReply(ano) == 1;
+	}
+
+	// 문의관리페이지 
+	@Override
+	public ReplyProdVO replyProd(int pno) {
+		return mapper.selectReplyProd(pno);
 	}
 
 	@Override
-	public boolean delReply(int ano) {
-		return mapper.deleteReply(ano) == 1;
+	public AskVO replyAsk(int ano) {
+		return mapper.selectReplyAsk(ano);
 	}
 
 }
