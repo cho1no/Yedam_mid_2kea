@@ -1,5 +1,5 @@
 /**
- * 
+ * signService.js
  */
 
 /*
@@ -37,7 +37,7 @@ function signUp() {
 
 	sign_svc.signUp({ id, pw, mName, email, phone }
 		, function(data) {
-			if (data) {
+			if (data.retCod == "Success") {
 				alert("회원가입이 되었습니다.")
 				window.location.href = 'prodMain.do';
 			}
@@ -137,20 +137,31 @@ function updatePw() {
 function idCheck() {
 	var id = document.querySelector('input[id="id"]').value;
 
+	if (!id) {
+		alert('ID를 입력해주세요.');
+		return;
+	}
+
 	fetch('signUpCheckControl.do', {
 		method: 'post',
 		headers: { 'Content-type': 'application/x-www-form-urlencoded' },
 		body: 'id=' + id
 	})
-	.then(response => response.json)
-	.then(data =>{
-		if(data){
-			
-		}
-	})
-	.catch(error)
+		.then(response => response.json())
+		.then(data => {
+			if (data.retCode === "Success") {
+				alert('중복된 ID입니다.');
+			} else if (data.retCode === "False") {
+				alert('사용 가능한 ID입니다.');
+			}
+		})
+		.catch(error => {
+			alert('오류가 발생했습니다.');
+			console.error('Error occurred:', error);
+		});
 }
 
 function goBack() {
 	window.history.back();
 }
+

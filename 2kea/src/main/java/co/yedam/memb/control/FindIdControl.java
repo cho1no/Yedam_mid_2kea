@@ -28,15 +28,12 @@ public class FindIdControl implements Control {
 
 		LoginService ls = new LoginServiceImpl(); // 처리만하는것.
 
+		Gson gson = new GsonBuilder().create();
 		if (ls.findId(vo) != null) {
 			MemberVO mvo = ls.findId(vo);
 			
-			Gson gson = new GsonBuilder().create();
 			String json = gson.toJson(mvo);
 			resp.getWriter().print(json);
-		} else {
-			req.setAttribute("error", "이름과 번호를 확인하세요.");
-
 		}
 
 	}
