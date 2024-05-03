@@ -11,7 +11,7 @@ const prod_svc = {
 		})
 			.then(resolve => resolve.json())
 			.then(successCall)
-			.catch(errorCall)
+			.catch(()=>console.log('cartAdd Error'))
 	},
 	//장바구니체크
 	cartCheck(cvo = {}, successCall, errorCall) {
@@ -22,7 +22,7 @@ const prod_svc = {
 		})
 			.then(resolve => resolve.json())
 			.then(successCall)
-			.catch(errorCall)
+			.catch(()=>console.log('cartCheck Error'))
 	},
 	//위시추가
 	wishAdd(wvo = {}, successCall, errorCall) {
@@ -33,7 +33,7 @@ const prod_svc = {
 		})
 			.then(resolve => resolve.json())
 			.then(successCall)
-			.catch(errorCall)
+			.catch(()=>console.log('wishAdd error'))
 	},
 	//위시삭제
 	wishDel(wvo = {}, successCall, errorCall) {
@@ -44,7 +44,7 @@ const prod_svc = {
 		})
 			.then(resolve => resolve.json())
 			.then(successCall)
-			.catch(errorCall)
+			.catch(()=>console.log('wishDel Error'))
 	},
 	//위시체크
 	wishCheck(wvo = {}, successCall, errorCall) {
@@ -57,81 +57,32 @@ const prod_svc = {
 			.then(successCall)
 			.catch(errorCall)
 	},
-	
-
-
 }
-function chkWish(prodNo, id) {
-	prod_svc.cartCheck(
-		{ 'pno': prodNo, 'id': id },
-		function(re) {
-			if (re.retCode == 'Success') {
-				console.log(pno, id);
-			}
-		},
-		function(re) {
-			console.log('error');
-		}
-	)
-}
+// function chkWish(prodNo, id) {
+// 	prod_svc.cartCheck(
+// 		{ 'pno': prodNo, 'id': id },
+// 		function(re) {
+// 			console.log(re.retCode);
+// 			if (re.retCode == 'true') {
+// 				console.log('1');
+// 			} else {
+// 				console.log('2');
+// 			}
+// 		},
+// 		function(re) {
+// 			console.log('error');
+// 		}
+// 	)
+// }
 
-
-//위시(하트)클릭시 
-$('#wish_heart').click(() => {
-	wishbtn(prodNo, id)
-})
-
-//위시버튼기능
-function wishbtn(prodNo, id){
-	prod_svc.wishCheck(
-		{ 'pno': prodNo, 'id': id },
-		function(re) {
-			if (id != 'null') {
-				if (re.retCode == 'true') {
-					prod_svc.wishDel(
-						{ 'pno': prodNo, 'id': id },
-						function(re){
-							if(re.retCode == 'Success'){
-								swal('찜목록에서 제거되었습니다.', '', 'success');
-							}
-						},
-						function(re){
-							console.log('error');
-						}
-					)
-				} else {
-					prod_svc.wishAdd(
-						{ 'pno': prodNo, 'id': id },
-						function(re){
-							if(re.retCode == 'Success'){
-								swal('찜목록에 추가되었습니다.', '', 'success');
-							}
-						},
-						function(){
-							console.log('error');
-						}
-					)
-				}
-			} else {
-				swal('로그인이 필요합니다', '', 'warning');
-			}
-		},
-		function(re){
-			console.log('error');
-		}
-	)
-}
 
 function addWish(prodNo, id) {
 	prod_svc.wishAdd(
 		{ 'pno': prodNo, 'id': id },
 		function(re) {
 			if (re.retCode == 'Success') {
-				swal('찜목록에 추가되었습니다.', '', 'success');
+				// swal('찜목록에 추가되었습니다.', '', 'success');
 			}
-		},
-		function(re) {
-			console.log('error');
 		}
 	)
 }
@@ -141,11 +92,8 @@ function delWish(prodNo, id) {
 		{ 'pno': prodNo, 'id': id },
 		function(re) {
 			if (re.retCode == 'Success') {
-				swal('찜목록에서 제거되었습니다.', '', 'success');
+				// swal('찜목록에서 제거되었습니다.', '', 'success');
 			}
-		},
-		function(re) {
-			console.log('error');
 		}
 	)
 }
@@ -157,7 +105,7 @@ function addCart(prodNo, id) {
 	prod_svc.cartCheck(
 		{ 'pno': prodNo, 'id': id },
 		function(re) {
-			if (id != 'null') {
+			if (id != '') {
 				if (re.retCode == 'true') {
 					swal('장바구니에 이미 있습니다.', '', 'warning');
 				} else {
@@ -167,18 +115,12 @@ function addCart(prodNo, id) {
 							if(re.retCode == 'Success'){
 								swal('장바구니에 추가되었습니다.', '', 'success');
 							}
-						},
-						function(){
-							
 						}
 					)
 				}
 			} else {
 				swal('로그인이 필요합니다', '', 'warning');
 			}
-		},
-		function(re) {		
-			console.log('error');
 		}
 	)
 }

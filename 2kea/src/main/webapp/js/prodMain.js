@@ -8,7 +8,7 @@ const svc = {
         fetch('prodListByCase.do?case=' + vo.case + '&num=' + vo.num)
             .then(resolve => resolve.json())
             .then(successCall)
-            .catch(errorCall);
+            .catch(()=>{console.log('prodList error')});
     }
 }
 
@@ -107,8 +107,6 @@ svc.prodList({ 'case': 'no', 'num': 24 },
         })
         prod_list_slider.trigger('refresh.owl.carousel');
         // $(".owl-carousel").owlCarousel();
-    }, () => {
-
     }
 );
 owl.viewCnt();
@@ -119,9 +117,6 @@ svc.prodList({ 'case': 'vw', 'num': 8},
             view_product_slider.trigger('add.owl.carousel', writeData2Temp(e, tempProd));
         })
         view_product_slider.trigger('refresh.owl.carousel');
-    },
-    () => {
-
     }
 );
 
@@ -136,10 +131,31 @@ function writeData2Temp(e ,tempProd){ // e에 데이터 넣어서 temp에 데이
     tempProd.find('h3').text(parseInt(prc).formatNumber() + '원');
     tempProd.find('img').attr('src', 'img/' + img);
     tempProd.click(()=>location.href="prodDetail.do?pno="+pno);
-    tempProd.find('.add_cart > span').click((ev)=>{
-        ev.stopPropagation();
+    tempProd.css('cursor', 'pointer');
+    tempProd.click(()=>location.href="prodDetail.do?pno="+pno);
+    // tempProd.find('.add_cart').css('cursor', 'pointer');
+    tempProd.find('.add_cart > span').click((e)=>{
+        e.stopPropagation();
         addCart(pno, id);
     });
+    if (e.wish > 0) {
+        tempProd.find('.add_cart > i').addClass('fa').addClass('fa-heart').addClass('active');
+    } else {
+        tempProd.find('.add_cart > i').addClass('ti-heart');
+    }
+    tempProd.find('.add_cart > i').click((e)=>{
+        e.stopPropagation();
+        $(e.target).toggleClass('active');
+        if ($(e.target).hasClass('fa')){
+            $(e.target).removeClass('fa').removeClass('fa-heart');
+            $(e.target).addClass('ti-heart');
+            delWish(pno, id);
+        } else {
+            $(e.target).removeClass('ti-heart');
+            $(e.target).addClass('fa').addClass('fa-heart');
+            addWish(pno, id);
+        }
+    })
     tempProd.css('display', 'block');
     return tempProd;
 }

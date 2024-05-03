@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style>
+    .add_cart > i.active{
+    animation:like 0.3s 1;
+    color:#ff3368 !important;
+    stroke:none;
+    }
+    @-webkit-keyframes like {
+    0%   { transform: scale(1); }
+    90%   { transform: scale(1.2); }
+    100% { transform: scale(1.1); }
+    }
+</style>
 <section class="cat_product_area section_padding">
     <div class="container">
         <div class="row">
@@ -51,9 +63,9 @@
                                 <!-- <div id="slider-range"></div> -->
                                 <input type="text" class="js-range-slider" value="" />
                                 <div class="" style="display:none;">
-                                    <%-- <div class="price_text">
+                                    <!-- <div class="price_text">
                                         <p>가격 :</p>
-                                    </div> --%>
+                                    </div> -->
                                     <div class="price_value d-flex justify-content-center" >
                                         <input type="text" class="js-input-from" id="amount" readonly />
                                         <span style="margin: 5px; font-size:10pt">~</span>
@@ -105,7 +117,7 @@
                             <div class="single_product_text">
                                 <h4>Quartz Belt Watch</h4>
                                 <h3>$150.00</h3>
-                                <a href="#" class="add_cart"><span>+ 장바구니 담기</span><i class="ti-heart"></i></a>
+                                <a class="add_cart"><span style="color:#ff3368">+ 장바구니 담기</span><i class=""></i></a>
                             </div>
                         </div>
                     </div>
@@ -114,7 +126,7 @@
                         <div class="pageination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center">
-                                    <%-- page section --%>
+                                    <!-- page section -->
                                 </ul>
                             </nav>
                         </div>

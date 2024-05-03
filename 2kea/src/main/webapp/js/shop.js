@@ -94,15 +94,30 @@ function writeData2Temp(e ,tempProd){ // e에 데이터 넣어서 temp에 데이
     tempProd.find('h4').text(nme);
     tempProd.find('h3').text(parseInt(prc).formatNumber() + '원');
     tempProd.find('img').attr('src', 'img/' + img);
+    tempProd.css('cursor', 'pointer');
     tempProd.click(()=>location.href="prodDetail.do?pno="+pno);
-    tempProd.find('.add_cart').css('zIndex', '20');
+    // tempProd.find('.add_cart').css('cursor', 'pointer');
     tempProd.find('.add_cart > span').click((e)=>{
         e.stopPropagation();
         addCart(pno, id);
     });
+    if (e.wish > 0) {
+        tempProd.find('.add_cart > i').addClass('fa').addClass('fa-heart').addClass('active');
+    } else {
+        tempProd.find('.add_cart > i').addClass('ti-heart');
+    }
     tempProd.find('.add_cart > i').click((e)=>{
         e.stopPropagation();
-        addWish(prodNo, id);
+        $(e.target).toggleClass('active');
+        if ($(e.target).hasClass('fa')){
+            $(e.target).removeClass('fa').removeClass('fa-heart');
+            $(e.target).addClass('ti-heart');
+            delWish(pno, id);
+        } else {
+            $(e.target).removeClass('ti-heart');
+            $(e.target).addClass('fa').addClass('fa-heart');
+            addWish(pno, id);
+        }
     })
     tempProd.css('display', 'block');
     return tempProd;

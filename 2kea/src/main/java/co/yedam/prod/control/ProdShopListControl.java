@@ -22,13 +22,14 @@ public class ProdShopListControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json; charset=utf-8");
 		
-		String sw = req.getParameter("sw") == null ? "1" : req.getParameter("sw");
+		String sw = req.getParameter("sw") == null ? "" : req.getParameter("sw");
 		String pg = req.getParameter("pg") == null ? "" : req.getParameter("pg");
 		String sc = req.getParameter("sc") == null ? "" : req.getParameter("sc");
 		String cg = req.getParameter("cg") == null ? "" : req.getParameter("cg");
 		String st = req.getParameter("st") == null ? "0" : req.getParameter("st");
 		String en = req.getParameter("en") == null? "9999999" : req.getParameter("en");
-
+		String id = (String) req.getSession().getAttribute("id");
+		
 		ProdService svc = new ProdServiceImpl();
 		
 		ShopVO vo = new ShopVO();
@@ -38,6 +39,7 @@ public class ProdShopListControl implements Control {
 		vo.setCategory(cg);
 		vo.setEndPrice(Integer.parseInt(en));
 		vo.setStartPrice(Integer.parseInt(st));
+		vo.setId(id);
 		
 		List<ProdVO> list = svc.showShopList(vo);
 		
