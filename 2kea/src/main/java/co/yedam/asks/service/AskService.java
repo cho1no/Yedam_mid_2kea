@@ -15,8 +15,8 @@ public interface AskService {
 	
 	//admin
 	public List<AskVO> adminAskList(AskPageVO askPage);
-	public List<AskVO> adminAskListRe();
-	public List<AskVO> adminAskListNoRe();
+	public List<AskVO> adminAskListRe(AskPageVO askPage);
+	public List<AskVO> adminAskListNoRe(AskPageVO askPage);
 	
 	//admin Ask Count
 	public int getAdminAskCount();

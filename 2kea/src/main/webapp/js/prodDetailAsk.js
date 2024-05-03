@@ -231,14 +231,14 @@ $('#ReplyModal').on('hidden.bs.modal', function() {
 /*==================================
    ask pageination 
 ====================================*/
-document.querySelectorAll('.page-link').forEach(item => {
+document.querySelectorAll('.pagination>a').forEach(item => {
 	item.addEventListener('click', e => {
 		e.preventDefault();
 		console.log(item.innerText);
 		apage = item.innerText;
-		asksvc.askList({ pno: pno, page: apage }, askListFnc)
-	})
-})
+		asksvc.askList({ pno: pno, page: apage }, askListFnc);
+	});
+});
 
 let pageTarget = document.querySelector('div.pagination');
 

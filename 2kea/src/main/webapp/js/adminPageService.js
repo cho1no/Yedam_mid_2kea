@@ -12,15 +12,15 @@ const admsvc = {
 			.catch(err => console.error(err));
 	},
 	//답변완료
-	adminAskListRe(successCall) {
-		fetch('adminAskListRe.do')
+	adminAskListRe(page = 1, successCall) {
+		fetch('adminAskListRe.do?page=' + page)
 			.then(result => result.json())
 			.then(successCall)
 			.catch(err => console.error(err));
 	},
 	//답변대기
-	adminAskListNoRe(successCall) {
-		fetch('adminAskListNoRe.do')
+	adminAskListNoRe(page = 1, successCall) {
+		fetch('adminAskListNoRe.do?page=' + page)
 			.then(result => result.json())
 			.then(successCall)
 			.catch(err => console.error(err));

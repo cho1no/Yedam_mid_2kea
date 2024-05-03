@@ -43,6 +43,13 @@
 	background-color: #ff3368;
 	color: #fff;
 }
+
+.blog_left_sidebar {
+    height: 626.22px; 
+}
+.table table-striped{
+	position: fixed;
+}
 </style>
 
 

@@ -6,4 +6,5 @@ import lombok.Data;
 public class AskPageVO {
 	public int pno;
 	private int apage;
+	private int lpage;
 }

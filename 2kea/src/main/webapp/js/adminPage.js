@@ -2,84 +2,98 @@
  * 
  */
 
-// 첫 화면 : 전체목록
-let apage = 1;
-admsvc.adminAskList(apage, adminAskListFnc);
 
-function adminAskListFnc(result) {
-	$('#tb_list').empty();
-	result.forEach(ask => {
-		$('#tb_list').append(makeRow(ask));
-	});
-	
-	admsvc.adminAskCount(createPageList);
+let apage = 1;
+
+/*====================
+		make AskList  
+======================*/
+function makeAskList() {
+	admsvc.adminAskList(apage,
+		function(result) {
+			$('#tb_list').empty();
+			result.forEach(ask => {
+				$('#tb_list').append(makeRow(ask));
+			});
+			//페이지 생성
+			admsvc.adminAskCount(createPageAskList);
+		});
+};
+
+function makeAskListNoRe() {
+	admsvc.adminAskListNoRe(apage,
+		function(result) {
+			$('#tb_list').empty();
+			result.forEach(ask => {
+				$('#tb_list').append(makeRow(ask));
+			});
+			admsvc.adminAskCountNoRe(createPageNoRe);
+		});
+};
+
+function makeAskListRe() {
+	admsvc.adminAskListRe(apage,
+		function(result) {
+			$('#tb_list').empty();
+			result.forEach(ask => {
+				$('#tb_list').append(makeRow(ask));
+			});
+			admsvc.adminAskCountRe(createPageRe);
+		});
 };
 
 /*====================
- 	  Ask 카테고리
+			Ask Category
 ======================*/
 // 전체보기
-$('#askCategory p:eq(0)').on('click', () => {
-	admsvc.adminAskList(apage, function(result) {
-		$('#tb_list').empty();
-		result.forEach(ask => {
-			$('#tb_list').append(makeRow(ask));
-		});
-		
-		admsvc.adminAskCount(createPageList);
-	});
+$('#askCategory p:eq(0)').on('click',	() => {
+    apage = 1; //페이지 위치 초기화
+    makeAskList();
 });
 
 // 답변대기
-$('#askCategory p:eq(1)').on('click', () => {
-	admsvc.adminAskListNoRe(function(result) {
-		$('#tb_list').empty();
-		result.forEach(ask => {
-			$('#tb_list').append(makeRow(ask));
-		});
-	});
-});
+$('#askCategory p:eq(1)').on('click',	() => {
+    apage = 1;
+    makeAskListNoRe();
+});	
 
 // 답변완료
-$('#askCategory p:eq(2)').on('click', () => {
-	admsvc.adminAskListRe(function(result) {
-		$('#tb_list').empty();
-		result.forEach(ask => {
-			$('#tb_list').append(makeRow(ask));
-		});
-	});
-});
+$('#askCategory p:eq(2)').on('click',	() => {
+    apage = 1;
+    makeAskListRe();
+});	
 
 
 /*====================
- 	  Ask Count
+			Ask Count
 ======================*/
-admsvc.adminAskCount(function(count){
-	$('#askCategory p span:eq(0)').text('('+count.totalCount+')');
+admsvc.adminAskCount(function(count) {
+	$('#askCategory p span:eq(0)').text('(' + count.totalCount + ')');
 });
 
-admsvc.adminAskCountNoRe(function(count){
-	$('#askCategory p span:eq(1)').text('('+count.totalCount+')');
+admsvc.adminAskCountNoRe(function(count) {
+	$('#askCategory p span:eq(1)').text('(' + count.totalCount + ')');
 });
 
-admsvc.adminAskCountRe(function(count){
-	$('#askCategory p span:eq(2)').text('('+count.totalCount+')');
+admsvc.adminAskCountRe(function(count) {
+	$('#askCategory p span:eq(2)').text('(' + count.totalCount + ')');
 });
 
-//========================================================
-document.querySelectorAll('.page-link').forEach(item => {
+/*====================
+			pagination
+======================*/
+document.querySelectorAll('.pagination>a').forEach(item => {
 	item.addEventListener('click', e => {
 		e.preventDefault();
 		console.log(item.innerText);
-		apage = item.innerText;
-		admsvc.adminAskList({page: apage}, adminAskListFnc);
+		apage = parseInt(item.innerText, 10);
+		makeAskList();
 	})
 })
 
-
 let pageTarget = document.querySelector('div.pagination');
 
-function createPageList(result) {
+function createPageListCommon(result, makeFunction) {
 	pageTarget.innerHTML = '';
 	let totalCnt = result.totalCount;
 	let startPage, endPage;
@@ -92,7 +106,6 @@ function createPageList(result) {
 	next = endPage < realEnd ? true : false;
 	prev = startPage > 1;
 
-	//a태그 생성.
 	if (prev) {
 		let aTag = document.createElement('a');
 		aTag.innerHTML = "&laquo;";
@@ -117,14 +130,30 @@ function createPageList(result) {
 		aTag.setAttribute('data-page', (endPage + 1));
 		pageTarget.appendChild(aTag);
 	}
+	
 	//pagination 이동								
 	document.querySelectorAll('.pagination>a').forEach(item => {
 		item.addEventListener('click', e => {
 			e.preventDefault();
 			apage = item.dataset.page;
-			admsvc.adminAskList(apage, adminAskListFnc);
+			makeFunction();
 		})
 	})
-}//end of createPageList;
+};
 
+// totalCount + makeFunction => 페이지 생성
+function createPageAskList(result) {
+	createPageListCommon(result, makeAskList);
+};
 
+function createPageNoRe(result) {
+	createPageListCommon(result, makeAskListNoRe);
+};
+
+function createPageRe(result) {
+	createPageListCommon(result, makeAskListRe);
+};
+//===================================================
+
+//첫화면
+makeAskList();
