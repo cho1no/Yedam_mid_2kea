@@ -15,16 +15,24 @@
 		values (#{askNo}, #{id}, #{replyContent}, #{replyDate})
 	</insert>
 	
-	<update id="updateReply" parameterType="co.yedam.asks.vo.ReplyVO">
-		update reply
-		set reply_content = #{replyContent}
-		where ask_no = #{askNo}
-	</update>
-
 	<delete id="deleteReply" parameterType="int">
 		delete from reply
 		where ask_no = #{ano}
 	</delete>
 
+	<!-- 문의관리페이지  -->
+	<select id="selectReplyProd" parameterType="int" resultType="ReplyProdVO" >
+	  	SELECT p.*, i.image1
+		FROM product p
+		JOIN prdimage i
+		ON p.prod_no = i.prod_no
+		WHERE i.role = 'thumb' and p.prod_no = #{pno}
+  	</select>
+  	
+	<select id="selectReplyAsk" parameterType="int" resultType="AskVO" >
+		select *
+	    from ask
+	    where ask_no = #{ano}
+	</select>
 
 </mapper>
