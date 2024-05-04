@@ -7,7 +7,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
 			integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
 			crossorigin="anonymous"></script>
-
+		
 		<style>
 			.star_rating {
 				margin: 5px 0px 15px 10px;
@@ -255,6 +255,62 @@
 				text-align: center;
 				font-size: 16px;
 			}
+			
+
+
+			.card-wrapper{
+				max-width: 1100px;
+				margin: 0 auto;
+			}
+			img#prodImg{
+				width: 100%;
+				display: block;
+			}
+			.img-display{
+				width: 80%;
+				aspect-ratio: 1/1;
+				overflow: hidden;
+			}
+			.img-showcase{
+				display: flex;
+				width: 100%;
+				transition: all 0.5s ease;
+				    flex-direction: column;
+			}
+			.img-showcase img{
+				min-width: 100%;
+			}
+			.img-select{
+				display: flex;
+				flex-direction: column;
+				width: 20%;
+			}
+			.img-item{
+				margin: 0.2rem;
+			}
+			
+			.img-item:hover{
+				opacity: 0.8;
+			}
+
+			@media screen and (min-width: 992px){
+				.card{
+					display: grid;
+					grid-template-columns: repeat(2, 1fr);
+					grid-gap: 1.5rem;
+				}
+				.card-wrapper{
+					height: 100vh;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+				.product-imgs{
+					display: flex;
+					flex-direction: row;
+					justify-content: center;
+				}
+			}
 		</style>
 		<input type="hidden">
 
@@ -263,42 +319,55 @@
 			<div class="container">
 				<div class="row s_product_inner justify-content-between">
 					<div class="col-lg-7 col-xl-7">
-						<div class="product_slider_img">
-							<div id="vertical">
-								<div data-thumb="img/product/single-product/product_1.png">
-									<img src="img/product/single-product/product_1.png" />
+						<!-- card left -->
+						<div class="product-imgs">
+							<div class="img-display">
+								<div class="img-showcase">
+								<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg" alt="">
+								<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg" alt="">
+								<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg" alt="">
+								<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg" alt="">
 								</div>
-								<div data-thumb="img/product/single-product/product_1.png">
-									<img src="img/product/single-product/product_1.png" />
+							</div>
+							<div class="img-select">
+								<div class="img-item">
+								<a href="#" data-id="1">
+									<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg" alt="">
+								</a>
 								</div>
-								<div data-thumb="img/product/single-product/product_1.png">
-									<img src="img/product/single-product/product_1.png" />
+								<div class="img-item">
+								<a href="#" data-id="2">
+									<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg" alt="">
+								</a>
 								</div>
-								<div data-thumb="img/product/single-product/product_1.png">
-									<img src="img/product/single-product/product_1.png" />
+								<div class="img-item">
+								<a href="#" data-id="3">
+									<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg" alt="">
+								</a>
+								</div>
+								<div class="img-item">
+								<a href="#" data-id="4">
+									<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg" alt="">
+								</a>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-5 col-xl-4">
 						<div class="s_product_text">
-							<h3>Faded SkyBlu Denim Jeans</h3>
-							<h2>$149.99</h2>
+							<h3>제목</h3>
+							<h2>가격</h2>
 							<ul class="list">
-								<li><a class="active" href="#"> <span>Category</span> :
-										Household
-									</a></li>
+								<li><a class="active" href="#">카테고리</a></li>
 							</ul>
-							<p>First replenish living. Creepeth image image. Creeping
-								can't, won't called. Two fruitful let days signs sea together all
-								land fly subdue</p>
+							<p>설명</p>
 							<div class="card_area d-flex justify-content-between align-items-center">
 								<div class="product_count">
 									<span class="inumber-decrement"> <i class="ti-minus"></i></span>
 									<input class="input-number" type="text" value="1" min="0" max="10"> <span
 										class="number-increment"> <i class="ti-plus"></i></span>
 								</div>
-								<a href="#" class="btn_3">add to cart</a> <a href="#" class="like_us"> <i
+								<a href="#" class="btn_3">장바구니 추가</a> <a href="#" class="like_us"> <i
 										class="ti-heart"></i>
 								</a>
 							</div>
@@ -766,17 +835,18 @@
 		<script src="template/js/jquery.magnific-popup.js"></script>
 		<script src="template/js/owl.carousel.min.js"></script>
 		<script src="template/js/jquery.nice-select.min.js"></script>
-		<!-- swiper js -->
-		<script src="template/js/lightslider.min.js"></script>
+		
 
 		<script>
 			const pno = "${pvo.prodNo}";
 			const pname = "${pvo.name}";
 			const detail = "${pvo.detail}";
+			const description = "${pvo.description}";
 			const price = "${pvo.price}";
 			const category = "${pvo.category}";
 			const viewCount = "${pvo.viewCount}";
-			const image1 = "${pvo.image1}";
+
+			const imageList = "${imgs}";
 		</script>
 
 		<%-- CWH js --%>

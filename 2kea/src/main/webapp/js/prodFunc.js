@@ -9,9 +9,9 @@ const prod_svc = {
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: 'pno=' + cvo.pno + '&id=' + cvo.id
 		})
-			.then(resolve => resolve.json())
-			.then(successCall)
-			.catch(()=>console.log('cartAdd Error'))
+		.then(resolve => resolve.json())
+		.then(successCall)
+		.catch(()=>console.log('cartAdd Error'))
 	},
 	//장바구니체크
 	cartCheck(cvo = {}, successCall, errorCall) {
@@ -20,9 +20,9 @@ const prod_svc = {
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: 'pno=' + cvo.pno + '&id=' + cvo.id
 		})
-			.then(resolve => resolve.json())
-			.then(successCall)
-			.catch(()=>console.log('cartCheck Error'))
+		.then(resolve => resolve.json())
+		.then(successCall)
+		.catch(()=>console.log('cartCheck Error'))
 	},
 	//위시추가
 	wishAdd(wvo = {}, successCall, errorCall) {
@@ -31,9 +31,9 @@ const prod_svc = {
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: 'pno=' + wvo.pno + '&id=' + wvo.id
 		})
-			.then(resolve => resolve.json())
-			.then(successCall)
-			.catch(()=>console.log('wishAdd error'))
+		.then(resolve => resolve.json())
+		.then(successCall)
+		.catch(()=>console.log('wishAdd error'))
 	},
 	//위시삭제
 	wishDel(wvo = {}, successCall, errorCall) {
@@ -42,21 +42,21 @@ const prod_svc = {
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: 'pno=' + wvo.pno + '&id=' + wvo.id
 		})
-			.then(resolve => resolve.json())
-			.then(successCall)
-			.catch(()=>console.log('wishDel Error'))
+		.then(resolve => resolve.json())
+		.then(successCall)
+		.catch(()=>console.log('wishDel Error'))
 	},
 	//위시체크
-	wishCheck(wvo = {}, successCall, errorCall) {
-		fetch('checkingWish.do', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			body: 'pno=' + cvo.pno + '&id=' + cvo.id
-		})
-			.then(resolve => resolve.json())
-			.then(successCall)
-			.catch(errorCall)
-	},
+	// wishCheck(wvo = {}, successCall, errorCall) {
+	// 	fetch('checkingWish.do', {
+	// 		method: 'post',
+	// 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+	// 		body: 'pno=' + cvo.pno + '&id=' + cvo.id
+	// 	})
+	// 		.then(resolve => resolve.json())
+	// 		.then(successCall)
+	// 		.catch(errorCall)
+	// },
 }
 // function chkWish(prodNo, id) {
 // 	prod_svc.cartCheck(
@@ -77,25 +77,25 @@ const prod_svc = {
 
 
 function addWish(prodNo, id) {
-	prod_svc.wishAdd(
-		{ 'pno': prodNo, 'id': id },
-		function(re) {
-			if (re.retCode == 'Success') {
-				// swal('찜목록에 추가되었습니다.', '', 'success');
-			}
-		}
-	)
+	if (id != '') {
+		prod_svc.wishAdd(
+			{ 'pno': prodNo, 'id': id },
+			function(re) {}
+		)
+	} else {
+		needSignIn();
+	}
 }
 
 function delWish(prodNo, id) {
-	prod_svc.wishDel(
-		{ 'pno': prodNo, 'id': id },
-		function(re) {
-			if (re.retCode == 'Success') {
-				// swal('찜목록에서 제거되었습니다.', '', 'success');
-			}
-		}
-	)
+	if (id != ''){
+		prod_svc.wishDel(
+			{ 'pno': prodNo, 'id': id },
+			function(re) {}
+		)
+	} else {
+		needSignIn();
+	}
 }
 
 //find('.single_product_item .single_product_text a').css('color', '#ff3368')
@@ -119,9 +119,19 @@ function addCart(prodNo, id) {
 					)
 				}
 			} else {
-				swal('로그인이 필요합니다', '', 'warning');
+				needSignIn();
 			}
 		}
 	)
 }
 
+function needSignIn(){
+	Swal.fire({
+        title: '로그인이 필요합니다.',
+        icon: 'warning',
+        confirmButtonText: '확인',
+        preConfirm: ()=>{
+          location.href = "signIn.do";
+        }
+      })
+}
