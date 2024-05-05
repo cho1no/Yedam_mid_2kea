@@ -24,6 +24,7 @@ public class ProdListByCaseControl implements Control {
 		resp.setContentType("text/json; charset=utf-8");
 		String showCase = req.getParameter("case");
 		String showNum = req.getParameter("num");
+		String id = (String) req.getSession().getAttribute("id");
 		System.out.println(showCase);
 		System.out.println(showNum);
 		ShopVO vo = new ShopVO();
@@ -32,6 +33,7 @@ public class ProdListByCaseControl implements Control {
 		vo.setStartPrice(-1);
 		vo.setShowCase(showCase);
 		vo.setShowNum(Integer.parseInt(showNum));
+		vo.setId(id);
 		ProdService svc = new ProdServiceImpl();
 		List<ProdVO> list = svc.showProdListByCase(vo);
 		

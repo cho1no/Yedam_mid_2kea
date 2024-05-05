@@ -2,11 +2,11 @@ package co.yedam.common;
 
 import java.util.Map;
 
-import co.yedam.cart.control.WishList;
-import co.yedam.cart.control.WishListControl;
 import co.yedam.wish.control.AddWish;
 import co.yedam.wish.control.CheckingWish;
 import co.yedam.wish.control.RemoveWish;
+import co.yedam.wish.control.WishList;
+import co.yedam.wish.control.WishListControl;
 
 public class FcWish {
 	static void init(Map<String, Control> map) {

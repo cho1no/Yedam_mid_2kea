@@ -41,7 +41,15 @@
     <script src="template/js/jquery.nice-select.min.js"></script>
 
     <script src="template/js/owl.carousel.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+        body {
+            font-family: "Noto Sans KR", sans-serif !important;
+        }
+    </style>
 </head>
 
 <body>

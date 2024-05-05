@@ -30,13 +30,13 @@ public class FindPasswordControl implements Control {
 		LoginService ls = new LoginServiceImpl();
 		MemberVO mvo = ls.findPw(vo);
 		
+		Gson gson = new GsonBuilder().create();
 
 		if (mvo != null) {
-			Gson gson = new GsonBuilder().create();
 			String json = gson.toJson(mvo);
 			resp.getWriter().print(json);
 		} else {
-			req.setAttribute("error", "이름과 번호를 확인하세요."); // 첫번째는 속성이름 두번째는 속성값.
+			resp.getWriter().print("{\"retCode\": \"False\"}");
 		}
 	}
 }

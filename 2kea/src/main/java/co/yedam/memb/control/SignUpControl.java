@@ -36,7 +36,6 @@ public class SignUpControl implements Control {
 		} else {
 			// "{\"retCode\": \"success\"}")
 			resp.getWriter().print("{\"retCode\": \"Fail\"}");
-			resp.sendRedirect("signIn.do");
 
 		}
 	}

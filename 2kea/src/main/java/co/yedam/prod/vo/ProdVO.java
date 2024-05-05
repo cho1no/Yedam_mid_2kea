@@ -12,4 +12,5 @@ public class ProdVO {
 	private String category;
 	private int viewCount;
 	private String image1;
+	private int wish; // 있으면 1이상 없으면 0
 }

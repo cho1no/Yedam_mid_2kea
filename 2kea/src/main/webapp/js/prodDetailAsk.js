@@ -69,14 +69,14 @@ function askListFnc(resp) {
 		})
 			.then(result => result.json())
 			.then(result => {
-				console.log(result);
 				if (result.retCode == 'Success') {
 					alert('정상적으로 삭제되었습니다.');
 					$(this).closest('#asklist').remove();
 
 				}
 			})
-			.catch(err => console.error(err));
+			.catch(err => console.error(err, 
+			alert('답변이 달린 문의글은 삭제하실 수 없습니다.')));
 	})//end of delAskBtn click
 
 	/*===========================
@@ -179,7 +179,6 @@ $('#addRelpyBtn').on('click', function() {
 	})
 		.then(result => result.json())
 		.then(result => {
-			console.log(result);
 			if (result.retCode == 'Success') {
 				alert('정상적으로 등록되었습니다.');
 				asksvc.askList({ pno: pno, page: apage }, askListFnc);
@@ -211,7 +210,6 @@ $('#addAskBtn').on('click', function() {
 	})
 		.then(result => result.json())
 		.then(result => {
-			console.log(result);
 			if (result.retCode == 'Success') {
 				alert('정상적으로 등록되었습니다.');
 				asksvc.askList({ pno: pno, page: apage }, askListFnc);
@@ -234,7 +232,6 @@ $('#ReplyModal').on('hidden.bs.modal', function() {
 document.querySelectorAll('.pagination>a').forEach(item => {
 	item.addEventListener('click', e => {
 		e.preventDefault();
-		console.log(item.innerText);
 		apage = item.innerText;
 		asksvc.askList({ pno: pno, page: apage }, askListFnc);
 	});

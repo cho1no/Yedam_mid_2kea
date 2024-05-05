@@ -14,11 +14,11 @@
           <table class="table">
             <thead>
               <tr>
-              	<th scope="col">check</th>
-                <th scope="col">Product</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Total</th>
+              	<th scope="col">✓</th>
+                <th scope="col">상품</th>
+                <th scope="col">가격</th>
+                <th scope="col">수량</th>
+                <th scope="col">합계</th>
               </tr>
             </thead>
             <tbody>          
@@ -77,8 +77,9 @@
               <tr>
                 <td></td>
                 <td></td>
+                <td></td>
                 <td>
-                  <h5>Subtotal</h5>
+                  <h5>총 합계</h5>
                 </td>
                 <td class="subtotal">
                   <h5></h5>

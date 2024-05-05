@@ -32,7 +32,7 @@ public class FcMemb {
 		
 		map.put("/signUp.do", new SignUp()); // 회원 가입 페이지
 		map.put("/signUpControl.do", new SignUpControl()); // 회원 가입 기능 수행
-		map.put("/SignUpCheckControl.do", new SignUpCheckControl()); // 회원 가입 기능 수행
+		map.put("/signUpCheckControl.do", new SignUpCheckControl()); // 아이디 중복 체크 기능 수행
 		
 
 		map.put("/userInfo.do", new UserInfo()); // 마이 페이지

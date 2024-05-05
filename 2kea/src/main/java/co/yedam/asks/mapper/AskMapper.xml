@@ -7,14 +7,17 @@
 
 	<select id="selectAskList" parameterType="co.yedam.asks.vo.AskPageVO" resultType="co.yedam.asks.vo.AskVO">
 		select *
-		from(select rownum rn, a.*
-  		  	 from ask a
-   			 where prod_no = #{pno}
-   			 order by ask_no desc) a
-   	<![CDATA[
-		where rn <=(#{apage} * 5) 
-   	]]>
-		  and rn >(#{apage} -1) * 5
+		from(
+			select rownum rn, a.*
+		    from(
+		    	 select a.*
+		         from ask a
+		         where prod_no = #{pno}
+		         order by ask_no desc) a
+		<![CDATA[         
+		)where rn <=(#{apage} * 5) 
+		]]>
+		and rn >(#{apage} -1) * 5
 	</select>
 
 	<insert id="insertAsk" parameterType="co.yedam.asks.vo.AskVO">
@@ -38,43 +41,46 @@
 	
 	<!-- Admin -->
 	<select id="selectAdminAskList" parameterType="int" resultType="co.yedam.asks.vo.AskVO">
-		select a.*
-		from(
-					SELECT rownum rn, a.*
-			    FROM ask a  
-			    ORDER BY ask_no desc) a
-		<![CDATA[   
-		where rn <=(#{apage} * 10)
-		]]> 
+		select *
+		from(select  rownum rn, a.*
+		    from(
+		         SELECT a.*
+		         FROM ask a  
+		         ORDER BY ask_no desc) a
+		<![CDATA[
+		)where rn <=(#{apage} * 10)
+		]]>
 		and rn >(#{apage} -1) * 10
 	</select>
 
 	<select id="noReplyAskList" parameterType="int" resultType="co.yedam.asks.vo.AskVO">
-		select a.*
-		from(
-		    SELECT rownum rn, a.*
-		    FROM ask a
-		    LEFT OUTER JOIN reply r
-		    ON a.ask_no = r.ask_no
-		    WHERE r.ask_no is null
-		    ORDER BY a.ask_no desc) a
-		<![CDATA[  
-		where rn <=(#{apage} * 10)
-		]]>
-		and rn >(#{apage} -1) * 10
+		select *
+		from(select rownum rn, a.*
+		    from(
+		        SELECT  a.*
+		        FROM ask a
+		        LEFT OUTER JOIN reply r
+		        ON a.ask_no = r.ask_no
+		        WHERE r.ask_no is null
+		        ORDER BY a.ask_no desc) a
+		<![CDATA[
+		)where rn <=(#{apage} * 10)
+		]]> 
+		and rn >(#{apage} - 1) * 10
 	</select>
 	
 	<select id="replyAskList" resultType="co.yedam.asks.vo.AskVO">
-		select a.*
-		from(
-			    SELECT rownum rn, a.*
-			    from ask a
-					inner join reply r
-					on a.ask_no = r.ask_no
-					order by a.ask_no desc) a
-		<![CDATA[ 
-		where rn <=(#{apage} * 10)
-		]]>
+		select *
+		from(select rownum rn, a.*
+		    from(
+		         SELECT a.*
+		         from ask a
+		         inner join reply r
+		         on a.ask_no = r.ask_no
+		         order by a.ask_no desc) a
+		<![CDATA[         
+		)where rn <=(#{apage} * 10)
+		]]> 
 		and rn >(#{apage} -1) * 10
 	</select>
 	

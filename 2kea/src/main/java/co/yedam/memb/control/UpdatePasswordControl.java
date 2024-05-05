@@ -28,15 +28,15 @@ public class UpdatePasswordControl implements Control {
 		LoginService ls = new LoginServiceImpl();
 		
 
+		Gson gson = new GsonBuilder().create();
 		if (ls.modifyPw(vo)) { 
-			Gson gson = new GsonBuilder().create();
 			String json = gson.toJson(vo);
 			// { "retCode" : "Success" }
 			resp.getWriter().print(json);
 //			resp.sendRedirect("prodMain.do");
 
 		} else {
-			req.setAttribute("error", "비밀번호 업데이트에 실패하였습니다."); 
+			resp.getWriter().print("{\"retCode\": \"False\"}");
 		}
 
 	}

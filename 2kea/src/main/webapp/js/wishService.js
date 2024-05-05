@@ -1,7 +1,8 @@
 /**
  * wishService.js
  */
-	 
+
+
 const svc = {
 	//위시목록
 	wishList(successCall, errorCall) {
@@ -22,10 +23,11 @@ var best_wish_product_slider  = $('.wish .best_wish_product_slider');
       loop: false,
       dots: false,
       autoplay: false,
+      mouseDrag: false,
       autoplayHoverPause: true,
       autoplayTimeout: 5000,
       nav: true,
-      navText: ["next", "previous"],
+      navText: ["prev", "next"],
       responsive: {
         0: {
           margin: 15,
@@ -52,9 +54,7 @@ var best_wish_product_slider  = $('.wish .best_wish_product_slider');
 
 
 svc.wishList(function(resolve) {
-	
 	resolve.forEach(function(e) {
-		   
 		let prodNo = e.prodNo;
 		let img = e.image1;
 		let name = e.name;
@@ -64,20 +64,38 @@ svc.wishList(function(resolve) {
 		data.find('img').attr('src', "img/"+img);
 		data.find('h4').text(name);
 		data.find('h3').text(parseInt(price).formatNumber()+'원');
-		data.css('display', 'inline-block');
-		data.find('.add_cart > span').click(() => {
-			addCart(prodNo, id);
-		})
-		data.find('#wish_heart').click(() =>{
-			addWish(prodNo, id);
-		})
+    data.css('cursor', 'pointer');
+    data.click(()=>location.href="prodDetail.do?pno="+prodNo);
+		// data.css('display', 'inline-block');
+    data.find('.add_cart > span').click((e)=>{
+      e.stopPropagation();
+      addCart(prodNo, id);
+    });
+      data.find('.add_cart > i').addClass('fa').addClass('fa-heart').addClass('active');
+
+    data.find('.add_cart > i').click((e)=>{
+      e.stopPropagation();
+      Swal.fire({
+        title: '찜목록에서 삭제되었습니다!',
+        icon: 'success',
+        confirmButtonText: '확인',
+        preConfirm: ()=>{
+          $(e.target).toggleClass('active');
+          if ($(e.target).hasClass('fa')){
+              $(e.target).removeClass('fa').removeClass('fa-heart');
+              $(e.target).addClass('ti-heart');
+              console.log(best_wish_product_slider.data('owl.carousel').relative($(e.target.parentNode.parentNode.parentNode).index()));
+              // $(e.target.parentNode.parentNode.parentNode).remove();
+              best_wish_product_slider.trigger('remove.owl.carousel', data).trigger('refresh.owl.carousel');
+              delWish(prodNo, id);
+          }
+        }
+      })
+    })
+    console.log(prodNo);
 		best_wish_product_slider.trigger('add.owl.carousel', data);
 	})
-	
 	best_wish_product_slider.trigger('refresh.owl.carousel');
-
-	
-		
 }, function(resolve) {
 	console.log('error');
 })
