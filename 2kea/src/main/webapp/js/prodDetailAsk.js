@@ -35,7 +35,6 @@ function askListFnc(resp) {
 	//asklist 초기화 - pageination 
 	$('#asklist[style="display: block;"]').remove();
 	$('.noAsk').remove();
-	//$('.comment_list').children().gt(1).remove();
 
 	// 문의가 없는 경우
 	if (result.length == 0) {
@@ -51,7 +50,7 @@ function askListFnc(resp) {
 	} //문의가 있는 경우
 	else {
 		result.forEach(ask => {
-			let temp = makeReply(ask);
+			let temp = makeAsk(ask);
 			temp.appendTo('.comment_list');
 		});
 	}
@@ -70,9 +69,8 @@ function askListFnc(resp) {
 			.then(result => result.json())
 			.then(result => {
 				if (result.retCode == 'Success') {
-					alert('정상적으로 삭제되었습니다.');
-					$(this).closest('#asklist').remove();
-
+					alert('문의글이 삭제되었습니다.');
+					asksvc.askList({ pno: pno, page: apage }, askListFnc);
 				}
 			})
 			.catch(err => console.error(err, 
@@ -82,7 +80,7 @@ function askListFnc(resp) {
 	/*===========================
 		문의가 있는 경우 makeReply
 	============================*/
-	function makeReply(ask) {
+	function makeAsk(ask) {
 		let temp = $('#asklist').clone();
 		temp.css('display', 'block');
 		temp.attr('data-no', ask.askNo);
@@ -94,6 +92,9 @@ function askListFnc(resp) {
 			"padding-top": 0,
 			"margin-bottom": 2
 		});
+		if (auth == '' || auth != 'ADMIN') {
+					temp.find('.reply_btn').remove();
+				}
 		if (ask.id != id) {
 			temp.find('.delAskBtn').remove();
 		}
@@ -121,9 +122,6 @@ function askListFnc(resp) {
 						rtemp.find('.delReplyBtn').remove();
 					}
 				}
-				if (auth == '' || auth != 'ADMIN') {
-					$(this).find('.reply_btn').remove();
-				}
 			});
 		});
 
@@ -141,8 +139,8 @@ function askListFnc(resp) {
 				.then(result => result.json())
 				.then(result => {
 					if (result.retCode == 'Success') {
-						alert('정상적으로 삭제되었습니다.');
-						$(this).closest('#replylist').remove();
+						alert('답변이 삭제되었습니다.');
+						asksvc.askList({ pno: pno, page: apage }, askListFnc);
 					}
 				})
 				.catch(err => console.error(err));
@@ -161,7 +159,6 @@ function askListFnc(resp) {
 	   페이징 리스트 불러오기 - pageination
 	====================================*/
 	createPageList(resp);
-	//asksvc.pagingList(pno, createPageList)
 };//end of askListFnc
 
 
@@ -171,61 +168,54 @@ function askListFnc(resp) {
 $('#addRelpyBtn').on('click', function() {
 	let replyContent = $('#reply_message').val();
 	let askDataNo = $('#askDataNo').val();
-	fetch('addReply.do', {
-		method: 'post',
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: 'pno=' + pno + '&id=' + id +
-			'&replyContent=' + replyContent + '&askNo=' + askDataNo
-	})
-		.then(result => result.json())
-		.then(result => {
-			if (result.retCode == 'Success') {
-				alert('정상적으로 등록되었습니다.');
-				asksvc.askList({ pno: pno, page: apage }, askListFnc);
-			}
+	
+	if(replyContent.trim() == ''){
+		noReplyContent();
+	} else{
+		fetch('addReply.do', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: 'pno=' + pno + '&id=' + id +
+				'&replyContent=' + replyContent + '&askNo=' + askDataNo
 		})
-		.catch(err => console.error(err));
+			.then(result => result.json())
+			.then(result => {
+				if (result.retCode == 'Success') {
+					alert('답변이 등록되었습니다.');
+					asksvc.askList({ pno: pno, page: apage }, askListFnc);
+				}
+			})
+			.catch(err => console.error(err));
+	}
+	
 });//end of #addRelpyBtn click
 
-const myModal = new bootstrap.Modal(document.getElementById('AskModal'));
-$('.btn_ask').on('click', function() {
-	if (id == '') {
-		alert('로그인 하세요.');
-	} else {
-		const modalToggle = document.getElementById('AskModal');
-		myModal.show(modalToggle)
-	}
-});
 /*============================================
    addAskBtn 클릭 => 문의 추가 => 리스트 다시 보여줌
 ==============================================*/
 $('#addAskBtn').on('click', function() {
 	let askContent = $('#ask_message').val();
 	let askCategory = $('input[name=inlineRadioOptions]:checked').val();
-	fetch('addAsk.do', {
-		method: 'post',
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: 'pno=' + pno + '&id=' + id +
-			'&askContent=' + askContent + '&askCategory=' + askCategory
-	})
-		.then(result => result.json())
-		.then(result => {
-			if (result.retCode == 'Success') {
-				alert('정상적으로 등록되었습니다.');
-				asksvc.askList({ pno: pno, page: apage }, askListFnc);
-			}
-			$('#ask_message').val('');
+	if(askContent.trim() == ''){
+		noAskContent();
+	} else{
+		fetch('addAsk.do', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: 'pno=' + pno + '&id=' + id +
+				'&askContent=' + askContent + '&askCategory=' + askCategory
 		})
-		.catch(err => console.error(err));
+			.then(result => result.json())
+			.then(result => {
+				if (result.retCode == 'Success') {
+					alert('문의글이 등록되었습니다.');
+					asksvc.askList({ pno: pno, page: apage }, askListFnc);
+				}
+			})
+			.catch(err => console.error(err));
+	}
 });
 
-// 모달을 닫을 때 textarea의 내용을 비워줌.
-$('#AskModal').on('hidden.bs.modal', function() {
-	$('#ask_message').val('');
-});
-$('#ReplyModal').on('hidden.bs.modal', function() {
-	$('#reply_message').val('');
-});
 /*==================================
    ask pageination 
 ====================================*/
@@ -286,3 +276,50 @@ function createPageList(result) {
 		})
 	})
 }//end of createPageList;
+
+//===============================================================
+const myModal = new bootstrap.Modal(document.getElementById('AskModal'));
+$('.btn_ask').on('click', function() {
+	if (id == '') {
+		goSignIn();
+	} else {
+		const modalToggle = document.getElementById('AskModal');
+		myModal.show(modalToggle)
+	}
+});
+
+function goSignIn(){
+	Swal.fire({
+        title: '로그인이 필요합니다.',
+        icon: 'warning',
+        confirmButtonText: '확인',
+        preConfirm: ()=>{
+          location.href = "signIn.do";
+        }
+      })
+};
+
+function noAskContent(){
+	Swal.fire({
+        title: '내용을 적어주세요.',
+        icon: 'warning',
+        confirmButtonText: '확인',
+      })
+};
+
+function noReplyContent(){
+	Swal.fire({
+        title: '내용을 적어주세요.',
+        icon: 'warning',
+        confirmButtonText: '확인',
+      })
+};
+
+
+// 모달을 닫을 때 textarea의 내용을 비워줌.
+$('#AskModal').on('hidden.bs.modal', function() {
+	$('#ask_message').val('');
+});
+$('#ReplyModal').on('hidden.bs.modal', function() {
+	$('#reply_message').val('');
+});

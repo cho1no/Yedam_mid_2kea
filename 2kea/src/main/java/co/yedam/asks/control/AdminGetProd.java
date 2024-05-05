@@ -11,24 +11,23 @@ import com.google.gson.GsonBuilder;
 
 import co.yedam.asks.service.ReplyService;
 import co.yedam.asks.service.ReplyServiceImpl;
-import co.yedam.asks.vo.AskVO;
+import co.yedam.asks.vo.ReplyProdVO;
 import co.yedam.common.Control;
 
-public class AdminReplyAsk implements Control {
+public class AdminGetProd implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json;charset=utf-8");
-		String ano = req.getParameter("ano");
+		String pno = req.getParameter("pno");
 		
 		ReplyService svc = new ReplyServiceImpl();
-		AskVO avo = svc.replyAsk(Integer.parseInt(ano));
+		ReplyProdVO rvo = svc.adminGetProd(Integer.parseInt(pno));
 		
 		Gson gson = new GsonBuilder().create();
-		String json = gson.toJson(avo);
+		String json = gson.toJson(rvo);
 		 
 		resp.getWriter().print(json);
-
 	}
 
 }

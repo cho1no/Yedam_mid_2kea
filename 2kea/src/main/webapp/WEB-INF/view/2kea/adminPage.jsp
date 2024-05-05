@@ -44,9 +44,6 @@
 .table {
 	text-align: center;
 }
-.blog_area a {
-    color: #212529 !important;
-}
 
 .pagination {
 	display: inline-block;
@@ -91,7 +88,7 @@ textarea{
 </style>
 
 
-<section class="blog_area padding_top">
+<section class="padding_top">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3">
@@ -129,6 +126,7 @@ textarea{
 								<th>아이디</th>
 								<th>카테고리</th>
 								<th>작성일시</th>
+								<th>답변유무</th>
 							</tr>
 						</thead>
 						<tbody id="tb_list">
@@ -146,8 +144,8 @@ textarea{
 		</div>
 	</div>
 </section>
-<!-- =======================답변하기 모달=========================== -->
-<div class="modal fade" id="adminAskModal" tabindex="-1"
+<!-- =======================답변대기 모달=========================== -->
+<div class="modal fade" id="adminNoReplyModal" tabindex="-1"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
@@ -172,12 +170,12 @@ textarea{
 						</div>
 						<div class="form-group">
 							<textarea class="form-control" name="ask_message" rows="3"
-								id="askContent" placeholder="문의내용" readonly></textarea>
+								id="askContentNoRe" placeholder="문의내용" readonly></textarea>
 						</div>
 					</div>
 					<div class="col-md-12">
 						<textarea class="form-control" name="reply_message" rows="5" 
-						id="replyContent" placeholder="답변내용을 적어주세요"></textarea>
+						id="replyContentNoRe" placeholder="답변내용을 적어주세요"></textarea>
 					</div>
 					<div class="col-md-12 text-right"></div>
 					<input type="hidden" id="askDataNo">
@@ -185,17 +183,64 @@ textarea{
 				</form>
 			</div>
 			<div class="modal-footer">
+				<button type="button" class="btn_3" id="addAdminReplyBtn"
+					data-dismiss="modal" >완료</button>
 				<button type="button" value="button" class="btn_3_close closeAskBtn"
 					data-dismiss="modal" >취소</button>
-				<button type="button" class="btn_3" id="addAdminReplyBtn"
-					data-dismiss="modal">완료</button>
 			</div>
 		</div>
 	</div>
 </div>
 
-<!-- ======================답변하기 모달========================== -->
+<!-- ======================답변대기 모달========================== -->
+<!-- =======================답변완료 모달=========================== -->
+<div class="modal fade" id="adminReplyModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title fs-5" id="exampleModalLabel">문의 답변하기</h3>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="col-md-12 mb-2 d-flex" id="replyProd" style="display: none;">
+						<img src="img/BUSUNGE 부숭에.png" style="width: 250px">
+						<div class="replyProd_content">
+							<h4>BUSUNGE 부숭에</h4>
+							<h4>169,000원</h4>
+							<p>detail</p>
+						</div>
+					</div>
+					
+					<div class="col-md-12">
+						<div class="row">
+							<h4 class="col-2">회원Id</h4>
+							<h4 class="col-5">문의카테고리</h4>
+						</div>
+						<div class="form-group">
+							<textarea class="form-control" name="ask_message" rows="3"
+								id="askContentRe" placeholder="문의내용" readonly></textarea>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<textarea class="form-control" name="reply_message" rows="5" 
+						id="replyContentRe" placeholder="답변내용을 적어주세요" readonly></textarea>
+					</div>
+					<div class="col-md-12 text-right"></div>
+					<input type="hidden" id="askDataNo">
+					<input type="hidden" id="replyProdNo">
+				</form>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" value="button" class="btn_3 adminDelReplyBtn"
+					data-dismiss="modal">삭제</button>
+				<button type="button" class="btn_3" data-dismiss="modal">닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
 
+<!-- ======================답변완료 모달========================== -->
 <script src="js/adminPageService.js"></script>
 <script src="js/adminPage.js"></script>
 

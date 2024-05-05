@@ -21,18 +21,24 @@
 	</delete>
 
 	<!-- 문의관리페이지  -->
-	<select id="selectReplyProd" parameterType="int" resultType="ReplyProdVO" >
-	  	SELECT p.*, i.image1
+	<select id="selectReplyProd" parameterType="int" resultType="co.yedam.asks.vo.ReplyProdVO" >
+	    SELECT p.*, i.image1
 		FROM product p
 		JOIN prdimage i
 		ON p.prod_no = i.prod_no
 		WHERE i.role = 'thumb' and p.prod_no = #{pno}
   	</select>
   	
-	<select id="selectReplyAsk" parameterType="int" resultType="AskVO" >
+	<select id="selectReplyAsk" parameterType="int" resultType="co.yedam.asks.vo.AskVO" >
 		select *
 	    from ask
 	    where ask_no = #{ano}
 	</select>
+	
+	<select id="getReply" parameterType ="int" resultType="co.yedam.asks.vo.ReplyVO">
+  	  select *
+  	  from reply
+  	  where ask_no = #{ano}
+    </select>
 
 </mapper>

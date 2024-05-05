@@ -53,87 +53,130 @@ const admsvc = {
 			.then(successCall)
 			.catch(err => console.error(err));
 	},
-	adminReplyAsk(ano = 1, successCall) {
+	//문의관리페이지 => ask 단건
+	adminReplyAsk(ano, successCall) {
 		fetch('adminReplyAsk.do?ano=' + ano)
 			.then(result => result.json())
 			.then(successCall)
 			.catch(err => console.error(err));
+	},
+	//reply 단건
+	getReply(ano, successCall) {
+		fetch('getReply.do?ano=' + ano)
+			.then(result => result.json())
+			.then(successCall)
+			.catch(err => console.error(err));
 	}
-}
+};
 
+/*=======================
+  문의관리페이지 tr, td 생성
+=========================*/
 const fields = ['prodNo', 'askNo', 'id', 'askCategory', 'askDate'];
-
 function makeRow(ask = {}) {
 	let tr = $('<tr/>');
-
 	fields.forEach(e => {
 		let td = $('<td/>');
 		td.text(ask[e]);
 		tr.append(td)
 	})
-
-	const askModal = new bootstrap.Modal(document.getElementById('adminAskModal'));
-	$(tr).on('click', function() {
-		console.log(ask.askNo);
-		admsvc.adminReplyProd(ask.prodNo, replyProdFnc);
-		admsvc.adminReplyAsk(ask.askNo, replyAskFnc);
-		
-		// askDataNo 담기
+	
+	// replyCheck 답변유무 => 답변대기(0), 답변완료(1~)
+	let rc = $('<span/>');
+	rc.css('cursor', 'pointer');
+	rc.className = "badge bg-success";
+	if (ask.rc == 0) {
+		rc.text('답변대기');
+	} else {
+		rc.text('답변완료');
+		rc.css('color', '#ff3368');
+	}
+	let td = $('<td/>');
+	td.append(rc);
+	tr.append(td);
+	
+	// 모달 가져오기
+	const adminNoReModal = new bootstrap.Modal(document.getElementById('adminNoReplyModal'));
+	const adminReplyModal = new bootstrap.Modal(document.getElementById('adminReplyModal'));
+	$(td).on('click', function() {
+		// askDataNo, replyProdNo => input에 담기
 		let askDataNo = ask.askNo;
 		$('#askDataNo').val(askDataNo);
 		let replyProdNo = ask.ProdNo;
 		$('#replyProdNo').val(replyProdNo);
 		
-		const askModalToggle = document.getElementById('adminAskModal');
-		askModal.show(askModalToggle);
+		//rc: replyCheck(0 & 1~)
+		if (ask.rc == 0) {
+			//답변대기
+			admsvc.adminReplyProd(ask.prodNo, NoReplyProdFnc);
+			admsvc.adminReplyAsk(ask.askNo, NoReplyAskFnc);
+			const NoReModalToggle = document.getElementById('adminNoReplyModal');
+			adminNoReModal.show(NoReModalToggle);
+		} else{
+			//답변완료
+			admsvc.adminReplyProd(ask.prodNo, ReplyProdFnc);
+			admsvc.adminReplyAsk(ask.askNo, ReplyAskFnc);
+			admsvc.getReply(ask.askNo, getReplyFnc);
+			const ReModalToggle = document.getElementById('adminReplyModal');
+			adminReplyModal.show(ReModalToggle);
+		}
 	});
 	return tr;
-}
+}; //And of makeRow 
 
-// 문의관리 모달 ==> 상품 이미지, 이름, 가격 가져오기
-function replyProdFnc(p) {
-	console.log(p);
-	let temp = $('#adminAskModal');
+/*==================
+			답변 대기
+====================*/
+// 답변대기 모달 ==> 상품 이미지, 이름, 가격 가져오기
+function NoReplyProdFnc(p) {
+	let temp = $('#adminNoReplyModal');
 	temp.find('img').attr('src', 'img/' + p.image1);
 	temp.find('h4:eq(0)').text(p.name);
-	temp.find('h4:eq(1)').text(p.price + '원');
+	temp.find('h4:eq(1)').text(parseInt(p.price).formatNumber() + '원');
 	temp.find('p:eq(0)').text(p.detail);
-	
-	return temp;
+
 };
 
-function replyAskFnc(a){
-	console.log(a);
-	let temp = $('#adminAskModal');
-	temp.find('h4:eq(2)').text(' ID :  '+ a.id);
+// 답변대기 모달 ==> id, askContent, askCategory 가져오기
+function NoReplyAskFnc(a) {
+	let temp = $('#adminNoReplyModal');
+	temp.find('h4:eq(2)').text(' ID :  ' + a.id);
 	temp.find('h4:eq(3)').text('문의유형 :  ' + a.askCategory);
-	temp.find('#askContent').text(a.askContent);
+	temp.find('#askContentNoRe').text(a.askContent);
 };
 
+/*==================
+			답변 완료
+====================*/
+// 답변완료 모달 ==> 상품 이미지, 이름, 가격 가져오기
+function ReplyProdFnc(p) {
+	let temp = $('#adminReplyModal');
+	temp.find('img').attr('src', 'img/' + p.image1);
+	temp.find('h4:eq(0)').text(p.name);
+	temp.find('h4:eq(1)').text(parseInt(p.price).formatNumber() + '원');
+	temp.find('p:eq(0)').text(p.detail);
+};
 
-$('#addAdminReplyBtn').on('click', function() {
-	let replyContent = $('#replyContent').val();
-	let askDataNo = $('#askDataNo').val();
-	let pno = $('#replyProdNo').val();
-	
-	fetch('addReply.do', {
-		method: 'post',
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: 'pno=' + pno + '&id=' + id +
-			'&replyContent=' + replyContent + '&askNo=' + askDataNo
-	})
-		.then(result => result.json())
-		.then(result => {
-			if (result.retCode == 'Success') {
-				alert('정상적으로 등록되었습니다.');
-				window.location.reload(); //수정
-			}
-		})
-		.catch(err => console.error(err));
+// 답변완료 모달 ==> id, askContent, askCategory 가져오기
+function ReplyAskFnc(a) {
+	let temp = $('#adminReplyModal');
+	temp.find('h4:eq(2)').text(' ID :  ' + a.id);
+	temp.find('h4:eq(3)').text('문의유형 :  ' + a.askCategory);
+	temp.find('#askContentRe').text(a.askContent);
+};
+
+// 답변완료 모달 ==> replyContent 가져오기
+function getReplyFnc(r){
+	let temp = $('#adminReplyModal');
+	temp.find('#replyContentRe').val(r.replyContent);
+}
+
+/*==================
+  모달 닫으면 내용 비우기
+====================*/
+$('#adminNoReplyModal').on('hidden.bs.modal', function() {
+	$('#replyContentNoRe').val('');
 });
-
-$('#adminAskModal').on('hidden.bs.modal', function() {
+$('#adminReplyModal').on('hidden.bs.modal', function() {
 	$('#replyContent').val('');
 });
-
-
