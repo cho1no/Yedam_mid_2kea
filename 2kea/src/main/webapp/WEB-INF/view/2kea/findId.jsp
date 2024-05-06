@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <section class="login_part padding_top">
 	<div class="container">
 		<div class="d-flex row align-items-center justify-content-center" >
@@ -10,9 +10,11 @@
 						<h3>Forgot Id</h3>
 						<form id="forgot_password" class="row contact_form"	action="" method="post" novalidate="novalidate">
 							<div class="col-md-9 form-group p_star">
+								<p>USER</p>
 								<input type="text" class="form-control" id="mName" name="mName" placeholder="User Name">
 							</div>
 							<div class="col-md-9 form-group p_star">
+								<p>PHONE</p>
 								<input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone">
 							</div>
 							<div class="col-md-12 form-group">

@@ -16,7 +16,10 @@ import co.yedam.memb.control.UpdatePasswordControl;
 import co.yedam.memb.control.UserDeletionControl;
 import co.yedam.memb.control.UserInfo;
 import co.yedam.memb.control.UserInfoControl;
+import co.yedam.memb.control.UserInfoDelete;
+import co.yedam.memb.control.UserInfoEdit;
 import co.yedam.memb.control.UserInfoEditControl;
+import co.yedam.memb.control.kakaoSignControl;
 
 public class FcMemb {
 	static void init(Map<String, Control> map) {
@@ -29,6 +32,8 @@ public class FcMemb {
 		map.put("/findPasswordControl.do", new FindPasswordControl()); // 비밀번호 찾기 기능 수행
 		map.put("/updatePasswordControl.do", new UpdatePasswordControl()); // 비밀번호 찾기 기능 수행
 		map.put("/signOutControl.do", new SignOutControl());
+		map.put("/kakaoSignControl.do", new kakaoSignControl());
+		
 		
 		map.put("/signUp.do", new SignUp()); // 회원 가입 페이지
 		map.put("/signUpControl.do", new SignUpControl()); // 회원 가입 기능 수행
@@ -39,8 +44,10 @@ public class FcMemb {
 		map.put("/userInfoControl.do", new UserInfoControl()); // 마이 페이지 정보 가져오기.
 	
 		//map.put("/userInfoEdit.do", new UserInfoEdit()); // 정보 수정 페이지.
+		map.put("/userInfoEdit.do", new UserInfoEdit()); // 마이 페이지
 		map.put("/userInfoEditControl.do", new UserInfoEditControl()); // 정보 수정 기능 수행
 		
+		map.put("/userInfoDelete.do", new UserInfoDelete()); // 마이 페이지
 		map.put("/userDeletionControl.do", new UserDeletionControl()); // 회원 탈퇴 기능 수행
 	}
 }

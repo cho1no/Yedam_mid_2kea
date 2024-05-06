@@ -15,7 +15,7 @@ function signIn(successCall, errorCall) {
 }*/
 
 const sign_svc = {
-	signUp(vo = {}, succesCall, errorCall) {
+	signUp(vo = {}, successCall, errorCall) {
 		fetch('signUpControl.do', {
 			method: 'post',
 			headers: { 'Content-type': 'application/x-www-form-urlencoded' },
@@ -23,8 +23,8 @@ const sign_svc = {
 				+ vo.email + '&phone=' + vo.phone
 		})
 			.then(response => response.json())
-			.then(succesCall)
-			.error(errorCall)
+			.then(successCall)
+			.catch(errorCall)
 	}
 }
 
@@ -35,16 +35,42 @@ function signUp() {
 	var email = document.querySelector('input[name="email"]').value;
 	var phone = document.querySelector('input[name="phone"]').value;
 
+	// 유효성 체크
+	if (!validateId(id)) {
+		swal('아이디는 4~12글자이어야 합니다');
+		return;
+	}
+
+	if (!validatePassword(pw)) {
+		swal('비밀번호는 4~12자 이어야 합니다');
+		return;
+	}
+
+	if (!validateMName(mName)) {
+		swal('이름을 입력하세요');
+		return;
+	}
+
+	if (!validateEmail(email)) {
+		swal('유효한 이메일 주소를 입력하세요');
+		return;
+	}
+
+	if (!validatePhone(phone)) {
+		swal('유효한 전화번호를 입력하세요');
+		return;
+	}
+
 	sign_svc.signUp({ id, pw, mName, email, phone }
 		, function(data) {
-			if (data.retCod == "Success") {
-				alert("회원가입이 되었습니다.")
+			if (data.retCode == "Success") {
+				swal("회원가입이 되었습니다.")
 				window.location.href = 'prodMain.do';
 			}
 		},
 		function(error) {
 			if (error) {
-				alert("회원가입에 실패했습니다.")
+				swal("회원가입에 실패했습니다.")
 			}
 		})
 }
@@ -65,14 +91,15 @@ function findId() {
 			console.log(data);
 			if (data) {
 				var id = data.id;
-				alert('Id는 ' + id + '입니다.');
-				window.location.href = 'signIn.do';
+				swal('Id는 ' + id + '입니다.');
+				console.log(id);
+				//window.location.href = 'signIn.do';
 			} else {
-				alert('Id가 존재하지 않습니다.');
+				swal('Id가 존재하지 않습니다.');
 			}
 		})
 		.catch(error => {
-			alert('Id가 존재하지 않습니다.');
+			swal('Id가 존재하지 않습니다.');
 			console.error('Error occurred:', error);
 		});
 }
@@ -91,20 +118,24 @@ function findPw() {
 		.then(data => {
 			if (data) {
 				document.getElementById('id').style.display = 'none';
+				document.getElementById('idP').style.display = 'none';
 				document.getElementById('mName').style.display = 'none';
+				document.getElementById('mNameP').style.display = 'none';
 				document.getElementById('phone').style.display = 'none';
+				document.getElementById('phoneP').style.display = 'none';
 				document.getElementById('pw').style.display = 'block';
+				document.getElementById('pwP').style.display = 'block';
 				document.getElementById('btnFind').style.display = 'none';
 				document.getElementById('btnUpdate').style.display = 'block';
 				document.getElementById('btn_back1').style.display = 'none';
 				document.getElementById('btn_back2').style.display = 'block';
 
 			} else {
-				alert('입력한 정보가 올바르지 않습니다.');
+				swal('입력한 정보가 올바르지 않습니다.');
 			}
 		})
 		.catch(err => {
-			alert('입력한 정보가 올바르지 않습니다.');
+			swal('입력한 정보가 올바르지 않습니다.');
 			console.err(err + '정보가 존재하지 않습니다.');
 		})
 }
@@ -113,6 +144,17 @@ function findPw() {
 function updatePw() {
 	var id = document.querySelector('input[id="id"]').value;
 	var pw = document.querySelector('input[id="pw"]').value;
+
+
+	function validatePassword(password) {
+		return password.length >= 4 && password.length <= 12;
+	}
+
+	// 유효성 체크
+	if (!validatePassword(pw)) {
+		swal('비밀번호는 4~12자 이어야 합니다');
+		return;
+	}
 
 	fetch('updatePasswordControl.do', {
 		method: 'post',
@@ -123,22 +165,24 @@ function updatePw() {
 		.then(data => {
 			console.log(data)
 			if (data) {
-				alert('비밀번호가 변경되었습니다.');
-				location.href = "prodMain.do";
+				swal('비밀번호가 변경되었습니다.');
+				//location.href = "signIn.do";
 			} else {
-				alert('입력한 정보가 올바르지 않습니다.');
+				swal('입력한 정보가 올바르지 않습니다.');
 			}
 		})
 		.catch(err => {
-			alert('입력한 정보가 올바르지 않습니다.');
+			swal('입력한 정보가 올바르지 않습니다.');
 			console.error(err + '정보가 존재하지 않습니다.');
 		})
 }
+
+
 function idCheck() {
 	var id = document.querySelector('input[id="id"]').value;
 
 	if (!id) {
-		alert('ID를 입력해주세요.');
+		swal('ID를 입력해주세요.');
 		return;
 	}
 
@@ -150,13 +194,13 @@ function idCheck() {
 		.then(response => response.json())
 		.then(data => {
 			if (data.retCode === "Success") {
-				alert('중복된 ID입니다.');
+				swal('중복된 ID입니다.');
 			} else if (data.retCode === "False") {
-				alert('사용 가능한 ID입니다.');
+				swal('사용 가능한 ID입니다.');
 			}
 		})
 		.catch(error => {
-			alert('오류가 발생했습니다.');
+			swal('오류가 발생했습니다.');
 			console.error('Error occurred:', error);
 		});
 }
@@ -164,4 +208,5 @@ function idCheck() {
 function goBack() {
 	window.history.back();
 }
+
 
