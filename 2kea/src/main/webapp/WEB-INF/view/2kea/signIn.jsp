@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!--================login_part Area =================-->
 <section class="login_part padding_top">
@@ -15,10 +15,12 @@
 						<form class="row contact_form" action="signInControl.do"
 							method="post" novalidate="novalidate">
 							<div class="col-md-12 form-group p_star">
+								<p>ID</p>
 								<input type="text" class="form-control" id="name" name="id"
 									value="test999" placeholder="Username">
 							</div>
 							<div class="col-md-12 form-group p_star">
+								<p>PASSWORD</p>
 								<input type="password" class="form-control" id="password"
 									name="pw" value="999" placeholder="Password">
 							</div>
@@ -35,10 +37,10 @@
 								<button type="button" class="btn_3"
 									onclick="location.href = 'signUp.do' ">Create an
 									Account</button>
-								<a id="kakao-login-btn"> <img
+<!-- 								<a id="kakao-login-btn"> <img
 									src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
 									width="222" alt="카카오 로그인 버튼" />
-								</a>
+								</a> -->
 							</div>
 						</form>
 					</div>
@@ -49,7 +51,7 @@
 </section>
 <script src="js/signService.js"></script>
 <!--================login_part end =================-->
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<!-- <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <script>
 let data;
@@ -66,7 +68,7 @@ console.log( Kakao.isInitialized() ); // 초기화 판단여부
         // 카카오 로그인 버튼 클릭 시 이벤트 처리
         document.getElementById('kakao-login-btn').addEventListener('click', function() {
             Kakao.Auth.login({
-                redirectUri: REDIRECT_URI,
+                redirectUri: 'http://localhost:8080/2kea',
                 success: function(authObj) {
                     console.log(authObj); // 인증 성공 시 처리할 내용
                     success(authObj);
@@ -82,20 +84,20 @@ console.log( Kakao.isInitialized() ); // 초기화 판단여부
         function success(authObj) {
             // 카카오에서 제공하는 사용자 정보 요청 API 호출
             Kakao.API.request({
-                url: '/v2/user/me',
+                url: 'http://localhost:8080/2kea/signIn.do',
                 success: function(response) {
 					console.log(response);
-                    var kakaoId = response.id; // 카카오 사용자 고유 ID
-                    var kakaoNickname = response.properties.profile_nickname; // 카카오 닉네임
-                    var kakaoProfileImage = response.properties.profile_image; // 카카오 프로필 이미지 URL
+		            var kakaoId = response.id; // 카카오 사용자 고유 ID
+		            var kakaoNickname = response.properties.nickname; // 카카오 닉네임
+		            var kakaoEmail = response.kakao_account.email; // 카카오 이메일
                     // 서버로 카카오 사용자 정보 전송
                     $.ajax({
                         url: '/login/kakao', // 서버의 로그인 처리 API 엔드포인트
                         method: 'POST',
                         data: {
-                            kakaoId: kakaoId,
-                            kakaoNickname: kakaoNickname,
-                            kakaoProfileImage: kakaoProfileImage
+                            id: kakaoId,
+                            mName: kakaoNickname,
+                            email: kakaoEmail
                         },
                         success: function(response) {
                             // 서버에서 로그인 처리 후의 응답 처리
@@ -116,3 +118,4 @@ console.log( Kakao.isInitialized() ); // 초기화 판단여부
 
 
     </script>
+ -->
