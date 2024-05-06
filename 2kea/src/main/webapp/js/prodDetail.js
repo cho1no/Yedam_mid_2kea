@@ -2,6 +2,19 @@
  * CWH
  * prodDetail.js
  */
+image = imageList.substr(1, imageList.length-2).split(',');
+image.forEach((e, i) => {
+    if (i >= 4) return;
+    e = e.trim();
+    let showImg = $('<img id="prodImg"/>').attr('src', 'img/'+e);
+    $('div.img-showcase').append(showImg);
+
+    let clickImg = $('<div class="img-item"/>').append(
+        $('<a href="#"/>').attr('data-id', i+1).append($('<img id="prodImg"/>').attr('src', 'img/'+e))
+    );
+    $('.img-select').append(clickImg);
+});
+
 const imgs = document.querySelectorAll('.img-select a');
 const imgBtns = [...imgs];
 let imgId = 1;
@@ -38,6 +51,95 @@ $('#home').html(description);
 
 
 
+// 하단 이미지 슬라이더 (같은 카테고리 아이템)
+var prod_list_slider = $('.prodDetail_list_slider');
+
+if (prod_list_slider.length) {
+    prod_list_slider.owlCarousel({
+        items: 4,
+        loop: false,
+        dots: false,
+        autoplay: true,
+        mouseDrag: false,
+        autoplayHoverPause: true,
+        autoplayTimeout: 5000,
+        nav: true,
+        navText: ["prev", "next"],
+        responsive: {
+            0: {
+                margin: 15,
+                items: 1,
+                nav: false
+            },
+            576: {
+                margin: 15,
+                items: 2,
+                nav: false
+            },
+            768: {
+                margin: 30,
+                items: 3,
+                nav: true
+            },
+            991: {
+                margin: 30,
+                items: 4,
+                nav: true
+            }
+        }
+    });
+}
 
 
 
+fetch('prodListByCase.do?case=vw&num=8')
+.then(result => result.json())
+.then(result => {
+    console.log(result);
+    result.forEach((e) => {
+        let tempProd = $('#single_product0').clone();
+        prod_list_slider.trigger('add.owl.carousel', writeData2Temp(e, tempProd));
+    })
+    prod_list_slider.trigger('refresh.owl.carousel')
+})
+.catch(()=>{console.log('prodList error')});
+
+function writeData2Temp(e ,tempProd){ // e에 데이터 넣어서 temp에 데이터 집어넣기
+    let pno = e.prodNo;
+    let img = e.image1;
+    let nme = e.name;
+    let prc = e.price;
+    tempProd.attr('data-pno', pno);
+    tempProd.attr('id', 'prod_' + pno);
+    tempProd.find('h4').text(nme);
+    tempProd.find('h3').text(parseInt(prc).formatNumber() + '원');
+    tempProd.find('img').attr('src', 'img/' + img);
+    tempProd.click(()=>location.href="prodDetail.do?pno="+pno);
+    tempProd.css('cursor', 'pointer');
+    tempProd.click(()=>location.href="prodDetail.do?pno="+pno);
+    // tempProd.find('.add_cart').css('cursor', 'pointer');
+    tempProd.find('.add_cart > span').click((e)=>{
+        e.stopPropagation();
+        addCart(pno, id);
+    });
+    if (e.wish > 0) {
+        tempProd.find('.add_cart > i').addClass('fa').addClass('fa-heart').addClass('active');
+    } else {
+        tempProd.find('.add_cart > i').addClass('ti-heart');
+    }
+    tempProd.find('.add_cart > i').click((e)=>{
+        e.stopPropagation();
+        $(e.target).toggleClass('active');
+        if ($(e.target).hasClass('fa')){
+            $(e.target).removeClass('fa').removeClass('fa-heart');
+            $(e.target).addClass('ti-heart');
+            delWish(pno, id);
+        } else {
+            $(e.target).removeClass('ti-heart');
+            $(e.target).addClass('fa').addClass('fa-heart');
+            addWish(pno, id);
+        }
+    })
+    tempProd.css('display', 'block');
+    return tempProd;
+}

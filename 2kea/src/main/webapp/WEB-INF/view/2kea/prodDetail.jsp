@@ -323,33 +323,17 @@
 						<div class="product-imgs">
 							<div class="img-display">
 								<div class="img-showcase">
-								<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg" alt="">
-								<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg" alt="">
-								<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg" alt="">
-								<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg" alt="">
+								<%-- <img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg" alt=""> --%>
+								
 								</div>
 							</div>
 							<div class="img-select">
-								<div class="img-item">
+								<%-- <div class="img-item">
 								<a href="#" data-id="1">
 									<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg" alt="">
 								</a>
-								</div>
-								<div class="img-item">
-								<a href="#" data-id="2">
-									<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg" alt="">
-								</a>
-								</div>
-								<div class="img-item">
-								<a href="#" data-id="3">
-									<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg" alt="">
-								</a>
-								</div>
-								<div class="img-item">
-								<a href="#" data-id="4">
-									<img id="prodImg" src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg" alt="">
-								</a>
-								</div>
+								</div> --%>
+								
 							</div>
 						</div>
 					</div>
@@ -791,47 +775,20 @@
 				</div>
 				<div class="row align-items-center justify-content-between">
 					<div class="col-lg-12">
-						<div class="best_product_slider owl-carousel">
-							<div class="single_product_item">
-								<img src="template/img/product/product_1.png" alt="">
-								<div class="single_product_text">
-									<h4>Quartz Belt Watch</h4>
-									<h3>$150.00</h3>
-								</div>
-							</div>
-							<div class="single_product_item">
-								<img src="template/img/product/product_2.png" alt="">
-								<div class="single_product_text">
-									<h4>Quartz Belt Watch</h4>
-									<h3>$150.00</h3>
-								</div>
-							</div>
-							<div class="single_product_item">
-								<img src="template/img/product/product_3.png" alt="">
-								<div class="single_product_text">
-									<h4>Quartz Belt Watch</h4>
-									<h3>$150.00</h3>
-								</div>
-							</div>
-							<div class="single_product_item">
-								<img src="template/img/product/product_4.png" alt="">
-								<div class="single_product_text">
-									<h4>Quartz Belt Watch</h4>
-									<h3>$150.00</h3>
-								</div>
-							</div>
-							<div class="single_product_item">
-								<img src="template/img/product/product_5.png" alt="">
-								<div class="single_product_text">
-									<h4>Quartz Belt Watch</h4>
-									<h3>$150.00</h3>
-								</div>
-							</div>
+						<div class="prodDetail_list_slider owl-carousel">
+							
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
+		<div class="single_product_item" id="single_product0" style="display:none;">
+			<img src="template/img/product/product_1.png" alt="">
+			<div class="single_product_text">
+				<h4>Quartz Belt Watch</h4>
+				<h3>$150.00</h3>
+			</div>
+		</div>
 		<script src="template/js/jquery.magnific-popup.js"></script>
 		<script src="template/js/owl.carousel.min.js"></script>
 		<script src="template/js/jquery.nice-select.min.js"></script>
