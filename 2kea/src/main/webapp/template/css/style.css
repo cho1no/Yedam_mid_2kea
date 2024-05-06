@@ -4080,6 +4080,7 @@ ul {
 
 /* line 818, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
 .product_description_area .tab-content .total_rate .box_total {
+  width: 500px;
   background: #ecfdff;
   text-align: center;
   padding-top: 20px;
