@@ -346,12 +346,12 @@
 							</ul>
 							<p>설명</p>
 							<div class="card_area d-flex justify-content-between align-items-center">
-								<div class="product_count">
+								<%-- <div class="product_count">
 									<span class="inumber-decrement"> <i class="ti-minus"></i></span>
 									<input class="input-number" type="text" value="1" min="0" max="10"> <span
 										class="number-increment"> <i class="ti-plus"></i></span>
-								</div>
-								<a href="#" class="btn_3">장바구니 추가</a> <a href="#" class="like_us"> <i
+								</div> --%>
+								<a href="#" id="cartAdd" class="btn_3">장바구니 추가</a> <a href="#" class="like_us"> <i
 										class="ti-heart"></i>
 								</a>
 							</div>
@@ -802,7 +802,7 @@
 			const price = "${pvo.price}";
 			const category = "${pvo.category}";
 			const viewCount = "${pvo.viewCount}";
-
+			const wish = "${pvo.wish}";
 			const imageList = "${imgs}";
 		</script>
 

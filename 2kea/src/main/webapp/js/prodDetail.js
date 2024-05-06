@@ -50,6 +50,30 @@ arr.forEach(e => {
 $('#home').html(description);
 
 
+$('.s_product_text').find('#cartAdd').click((e)=>{
+    e.stopPropagation();
+    addCart(pno, id);
+});
+if (wish > 0) {
+    $('.s_product_text').find('.like_us > i').addClass('fa').addClass('fa-heart').addClass('active');
+} else {
+    $('.s_product_text').find('.like_us > i').addClass('ti-heart');
+}
+$('.s_product_text').find('.like_us').click((e)=>{
+    e.stopPropagation();
+    console.log($(e.target));
+    $(e.target).find('i').toggleClass('active');
+    if ($(e.target).find('i').hasClass('fa')){
+        $(e.target).find('i').removeClass('fa').removeClass('fa-heart');
+        $(e.target).find('i').addClass('ti-heart');
+        delWish(pno, id);
+    } else {
+        $(e.target).find('i').removeClass('ti-heart');
+        $(e.target).find('i').addClass('fa').addClass('fa-heart');
+        addWish(pno, id);
+    }
+})
+
 
 // 하단 이미지 슬라이더 (같은 카테고리 아이템)
 var prod_list_slider = $('.prodDetail_list_slider');
@@ -118,28 +142,6 @@ function writeData2Temp(e ,tempProd){ // e에 데이터 넣어서 temp에 데이
     tempProd.css('cursor', 'pointer');
     tempProd.click(()=>location.href="prodDetail.do?pno="+pno);
     // tempProd.find('.add_cart').css('cursor', 'pointer');
-    tempProd.find('.add_cart > span').click((e)=>{
-        e.stopPropagation();
-        addCart(pno, id);
-    });
-    if (e.wish > 0) {
-        tempProd.find('.add_cart > i').addClass('fa').addClass('fa-heart').addClass('active');
-    } else {
-        tempProd.find('.add_cart > i').addClass('ti-heart');
-    }
-    tempProd.find('.add_cart > i').click((e)=>{
-        e.stopPropagation();
-        $(e.target).toggleClass('active');
-        if ($(e.target).hasClass('fa')){
-            $(e.target).removeClass('fa').removeClass('fa-heart');
-            $(e.target).addClass('ti-heart');
-            delWish(pno, id);
-        } else {
-            $(e.target).removeClass('ti-heart');
-            $(e.target).addClass('fa').addClass('fa-heart');
-            addWish(pno, id);
-        }
-    })
     tempProd.css('display', 'block');
     return tempProd;
 }

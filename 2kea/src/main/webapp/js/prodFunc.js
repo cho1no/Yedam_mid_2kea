@@ -107,13 +107,23 @@ function addCart(prodNo, id) {
 		function(re) {
 			if (id != '') {
 				if (re.retCode == 'true') {
-					swal('장바구니에 이미 있습니다.', '', 'warning');
+					// swal('장바구니에 이미 있습니다.', '', 'warning');
+					Swal.fire({
+						title: '장바구니에 이미 있습니다.',
+						icon: 'warning',
+						confirmButtonText: '확인'
+					})
 				} else {
 					prod_svc.cartAdd(
 						{ 'pno': prodNo, 'id': id },
 						function(re){
 							if(re.retCode == 'Success'){
-								swal('장바구니에 추가되었습니다.', '', 'success');
+								// swal('장바구니에 추가되었습니다.', '', 'success');
+								Swal.fire({
+									title: '장바구니에 추가되었습니다.',
+									icon: 'success',
+									confirmButtonText: '확인'
+								})
 							}
 						}
 					)
@@ -133,5 +143,5 @@ function needSignIn(){
         preConfirm: ()=>{
           location.href = "signIn.do";
         }
-      })
+    })
 }
