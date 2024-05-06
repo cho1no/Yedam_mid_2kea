@@ -23,16 +23,16 @@
                                 <div class="col-lg-5 col-md-8">
                                     <div class="banner_text">
                                         <div class="banner_text_iner">
-                                            <h1>Wood & Cloth
-                                                Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                            <a href="#" class="btn_2">buy now</a>
+                                           <h1>KIVIK
+                                                </h1>
+                                            <p>Enjoy the super comfy KIVIK sofa with deep 
+                                            seat cushions made of pocket springs</p>
+                                            <a href="/2kea/prodDetail.do?pno=1004" class="btn_2">buy now</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="banner_img d-none d-lg-block">
-                                    <img src="template/img/banner_img.png" alt="">
+                                    <img src="template/img/banner_1.png" alt="">
                                 </div>
                             </div>
                         </div><div class="single_banner_slider">
@@ -40,16 +40,15 @@
                                 <div class="col-lg-5 col-md-8">
                                     <div class="banner_text">
                                         <div class="banner_text_iner">
-                                            <h1>Cloth & Wood
-                                                Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                            <a href="#" class="btn_2">buy now</a>
+                                            <h1>HAUGA</h1>
+                                            <p>Maximise your storage and create a coordinated 
+                                            look by building your own HAUGA storage combination.</p>
+                                            <a href="/2kea/prodDetail.do?pno=1010" class="btn_2">buy now</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="banner_img d-none d-lg-block">
-                                    <img src="template/img/banner_img.png" alt="">
+                                    <img src="template/img/banner_3.png" alt="">
                                 </div>
                             </div>
                         </div><div class="single_banner_slider">
@@ -57,36 +56,35 @@
                                 <div class="col-lg-5 col-md-8">
                                     <div class="banner_text">
                                         <div class="banner_text_iner">
-                                            <h1>Wood & Cloth
-                                                Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                            <a href="#" class="btn_2">buy now</a>
+                                            <h1>EKTORP
+                                                </h1>
+                                            <p>Our beloved EKTORP seating has a timeless 
+                                            design and wonderfully thick, comfy cushions.</p>
+                                            <a href="/2kea/prodDetail.do?pno=1002" class="btn_2">buy now</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="banner_img d-none d-lg-block">
-                                    <img src="template/img/banner_img.png" alt="">
+                                    <img src="template/img/banner_2.png" alt="">
+                                </div>
+                            </div>
+                        </div><div class="single_banner_slider">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-8">
+                                    <div class="banner_text">
+                                        <div class="banner_text_iner">
+                                            <h1>ARKELSTORP</h1>
+                                            <p>Solid wood is a durable natural material. 
+                                            Drawer stops prevent the drawers from being pulled out too far.</p>
+                                            <a href="/2kea/prodDetail.do?pno=1031" class="btn_2">buy now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="banner_img d-none d-lg-block">
+                                    <img src="template/img/banner_4.png" alt="">
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="single_banner_slider">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-8">
-                                    <div class="banner_text">
-                                        <div class="banner_text_iner">
-                                            <h1>Cloth $ Wood Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                            <a href="#" class="btn_2">buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="banner_img d-none d-lg-block">
-                                    <img src="img/banner_img.png" alt="">
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                     <div class="slider-counter"></div>
                 </div>
@@ -167,33 +165,33 @@
                 <div class="col-lg-7 col-sm-6">
                     <div class="single_feature_post_text">
                         <p>Premium Quality</p>
-                        <h3>Latest foam Sofa</h3>
-                        <a href="#" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
-                        <img src="template/img/feature/feature_1.png" alt="">
+                        <h3>Chests of drawers</h3>
+                        <a href="/2kea/prodShop.do" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                        <img src="template/img/feature/Chests_of_drawers_1.png" alt="">
                     </div>
                 </div>
                 <div class="col-lg-5 col-sm-6">
                     <div class="single_feature_post_text">
                         <p>Premium Quality</p>
-                        <h3>Latest foam Sofa</h3>
-                        <a href="#" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
-                        <img src="template/img/feature/feature_2.png" alt="">
+                        <h3>Desk</h3>
+                        <a href="/2kea/prodShop.do" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                        <img src="template/img/feature/Desk_1.png" alt="">
                     </div>
                 </div>
                 <div class="col-lg-5 col-sm-6">
                     <div class="single_feature_post_text">
                         <p>Premium Quality</p>
-                        <h3>Latest foam Sofa</h3>
-                        <a href="#" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
-                        <img src="template/img/feature/feature_3.png" alt="">
+                        <h3>Cabinet</h3>
+                        <a href="/2kea/prodShop.do" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                        <img src="template/img/feature/Cabinet_1.png" alt="">
                     </div>
                 </div>
                 <div class="col-lg-7 col-sm-6">
                     <div class="single_feature_post_text">
                         <p>Premium Quality</p>
-                        <h3>Latest foam Sofa</h3>
-                        <a href="#" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
-                        <img src="template/img/feature/feature_4.png" alt="">
+                        <h3>Sofa</h3>
+                        <a href="/2kea/prodShop.do" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                        <img src="template/img/feature/sofa_1.png" alt="">
                     </div>
                 </div>
             </div>

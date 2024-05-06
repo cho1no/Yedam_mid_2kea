@@ -84,7 +84,6 @@ function makeRow(ask = {}) {
 	// replyCheck 답변유무 => 답변대기(0), 답변완료(1~)
 	let rc = $('<span/>');
 	rc.css('cursor', 'pointer');
-	rc.className = "badge bg-success";
 	if (ask.rc == 0) {
 		rc.text('답변대기');
 	} else {

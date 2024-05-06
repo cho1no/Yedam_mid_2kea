@@ -24,7 +24,7 @@ $('#addAdminReplyBtn').on('click', function() {
 			.then(result => result.json())
 			.then(result => {
 				if (result.retCode == 'Success') {
-					alert('답변이 등록되었습니다.');
+					addReplyAlert();
 					makeAskList();
 					makeAskCount();
 				}
@@ -37,6 +37,13 @@ function noReContent(){
 	Swal.fire({
         title: '내용을 적어주세요.',
         icon: 'warning',
+        confirmButtonText: '확인',
+      })
+};
+function addReplyAlert(){
+	Swal.fire({
+        title: '답변이 등록되었습니다.',
+        icon: 'success',
         confirmButtonText: '확인',
       })
 };
@@ -56,14 +63,20 @@ $('.adminDelReplyBtn').on('click', function() {
 		.then(result => result.json())
 		.then(result => {
 			if (result.retCode == 'Success') {
-				alert('답변이 삭제되었습니다.');
+				dleReplyAlert();
 				makeAskList();
 				makeAskCount();
 			}
 		})
 		.catch(err => console.error(err));
 });
-
+function dleReplyAlert(){
+	Swal.fire({
+        title: '답변이 삭제되었습니다.',
+        icon: 'success',
+        confirmButtonText: '확인',
+      })
+};
 /*====================
 		make AskList  
 ======================*/

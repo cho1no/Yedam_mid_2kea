@@ -78,7 +78,7 @@ function askListFnc(resp) {
 	})//end of delAskBtn click
 
 	/*===========================
-		문의가 있는 경우 makeReply
+		문의가 있는 경우 makeAsk
 	============================*/
 	function makeAsk(ask) {
 		let temp = $('#asklist').clone();
@@ -170,7 +170,7 @@ $('#addRelpyBtn').on('click', function() {
 	let askDataNo = $('#askDataNo').val();
 	
 	if(replyContent.trim() == ''){
-		noReplyContent();
+		noQnAContent();
 	} else{
 		fetch('addReply.do', {
 			method: 'post',
@@ -197,7 +197,7 @@ $('#addAskBtn').on('click', function() {
 	let askContent = $('#ask_message').val();
 	let askCategory = $('input[name=inlineRadioOptions]:checked').val();
 	if(askContent.trim() == ''){
-		noAskContent();
+		noQnAContent();
 	} else{
 		fetch('addAsk.do', {
 			method: 'post',
@@ -299,15 +299,7 @@ function goSignIn(){
       })
 };
 
-function noAskContent(){
-	Swal.fire({
-        title: '내용을 적어주세요.',
-        icon: 'warning',
-        confirmButtonText: '확인',
-      })
-};
-
-function noReplyContent(){
+function noQnAContent(){
 	Swal.fire({
         title: '내용을 적어주세요.',
         icon: 'warning',
