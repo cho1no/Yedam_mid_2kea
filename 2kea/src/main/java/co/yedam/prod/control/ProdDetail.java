@@ -33,7 +33,8 @@ public class ProdDetail implements Control {
 		for (ProdImgVO ivo : list) {
 			imgNameList.add(ivo.getImage1());
 		}
-		System.out.println(vo.getWish());
+		svc.addViewCount(Integer.parseInt(pno));
+		
 		req.setAttribute("pvo", vo);
 		req.setAttribute("imgs", imgNameList);
 		
