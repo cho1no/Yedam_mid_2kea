@@ -13,4 +13,5 @@ public interface OrderMapper {
 	//주문상세
 	public List<OrderDetailVO> selectOrderDetail();
 	
+	public int insertOrders(OrderVO vo);
 }
