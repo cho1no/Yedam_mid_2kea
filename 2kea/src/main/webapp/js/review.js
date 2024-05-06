@@ -46,12 +46,23 @@ function deleteReview(reviewNo, reviewItem) {
         .then(result => result.json())
         .then(result => {
             if (result.retCode == 'Success') {
-                alert('삭제 완료 되었습니다.');
+                Swal.fire({
+					title: "삭제 성공!",
+					html: "삭제 완료되었습니다.",
+					icon:'success',
+					confirmButtonColor: 'ff3368',
+			    	confirmButtonText: '확인'
+			    })
                 reviewItem.remove();
                 revwsvc.getReviewCount(pno, updateAvgRating);
                 revwsvc.reviewList({ pno: pno, page: rePage }, reviewListFnc);
             } else {
-                alert('삭제에 실패 하였습니다.');
+                Swal.fire({
+					title: "삭제 실패",
+					icon:'error',
+					confirmButtonColor: 'ff3368',
+			    	confirmButtonText: '확인'
+			    })
             }
         })
         .catch(err => console.error(err));
@@ -65,7 +76,11 @@ function updateAvgRating(result) {
     const avgRatingElement = boxTotal.querySelector('h4');
     const reviewCountElement = boxTotal.querySelector('h6');
     // 평균 평점 표시 (소수점 한 자리까지)
-    avgRatingElement.textContent = result.ratingavg;
+    if (result.totalcount == 0 ) {
+		avgRatingElement.textContent = '0.0';
+	} else {
+		avgRatingElement.textContent = result.ratingavg;
+	}
     // 리뷰 개수 표시
     reviewCountElement.textContent = `(${result.totalcount} Reviews)`;
 
@@ -351,7 +366,13 @@ document.querySelector('form #addReview').addEventListener('click', e => {
     e.preventDefault();
 
     if (id == 'null') {
-        alert('로그인이 필요한 서비스입니다.');
+        Swal.fire({
+					title: "확인해주세요!",
+					html: "로그인이 필요한 서비스입니다.",
+					icon:'info',
+					confirmButtonColor: 'ff3368',
+			    	confirmButtonText: '확인'
+			    })
         return;
     }
 
@@ -372,6 +393,13 @@ document.querySelector('form #addReview').addEventListener('click', e => {
         .then(result => {
             console.log(result);
             if (result.retCode == 'Success') {
+				Swal.fire({
+					title: "작성 완료",
+					html: "소중한 리뷰 감사드립니다.",
+					icon: 'success',
+					confirmButtonColor: 'ff3368',
+			    	confirmButtonText: '확인'
+				})
                 addNewList(result.retVal);
                 revwsvc.getReviewCount(pno, updateAvgRating);
             }
@@ -395,11 +423,23 @@ document.querySelector('form #modifyBtn').addEventListener('click', e => {
         .then(result => result.json())
         .then(result => {
             if (result.retCode == 'Success') {
-                alert('수정 완료 되었습니다.');
+                Swal.fire({
+					title: "수정 성공",
+					html: "수정 완료되었습니다.",
+					icon:'success',
+					confirmButtonColor: 'ff3368',
+			    	confirmButtonText: '확인'
+			    })
                 modifyReview(reviewNo, rating, reviewContent);
                 revwsvc.getReviewCount(pno, updateAvgRating);
             } else {
-                alert('수정 실패 하였습니다.')
+                Swal.fire({
+					title: "수정 실패",
+					html: "내용을 확인하세요.",
+					icon:'error',
+					confirmButtonColor: 'ff3368',
+			    	confirmButtonText: '확인'
+			    })
             }
         })
         .catch(err => console.error(err));
