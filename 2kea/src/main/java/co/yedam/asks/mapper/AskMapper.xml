@@ -44,7 +44,7 @@
 		select *
 		from(select  rownum rn, a.*
 		    from(
-		         SELECT a.*
+		         SELECT a.*, (select count(1) from reply where ask_no = a.ask_no) rc
 		         FROM ask a  
 		         ORDER BY ask_no desc) a
 		<![CDATA[
@@ -57,7 +57,7 @@
 		select *
 		from(select rownum rn, a.*
 		    from(
-		        SELECT  a.*
+		        SELECT  a.*, (select count(1) from reply where ask_no = a.ask_no) rc
 		        FROM ask a
 		        LEFT OUTER JOIN reply r
 		        ON a.ask_no = r.ask_no
@@ -73,7 +73,7 @@
 		select *
 		from(select rownum rn, a.*
 		    from(
-		         SELECT a.*
+		         SELECT a.*, (select count(1) from reply where ask_no = a.ask_no) rc
 		         from ask a
 		         inner join reply r
 		         on a.ask_no = r.ask_no
