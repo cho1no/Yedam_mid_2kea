@@ -134,7 +134,9 @@ function searchFunc(){
 $('#orderSelect').change((e)=>{
     $(e.currentTarget).val();
     params.set('sc', $(e.currentTarget).val());
+    params.set('pg', 1);
     sc = $(e.currentTarget).val();
+    pg = 1;
     drawList({ sw, pg, sc, cg, st, en });
 })
 
