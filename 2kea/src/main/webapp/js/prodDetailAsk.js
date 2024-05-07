@@ -69,12 +69,12 @@ function askListFnc(resp) {
 			.then(result => result.json())
 			.then(result => {
 				if (result.retCode == 'Success') {
-					alert('문의글이 삭제되었습니다.');
+					delQnaAlert();
 					asksvc.askList({ pno: pno, page: apage }, askListFnc);
 				}
 			})
 			.catch(err => console.error(err, 
-			alert('답변이 달린 문의글은 삭제하실 수 없습니다.')));
+			errorAskAlert()));
 	})//end of delAskBtn click
 
 	/*===========================
@@ -139,7 +139,7 @@ function askListFnc(resp) {
 				.then(result => result.json())
 				.then(result => {
 					if (result.retCode == 'Success') {
-						alert('답변이 삭제되었습니다.');
+						delQnaAlert();
 						asksvc.askList({ pno: pno, page: apage }, askListFnc);
 					}
 				})
@@ -181,7 +181,7 @@ $('#addRelpyBtn').on('click', function() {
 			.then(result => result.json())
 			.then(result => {
 				if (result.retCode == 'Success') {
-					alert('답변이 등록되었습니다.');
+					addQnaAlert();
 					asksvc.askList({ pno: pno, page: apage }, askListFnc);
 				}
 			})
@@ -208,7 +208,7 @@ $('#addAskBtn').on('click', function() {
 			.then(result => result.json())
 			.then(result => {
 				if (result.retCode == 'Success') {
-					alert('문의글이 등록되었습니다.');
+					addQnaAlert();
 					asksvc.askList({ pno: pno, page: apage }, askListFnc);
 				}
 			})
@@ -307,6 +307,29 @@ function noQnAContent(){
       })
 };
 
+function addQnaAlert(){
+	Swal.fire({
+        title: '등록되었습니다.',
+        icon: 'success',
+        confirmButtonText: '확인',
+      })
+};
+
+function delQnaAlert(){
+	Swal.fire({
+        title: '삭제되었습니다.',
+        icon: 'success',
+        confirmButtonText: '확인',
+      })
+};
+
+function errorAskAlert(){
+	Swal.fire({
+        title: '답변이 달린 문의글은 삭제하실 수 없습니다.',
+        icon: 'warning',
+        confirmButtonText: '확인',
+      })
+};
 
 // 모달을 닫을 때 textarea의 내용을 비워줌.
 $('#AskModal').on('hidden.bs.modal', function() {
