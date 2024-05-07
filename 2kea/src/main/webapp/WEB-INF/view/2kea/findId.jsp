@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<section class="login_part padding_top">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+s<section class="login_part padding_top">
 	<div class="container">
 		<div class="d-flex row align-items-center justify-content-center" >
 			<div class="col-lg-8 col-md-8">

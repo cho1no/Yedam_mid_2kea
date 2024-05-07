@@ -91,11 +91,20 @@ function findId() {
 			console.log(data);
 			if (data) {
 				var id = data.id;
-				swal('Id는 ' + id + '입니다.');
 				console.log(id);
-				//window.location.href = 'signIn.do';
+				Swal.fire({
+					text: 'Id는 ' + id + '입니다.',
+					icon: 'success'
+				}).then(result => {
+					if (result.isConfirmed) {
+						window.location.href = 'signIn.do';
+					}
+				});
 			} else {
-				swal('Id가 존재하지 않습니다.');
+				Swal.fire({
+					text: 'Id가 존재하지 않습니다.',
+					icon: 'error'
+				});
 			}
 		})
 		.catch(error => {
@@ -163,14 +172,24 @@ function updatePw() {
 	})
 		.then(response => response.json())
 		.then(data => {
-			console.log(data)
+			console.log(data);
 			if (data) {
-				swal('비밀번호가 변경되었습니다.');
-				//location.href = "signIn.do";
+				swal.fire({
+					text: '비밀번호가 변경되었습니다.',
+					icon: 'success'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						window.location.href = 'signIn.do';
+					}
+				});
 			} else {
-				swal('입력한 정보가 올바르지 않습니다.');
+				swal.fire({
+					text: '입력한 정보가 올바르지 않습니다.',
+					icon: 'error'
+				});
 			}
 		})
+
 		.catch(err => {
 			swal('입력한 정보가 올바르지 않습니다.');
 			console.error(err + '정보가 존재하지 않습니다.');
@@ -186,6 +205,11 @@ function idCheck() {
 		return;
 	}
 
+	if (!validateId(id)) {
+		swal('ID는 4~12글자이어야 합니다');
+		return;
+	}
+
 	fetch('signUpCheckControl.do', {
 		method: 'post',
 		headers: { 'Content-type': 'application/x-www-form-urlencoded' },
@@ -193,11 +217,12 @@ function idCheck() {
 	})
 		.then(response => response.json())
 		.then(data => {
-			if (data.retCode === "Success") {
-				swal('중복된 ID입니다.');
-			} else if (data.retCode === "False") {
-				swal('사용 가능한 ID입니다.');
-			}
+			if (data)
+				if (data.retCode === "Success") {
+					swal('중복된 ID입니다.');
+				} else if (data.retCode === "False") {
+					swal('사용 가능한 ID입니다.');
+				}
 		})
 		.catch(error => {
 			swal('오류가 발생했습니다.');
