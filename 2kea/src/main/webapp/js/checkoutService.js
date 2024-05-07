@@ -60,7 +60,10 @@ function requestPay() {
 	} else if(iemail.val() == ""){
 		swal('이메일을 입력하세요','','warning');
         return false;
-	} else if(ipostcode.val() == "" || iaddress.val() == "" || ijibunadd.val() == ""){
+	} else if(ipostcode.val() == ""){
+		swal('우편번호를 입력하세요','','warning');
+		return false;
+	} else if(iaddress.val() == "" || ijibunadd.val() == ""){
 		swal('주소를 입력하세요','','warning');
         return false;
 	}
