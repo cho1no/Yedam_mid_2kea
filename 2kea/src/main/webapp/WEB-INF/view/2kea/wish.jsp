@@ -21,7 +21,7 @@
 			<div class="col-lg-12">
 				<div class="section_tittle text-center">
 					<h2>
-						Wish list 
+						찜 목록
 					</h2>
 				</div>
 			</div>
