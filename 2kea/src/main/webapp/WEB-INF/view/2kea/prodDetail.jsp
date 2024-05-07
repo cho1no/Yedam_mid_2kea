@@ -82,7 +82,7 @@
 
 #revModiBtn {
 	position: relative;
-	left: 615px;
+	left: 610px;
 	padding: 5px 25px;
 	display: inline-block;
 	border-radius: 50px;
