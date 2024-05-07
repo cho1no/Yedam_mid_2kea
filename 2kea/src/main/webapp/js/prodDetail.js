@@ -55,21 +55,21 @@ $('.s_product_text').find('#cartAdd').click((e)=>{
     addCart(pno, id);
 });
 if (wish > 0) {
-    $('.s_product_text').find('.like_us > i').addClass('fa').addClass('fa-heart').addClass('active');
+    $('.s_product_text').find('.like_us > i').addClass('fa').addClass('fa-heart').addClass('active').css('color', 'red');
 } else {
-    $('.s_product_text').find('.like_us > i').addClass('ti-heart');
+    $('.s_product_text').find('.like_us > i').addClass('ti-heart').css('color', 'black');;
 }
 $('.s_product_text').find('.like_us').click((e)=>{
     e.stopPropagation();
     console.log($(e.target));
     $(e.target).find('i').toggleClass('active');
     if ($(e.target).find('i').hasClass('fa')){
-        $(e.target).find('i').removeClass('fa').removeClass('fa-heart');
+        $(e.target).find('i').removeClass('fa').removeClass('fa-heart').css('color', 'black');;
         $(e.target).find('i').addClass('ti-heart');
         delWish(pno, id);
     } else {
         $(e.target).find('i').removeClass('ti-heart');
-        $(e.target).find('i').addClass('fa').addClass('fa-heart');
+        $(e.target).find('i').addClass('fa').addClass('fa-heart').css('color', 'red');;
         addWish(pno, id);
     }
 })
