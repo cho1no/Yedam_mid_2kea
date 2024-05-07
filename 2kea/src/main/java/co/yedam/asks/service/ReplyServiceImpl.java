@@ -32,13 +32,17 @@ public class ReplyServiceImpl implements ReplyService{
 
 	// 문의관리페이지 
 	@Override
-	public ReplyProdVO replyProd(int pno) {
+	public ReplyProdVO adminGetProd(int pno) {
 		return mapper.selectReplyProd(pno);
 	}
 
 	@Override
-	public AskVO replyAsk(int ano) {
+	public AskVO adminGetAsk(int ano) {
 		return mapper.selectReplyAsk(ano);
 	}
 
+	@Override
+	public ReplyVO getReply(int ano) {
+		return mapper.getReply(ano);
+	}
 }

@@ -19,6 +19,8 @@ public interface ProdService {
 	
 	public List<ProdImgVO> showProdImgList(int pno);
 	
+	public boolean addViewCount(int pno);
+	
 	// 상품 등록
 	public boolean addProd(ProdVO vo);
 	public boolean addProdImg(ProdImgVO vo);

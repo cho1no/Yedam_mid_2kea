@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
@@ -14,26 +15,36 @@
                         <h3>Welcome to Your Account Settings!</h3>
                         <form class="row contact_form" action="" method="post" novalidate="novalidate">
                             <div class="col-md-9 form-group">
+                                <p>이름</p>
                                 <input type="text" class="form-control" id="mName" name="mName" value="" placeholder="User Name">
+                                <span id="mNameError" class="text-danger"></span> <!-- 에러 표시 창 -->
                             </div>
+							<div class="col-md-9 form-group">
+							    <p>ID</p>
+							    <input type="text" class="form-control" id="id" name="id" value="" placeholder="Id">
+							    <button type="button" class="btn" id="idCheckk" onclick="idCheck()" > Id Check</button>
+							    <span id="idError" class="text-danger"></span> <!-- 에러 표시 창 -->
+							</div>
                             <div class="col-md-9 form-group">
-                                <input type="text" class="form-control" id="id" name="id" value="" placeholder="Id">
-                                <button type="button" class="btn" id="idCheckk" onclick="idCheck()" > Id Check</button>
-                            </div>
-                            <div class="col-md-9 form-group">
+                                <p>PASSWORD</p>
                                 <input type="password" class="form-control" id="pw" name="pw" value="" placeholder="Password">
+                                <span id="pwError" class="text-danger"></span> <!-- 에러 표시 창 -->
                             </div>
                             <div class="col-md-9 form-group">
+                                <p>EMAIL</p>
                                 <input type="email" class="form-control" id="email" name="email" value="" placeholder="Email">
+                                <span id="emailError" class="text-danger"></span> <!-- 에러 표시 창 -->
                             </div>
                             <div class="col-md-9 form-group">
+                                <p>PHONE</p>
                                 <input type="tel" class="form-control" id="phone" name="phone" value="" placeholder="Phone">
+                                <span id="phoneError" class="text-danger"></span> <!-- 에러 표시 창 -->
                             </div>
                             <div id="btn_back2" class="col-md-12 form-group">
                                 <button type="button" value="submit" class="btn_3" onclick="signUp()">Sign Up</button>
                                 <button type="button" class="btn_3" onclick="goBack()" >back</button>
                             </div>
-							<ul>
+<!-- 							<ul>
 							    <li>
 							        <a href="javascript:void(0)" onclick="kakaoLogin();">
 							            <span>카카오 로그인</span>
@@ -44,7 +55,7 @@
 							            <span>카카오 로그아웃</span>
 							        </a>
 							    </li>
-							</ul>
+							</ul> -->
                         </form>
                     </div>
                 </div>
@@ -53,8 +64,12 @@
     </div>
 </section>
 <!--================login_part end =================-->
+
+<!--================login_part end =================-->
+
+<script src="js/inputCheck.js"></script>
 <script src="js/signService.js"></script>
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<!-- <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 	Kakao.init('00a16e488ed5e22467911da9c160b89f'); // 발급받은 Kakao 앱 키
 
@@ -95,4 +110,4 @@
             Kakao.Auth.setAccessToken(undefined);
         }
     }
-</script>
+</script> -->

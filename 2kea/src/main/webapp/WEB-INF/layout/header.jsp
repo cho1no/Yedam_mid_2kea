@@ -69,7 +69,7 @@
     <div class="row align-items-center">
         <div class="col-lg-12">
             <nav class="navbar navbar-expand-lg navbar-light" id="nav-my-style">
-                <a class="navbar-brand" href="prodMain.do"> <img src="template/img/logo.png" alt="logo"> </a>
+                <a class="navbar-brand" href="prodMain.do"> <img src="template/img/iikea_logo.png" alt="logo"> </a>
 
                 <%-- <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                     <form action="" class="search-text-area" >

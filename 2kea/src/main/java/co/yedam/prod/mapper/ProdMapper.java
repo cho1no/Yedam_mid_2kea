@@ -27,6 +27,8 @@ public interface ProdMapper {
 	// 상품 상세 이미지
 	public List<ProdImgVO> selectProdImgList(int pno);
 	
+	// 조회수 증가
+	public int updateProdView(int pno);
 	
 	// 등록
 	public int insertProd(ProdVO vo);

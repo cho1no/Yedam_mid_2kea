@@ -10,8 +10,9 @@ public interface ReplyService {
 	public List<ReplyVO> replyList();
 	public boolean addReply(ReplyVO rvo);
 	public boolean delReply(int ano);
+	public ReplyVO getReply(int ano);
 	
 	// 문의관리페이지 
-	public ReplyProdVO replyProd(int pno); //상품 1개
-	public AskVO replyAsk(int ano);		   //문의 1개
+	public ReplyProdVO adminGetProd(int pno); //상품 1개
+	public AskVO adminGetAsk(int ano);		   //문의 1개
 }

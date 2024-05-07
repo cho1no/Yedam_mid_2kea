@@ -2,6 +2,7 @@ package co.yedam.common;
 
 import java.util.Map;
 
+
 import co.yedam.asks.control.AddAsk;
 import co.yedam.asks.control.AddReply;
 import co.yedam.asks.control.AdminAskCount;
@@ -10,14 +11,15 @@ import co.yedam.asks.control.AdminAskCountRe;
 import co.yedam.asks.control.AdminAskList;
 import co.yedam.asks.control.AdminAskListNoRe;
 import co.yedam.asks.control.AdminAskListRe;
+import co.yedam.asks.control.AdminGetAsk;
+import co.yedam.asks.control.AdminGetProd;
 import co.yedam.asks.control.AdminPage;
-import co.yedam.asks.control.AdminReplyAsk;
 import co.yedam.asks.control.AskCount;
 import co.yedam.asks.control.AskList;
 import co.yedam.asks.control.DelAsk;
 import co.yedam.asks.control.DelReply;
+import co.yedam.asks.control.GetReply;
 import co.yedam.asks.control.ReplyList;
-import co.yedam.asks.control.AdminReplyProd;
 
 public class FcAsks {
 	static void init(Map<String, Control> map) {
@@ -28,6 +30,7 @@ public class FcAsks {
 		map.put("/askCount.do", new AskCount());
 		// reply
 		map.put("/replyList.do", new ReplyList()); // 답변목록
+		map.put("/getReply.do", new GetReply());  	  // 한 건
 		map.put("/addReply.do", new AddReply()); // 답변등록
 		map.put("/delReply.do", new DelReply()); // 답변삭제
 		
@@ -43,7 +46,7 @@ public class FcAsks {
 		map.put("/adminAskCountNoRe.do", new AdminAskCountNoRe()); //답변대기 count
 		
 		// 문의관리페이지
-		map.put("/adminReplyProd.do", new AdminReplyProd());
-		map.put("/adminReplyAsk.do", new AdminReplyAsk());
+		map.put("/adminReplyProd.do", new AdminGetProd());
+		map.put("/adminReplyAsk.do", new AdminGetAsk());
 	}
 }

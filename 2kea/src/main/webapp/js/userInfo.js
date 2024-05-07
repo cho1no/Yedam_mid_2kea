@@ -8,11 +8,11 @@ $(document).ready(function() {
 
 		success: function(data) {
 			data = JSON.parse(data)
-			$("#mName").find('input').val(data.mName);
-			$("#id").find('input').val(data.id);
-			$("#pw").find('input').val(data.pw);
-			$("#email").find('input').val(data.email);
-			$("#phone").find('input').val(data.phone);
+			$("#mName").val(data.mName);
+			$("#id").val(data.id);
+			$("#pw").val(data.pw);
+			$("#email").val(data.email);
+			$("#phone").val(data.phone);
 		},
 		error: function() {
 			console.log("Error fetching user information");
@@ -21,32 +21,15 @@ $(document).ready(function() {
 	})
 })
 
-function editInformation() {
-	$("#mName").find('input').prop('readonly', false);
-	$("#email").find('input').prop('readonly', false);
-	$("#phone").find('input').prop('readonly', false);
-	$("#pw").css('display', 'block');
-	$("#btn_delete").css('display', 'none');
-	$("#btn_editSucces").css('display', 'block')
-	$("#btn_edit").css('display', 'none')
-	$("#btn_back").css('display', 'block')
-}
-
 //document.getElementById('pw_checkbox').checked = true;
 //document.querySelector('.eyes').addEventListener('click', function() {
 //});
 
 //document.querySelector('#btn_back').style.display = 'none';
 
+
+
 function deleteAccount() {
-
-	document.getElementById('mName').style.display = 'none';
-	document.getElementById('id').style.display = 'none';
-	document.getElementById('email').style.display = 'none';
-	document.getElementById('phone').style.display = 'none';
-	document.getElementById('checkbox').style.display = 'block';
-
-	document.getElementById('pw').style.display = 'block';
 	document.getElementById('pw').val
 
 	document.getElementById('btn_edit').style.display = 'none';
@@ -77,21 +60,37 @@ function editSuccess() {
 	var email = document.querySelector('input[name="email"]').value;
 	var phone = document.querySelector('input[name="phone"]').value;
 
+    if (!validateMName(mName)) {
+        swal('이름은 2글자 이상, 6글자 이하로 입력하세요.');
+        return; // 수정을 중단하고 함수를 종료
+    }
+    if (!validateId(id)) {
+        swal('아이디는 4~12글자로 입력하세요.');
+        return;
+    }
+    if (!validatePassword(pw)) {
+        swal('비밀번호는 4자 이상, 12자 이하여야 합니다.');
+        return;
+    }
+    if (!validateEmail(email)) {
+        swal('유효한 이메일 주소를 입력하세요.');
+        return;
+    }
+    if (!validatePhone(phone)) {
+        swal('유효한 전화번호를 입력하세요.');
+        return;
+    }
+
+
 	edit_svc.editInfo({ id, pw, mName, email, phone },
 		function(response) {		//결과값.
 			console.log(response);
 			if (response.ok) {
-				alert("개인정보 변경이 되었습니다.");
-				document.querySelector('#mName').querySelector('input').readOnly = true;
-				document.querySelector('#email').querySelector('input').readOnly = true;
-				document.querySelector('#phone').querySelector('input').readOnly = true;
-				document.querySelector('#pw').style.display = 'none';
-				document.querySelector('#btn_delete').style.display = 'block';
-				document.querySelector('#btn_editSucces').style.display = 'none';
-				document.querySelector('#btn_edit').style.display = 'block';
+				swal("개인정보 변경이 되었습니다.");
+				//window.location.href ="userInfo.do";
 			}
 		}, function(error) {
-			alert('정보수정 에러.')
+			swal('정보수정 에러.')
 			console.error(error);
 		})
 }
@@ -105,7 +104,4 @@ function deleteSuccess() {
 		.then(response => response.json())
 		.then()
 		.catch()
-}
-function goBack() {
-	window.history.back();
 }

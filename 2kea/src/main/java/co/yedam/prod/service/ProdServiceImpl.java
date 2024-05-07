@@ -59,6 +59,11 @@ public class ProdServiceImpl implements ProdService {
 		return mapper.insertProdImg(vo) > 0;
 	}
 
+	@Override
+	public boolean addViewCount(int pno) { // 조회수 증가
+		return mapper.updateProdView(pno) > 0;
+	}
+
 
 	
 }

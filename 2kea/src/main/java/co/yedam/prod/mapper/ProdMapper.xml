@@ -95,6 +95,12 @@
   	WHERE prod_no=#{pno}
   </select>
   
+  <update id="updateProdView" parameterType="int">
+  	update product
+	set view_count = view_count + 1
+	where prod_no = #{pno}
+  </update>
+  
   <insert id="insertProd" parameterType="ProdVO">
     <selectKey resultType="int" keyProperty="prodNo" order="BEFORE">
 	  SELECT prod_no_seq.NEXTVAL FROM dual

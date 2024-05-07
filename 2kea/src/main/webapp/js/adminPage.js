@@ -1,13 +1,87 @@
 /**
- * 
+ * KJM
+ * adminPage.js
  */
 
+/*==================
+			답변 대기
+====================*/
+// 답변대기 모달 => 답변버튼 
+$('#addAdminReplyBtn').on('click', function() {
+	let rc = $('#replyContentNoRe').val();
+	let ano = $('#askDataNo').val();
+	let pno = $('#replyProdNo').val();
+	
+	if(rc.trim() == ''){
+		noReContent();
+	} else{
+		fetch('addReply.do', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: 'pno=' + pno + '&id=' + id +
+				'&replyContent=' + rc + '&askNo=' + ano
+		})
+			.then(result => result.json())
+			.then(result => {
+				if (result.retCode == 'Success') {
+					addReplyAlert();
+					makeAskList();
+					makeAskCount();
+				}
+			})
+			.catch(err => console.error(err));
+	}
+});
 
-let apage = 1;
+function noReContent(){
+	Swal.fire({
+        title: '내용을 적어주세요.',
+        icon: 'warning',
+        confirmButtonText: '확인',
+      })
+};
+function addReplyAlert(){
+	Swal.fire({
+        title: '답변이 등록되었습니다.',
+        icon: 'success',
+        confirmButtonText: '확인',
+      })
+};
+/*==================
+			답변 완료
+====================*/
 
+// 답변완료 모달 ==> 답변 삭제
+$('.adminDelReplyBtn').on('click', function() {
+	let ano = $('#askDataNo').val();
+
+	fetch('delReply.do', {
+		method: 'post',
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+		body: 'askNo=' + ano
+	})
+		.then(result => result.json())
+		.then(result => {
+			if (result.retCode == 'Success') {
+				dleReplyAlert();
+				makeAskList();
+				makeAskCount();
+			}
+		})
+		.catch(err => console.error(err));
+});
+function dleReplyAlert(){
+	Swal.fire({
+        title: '답변이 삭제되었습니다.',
+        icon: 'success',
+        confirmButtonText: '확인',
+      })
+};
 /*====================
 		make AskList  
 ======================*/
+let apage = 1;
+//전체보기
 function makeAskList() {
 	admsvc.adminAskList(apage,
 		function(result) {
@@ -19,7 +93,7 @@ function makeAskList() {
 			admsvc.adminAskCount(createPageAskList);
 		});
 };
-
+//답변대기
 function makeAskListNoRe() {
 	admsvc.adminAskListNoRe(apage,
 		function(result) {
@@ -30,7 +104,7 @@ function makeAskListNoRe() {
 			admsvc.adminAskCountNoRe(createPageNoRe);
 		});
 };
-
+//답변완료
 function makeAskListRe() {
 	admsvc.adminAskListRe(apage,
 		function(result) {
@@ -43,7 +117,7 @@ function makeAskListRe() {
 };
 
 /*====================
-			Ask Category
+	Ask Category 이동
 ======================*/
 // 전체보기
 $('#askCategory p:eq(0)').on('click',	() => {
@@ -63,34 +137,24 @@ $('#askCategory p:eq(2)').on('click',	() => {
     makeAskListRe();
 });	
 
-
 /*====================
-			Ask Count
+	  Ask Count
 ======================*/
-admsvc.adminAskCount(function(count) {
+function makeAskCount(){
+	admsvc.adminAskCount(function(count) {
 	$('#askCategory p span:eq(0)').text('(' + count.totalCount + ')');
-});
-
-admsvc.adminAskCountNoRe(function(count) {
-	$('#askCategory p span:eq(1)').text('(' + count.totalCount + ')');
-});
-
-admsvc.adminAskCountRe(function(count) {
-	$('#askCategory p span:eq(2)').text('(' + count.totalCount + ')');
-});
+	});
+	admsvc.adminAskCountNoRe(function(count) {
+		$('#askCategory p span:eq(1)').text('(' + count.totalCount + ')');
+	});
+	admsvc.adminAskCountRe(function(count) {
+		$('#askCategory p span:eq(2)').text('(' + count.totalCount + ')');
+	});
+};
 
 /*====================
 			pagination
 ======================*/
-document.querySelectorAll('.pagination>a').forEach(item => {
-	item.addEventListener('click', e => {
-		e.preventDefault();
-		console.log(item.innerText);
-		apage = parseInt(item.innerText, 10);
-		makeAskList();
-	})
-})
-
 let pageTarget = document.querySelector('div.pagination');
 
 function createPageListCommon(result, makeFunction) {
@@ -156,9 +220,6 @@ function createPageRe(result) {
 //===================================================
 
 
-
-
-
-
 //첫화면
 makeAskList();
+makeAskCount();

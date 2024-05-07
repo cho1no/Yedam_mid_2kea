@@ -10,6 +10,7 @@ public interface ReplyMapper {
 	public List<ReplyVO> selectReplyList();
 	public int insertReply(ReplyVO rvo);
 	public int deleteReply(int ano);
+	public ReplyVO getReply(int ano);
 	
 	// 문의관리페이지 
 	public ReplyProdVO selectReplyProd(int pno);

@@ -4,8 +4,8 @@
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 <script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css"> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 
 
 <style>
@@ -135,7 +135,7 @@ span.middle {
 							</tbody>
 						</table>												
 					</div>					
-					<a class="btn_3" href="#" onclick="requestPay()" style=margin:auto;>카카오페이</a>					
+					<a class="btn_3 col-lg-3" href="#" onclick="requestPay()" style=margin:auto;>카카오페이</a>					
 				</div>
 			</div>
 		</div>
