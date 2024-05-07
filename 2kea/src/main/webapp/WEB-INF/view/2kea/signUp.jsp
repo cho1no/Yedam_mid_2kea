@@ -39,6 +39,8 @@
                                 <p>PHONE</p>
                                 <input type="tel" class="form-control" id="phone" name="phone" value="" placeholder="Phone">
                                 <span id="phoneError" class="text-danger"></span> <!-- 에러 표시 창 -->
+<!-- 								<button onclick="startPhoneNumberVerification()">Start Phone Number Verification</button>
+ -->                                
                             </div>
                             <div id="btn_back2" class="col-md-12 form-group">
                                 <button type="button" value="submit" class="btn_3" onclick="signUp()">Sign Up</button>
@@ -69,6 +71,8 @@
 
 <script src="js/inputCheck.js"></script>
 <script src="js/signService.js"></script>
+<!-- <script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
+<script src="js.script.js"></script> -->
 <!-- <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 	Kakao.init('00a16e488ed5e22467911da9c160b89f'); // 발급받은 Kakao 앱 키
