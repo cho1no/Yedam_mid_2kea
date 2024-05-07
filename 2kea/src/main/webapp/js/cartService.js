@@ -32,6 +32,12 @@ const svc = {
 
 }
 svc.cartList(function(resolve) {
+	console.log(resolve)
+	if(resolve.length == 0) {
+		$('div.table-responsive').remove();
+		let noProd = $('div.cart_inner').append('<h3>상품이 없습니다.</h3>');
+		noProd.css("text-align","center");
+    } else{
 	let cartTotal = 0;
 	resolve.forEach(function(e) {
 
@@ -101,7 +107,7 @@ svc.cartList(function(resolve) {
 	});
 
 	$('td.subtotal > h5').text(parseInt(cartTotal).formatNumber() + '원');
-
+}
 }, function(resolve) {
 	console.log('error');
 })
