@@ -68,6 +68,7 @@ public class ProdAdd implements Control {
 		
 		if (isSucc) {
 			resp.getWriter().print("{\"retCode\" : \"Success\"}");
+			req.getRequestDispatcher("2kea/shop.tiles").forward(req, resp);
 		} else {
 			resp.getWriter().print("{\"retCode\" : \"Fail\"}");
 			req.setAttribute("msg", "등록중 에러가 발생.");
