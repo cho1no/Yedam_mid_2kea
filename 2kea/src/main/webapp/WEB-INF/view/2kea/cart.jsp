@@ -9,6 +9,11 @@
 <!--================Cart Area =================-->
   <section class="cart_area padding_top">
     <div class="container">
+    <div class="section_tittle text-center">
+    <h2>
+	  장바구니 
+	</h2>
+	</div>
       <div class="cart_inner">
         <div class="table-responsive">
           <table class="table">
@@ -49,31 +54,7 @@
                 <td class="total">
                   <h5>$720.00</h5>
                 </td>
-              </tr>
-             
-                    <!-- <input type="text" value="1" min="0" max="10" title="Quantity:"
-                      class="input-text qty input-number" />
-                    <button
-                      class="increase input-number-increment items-count" type="button">
-                      <i class="ti-angle-up"></i>
-                    </button>
-                    <button
-                      class="reduced input-number-decrement items-count" type="button">
-                      <i class="ti-angle-down"></i>
-                    </button> -->
-                
-<!--               <tr class="bottom_button"> -->
-<!--                 <td> -->
-<!--                   <a class="btn_1" href="#">Update Cart</a> -->
-<!--                 </td> -->
-<!--                 <td></td> -->
-<!--                 <td></td> -->
-<!--                 <td> -->
-<!--                   <div class="cupon_text float-right"> -->
-<!--                     <a class="btn_1" href="#">Close Coupon</a> -->
-<!--                   </div> -->
-<!--                 </td> -->
-<!--               </tr> -->
+              </tr> 
               <tr>
                 <td></td>
                 <td></td>
@@ -85,45 +66,6 @@
                   <h5></h5>
                 </td>
               </tr>
-<!--               <tr class="shipping_area"> -->
-<!--                 <td></td> -->
-<!--                 <td></td> -->
-              
-<!--                 <td> -->
-<!--                   <div class="shipping_box"> -->
-<!--                     <ul class="list"> -->
-<!--                       <li> -->
-<!--                         <a href="#">Flat Rate: $5.00</a> -->
-<!--                       </li> -->
-<!--                       <li> -->
-<!--                         <a href="#">Free Shipping</a> -->
-<!--                       </li> -->
-<!--                       <li> -->
-<!--                         <a href="#">Flat Rate: $10.00</a> -->
-<!--                       </li> -->
-<!--                       <li class="active"> -->
-<!--                         <a href="#">Local Delivery: $2.00</a> -->
-<!--                       </li> -->
-<!--                     </ul> -->
-<!--                     <h6> -->
-<!--                       Calculate Shipping -->
-<!--                       <i class="fa fa-caret-down" aria-hidden="true"></i> -->
-<!--                     </h6> -->
-<!--                     <select class="shipping_select"> -->
-<!--                       <option value="1">Bangladesh</option> -->
-<!--                       <option value="2">India</option> -->
-<!--                       <option value="4">Pakistan</option> -->
-<!--                     </select> -->
-<!--                     <select class="shipping_select section_bg"> -->
-<!--                       <option value="1">Select a State</option> -->
-<!--                       <option value="2">Select a State</option> -->
-<!--                       <option value="4">Select a State</option> -->
-<!--                     </select> -->
-<!--                     <input type="text" placeholder="Postcode/Zipcode" /> -->
-<!--                     <a class="btn_1" href="#">Update Details</a> -->
-<!--                   </div> -->
-<!--                 </td> -->
-<!--               </tr> -->
             </tbody>
           </table>
           <div class="checkout_btn_inner float-right">

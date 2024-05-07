@@ -45,23 +45,42 @@ cvc.cartList(function(resolve){
 //카카오페이결제 api
 function requestPay() {	
 	console.log('test');
-
+	let iname = $('#name')
+	let inumber = $('#number')
+	let iemail = $('#email')
+	let ipostcode = $('#sample4_postcode') //우편번호
+	let iaddress = $('#sample4_roadAddress') //도로명주소
+	let ijibunadd = $('#sample4_jibunAddress') //지번주소
+	 if (iname.val() == "") {
+        swal('이름을 입력하세요','','warning');
+        return false;
+    } else if(inumber.val() == ""){
+		swal('전화번호를 입력하세요','','warning');
+        return false;
+	} else if(iemail.val() == ""){
+		swal('이메일을 입력하세요','','warning');
+        return false;
+	} else if(ipostcode.val() == "" || iaddress.val() == "" || ijibunadd.val() == ""){
+		swal('주소를 입력하세요','','warning');
+        return false;
+	}
+	
 	let cartTotal = 0;
 	let text = '';
-	function data(){
-	let name = $('#name').val();
-	let number = $('#number').val();
-	let email = $('#eamil').val();
-	let post = $('#sample4_postcode').val();
-	let roadAd = $('#sample4_roadAddress').val();
-	let jibunAd = $('#sample4_jibunAddress').val();
-	let detailAd = $('#sample4_detailAddress').val();
-	}
+//	function data(){
+//	let mname = $('#name').val();
+//	let number = $('#number').val();
+//	let email = $('#eamil').val();
+//	let post = $('#sample4_postcode').val();
+//	let roadAd = $('#sample4_roadAddress').val();
+//	let jibunAd = $('#sample4_jibunAddress').val();
+//	let detailAd = $('#sample4_detailAddress').val();
+//	}
 	fetch('cartListControl.do')
 	.then(resolve => resolve.json())
 	.then((resolve)=>{
 		resolve.forEach(function(e) {
-			console.log(e);
+			
 			cartTotal += (e.qty * e.price);
 	        let name = e.name;
 	        text += name + ',';
@@ -79,7 +98,7 @@ function requestPay() {
 		buyer_tel : '',
 		buyer_addr : '',
 	}, function(rsp) {
-		console.log(rsp);
+		
 		if (rsp.success) {
 //			var msg = '[Ⅱkea]  결제가 완료되었습니다..!!';
 //			msg += '고유ID : ' + rsp.imp_uid;
@@ -108,16 +127,20 @@ function requestPay() {
 					confirmButtonColor: 'ff3368',
 			    	confirmButtonText: '확인'
 			    })
-		}		
+		}
+				
 		});
-})
-.catch(()=>{
 		
 })
 
-
-
+.catch(()=>{
+		
+})
 }
+
+
+
+
 //주소찾기 api
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 function sample4_execDaumPostcode() {
