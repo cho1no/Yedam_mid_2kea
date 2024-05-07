@@ -63,16 +63,16 @@ span.middle {
 						<div class="col-md-8 form-group p_star"></div>
 						<!-- 주소찾기 api -->
 						<div class="col-md-5 form-group p_star">
-							<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호" >
+							<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호 *" >
 						</div>
 						<div class="col-md-3 form-group p_star">
 							<input type="button" class="form-control" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 						</div>
 						<div class="col-md-8 form-group p_star">
-							<input type="text" class="form-control" id="sample4_roadAddress" placeholder="도로명주소" >
+							<input type="text" class="form-control" id="sample4_roadAddress" placeholder="도로명주소 *" >
 						</div>
 						<div class="col-md-8 form-group p_star">
-							<input type="text" class="form-control" id="sample4_jibunAddress" placeholder="지번주소" >
+							<input type="text" class="form-control" id="sample4_jibunAddress" placeholder="지번주소 *" >
 						</div>
 						<div class="col-md-8 form-group p_star">
 							<span id="guide" style="color: #999; display: none"></span> 
