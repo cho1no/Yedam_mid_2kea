@@ -56,8 +56,7 @@
 		resultType="co.yedam.memb.vo.MemberVO">
 		SELECT pw
 		FROM member
-		WHERE id = #{id} AND m_name = #{mName}
-		AND phone = #{phone}
+		WHERE id = #{id} AND m_name = #{mName} AND phone = #{phone}
 	</select>
 
 	<select id="selectUserInfo" parameterType="String"

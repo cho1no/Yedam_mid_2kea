@@ -36,6 +36,11 @@ function signUp() {
 	var phone = document.querySelector('input[name="phone"]').value;
 
 	// 유효성 체크
+	if (!validateMName(mName)) {
+		swal('이름을 입력하세요');
+		return;
+	}
+	
 	if (!validateId(id)) {
 		swal('아이디는 4~12글자이어야 합니다');
 		return;
@@ -46,10 +51,6 @@ function signUp() {
 		return;
 	}
 
-	if (!validateMName(mName)) {
-		swal('이름을 입력하세요');
-		return;
-	}
 
 	if (!validateEmail(email)) {
 		swal('유효한 이메일 주소를 입력하세요');
@@ -108,7 +109,10 @@ function findId() {
 			}
 		})
 		.catch(error => {
-			swal('Id가 존재하지 않습니다.');
+			Swal.fire({
+				text: 'Id가 존재하지 않습니다.',
+				icon: 'error'
+			});
 			console.error('Error occurred:', error);
 		});
 }
@@ -125,7 +129,8 @@ function findPw() {
 	})
 		.then(response => response.json())
 		.then(data => {
-			if (data) {
+			console.log(data.pw);
+			if (data.pw != null) {
 				document.getElementById('id').style.display = 'none';
 				document.getElementById('idP').style.display = 'none';
 				document.getElementById('mName').style.display = 'none';
@@ -138,16 +143,23 @@ function findPw() {
 				document.getElementById('btnUpdate').style.display = 'block';
 				document.getElementById('btn_back1').style.display = 'none';
 				document.getElementById('btn_back2').style.display = 'block';
-
 			} else {
-				swal('입력한 정보가 올바르지 않습니다.');
+				Swal.fire({
+					text: '정보가 올바르지 않습니다.',
+					icon: 'error'
+				});
 			}
 		})
 		.catch(err => {
-			swal('입력한 정보가 올바르지 않습니다.');
+			Swal.fire({
+				text: '정보가 올바르 않습니다.',
+				icon: 'error'
+			});
 			console.err(err + '정보가 존재하지 않습니다.');
-		})
+		});
 }
+
+
 
 
 function updatePw() {
